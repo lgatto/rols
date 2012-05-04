@@ -20,8 +20,8 @@
   \code{TRUE}. An instance of class \code{Map} otherwise.
 }
 \description{
-  This function returns ontology cross references for for
-  an identifier.  The function sends a
+  This function returns ontology cross references for an
+  identifier.  The function sends a
   \code{getTermXrefsRequest} SOAP message and retrieves and
   parses the \code{getTermXrefsResponse}. The original
   interface is \code{public Map getTermXrefs(String termId,

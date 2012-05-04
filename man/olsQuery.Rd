@@ -2,7 +2,8 @@
 \alias{olsQuery}
 \title{Returns matching identifiers}
 \usage{
-  olsQuery(pattern, ontologyName, simplify = TRUE)
+  olsQuery(pattern, ontologyName, exact = FALSE,
+    simplify = TRUE)
 }
 \arguments{
   \item{pattern}{A \code{character} used to query the OLS.}
@@ -10,6 +11,9 @@
   \item{ontologyName}{Optional. A \code{character} with the
   name of a valid ontology name. If missing, all ontologies
   are searched for \code{pattern}.}
+
+  \item{exact}{Require pattern to match term exactly.
+  Default is FALSE.}
 
   \item{simplify}{A logical indicating whether the S4
   \code{Map} instance should be simplified. Default is
@@ -40,6 +44,8 @@
 \examples{
 olsQuery("tgn","GO") ## search GO for 'tgn'
 olsQuery("GO") ## search all ontologies
+olsQuery("ESI", "MS")
+olsQuery("ESI", "MS", exact = TRUE)
 }
 \author{
   Laurent Gatto

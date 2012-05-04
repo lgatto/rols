@@ -304,7 +304,7 @@ allIds <- function(ontologyName, simplify=TRUE) {
 ##' @param ontologyName Optional. A \code{character} with the name of
 ##' a valid ontology name. If missing, all ontologies are searched for
 ##' \code{pattern}.
-##' @param exact Require pattern to match term exactly. 
+##' @param exact Require pattern to match term exactly. Default is FALSE.
 ##' @param simplify A logical indicating whether the S4 \code{Map}
 ##' instance should be simplified. Default is \code{TRUE}.
 ##' @return A named \code{character} if \code{simplify} is \code{TRUE}.
@@ -315,20 +315,22 @@ allIds <- function(ontologyName, simplify=TRUE) {
 ##' @examples
 ##' olsQuery("tgn","GO") ## search GO for 'tgn'
 ##' olsQuery("GO") ## search all ontologies
-olsQuery <- function(pattern, ontologyName, exact = TRUE, simplify = TRUE) {
+##' olsQuery("ESI", "MS")
+##' olsQuery("ESI", "MS", exact = TRUE)
+olsQuery <- function(pattern, ontologyName, exact = FALSE, simplify = TRUE) {
   if (missing(ontologyName)) {
     xx <- getPrefixedTermsByName(partialName = pattern,
                                  reverse = FALSE)
   } else {
     ontologyName <- match.arg(ontologyName, ontologyNames())
-    xx <- getTermsByName(partialName = pattern,
+    xx <- rols:::getTermsByName(partialName = pattern,
                          ontologyName = ontologyName,
                          reverse = FALSE)
   }
   ans <- map(xx)
   if (exact) {
-    i <- which(value(xx) == pattern)
-    if (lenght(i) == 1) {
+    i <- which(value(ans) == pattern)
+    if (length(i) == 0) {
       ans <- new("Map") ## empty
     } else {
       ans <- new("Map", .Data = ans[i])
