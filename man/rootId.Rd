@@ -1,0 +1,43 @@
+\name{rootId}
+\alias{rootId}
+\title{Retuns the root identifiers of an ontology}
+\usage{
+  rootId(ontologyName, simplify = TRUE)
+}
+\arguments{
+  \item{ontologyName}{A \code{character} with the name of a
+  valid ontology name.}
+
+  \item{simplify}{A logical indicating whether the S4
+  \code{Map} instance should be simplified. Default is
+  \code{TRUE}.}
+}
+\value{
+  A named \code{character} if \code{simplify} is
+  \code{TRUE}. An instance of class \code{Map} otherwise.
+}
+\description{
+  This function returns root identifier(s) for a given
+  valid ontology name. It sends a
+  \code{getRootTermsRequest} SOAP message and retrieves and
+  parses the \code{getRootTermsResponse}. The original
+  interface is \code{public Map getRootTerms(String
+  ontologyName)}.
+}
+\examples{
+rootId("GO")
+rootId("NEWT")
+rootId("MS")
+}
+\author{
+  Laurent Gatto
+}
+\seealso{
+  Other ols-queries: \code{\link{allIds}},
+  \code{\link{isIdObsolete}}, \code{\link{olsQuery}},
+  \code{\link{olsVersion}}, \code{\link{ontologies}},
+  \code{\link{ontologyLoadDate}},
+  \code{\link{ontologyNames}}, \code{\link{term}},
+  \code{\link{termMetadata}}, \code{\link{termXrefs}}
+}
+

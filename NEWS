@@ -1,0 +1,26 @@
+CHANGES IN VERSION 0.99.1
+-------------------------
+ o import(XMLSchema) to remove warning at startup <2012-05-04 Fri>
+
+CHANGES IN VERSION 0.99.0
+-------------------------
+ o vignette update <2012-04-30 Mon>
+ o added GO.db to Suggests for vignette <2012-04-30 Mon>
+ o bumped version to 0.99 for Bioc submission <2012-04-30 Mon>
+
+CHANGES IN VERSION 0.2.2
+-------------------------
+ o added a vignette <2011-12-18 Sun>
+ o added xtable in suggests for vignette <2011-12-18 Sun>
+ o added parents() and childrenRelations() query functions <2011-12-18 Sun>
+
+CHANGES IN VERSION 0.2.1
+-------------------------
+ o added specific SSOAP and XMLSchema version 
+   requirements <2011-12-18 Sun>
+ o fixed a couple of typos <2011-12-18 Sun>
+
+CHANGES IN VERSION 0.2.0
+-------------------------
+ o initial release
+
