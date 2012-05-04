@@ -1,3 +1,7 @@
+CHANGES IN VERSION 0.99.2
+-------------------------
+ o olsQuery has a new 'exact' parameter <2012-05-04 Fri>
+
 CHANGES IN VERSION 0.99.1
 -------------------------
  o import(XMLSchema) to remove warning at startup <2012-05-04 Fri>

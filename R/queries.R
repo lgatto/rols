@@ -193,7 +193,7 @@ termMetadata <- function(termId, ontologyName, simplify=TRUE) {
 }
 
 
-##' This function returns ontology cross references for
+##' This function returns ontology cross references
 ##' for an identifier.  The function sends a
 ##' \code{getTermXrefsRequest} SOAP message
 ##' and retrieves and parses the \code{getTermXrefsResponse}.
@@ -301,8 +301,10 @@ allIds <- function(ontologyName, simplify=TRUE) {
 ##'
 ##' @title Returns matching identifiers
 ##' @param pattern A \code{character} used to query the OLS.
-##' @param ontologyName Optional. A \code{character} with the name of a valid
-##' ontology name. If missing, all ontologies are searched for \code{pattern}.
+##' @param ontologyName Optional. A \code{character} with the name of
+##' a valid ontology name. If missing, all ontologies are searched for
+##' \code{pattern}.
+##' @param exact Require pattern to match term exactly. 
 ##' @param simplify A logical indicating whether the S4 \code{Map}
 ##' instance should be simplified. Default is \code{TRUE}.
 ##' @return A named \code{character} if \code{simplify} is \code{TRUE}.
@@ -313,7 +315,7 @@ allIds <- function(ontologyName, simplify=TRUE) {
 ##' @examples
 ##' olsQuery("tgn","GO") ## search GO for 'tgn'
 ##' olsQuery("GO") ## search all ontologies
-olsQuery <- function(pattern, ontologyName, simplify = TRUE) {
+olsQuery <- function(pattern, ontologyName, exact = TRUE, simplify = TRUE) {
   if (missing(ontologyName)) {
     xx <- getPrefixedTermsByName(partialName = pattern,
                                  reverse = FALSE)
@@ -324,10 +326,19 @@ olsQuery <- function(pattern, ontologyName, simplify = TRUE) {
                          reverse = FALSE)
   }
   ans <- map(xx)
+  if (exact) {
+    i <- which(value(xx) == pattern)
+    if (lenght(i) == 1) {
+      ans <- new("Map") ## empty
+    } else {
+      ans <- new("Map", .Data = ans[i])
+    }
+  }
   if (simplify) 
     ans <- as(ans, "character")
   return(ans) 
 }
+
 
 ##' This function returns the parent term(s) of term \code{termId}
 ##' in ontology \code{ontologyName}. 
