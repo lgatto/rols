@@ -85,7 +85,7 @@ package \citep{SSOAP}.
 %% Section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Brief \Rpackage{rols} overview}\label{sec:functions}
+\section*{Brief \Rpackage{rols} overview}\label{sec:functions}
 
 \subsection*{Ontologies}
 
