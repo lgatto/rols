@@ -52,9 +52,7 @@ Objects can be created by calls of the form \code{new("CVParam",
     \item{show}{\code{signature(object = "CVParam")}: ... }
 	 }
 }
-\references{
-%%  ~~put references to the literature/web site here~~
-}
+
 \author{
   Laurent Gatto <lg390@cam.ac.uk>
 }
