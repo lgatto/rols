@@ -1,24 +1,29 @@
 import(utils)
 import(SSOAP)
 importFrom(XMLSchema, coerceListToS4)
+importFrom(Biobase, validMsg)
+importClassesFrom(Biobase, Versioned)
 
-export(allIds)
-export(childrenRelations)
-export(isIdObsolete)
-exportMethods(key)
-exportMethods(map)
-exportMethods(show)
-exportMethods(value)
-export(olsQuery)
-export(olsVersion)
-export(ontologies)
-export(ontologyLoadDate)
-export(ontologyNames)
-export(parents)
-export(rootId)
-export(term)
-export(termMetadata)
-export(termXrefs)
 
-S3method(as.character, Map)
-S3method(as.character, mapItem)
+exportClasses(CVParam)
+
+exportMethods(key, map, value,
+              show)
+
+
+export(allIds, 
+       childrenRelations,
+       isIdObsolete,
+       olsQuery,
+       olsVersion,
+       ontologies,
+       ontologyLoadDate,
+       ontologyNames,
+       parents,
+       rootId,
+       term,
+       termMetadata,
+       termXrefs,
+       as.character.Map,
+       as.character.mapItem,
+       as.character.CVParam)

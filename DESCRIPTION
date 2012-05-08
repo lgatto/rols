@@ -10,7 +10,7 @@ Description: This package allows to query EBI's Ontology
     Lookup Service (OLS) using Simple Object Access
     Protocol (SOAP).
 Depends: methods
-Imports: XMLSchema (>= 0.6.0), SSOAP (>= 0.8.1)
+Imports: XMLSchema (>= 0.6.0), SSOAP (>= 0.8.1), Biobase
 Suggests: roxygen2, xtable, GO.db
 biocViews: AnnotationData, FunctionalAnnotation, GO
 License: GPL-2

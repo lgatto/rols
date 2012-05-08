@@ -1,6 +1,7 @@
 CHANGES IN VERSION 0.99.3
 -------------------------
  o minor vignette update <2012-05-04 Fri>
+ o new CVParam class <2012-05-08 Tue>
 
 CHANGES IN VERSION 0.99.2
 -------------------------
