@@ -21,8 +21,10 @@ setClass("CVParam",
              x <- c(object@label, object@accession,
                     object@name, object@value) == ""
              if (!all(x)) {
-               if (term(object@accession, object@label) != object@name)
-                 msg <- "CVParam accession and name do not match."
+               .term <- term(object@accession, object@label)
+               if (.term != object@name)
+                 msg <- paste0("CVParam accession and name do not match. Got '",
+                               .term, "', expected '", object@name, "'.")
              }
            }
            if (is.null(msg)) TRUE else msg
