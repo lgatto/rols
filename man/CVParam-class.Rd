@@ -5,6 +5,7 @@
 \alias{CVParam}
 \alias{coerce,CVParam,character-method}
 \alias{show,CVParam-method}
+\alias{rep,CVParam-method}
 \alias{as.character.CVParam}
 
 \title{Class \code{"CVParam"}}
@@ -48,9 +49,20 @@ Objects can be created by calls of the form \code{new("CVParam",
 
 \section{Methods}{
   \describe{
-    \item{coerce}{\code{signature(from = "CVParam", to = "character")}:  }
-    \item{show}{\code{signature(object = "CVParam")}: ... }
-	 }
+    \item{coerce}{\code{signature(from = "CVParam", to = "character")}:
+      Coerces \code{CVParam} \code{from} to a \code{character} of the
+      following form: \code{[label, accession, name,
+	value]}. \code{as.character} is also defined.
+    }
+
+    \item{show}{\code{signature(object = "CVParam")}: Prints the
+      \code{CVParam} instance as text.
+    }
+
+    \item{rep}{\code{signature(x = "CVParam", times = "numeric")}:
+      Replicates the \code{CVParam} \code{x} \code{times} times.       
+    }
+  }
 }
 
 \author{

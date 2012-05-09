@@ -46,3 +46,13 @@ setMethod("show","CVParam",
             cat(as(object, "character"), "\n")
             invisible(NULL)
           })
+
+
+
+setMethod("rep", "CVParam",
+          function(x, times) {
+            l <- vector("list", length = times)
+            for (i in 1:times)
+              l[[i]] <- x
+            return(l)
+          })
