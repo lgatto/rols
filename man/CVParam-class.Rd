@@ -23,16 +23,16 @@ CVParam(label, name, accession, value, exact = TRUE)
 }
 
 \arguments{
-  \item{label}{A \code{character} with the ontology label. This
-    parameter is mandatory.}
-  
+  \item{label}{A \code{character} with the ontology label. If missing,
+    a user-defined parameter is created. }
+    
   \item{name}{A \code{character} with the name of the \code{CVParam} to
     be constructed. This argument can be omitted if \code{accession} is 
-    used. }
+    used and \code{label} is not missing. }
   
   \item{accession}{A \code{character} with the accession of the 
     \code{CVParam} to be constructed. This argument can be omitted if
-    \code{name} is used. }
+    \code{name} is used. Ignored for user-defined instances. }
   
   \item{value}{A \code{character} with the value of the \code{CVParam}
     to be constructed. This argument is optional. }
@@ -95,10 +95,12 @@ CVParam(label, name, accession, value, exact = TRUE)
 
 \examples{
 ## a user param
-new("CVParam", user = TRUE, name = "A user param", value = "the value")
+CVParam(name = "A user param", value = "the value")
 ## a CVParam from PSI's Mass Spectrometry ontology
 term("PSI:1000073", "PSI")
-new("CVParam", label = "PSI", accession = "PSI:1000073", name ="Electrospray Ionization")
+CVParam(label = "PSI", accession = "PSI:1000073")
+CVParam(label = "PSI", name ="Electrospray Ionization")
+CVParam(label = "PSI", name ="ESI") ## using a synonym
 }
 
 
