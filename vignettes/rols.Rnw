@@ -148,7 +148,7 @@ print(xtable(funTab,
 ## Have encountered some instabilit recently (17 April 2012)
 ## Repeat query until successful to avoid random vignette errors
 alltgns <- olsQuery("trans golgi network")
-if (length(alltgns) == 0)
+while (length(alltgns) == 0)
   alltgns <- olsQuery("trans golgi network")
 @ 
 

@@ -26,4 +26,5 @@ export(allIds,
        termXrefs,
        as.character.Map,
        as.character.mapItem,
-       as.character.CVParam)
+       as.character.CVParam,
+       CVParam)

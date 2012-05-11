@@ -15,10 +15,34 @@
 }
 
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("CVParam",
-  versions, ...)}. An automated  constructer will be added later. 
-
+  Objects can be created with the \code{CVParam} constructor.
 }
+
+\usage{
+CVParam(label, name, accession, value, exact = TRUE)
+}
+
+\arguments{
+  \item{label}{A \code{character} with the ontology label. This
+    parameter is mandatory.}
+  
+  \item{name}{A \code{character} with the name of the \code{CVParam} to
+    be constructed. This argument can be omitted if \code{accession} is 
+    used. }
+  
+  \item{accession}{A \code{character} with the accession of the 
+    \code{CVParam} to be constructed. This argument can be omitted if
+    \code{name} is used. }
+  
+  \item{value}{A \code{character} with the value of the \code{CVParam}
+    to be constructed. This argument is optional. }
+
+  \item{exact}{A \code{logical} defining whether the query to retrieve
+    the \code{accession} (when \code{name} is used) should be an
+    exact match. }
+    
+}
+
 \section{Slots}{
   \describe{
     \item{\code{label}:}{Object of class \code{"character"} that defines

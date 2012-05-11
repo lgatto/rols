@@ -1,4 +1,28 @@
-## CVParam <- function() { } ## constructor TODO
+CVParam <- function(label,
+                    name,
+                    accession,
+                    value,
+                    exact = TRUE) {
+  if (missing(label))
+    stop("Ontology label is mandatory")
+  if (missing(name) & missing(accession)) {
+    stop("You need to provide at least one of 'name' or 'accession'")
+  } else if (missing(name)) {
+    name <- term(accession, label)
+  } else { ## missing(accession)
+    .term <- olsQuery(name, label, exact = exact)
+    if (length(.term) != 1)
+      stop("Found more than one matching term: ", paste(.term, collapse = ", "))
+    accession <- names(.term)
+  }
+  
+  ans <- new("CVParam", label = label, name = name, accession = accession)  
+  if (!missing(value))
+    ans@value <- value
+  
+  if (validObject(ans))
+    return(ans)
+} 
 
 ## a param is [CV label, accession, name, value]
 setClass("CVParam",
