@@ -11,7 +11,7 @@ setClass("CVParam",
          contains = "Versioned",
          prototype = prototype(
            user = FALSE,
-           new("Versioned", versions=c(CVParam="0.1.0"))),
+           new("Versioned", versions=c(CVParam="0.2.0"))),
          validity = function(object) {
            msg <- validMsg(NULL, NULL)
            if (object@user) {
@@ -22,9 +22,12 @@ setClass("CVParam",
                     object@name, object@value) == ""
              if (!all(x)) {
                .term <- term(object@accession, object@label)
-               if (.term != object@name)
-                 msg <- paste0("CVParam accession and name do not match. Got '",
-                               .term, "', expected '", object@name, "'.")
+               .synonyms <- termMetadata(object@accession, object@label)
+               .synonyms <- .synonyms[grep("synonym", names(.synonyms))]
+               if (!(object@name %in% c(.term, .synonyms)))
+                 msg <- paste0("CVParam accession and name/synomyms do not match. Got [",
+                               paste(c(.term, .synonyms), collapse = ", "),
+                               "], expected '", object@name, "'.")
              }
            }
            if (is.null(msg)) TRUE else msg

@@ -1,6 +1,8 @@
 CHANGES IN VERSION 0.99.4
 -------------------------
  o added url to DESCRIPTION <2012-05-11 Fri>
+ o released CVParam validity contrains: now CVParam name 
+   must match term or any synonym. <2012-05-11 Fri>
 
 CHANGES IN VERSION 0.99.3
 -------------------------
