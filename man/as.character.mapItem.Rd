@@ -1,0 +1,26 @@
+\name{as.character.mapItem}
+\alias{as.character.mapItem}
+\title{Coerce \code{mapItem} to a \code{character}}
+\usage{
+  \method{as.character}{mapItem} (x, ...)
+}
+\arguments{
+  \item{x}{An instance of \code{mapItem}.}
+
+  \item{...}{not used}
+}
+\value{
+  A \code{character} of length 2.
+}
+\description{
+  \code{as} method to coerce an instance of \code{mapItem}
+  to a \code{character} by concatenating the \code{key} and
+  \code{value} variabels.
+}
+\author{
+  Laurent Gatto
+}
+\seealso{
+  Other as: \code{\link{as.character.Map}}
+}
+
