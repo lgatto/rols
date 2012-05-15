@@ -144,17 +144,9 @@ print(xtable(funTab,
 %% \Rpackage{biomaRt}. 
 
 
-<<tgnfail, echo=FALSE>>=
-## Have encountered some instabilit recently (17 April 2012)
-## Repeat query until successful to avoid random vignette errors
-alltgns <- olsQuery("trans golgi network")
-while (length(alltgns) == 0)
-  alltgns <- olsQuery("trans golgi network")
-@ 
-
 A researcher might be interested in the trans-Golgi network and interested in knowing in which ontologies his favourite organelle is referenced. This can be done by querying all ontologies with a relevant pattern. The code below describes how to achieve this. 
 
-<<tgnquery0, eval=FALSE>>=
+<<tgnquery, eval=TRUE>>=
 alltgns <- olsQuery("trans golgi network")
 @ 
 
@@ -172,14 +164,14 @@ The description of the \Sexpr{length(onto.count)} ontologies of interest can the
 ontologies()[names(onto.count),]
 @ 
 
-To subset the search to a specific ontology of interest, the user can specify the ontolgy as a parameter to \Rfunction{olsQuery}. 
+To restrict the search to a specific ontology of interest, one can specify the ontolgy name as a parameter to \Rfunction{olsQuery}. 
 
 <<gotgnquery>>=
 gotgns <- olsQuery("trans golgi network", "GO")
 gotgns
 @ 
 
-Details about relevant term can be retrieved with the \Rfunction{term} and \Rfunction{termMetadata} function. This functionality provides on-line access to the same data that is available in the \Rpackage{GO.db}, and can be extended to any of the \Sexpr{nonto} available ontologies.
+Details about relevant terms can be retrieved with the \Rfunction{term} and \Rfunction{termMetadata} functions. This functionality provides on-line access to the same data that is available in the \Rpackage{GO.db}, and can be extended to any of the \Sexpr{nonto} available ontologies.
 
 <<godetails>>= 
 term("GO:0005802", "GO")
@@ -190,6 +182,13 @@ mtd["definition"]
 ## same as from GO.db
 GOTERM[["GO:0005802"]]
 @ 
+
+\subsection*{On-line vs. off-line data} 
+
+It is possible to observe different results with \Rpackage{rols} and \Rpackage{GO.db} \citep{GO.db}, as a result of the different ways they access the data. \Rpackage{rols} or \Rpackage{biomaRt} \citep{Durinck2005} perform direct online queries, while \Rpackage{GO.db} and other annotation packages use database snapshot that are updated every release. 
+
+Both approaches have advantages. While online queries allow to obtain the latest up-to-date information, such approaches rely on network availability and quality. If reproducibility is a major issue, the version of the database to be queried can easily be controlled with off-line approaches. In the case of \Rpackage{rols}, altough the load date of a specific ontology can be queried with \Rfunction{olsVersion}, it is not possible to query a specific version of an ontology.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Section

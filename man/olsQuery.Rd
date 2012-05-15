@@ -2,7 +2,7 @@
 \alias{olsQuery}
 \title{Returns matching identifiers}
 \usage{
-  olsQuery(pattern, ontologyName, exact = FALSE,
+  olsQuery(pattern, ontologyName, exact = FALSE, n = 3,
     simplify = TRUE)
 }
 \arguments{
@@ -13,7 +13,11 @@
   are searched for \code{pattern}.}
 
   \item{exact}{Require pattern to match term exactly.
-  Default is FALSE.}
+  Default is FALSE. Note that if \code{ontologyName} is
+  missing, exact is ignored.}
+
+  \item{n}{Number of attempts to repeat the query if no
+  result is found. Default is 3.}
 
   \item{simplify}{A logical indicating whether the S4
   \code{Map} instance should be simplified. Default is
@@ -40,6 +44,14 @@
   corresponging interface is \code{public Map
   getPrefixedTermsByName(String partialName, boolean
   reverseKeyOrder)}.
+}
+\details{
+  Some valid queries sometimes return empty results due to
+  network instabilities. For this reason, each
+  \code{olsQuery} is repeated 3 times (see \code{n}
+  parameter) as long as empty resuls are obtained. In
+  general, when the ontology is specified, queries are fast
+  and reliable.
 }
 \examples{
 olsQuery("tgn","GO") ## search GO for 'tgn'

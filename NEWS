@@ -1,3 +1,16 @@
+CHANGES IN VERSION 0.99.6
+-------------------------
+ o implementing Mark Carlson's suggestions
+ o (Temporarily) removing pgf  <2012-05-15 Tue>
+ o added Collate field <2012-05-15 Tue>
+ o moving generics and class definitions to 
+   AllGenerics.R and AllClasses.R <2012-05-15 Tue>
+ o olsQuery now repeats query 'n' times if reply 
+   is empty - see man page for a brief 
+   discussion <2012-05-15 Tue>
+ o updated vignette to discuss off/on-line data 
+   access <2012-05-15 Tue>
+
 CHANGES IN VERSION 0.99.5
 -------------------------
  o downgraded SSOAP dependency to (>= 0.8.0), as later 

@@ -1,6 +1,3 @@
-setGeneric("key", function(object) standardGeneric("key"))
-setGeneric("value", function(object) standardGeneric("value"))
-
 
 ##' \code{key} slot accessor for the \code{mapItem} instances.
 ##'
@@ -54,8 +51,6 @@ setMethod("key", "Map", function (object) sapply(object, key))
 setMethod("value", "Map", function (object) sapply(object, value))
 
 
-
-setGeneric("map", function(object) standardGeneric("map"))
 
 ##' Accessor for the \code{Map} data of the OLS
 ##' return messages converted to their respective

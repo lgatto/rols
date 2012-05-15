@@ -299,12 +299,21 @@ allIds <- function(ontologyName, simplify=TRUE) {
 ##' The original corresponging interface is
 ##' \code{public Map getPrefixedTermsByName(String partialName, boolean reverseKeyOrder)}.
 ##'
+##' Some valid queries sometimes return empty results due to network instabilities.
+##' For this reason, each \code{olsQuery} is repeated 3 times (see \code{n} parameter)
+##' as long as empty resuls are obtained. In general, when the ontology is specified,
+##' queries are fast and reliable. 
+##' 
 ##' @title Returns matching identifiers
 ##' @param pattern A \code{character} used to query the OLS.
 ##' @param ontologyName Optional. A \code{character} with the name of
 ##' a valid ontology name. If missing, all ontologies are searched for
 ##' \code{pattern}.
-##' @param exact Require pattern to match term exactly. Default is FALSE.
+##' @param exact Require pattern to match term exactly. Default is
+##' FALSE. Note that if \code{ontologyName} is missing, exact is
+##' ignored.
+##' @param n Number of attempts to repeat the query if no result is
+##' found. Default is 3. 
 ##' @param simplify A logical indicating whether the S4 \code{Map}
 ##' instance should be simplified. Default is \code{TRUE}.
 ##' @return A named \code{character} if \code{simplify} is \code{TRUE}.
@@ -317,17 +326,28 @@ allIds <- function(ontologyName, simplify=TRUE) {
 ##' olsQuery("GO") ## search all ontologies
 ##' olsQuery("ESI", "MS")
 ##' olsQuery("ESI", "MS", exact = TRUE)
-olsQuery <- function(pattern, ontologyName, exact = FALSE, simplify = TRUE) {
-  if (missing(ontologyName)) {
-    xx <- getPrefixedTermsByName(partialName = pattern,
-                                 reverse = FALSE)
-  } else {
-    ontologyName <- match.arg(ontologyName, ontologyNames())
-    xx <- rols:::getTermsByName(partialName = pattern,
-                         ontologyName = ontologyName,
-                         reverse = FALSE)
+olsQuery <- function(pattern, ontologyName,
+                     exact = FALSE, n = 3,
+                     simplify = TRUE) {
+  ans <- list()
+  .n <- n
+  while (length(ans) == 0 & n > 0) {
+    if (missing(ontologyName)) {
+      ans <- getPrefixedTermsByName(partialName = pattern,
+                                   reverse = FALSE)
+      exact <- FALSE
+      warning("Ignoring 'exact' when 'ontologyName' is missing.")
+    } else {
+      ontologyName <- match.arg(ontologyName, ontologyNames())
+      ans <- rols:::getTermsByName(partialName = pattern,
+                                  ontologyName = ontologyName,
+                                  reverse = FALSE)
+    }
+    ans <- map(ans)
+    n <- n - 1
   }
-  ans <- map(xx)
+  if (length(ans) == 0) 
+    message("Empty query results after ", .n, "attempts.")
   if (exact) {
     i <- which(value(ans) == pattern)
     if (length(i) == 0) {
