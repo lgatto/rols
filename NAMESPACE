@@ -1,0 +1,30 @@
+import(utils)
+import(SSOAP)
+importFrom(XMLSchema, coerceListToS4)
+importFrom(Biobase, validMsg)
+importClassesFrom(Biobase, Versioned)
+
+
+exportClasses(CVParam)
+
+exportMethods(key, map, value,
+              show)
+
+
+export(allIds, 
+       childrenRelations,
+       isIdObsolete,
+       olsQuery,
+       olsVersion,
+       ontologies,
+       ontologyLoadDate,
+       ontologyNames,
+       parents,
+       rootId,
+       term,
+       termMetadata,
+       termXrefs,
+       as.character.Map,
+       as.character.mapItem,
+       as.character.CVParam,
+       CVParam)

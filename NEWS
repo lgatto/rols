@@ -1,0 +1,64 @@
+CHANGES IN VERSION 0.99.6
+-------------------------
+ o implementing Mark Carlson's suggestions
+ o (Temporarily) removing pgf  <2012-05-15 Tue>
+ o added Collate field <2012-05-15 Tue>
+ o moving generics and class definitions to 
+   AllGenerics.R and AllClasses.R <2012-05-15 Tue>
+ o olsQuery now repeats query 'n' times if reply 
+   is empty - see man page for a brief 
+   discussion <2012-05-15 Tue>
+ o updated vignette to discuss off/on-line data 
+   access <2012-05-15 Tue>
+
+CHANGES IN VERSION 0.99.5
+-------------------------
+ o downgraded SSOAP dependency to (>= 0.8.0), as later 
+   SSOAP versions are not available through biocLite 
+   (due to check errors). rols works with SSOAP 0.8.0 
+   and XMLSchema 0.7.2. <2012-05-11 Fri>
+
+CHANGES IN VERSION 0.99.4
+-------------------------
+ o added url to DESCRIPTION <2012-05-11 Fri>
+ o released CVParam validity contrains: now CVParam name 
+   must match term or any synonym <2012-05-11 Fri>
+ o new CVParam constructor <2012-05-11 Fri>
+
+CHANGES IN VERSION 0.99.3
+-------------------------
+ o minor vignette update <2012-05-04 Fri>
+ o new CVParam class <2012-05-08 Tue>
+ o More verbose CVParam validity error msg <2012-05-08 Tue>
+ o new 'rep' method for CVParam <2012-05-09 Wed>
+
+CHANGES IN VERSION 0.99.2
+-------------------------
+ o olsQuery has a new 'exact' parameter <2012-05-04 Fri>
+
+CHANGES IN VERSION 0.99.1
+-------------------------
+ o import(XMLSchema) to remove warning at startup <2012-05-04 Fri>
+
+CHANGES IN VERSION 0.99.0
+-------------------------
+ o vignette update <2012-04-30 Mon>
+ o added GO.db to Suggests for vignette <2012-04-30 Mon>
+ o bumped version to 0.99 for Bioc submission <2012-04-30 Mon>
+
+CHANGES IN VERSION 0.2.2
+-------------------------
+ o added a vignette <2011-12-18 Sun>
+ o added xtable in suggests for vignette <2011-12-18 Sun>
+ o added parents() and childrenRelations() query functions <2011-12-18 Sun>
+
+CHANGES IN VERSION 0.2.1
+-------------------------
+ o added specific SSOAP and XMLSchema version 
+   requirements <2011-12-18 Sun>
+ o fixed a couple of typos <2011-12-18 Sun>
+
+CHANGES IN VERSION 0.2.0
+-------------------------
+ o initial release
+
