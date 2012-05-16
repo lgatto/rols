@@ -9,5 +9,5 @@ functionality. `roxygen` can also generate the NAMSPACE (roclet `namespace`) and
 parts if the DESCRIPTION (previous and roclet `collate`) files, which is not used here. 
 If all roclets are used, some native data will be overwritten.
 
-     [1] https://github.com/klutometis/roxygen
-     [2] http://cran.r-project.org/web/packages/roxygen2/index.html
+[1] https://github.com/klutometis/roxygen
+[2] http://cran.r-project.org/web/packages/roxygen2/index.html
