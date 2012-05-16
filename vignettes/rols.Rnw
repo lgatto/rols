@@ -1,4 +1,4 @@
-%\VignetteIndexEntry{rols, an R interface to the Ontology Lookup Service}
+%\VignetteIndexEntry{The rols interface to the Ontology Lookup Service}
 %\VignetteKeywords{Infrastructure, Bioinformatics, ontology }
 %\VignettePackage{rols}
 \documentclass{article}
