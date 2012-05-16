@@ -1,4 +1,4 @@
-Some of the functions in rols are documented with the [roxygen2](https://github.com/klutometis/roxygen
+Some of the functions in rols are documented with the [roxygen2](https://github.com/klutometis/roxygen)
 ([CRAN package](http://cran.r-project.org/web/packages/roxygen2/index.html). 
 The respective Rd pages have been created with
 ```
