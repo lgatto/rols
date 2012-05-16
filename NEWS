@@ -1,3 +1,8 @@
+CHANGES IN VERSION 0.99.7
+-------------------------
+ o using pdfSweave <2012-05-16 Wed>
+ o changed VignetteIndexEntry <2012-05-16 Wed>
+
 CHANGES IN VERSION 0.99.6
 -------------------------
  o implementing Mark Carlson's suggestions
