@@ -6,6 +6,6 @@ R --vanilla -e "library(roxygen2); roxygenize('"$(PKG)"', roclets=\"rd\")";
 ```
 
 Note that only the `rd` roclet has been used, i.e. only `roxygen`'s Rd-generation 
-functionality. `roxygen` can also generate the NAMSPACE (roclet `namespace`) and 
-parts if the DESCRIPTION (previous and roclet `collate`) files, which is not used here. 
+functionality. `roxygen` can also generate the NAMESPACE (`namespace` roclet) and 
+parts of (?) the DESCRIPTION (previous and `collate` roclet) files, which is not used here. 
 If all roclets are used, some native data will be overwritten.
