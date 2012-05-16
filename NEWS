@@ -1,3 +1,11 @@
+CHANGES IN VERSION 0.99.7
+-------------------------
+ o using pdfSweave <2012-05-16 Wed>
+ o changed VignetteIndexEntry <2012-05-16 Wed>
+ o removed roxygen2 from Suggests <2012-05-16 Wed>
+ o added README file describinh Rd generation 
+   with roxygen2 <2012-05-16 Wed>
+
 CHANGES IN VERSION 0.99.6
 -------------------------
  o implementing Mark Carlson's suggestions
