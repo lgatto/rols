@@ -335,8 +335,6 @@ olsQuery <- function(pattern, ontologyName,
     if (missing(ontologyName)) {
       ans <- getPrefixedTermsByName(partialName = pattern,
                                    reverse = FALSE)
-      exact <- FALSE
-      warning("Ignoring 'exact' when 'ontologyName' is missing.")
     } else {
       ontologyName <- match.arg(ontologyName, ontologyNames())
       ans <- rols:::getTermsByName(partialName = pattern,
@@ -348,12 +346,17 @@ olsQuery <- function(pattern, ontologyName,
   }
   if (length(ans) == 0) 
     message("Empty query results after ", .n, "attempts.")
+
   if (exact) {
-    i <- which(value(ans) == pattern)
-    if (length(i) == 0) {
-      ans <- new("Map") ## empty
+    if (missing(ontologyName)) {
+      warning("Ignoring 'exact' when 'ontologyName' is missing.")
     } else {
-      ans <- new("Map", .Data = ans[i])
+      i <- which(value(ans) == pattern)
+      if (length(i) == 0) {
+        ans <- new("Map") ## empty
+      } else {
+        ans <- new("Map", .Data = ans[i])
+      }
     }
   }
   if (simplify) 
