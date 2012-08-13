@@ -11,6 +11,8 @@ LATEXFILES = *.aux\
 	*.dvi\
 	*.map\
         *.out\
+	rols.tex\
+	*tikzDictionary
 
 all:
 	make vignettes
@@ -22,12 +24,10 @@ R_HOME=	$(shell R RHOME)
 endif
 
 vignettes: 
-	"$(R_HOME)/bin/R" --vanilla -e "library(pgfSweave); pgfSweave('rols.Rnw');"
-	# "$(R_HOME)/bin/R" CMD Sweave rols.Rnw 
-	# "$(R_HOME)/bin/R" CMD pdflatex rols.tex
-	bibtex rols
+	"$(R_HOME)/bin/R" --vanilla -e "library(knitr); knit2pdf('rols.Rnw');"
+	##bibtex rols
 	"$(R_HOME)/bin/R" CMD pdflatex rols.tex
-	"$(R_HOME)/bin/R" CMD pdflatex rols.tex
+
 clean:
 	rm -f $(LATEXFILES)
 	rm -f *~

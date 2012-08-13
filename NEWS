@@ -1,3 +1,7 @@
+CHANGES IN VERSION 0.99.10
+--------------------------
+ o using knitr instead of pgfSweave <2012-08-13 Mon>
+
 CHANGES IN VERSION 0.99.9
 -------------------------
  o fixed olsQuery issued warning when missing(ontologyNames)
