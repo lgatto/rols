@@ -2,14 +2,9 @@
 %\VignetteKeywords{Infrastructure, Bioinformatics, ontology }
 %\VignettePackage{rols}
 \documentclass{article}
-\usepackage{tikz}
 \usepackage{longtable}
-\usepackage[nogin]{Sweave}
-\usepackage{hyperref}
 \usepackage[authoryear,round]{natbib}
-
-\SweaveOpts{echo=T,eval=T,fig=F,results=verbatim,cache=F,tikz=T,external=F,prefix.string=sweave-cache/figs/fig}
-
+\usepackage[T1]{fontenc}
 \newcommand{\R}{\texttt{R} }
 \newcommand{\Rfunction}[1]{{\texttt{#1}}}
 \newcommand{\Robject}[1]{{\texttt{#1}}}
@@ -19,7 +14,23 @@
 \definecolor{Red}{rgb}{0.7,0,0}
 \definecolor{Blue}{rgb}{0,0,0.8}
 
+\usepackage{geometry}
+\geometry{verbose,
+  tmargin = 2.5cm,
+  bmargin = 2.5cm,
+  lmargin = 3.5cm,
+  rmargin = 3.5cm}
+
+\usepackage{hyperref}
+\usepackage{breakurl}
 \hypersetup{%
+  pdfusetitle,
+  bookmarks = {true},
+  bookmarksnumbered = {true},
+  bookmarksopen = {true},
+  bookmarksopenlevel = 2,
+  unicode = {true},
+  breaklinks = {false},
   hyperindex = {true},
   colorlinks = {true},
   linktocpage = {true},
@@ -40,10 +51,29 @@
 
 \maketitle
 
-<<env, echo=FALSE>>=
+<<'setup', include = FALSE, cache = FALSE>>=
+library(knitr)
+opts_chunk$set(fig.align = 'center', 
+               fig.show = 'hold', 
+               par = TRUE,
+               prompt = TRUE,
+               comment = NA)
+options(replace.assign = TRUE, 
+        width = 65)
+knit_hooks$set(par = function(before, options, envir) {
+  if (before && options$fig.show != 'none') 
+    par(mar = c(4,4,.1,.1),
+        cex.lab = .95,
+        cex.axis = .9,
+        mgp = c(2,.7,0),
+        tcl = -.3)
+})
+@
+
+<<'env', echo = FALSE>>=
 library("xtable")
-library("rols")
-library("GO.db")
+suppressPackageStartupMessages(library("GO.db"))
+suppressPackageStartupMessages(library("rols"))
 nonto <- length(ontologyNames())
 @ 
 
@@ -57,6 +87,7 @@ The \Rpackage{rols} package provides a common interface to \Sexpr{nonto} differe
 \vskip 0.1in minus 0.05in
 \hrule
 \vskip 0.2in minus 0.1in
+\vspace{10mm}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %% \tableofcontents
@@ -64,7 +95,7 @@ The \Rpackage{rols} package provides a common interface to \Sexpr{nonto} differe
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section*{Introduction}\label{sec:intro} 
+\section{Introduction}\label{sec:intro} 
 
 The Ontology Lookup Service\footnote{%
 \url{http://www.ebi.ac.uk/ontology-lookup/}} 
@@ -85,15 +116,15 @@ package \citep{SSOAP}.
 %% Section
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Brief \Rpackage{rols} overview}\label{sec:functions}
+\section{Brief \Rpackage{rols} overview}\label{sec:functions}
 
-\subsection*{Ontologies}
+\subsection{Ontologies}
 
 There are \Sexpr{nonto} ontologies available in the OLS, 
-lis<ted in the table \ref{tab:onto} below. Their name is to be use to defined 
+listed in the table \ref{tab:onto} below. Their name is to be use to defined 
 which ontology to query.
 
-<<ontTable, results=tex, echo=FALSE>>=
+<<'ontTable', results = tex, echo = FALSE>>=
   tab <- ontologies()
   o <- order(tab$Name)
   print(xtable(tab[o,],
@@ -105,13 +136,13 @@ which ontology to query.
         include.rownames=FALSE)
 @ 
 
-\subsection*{Interface}
+\subsection{Interface}
 
 Table \ref{tab:fun} summarised the common interface available for the 
 \Sexpr{nonto} ontologies of table \ref{tab:onto}. 
 More information is provided in the respective manual pages.
 
-<<funTables, results=tex, echo=FALSE>>=
+<<'funTables', results = tex, echo = FALSE>>=
 funTab <- data.frame(rbind(
   c("olsVersion", "Returns the OLS version"),
   c("ontologies", "Returns all available ontologies"),
@@ -136,7 +167,7 @@ print(xtable(funTab,
 @ 
 
 
-\subsection*{Use case}
+\subsection{Use case}
 
 %% In many application, users have a list of genes that have been 
 %% identified as of interest of a particular experiment. These cases
@@ -146,34 +177,38 @@ print(xtable(funTab,
 
 A researcher might be interested in the trans-Golgi network and interested in knowing in which ontologies his favourite organelle is referenced. This can be done by querying all ontologies with a relevant pattern. The code below describes how to achieve this. 
 
-<<tgnquery, eval=TRUE>>=
+<<'tgnquery', eval = TRUE>>=
+library("rols")
 alltgns <- olsQuery("trans golgi network")
 @ 
 
 As shown below, \Sexpr{length(unique(sapply(strsplit(names(alltgns), ":"), "[", 1)))} different ontologies have matched the query string. 
 
-<<tgnqueryShow>>= 
+<<'tgnqueryShow'>>= 
 alltgns
-onto.count <- table(sapply(strsplit(names(alltgns), ":"), "[", 1))
-onto.count
+allonts <- sapply(strsplit(names(alltgns), ":"), "[", 1)
+onto.tab <- table(allonts)
+onto.tab
 @ 
 
-The description of the \Sexpr{length(onto.count)} ontologies of interest can then be used to subset the ontology description:
+<<'ontocnt', echo = FALSE>>=
+@ 
+The description of the \Sexpr{length(onto.tab)} ontologies of interest can then be used to subset the ontology description:
 
-<<tgnqueryTable>>=
-ontologies()[names(onto.count),]
+<<'tgnqueryTable'>>=
+ontologies()[names(onto.tab),]
 @ 
 
 To restrict the search to a specific ontology of interest, one can specify the ontolgy name as a parameter to \Rfunction{olsQuery}. 
 
-<<gotgnquery>>=
+<<'gotgnquery'>>=
 gotgns <- olsQuery("trans golgi network", "GO")
 gotgns
 @ 
 
 Details about relevant terms can be retrieved with the \Rfunction{term} and \Rfunction{termMetadata} functions. This functionality provides on-line access to the same data that is available in the \Rpackage{GO.db}, and can be extended to any of the \Sexpr{nonto} available ontologies.
 
-<<godetails>>= 
+<<'godetails'>>= 
 term("GO:0005802", "GO")
 mtd <- termMetadata("GO:0005802", "GO")
 names(mtd)
@@ -183,7 +218,7 @@ mtd["definition"]
 GOTERM[["GO:0005802"]]
 @ 
 
-\subsection*{On-line vs. off-line data} 
+\subsection{On-line vs. off-line data} 
 
 It is possible to observe different results with \Rpackage{rols} and \Rpackage{GO.db} \citep{GO.db}, as a result of the different ways they access the data. \Rpackage{rols} or \Rpackage{biomaRt} \citep{Durinck2005} perform direct online queries, while \Rpackage{GO.db} and other annotation packages use database snapshot that are updated every release. 
 
@@ -195,7 +230,7 @@ Both approaches have advantages. While online queries allow to obtain the latest
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Session information}\label{sec:sessionInfo} 
-<<label=sessioninfo,results=tex,echo=FALSE,cache=FALSE>>=
+<<label='sessioninfo', results = tex, echo = FALSE, cache = FALSE>>=
 toLatex(sessionInfo())
 @
 
