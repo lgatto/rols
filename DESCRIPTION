@@ -1,7 +1,7 @@
 Package: rols
 Type: Package
 Title: An R interface to the Ontology Lookup Service
-Version: 0.99.10
+Version: 0.99.11
 Author@R: person(given = "Laurent", family = "Gatto", email =
         "lg390@cam.ac.uk", role = c("aut","cre"))
 Author: Laurent Gatto <lg390@cam.ac.uk>
@@ -12,7 +12,11 @@ Description: This package allows to query EBI's Ontology
 Depends: methods
 Imports: XMLSchema (>= 0.6.0), SSOAP (>= 0.8.0), Biobase
 Suggests: xtable, GO.db, knitr
+<<<<<<< HEAD
 biocViews: AnnotationData, FunctionalAnnotation, GO
+=======
+biocViews: Software, Annotation, MassSpectrometry, GO
+>>>>>>> local-hedgehog
 License: GPL-2
 URL: http://lgatto.github.com/rols/
 Collate: AllClasses.R AllGenerics.R iface.R cvparam.R environment.R
