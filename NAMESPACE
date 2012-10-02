@@ -1,9 +1,9 @@
 import(utils)
 import(SSOAP)
+import(XML)
 importFrom(XMLSchema, coerceListToS4)
 importFrom(Biobase, validMsg)
 importClassesFrom(Biobase, Versioned)
-
 
 exportClasses(CVParam)
 

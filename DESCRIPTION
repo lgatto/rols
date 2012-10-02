@@ -1,7 +1,7 @@
 Package: rols
 Type: Package
 Title: An R interface to the Ontology Lookup Service
-Version: 0.99.12
+Version: 1.1.1
 Author@R: person(given = "Laurent", family = "Gatto", email =
         "lg390@cam.ac.uk", role = c("aut","cre"))
 Author: Laurent Gatto <lg390@cam.ac.uk>
@@ -10,7 +10,7 @@ Description: This package allows to query EBI's Ontology
     Lookup Service (OLS) using Simple Object Access
     Protocol (SOAP).
 Depends: methods
-Imports: XMLSchema (>= 0.6.0), SSOAP (>= 0.8.0), Biobase
+Imports: XML, XMLSchema (>= 0.6.0), SSOAP (>= 0.8.0), Biobase
 Suggests: xtable, GO.db, knitr
 <<<<<<< HEAD
 biocViews: AnnotationData, FunctionalAnnotation, GO
