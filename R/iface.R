@@ -1,6 +1,7 @@
 ## File generate by rols/inst/makeIface.R
 ## Manual modifications: moved 'Map' and 'Vector'
 ## class definitions to the top
+
 library(SSOAP)
 library(XML)
 
@@ -12,8 +13,7 @@ setClass( 'Map' ,
 setClass( 'Vector' ,
 	   representation(
 		.Data = 'ANY') ,
-	   contains = c( 'ANY' ) )
-
+	   contains = c( 'ANY' ) ) 
 
 setClass( 'DataHolder' ,
 	   representation(
