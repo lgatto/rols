@@ -12,11 +12,7 @@ Description: This package allows to query EBI's Ontology
 Depends: methods
 Imports: XML, XMLSchema (>= 0.6.0), SSOAP (>= 0.8.0), Biobase
 Suggests: xtable, GO.db, knitr
-<<<<<<< HEAD
-biocViews: AnnotationData, FunctionalAnnotation, GO
-=======
 biocViews: Software, Annotation, MassSpectrometry, GO
->>>>>>> local-hedgehog
 License: GPL-2
 URL: http://lgatto.github.com/rols/
 Collate: AllClasses.R AllGenerics.R iface.R cvparam.R environment.R
