@@ -1,4 +1,4 @@
-.rolsEnv <- new.env(parent=.GlobalEnv, hash=TRUE)
+.rolsEnv <- new.env(parent = emptyenv(), hash = TRUE)
 
 assign("ontologies", NULL, envir = .rolsEnv)
 
