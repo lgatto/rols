@@ -323,7 +323,7 @@ allIds <- function(ontologyName, simplify=TRUE) {
 ##' @export
 ##' @examples
 ##' olsQuery("tgn","GO") ## search GO for 'tgn'
-##' olsQuery("GO") ## search all ontologies
+##' olsQuery("tgn") ## search all ontologies
 ##' olsQuery("ESI", "MS")
 ##' olsQuery("ESI", "MS", exact = TRUE)
 olsQuery <- function(pattern, ontologyName,
