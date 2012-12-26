@@ -345,7 +345,7 @@ olsQuery <- function(pattern, ontologyName,
     n <- n - 1
   }
   if (length(ans) == 0) 
-    message("Empty query results after ", .n, "attempts.")
+    message("Empty query results after ", .n, " attempts.")
 
   if (exact) {
     if (missing(ontologyName)) {

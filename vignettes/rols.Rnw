@@ -179,7 +179,7 @@ A researcher might be interested in the trans-Golgi network and interested in kn
 
 <<'tgnquery', eval = TRUE>>=
 library("rols")
-alltgns <- olsQuery("trans golgi network")
+alltgns <- olsQuery("trans-golgi network")
 @ 
 
 As shown below, \Sexpr{length(unique(sapply(strsplit(names(alltgns), ":"), "[", 1)))} different ontologies have matched the query string. 
@@ -202,7 +202,7 @@ ontologies()[names(onto.tab),]
 To restrict the search to a specific ontology of interest, one can specify the ontolgy name as a parameter to \Rfunction{olsQuery}. 
 
 <<'gotgnquery'>>=
-gotgns <- olsQuery("trans golgi network", "GO")
+gotgns <- olsQuery("trans-golgi network", "GO")
 gotgns
 @ 
 
