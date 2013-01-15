@@ -60,14 +60,6 @@ opts_chunk$set(fig.align = 'center',
                comment = NA)
 options(replace.assign = TRUE, 
         width = 65)
-knit_hooks$set(par = function(before, options, envir) {
-  if (before && options$fig.show != 'none') 
-    par(mar = c(4,4,.1,.1),
-        cex.lab = .95,
-        cex.axis = .9,
-        mgp = c(2,.7,0),
-        tcl = -.3)
-})
 @
 
 <<'env', echo = FALSE>>=
@@ -230,7 +222,7 @@ Both approaches have advantages. While online queries allow to obtain the latest
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Session information}\label{sec:sessionInfo} 
-<<label='sessioninfo', results='asis', echo = FALSE, cache = FALSE>>=
+<<sessioninfo, results='asis', echo = FALSE, cache = FALSE>>=
 toLatex(sessionInfo())
 @
 
