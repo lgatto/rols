@@ -1,0 +1,240 @@
+%\VignetteIndexEntry{The rols interface to the Ontology Lookup Service}
+%\VignetteKeywords{Infrastructure, Bioinformatics, ontology }
+%\VignettePackage{rols}
+\documentclass{article}
+\usepackage{longtable}
+\usepackage[authoryear,round]{natbib}
+\usepackage[T1]{fontenc}
+\newcommand{\R}{\texttt{R} }
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\mbox{\normalfont\textsf{#1}}}}
+\newcommand{\email}[1]{\href{mailto:#1}{\normalfont\texttt{#1}}}
+%% colors
+\definecolor{Red}{rgb}{0.7,0,0}
+\definecolor{Blue}{rgb}{0,0,0.8}
+
+\usepackage{geometry}
+\geometry{verbose,
+  tmargin = 2.5cm,
+  bmargin = 2.5cm,
+  lmargin = 3.5cm,
+  rmargin = 3.5cm}
+
+\usepackage{hyperref}
+\usepackage{breakurl}
+\hypersetup{%
+  pdfusetitle,
+  bookmarks = {true},
+  bookmarksnumbered = {true},
+  bookmarksopen = {true},
+  bookmarksopenlevel = 2,
+  unicode = {true},
+  breaklinks = {false},
+  hyperindex = {true},
+  colorlinks = {true},
+  linktocpage = {true},
+  plainpages = {false},
+  linkcolor = {Blue},
+  citecolor = {Blue},
+  urlcolor = {Red},
+  pdfstartview = {Fit},
+  pdfpagemode = {UseOutlines},
+  pdfview = {XYZ null null null}
+}
+
+\input{Author.tex}
+
+\begin{document}
+
+\title{\Rpackage{rols}: an R interface to the Ontology Lookup Service}
+
+\maketitle
+
+<<'setup', include = FALSE, cache = FALSE>>=
+library(knitr)
+opts_chunk$set(fig.align = 'center', 
+               fig.show = 'hold', 
+               par = TRUE,
+               prompt = TRUE,
+               comment = NA)
+options(replace.assign = TRUE, 
+        width = 65)
+knit_hooks$set(par = function(before, options, envir) {
+  if (before && options$fig.show != 'none') 
+    par(mar = c(4,4,.1,.1),
+        cex.lab = .95,
+        cex.axis = .9,
+        mgp = c(2,.7,0),
+        tcl = -.3)
+})
+@
+
+<<'env', echo = FALSE>>=
+library("xtable")
+suppressPackageStartupMessages(library("GO.db"))
+suppressPackageStartupMessages(library("rols"))
+nonto <- length(ontologyNames())
+@ 
+
+%% Abstract and keywords %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vskip 0.3in minus 0.1in
+\hrule
+\begin{abstract}
+The \Rpackage{rols} package provides a common interface to \Sexpr{nonto} different ontologies though EBI's Ontology Lookup Service. This vignette provides a brief overview of the available interface and functionality as well as a short use case.
+\end{abstract}
+\textit{Keywords}: infrastructure, bioinformatics, ontology.
+\vskip 0.1in minus 0.05in
+\hrule
+\vskip 0.2in minus 0.1in
+\vspace{10mm}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introduction}\label{sec:intro} 
+
+The Ontology Lookup Service\footnote{%
+\url{http://www.ebi.ac.uk/ontology-lookup/}} 
+(OLS) \citep{Cote06, Cote08} is a spin-off of the 
+PRoteomics IDEntifications database (PRIDE) service, located 
+at the EBI. OLS provides a unified interface to \Sexpr{nonto}
+ontologies (see below). 
+
+\bigskip
+
+\Rpackage{rols} makes use of the SOAP service at the EBI to post XML requests.
+The SOAP XML responses are then parsed and returned in an \R friendly data structure. 
+This is achieved using Duncan Temple Lang's \Rpackage{SSOAP} 
+package \citep{SSOAP}.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Brief \Rpackage{rols} overview}\label{sec:functions}
+
+\subsection{Ontologies}
+
+There are \Sexpr{nonto} ontologies available in the OLS, 
+listed in the table \ref{tab:onto} below. Their name is to be use to defined 
+which ontology to query.
+
+<<'ontTable', results='asis', echo = FALSE>>=
+  tab <- ontologies()
+  o <- order(tab$Name)
+  print(xtable(tab[o,],
+               align=c("l", "l", "l"),
+               label="tab:onto",
+               caption='Available ontologies in the OLS and \\Rpackage{rols} package.'),
+        tabular.environment="longtable",
+        floating=FALSE,
+        include.rownames=FALSE)
+@ 
+
+\subsection{Interface}
+
+Table \ref{tab:fun} summarised the common interface available for the 
+\Sexpr{nonto} ontologies of table \ref{tab:onto}. 
+More information is provided in the respective manual pages.
+
+<<'funTables', results='asis', echo = FALSE>>=
+funTab <- data.frame(rbind(
+  c("olsVersion", "Returns the OLS version"),
+  c("ontologies", "Returns all available ontologies"),
+  c("ontologyNames", "Returns all ontologyNames"), 
+  c("ontologyLoadDate", "Returns the ontology load date"), 
+  c("isIdObsolete", "Is the ontology id obsolete"), 
+  c("term", "Returns the term of a given identifier"),
+  c("termMetadata", "Retuns an identifier's metadata"),
+  c("termXrefs", "Returns the idenifier's ontology cross references"),
+  c("rootId", "Retuns the root identifiers of an ontology"), 
+  c("allIds", "Returns all identifiers and terms of an ontology"), 
+  c("olsQuery", "Returns matching identifiers"), 
+  c("parents", "Returns the parent(s) of a term."),
+  c("childrenRelations", "Returns the children relation type(s).")
+))
+colnames(funTab) <- c("Function", "Description")
+print(xtable(funTab,
+             align=c("l", "l", "l"),
+             label="tab:fun",
+             caption='Functions available to query the ontologies.'),
+      include.rownames=FALSE)
+@ 
+
+
+\subsection{Use case}
+
+%% In many application, users have a list of genes that have been 
+%% identified as of interest of a particular experiment. These cases
+%% are dealt with by packages like the array annotation packages and 
+%% \Rpackage{biomaRt}. 
+
+
+A researcher might be interested in the trans-Golgi network and interested in knowing in which ontologies his favourite organelle is referenced. This can be done by querying all ontologies with a relevant pattern. The code below describes how to achieve this. 
+
+<<'tgnquery', eval = TRUE>>=
+library("rols")
+alltgns <- olsQuery("trans-golgi network")
+@ 
+
+As shown below, \Sexpr{length(unique(sapply(strsplit(names(alltgns), ":"), "[", 1)))} different ontologies have matched the query string. 
+
+<<'tgnqueryShow'>>=
+alltgns
+allonts <- sapply(strsplit(names(alltgns), ":"), "[", 1)
+onto.tab <- table(allonts)
+onto.tab
+@ 
+
+<<'ontocnt', echo = FALSE>>=
+@ 
+The description of the \Sexpr{length(onto.tab)} ontologies of interest can then be used to subset the ontology description:
+
+<<'tgnqueryTable'>>=
+ontologies()[names(onto.tab),]
+@ 
+
+To restrict the search to a specific ontology of interest, one can specify the ontolgy name as a parameter to \Rfunction{olsQuery}. 
+
+<<'gotgnquery'>>=
+gotgns <- olsQuery("trans-golgi network", "GO")
+gotgns
+@ 
+
+Details about relevant terms can be retrieved with the \Rfunction{term} and \Rfunction{termMetadata} functions. This functionality provides on-line access to the same data that is available in the \Rpackage{GO.db}, and can be extended to any of the \Sexpr{nonto} available ontologies.
+
+<<'godetails'>>=
+term("GO:0005802", "GO")
+mtd <- termMetadata("GO:0005802", "GO")
+names(mtd)
+mtd["comment"]
+mtd["definition"]
+## same as from GO.db
+GOTERM[["GO:0005802"]]
+@ 
+
+\subsection{On-line vs. off-line data} 
+
+It is possible to observe different results with \Rpackage{rols} and \Rpackage{GO.db} \citep{GO.db}, as a result of the different ways they access the data. \Rpackage{rols} or \Rpackage{biomaRt} \citep{Durinck2005} perform direct online queries, while \Rpackage{GO.db} and other annotation packages use database snapshot that are updated every release. 
+
+Both approaches have advantages. While online queries allow to obtain the latest up-to-date information, such approaches rely on network availability and quality. If reproducibility is a major issue, the version of the database to be queried can easily be controlled with off-line approaches. In the case of \Rpackage{rols}, altough the load date of a specific ontology can be queried with \Rfunction{olsVersion}, it is not possible to query a specific version of an ontology.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Section
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Session information}\label{sec:sessionInfo} 
+<<label='sessioninfo', results='asis', echo = FALSE, cache = FALSE>>=
+toLatex(sessionInfo())
+@
+
+\bibliographystyle{plainnat}
+\bibliography{rols}
+
+\end{document}
