@@ -1,3 +1,8 @@
+CHANGES IN VERSION 1.1.5
+------------------------
+ o update vignette for knitr 1.0 compatibility, 
+   based on Dan's updates in stable version <2013-01-15 Tue>
+
 CHANGES IN VERSION 1.1.4
 ------------------------
  o changed query to avoid failure (see issue #6) <2012-12-26 Wed>
