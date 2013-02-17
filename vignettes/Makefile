@@ -15,21 +15,17 @@ LATEXFILES = *.aux\
 	*tikzDictionary
 
 all:
-	make vignettes
-	make clean
+	"$(R_HOME)/bin/R" CMD pdflatex rols.tex	
+	bibtex rols
+	"$(R_HOME)/bin/R" CMD pdflatex rols.tex	
+	"$(R_HOME)/bin/R" CMD pdflatex rols.tex	
 
 setvars:
 ifeq (${R_HOME},)
 R_HOME=	$(shell R RHOME)
 endif
 
-vignettes: 
-	cp rols.Rnw.knitr rols.Rnw
-	"$(R_HOME)/bin/R" --vanilla -e "library(knitr); knit2pdf('rols.Rnw');"
-	##bibtex rols
-	"$(R_HOME)/bin/R" CMD pdflatex rols.tex
 
 clean:
 	rm -f $(LATEXFILES)
 	rm -f *~
-	cp rols.Rnw.stub rols.Rnw

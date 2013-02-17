@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.1.6
+------------------------
+ o Using knitr as VignetteEngine and visual tweaking <2013-02-17 Sun>
+
 CHANGES IN VERSION 1.1.5
 ------------------------
  o update vignette for knitr 1.0 compatibility, 
