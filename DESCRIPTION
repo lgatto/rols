@@ -1,7 +1,7 @@
 Package: rols
 Type: Package
 Title: An R interface to the Ontology Lookup Service
-Version: 1.1.6
+Version: 1.1.7
 Author@R: person(given = "Laurent", family = "Gatto", email =
         "lg390@cam.ac.uk", role = c("aut","cre"))
 Author: Laurent Gatto <lg390@cam.ac.uk>
