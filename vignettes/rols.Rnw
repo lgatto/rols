@@ -151,7 +151,7 @@ There are \Sexpr{nonto} ontologies available in the OLS,
 listed in the table \ref{tab:onto} below. Their name is to be use to defined 
 which ontology to query.
 
-<<'ontTable', results='verbatim', echo = FALSE>>=
+<<'ontTable', results='asis', echo = FALSE>>=
   tab <- ontologies()
   o <- order(tab$Name)
   print(xtable(tab[o,],
@@ -169,7 +169,7 @@ Table \ref{tab:fun} summarised the common interface available for the
 \Sexpr{nonto} ontologies of table \ref{tab:onto}. 
 More information is provided in the respective manual pages.
 
-<<'funTables', results='verbatim', echo = FALSE>>=
+<<'funTables', results='asis', echo = FALSE>>=
 funTab <- data.frame(rbind(
   c("olsVersion", "Returns the OLS version"),
   c("ontologies", "Returns all available ontologies"),
@@ -257,7 +257,7 @@ Both approaches have advantages. While online queries allow to obtain the latest
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section*{Session information}\label{sec:sessionInfo} 
-<<sessioninfo, results='verbatim', echo = FALSE, cache = FALSE>>=
+<<sessioninfo, results='asis', echo = FALSE, cache = FALSE>>=
 toLatex(sessionInfo())
 @
 
