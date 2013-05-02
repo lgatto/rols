@@ -1,4 +1,9 @@
-CHANGES IN VERSION 1.3.0
+CHANGES IN VERSION 1.3.1
+------------------------
+ o other example in CVParam-class example, as 
+   PSI ontology is not available <2013-05-02 Thu>
+
+Changes IN VERSION 1.3.0
 ------------------------
  o Bioc 2.13 devel version bump
 
