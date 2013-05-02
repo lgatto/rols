@@ -97,10 +97,10 @@ CVParam(label, name, accession, value, exact = TRUE)
 ## a user param
 CVParam(name = "A user param", value = "the value")
 ## a CVParam from PSI's Mass Spectrometry ontology
-term("PSI:1000073", "PSI")
-CVParam(label = "PSI", accession = "PSI:1000073")
-CVParam(label = "PSI", name ="Electrospray Ionization")
-CVParam(label = "PSI", name ="ESI") ## using a synonym
+term("MS:1000073", "MS")
+CVParam(label = "MS", accession = "MS:1000073")
+CVParam(label = "MS", name ="electrospray ionization")
+CVParam(label = "MS", name ="ESI") ## using a synonym
 }
 
 
