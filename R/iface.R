@@ -2,8 +2,8 @@
 ## Manual modifications: moved 'Map' and 'Vector'
 ## class definitions to the top
 
-library(SSOAP)
-library(XML)
+## library(SSOAP)
+## library(XML)
 
 setClass( 'Map' ,
 	   representation(

@@ -113,13 +113,23 @@ ontologyLoadDate <- function(ontologyName) {
 ##' @return A \code{logical} specifying if the term id is obsolete.
 ##' @author Laurent Gatto
 ##' @family ols-queries
+##' @examples
+##' ## is obsolete
+##' term("GO:0005563", "GO")
+##' isIdObsolete(termId = "GO:0005563", ontologyName = "GO")
+##' stopifnot(isIdObsolete(termId = "GO:0005563", ontologyName = "GO"))
+##' ## replaced by
+##' term("GO:0030533", "GO")
+##' isIdObsolete(termId = "GO:0030533", ontologyName = "GO") 
 ##' @export
 isIdObsolete <- function(termId, ontologyName) {
   if (missing(ontologyName))
     stop(paste("Specify the ontology name to search ",termId," in.",
                "See ontolgyNames() for possible ontologies.",sep=""))
     ontologyName <- match.arg(ontologyName, ontologyNames())
-  return(as.logical(isObsolete(ontologyName=ontologyName, .convert=TRUE)))
+  return(as.logical(isObsolete(termId = termId,
+                               ontologyName=ontologyName,
+                               .convert=TRUE)))
 }
 
 ##' This function returns the term (description) of a given

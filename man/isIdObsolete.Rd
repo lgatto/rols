@@ -25,6 +25,15 @@
   interface is \code{public boolean isObsolete(String
   termId, String ontologyName)}.
 }
+\examples{
+## is obsolete
+term("GO:0005563", "GO")
+isIdObsolete(termId = "GO:0005563", ontologyName = "GO")
+stopifnot(isIdObsolete(termId = "GO:0005563", ontologyName = "GO"))
+## replaced by
+term("GO:0030533", "GO")
+isIdObsolete(termId = "GO:0030533", ontologyName = "GO")
+}
 \author{
   Laurent Gatto
 }
