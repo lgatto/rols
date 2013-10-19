@@ -347,9 +347,9 @@ olsQuery <- function(pattern, ontologyName,
                                    reverse = FALSE)
     } else {
       ontologyName <- match.arg(ontologyName, ontologyNames())
-      ans <- rols:::getTermsByName(partialName = pattern,
-                                  ontologyName = ontologyName,
-                                  reverse = FALSE)
+      ans <- getTermsByName(partialName = pattern,
+                            ontologyName = ontologyName,
+                            reverse = FALSE)
     }
     ans <- map(ans)
     n <- n - 1
