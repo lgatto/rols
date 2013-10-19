@@ -1,3 +1,4 @@
+import(methods)
 import(utils)
 import(SSOAP)
 import(XML)
