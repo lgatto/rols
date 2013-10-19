@@ -213,13 +213,11 @@ As shown below, \Sexpr{length(unique(sapply(strsplit(names(alltgns), ":"), "[", 
 
 <<'tgnqueryShow'>>=
 alltgns
-allonts <- sapply(strsplit(names(alltgns), ":"), "[", 1)
+allonts <- sapply(strsplit(alltgns, ":"), "[", 1)
 onto.tab <- table(allonts)
 onto.tab
 @ 
 
-<<'ontocnt', echo = FALSE>>=
-@ 
 The description of the \Sexpr{length(onto.tab)} ontologies of interest can then be used to subset the ontology description:
 
 <<'tgnqueryTable'>>=
@@ -258,7 +256,7 @@ Both approaches have advantages. While online queries allow to obtain the latest
 
 \section*{Session information}\label{sec:sessionInfo} 
 <<sessioninfo, results='asis', echo = FALSE, cache = FALSE>>=
-toLatex(sessionInfo())
+toLatex(sessionInfo(), locale = FALSE)
 @
 
 \bibliographystyle{plainnat}
