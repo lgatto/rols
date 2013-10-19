@@ -152,15 +152,15 @@ listed in the table \ref{tab:onto} below. Their name is to be use to defined
 which ontology to query.
 
 <<'ontTable', results='asis', echo = FALSE>>=
-  tab <- ontologies()
-  o <- order(tab$Name)
-  print(xtable(tab[o,],
-               align=c("l", "l", "l"),
-               label="tab:onto",
-               caption='Available ontologies in the OLS and \\Rpackage{rols} package.'),
-        tabular.environment="longtable",
-        floating=FALSE,
-        include.rownames=FALSE)
+tab <- ontologies()
+o <- order(tab$Name)
+print(xtable(tab[o,],
+             align=c("l", "l", "l"),
+             label="tab:onto",
+             caption='Available ontologies in the OLS and \\Rpackage{rols} package.'),
+      tabular.environment="longtable",
+      floating=FALSE,
+      include.rownames=FALSE)
 @ 
 
 \subsection{Interface}
