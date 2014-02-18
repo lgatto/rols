@@ -181,8 +181,9 @@ term <- function(termId, ontologyName) {
 ##' @param ontologyName A \code{character} with the name of a valid ontology name. 
 ##' @param simplify A logical indicating whether the S4 \code{Map}
 ##' instance should be simplified. Default is \code{TRUE}.
-##' @return A named \code{character} if \code{simplify} is \code{TRUE}.
-##' An instance of class \code{Map} otherwise. 
+##' @return Am S3 instance of class \code{termMetadata} (for pretty
+##' printing) and \code{character} if \code{simplify} is \code{TRUE}.
+##' An instance of class \code{Map} otherwise.
 ##' @author Laurent Gatto
 ##' @family ols-queries
 ##' @export
@@ -197,11 +198,18 @@ termMetadata <- function(termId, ontologyName, simplify=TRUE) {
   xx <- getTermMetadata(termId=termId,
                         ontologyName=ontologyName)
   ans <- map(xx)
-  if (simplify) 
-    ans <- as(ans, "character")
+  if (simplify) {
+      ans <- as(ans, "character")
+      class(ans) <- c("termMetadata", "character")
+  }
   return(ans)
 }
 
+##' @rdname termMetadata
+print.termMetadata = function(x, ...) {
+     txt <- paste(names(x), x, sep=": ")
+     cat(noquote(paste(strwrap(txt, exdent=2), collapse="\n")), "\n")
+}
 
 ##' This function returns ontology cross references
 ##' for an identifier.  The function sends a
