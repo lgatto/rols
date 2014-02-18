@@ -30,7 +30,7 @@ opts_chunk$set(fig.align = 'center',
                prompt = TRUE,
                comment = NA)
 options(replace.assign = TRUE, 
-        width = 65)
+        width = 80)
 @
 
 <<'env', echo = FALSE>>=

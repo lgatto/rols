@@ -205,7 +205,6 @@ termMetadata <- function(termId, ontologyName, simplify=TRUE) {
   return(ans)
 }
 
-##' @rdname termMetadata
 print.termMetadata = function(x, ...) {
      txt <- paste(names(x), x, sep=": ")
      cat(noquote(paste(strwrap(txt, exdent=2), collapse="\n")), "\n")
