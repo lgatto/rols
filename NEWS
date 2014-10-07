@@ -1,3 +1,8 @@
+CHANGES IN VERSION 1.7.2
+------------------------
+ o Removing (temporarily) allIds("GO")) example as currently returns
+   illegal message to fix testing error [2014-10-07 Tue]
+
 CHANGES IN VERSION 1.7.1
 ------------------------
  o add utils to Imports [2014-04-28 Mon]
