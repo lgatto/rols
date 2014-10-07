@@ -8,7 +8,7 @@
 \S4method{map}{ANY}(object)
 }
 \arguments{
-\item{from}{An S4 class produced by an OLS return message.}
+\item{object}{An S4 class produced by an OLS return message.}
 }
 \value{
 A instance of class \code{Map}.

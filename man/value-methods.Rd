@@ -11,9 +11,7 @@
 \S4method{value}{Map}(object)
 }
 \arguments{
-\item{object}{An instance of class \code{mapItem}.}
-
-\item{object}{An instance of class \code{Map}.}
+\item{object}{An instance of class \code{Map} or \code{mapItem}.}
 }
 \value{
 A \code{character}.
