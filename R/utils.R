@@ -6,7 +6,7 @@
 ##' @rdname key-methods
 ##' @docType methods
 ##' @title \code{key} slot accessor.
-##' @param object An instance of class \code{mapItem}.
+##' @param object An instance of class \code{Map} or \code{mapItem}.
 ##' @return A \code{character}.
 ##' @exportMethod key
 setMethod("key", "mapItem", function (object) object@key)
@@ -18,7 +18,7 @@ setMethod("key", "mapItem", function (object) object@key)
 ##' @rdname value-methods
 ##' @docType methods
 ##' @title \code{value} slot accessor.
-##' @param object An instance of class \code{mapItem}.
+##' @param object An instance of class \code{Map} or \code{mapItem}.
 ##' @return A \code{character}.
 ##' @exportMethod value
 setMethod("value", "mapItem", function (object) object@value)
@@ -31,7 +31,6 @@ setMethod("value", "mapItem", function (object) object@value)
 ##' @rdname key-methods
 ##' @docType methods
 ##' @title \code{key} slot accessor.
-##' @param object An instance of class \code{Map}.
 ##' @return A \code{character}.
 ##' @author Laurent Gatto
 ##' @exportMethod key
@@ -44,7 +43,6 @@ setMethod("key", "Map", function (object) sapply(object, key))
 ##' @rdname value-methods
 ##' @docType methods
 ##' @title \code{value} slot accessor.
-##' @param object An instance of class \code{Map}.
 ##' @return A \code{character}.
 ##' @author Laurent Gatto
 ##' @exportMethod value
@@ -62,7 +60,7 @@ setMethod("value", "Map", function (object) sapply(object, value))
 ##' @rdname map-methods
 ##' @docType methods
 ##' @title \code{Map} slot accessor.
-##' @param from An S4 class produced by an OLS return message.
+##' @param object An S4 class produced by an OLS return message.
 ##' @return A instance of class \code{Map}.
 ##' @author Laurent Gatto
 ##' @exportMethod map

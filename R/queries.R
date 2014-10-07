@@ -290,7 +290,6 @@ rootId <- function(ontologyName, simplify=TRUE) {
 ##' @export
 ##' @author Laurent Gatto
 ##' @examples
-##' head(allIds("GO"))
 ##' allIds("MS", simplify=FALSE)
 allIds <- function(ontologyName, simplify=TRUE) {
   if (missing(ontologyName))
