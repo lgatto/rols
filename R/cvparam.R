@@ -15,7 +15,8 @@ CVParam <- function(label,
     } else { ## missing(accession)
       .term <- olsQuery(name, label, exact = exact)
       if (length(.term) != 1)
-        stop("Found more than one matching term: ", paste(.term, collapse = ", "))
+          stop("Found more than one matching term: ",
+               paste(.term, collapse = ", "))
       accession <- names(.term)
     }
     
@@ -71,17 +72,15 @@ cvCharToCVPar <- function(from) {
     from <- strsplit(from, ",")[[1]]
     if (length(from) != 4) stop(err)
     ## Assuming correct order here!
-    names(from) <- c("label", "accession", "name", "value")
-    from <- sapply(from, trim)
-    if (from["value"] != "") { ## User param
-        cv <- CVParam(name = from["name"],
-                      value = from["value"])
+    ## 1: "label", 2: "accession", 3: "name", 4: "value"
+    from <- sapply(from, trim, USE.NAMES = FALSE)
+    if (from[1] != "") { ## label is missing -> user param
+        cv <- CVParam(name = from[3], value = from[4])
     } else { ## CV para
-        cv <- CVParam(label = from["label"], 
-                      accession = from["accession"])
-        if (from["name"] != "" && cv@name != from["name"])
+        cv <- CVParam(label = from[1], accession = from[2])
+        if (from[3] != "" && cv@name != from[3])
             warning("The CV names did not match:\n  ",
-                    "Yours: '", from["name"], "' - OLS: '", cv@name, "'.")
+                    "Yours: '", from[3], "' - OLS: '", cv@name, "'.")
     }
     cv
 }
