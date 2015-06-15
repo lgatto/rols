@@ -11,7 +11,7 @@ Description: This package allows to query EBI's Ontology
     Protocol (SOAP).
 Depends: methods
 Imports: XML, XMLSchema (>= 0.6.0), SSOAP (>= 0.8.0), Biobase, utils
-Suggests: xtable, GO.db, knitr (>= 1.1.0), BiocStyle
+Suggests: xtable, GO.db, knitr (>= 1.1.0), BiocStyle, testthat
 biocViews: Software, Annotation, MassSpectrometry, GO
 License: GPL-2
 URL: http://lgatto.github.com/rols/
