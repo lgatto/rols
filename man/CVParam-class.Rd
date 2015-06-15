@@ -87,7 +87,7 @@ CVParam(label, name, accession, value, exact = TRUE)
       \code{value} is present, the \code{character} is converted to a
       User param, else, the \code{label} and \code{accession} are used
       to query the Ontology Lookup Service (see
-      \link{\code{olsQuery}})). If a \code{name} is provided and does not
+      \code{\link{olsQuery}})). If a \code{name} is provided and does not
       match the retrieved name, a warning is thrown.
 
       This function is vectorised; if the \code{from} character is of
