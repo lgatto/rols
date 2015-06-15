@@ -4,9 +4,11 @@
 \alias{CVParam-class}
 \alias{CVParam}
 \alias{coerce,CVParam,character-method}
+\alias{coerce,character,CVParam-method}
 \alias{show,CVParam-method}
 \alias{rep,CVParam-method}
 \alias{as.character.CVParam}
+\alias{as.CVParam.character}
 
 \title{Class \code{"CVParam"}}
 
@@ -79,6 +81,21 @@ CVParam(label, name, accession, value, exact = TRUE)
 	value]}. \code{as.character} is also defined.
     }
 
+    \item{coerce}{\code{signature(from = "character", to = "CVParam")}:
+      Coerces \code{character} \code{from} to a
+      \code{CVParam}. \code{as.CVParam} is also defined. If a
+      \code{value} is present, the \code{character} is converted to a
+      User param, else, the \code{label} and \code{accession} are used
+      to query the Ontology Lookup Service (see
+      \link{\code{olsQuery}})). If a \code{name} is provided and does not
+      match the retrieved name, a warning is thrown.
+
+      This function is vectorised; if the \code{from} character is of
+      length greater than 1, then a list of \code{CVParam} is
+      returned. The queries to the OLS are processed one-by-one, though.
+	
+      }
+
     \item{show}{\code{signature(object = "CVParam")}: Prints the
       \code{CVParam} instance as text.
     }
@@ -101,6 +118,17 @@ term("MS:1000073", "MS")
 CVParam(label = "MS", accession = "MS:1000073")
 CVParam(label = "MS", name ="electrospray ionization")
 CVParam(label = "MS", name ="ESI") ## using a synonym
+
+
+## From a CVParam object to a character
+cv <- as(CVParam(label = "MS", accession = "MS:1000073"), "character")
+cv
+
+## From a character object to a CVParam
+as(cv, "CVParam")
+as("[MS, MS:1000073, , ]", "CVParam") ## no name
+as("[MS, MS:1000073, ESI, ]", "CVParam") ## name does not match
+as(c(cv, cv), "CVParam") ## more than 1 character
 }
 
 
