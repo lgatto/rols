@@ -84,7 +84,7 @@ CVParam(label, name, accession, value, exact = TRUE)
     \item{coerce}{\code{signature(from = "character", to = "CVParam")}:
       Coerces \code{character} \code{from} to a
       \code{CVParam}. \code{as.CVParam} is also defined. If a
-      \code{value} is present, the \code{character} is converted to a
+      \code{label} is absent, the \code{character} is converted to a
       User param, else, the \code{label} and \code{accession} are used
       to query the Ontology Lookup Service (see
       \code{\link{olsQuery}})). If a \code{name} is provided and does not
