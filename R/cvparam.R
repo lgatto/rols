@@ -54,3 +54,44 @@ setMethod("rep", "CVParam",
               l[[i]] <- x
             return(l)
           })
+
+cvCharToCVPar <- function(from) {
+    err <- paste("Your input character should be",
+                 "'[MS, MS:1000073, ESI, ]'.",
+                 "See ?CVParam for details.")
+    ## trim leading and trailing whitespace
+    trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+    from <- trim(from)
+    ## First and last chars must be '[' and ']'
+    valid <- c(substr(from, 1, 1) == "[",
+               substr(from, nchar(from), nchar(from)) == "]")
+    if (!all(valid))              
+        stop(err)
+    from <- substr(from, 2, nchar(from)-1)
+    from <- strsplit(from, ",")[[1]]
+    if (length(from) != 4) stop(err)
+    ## Assuming correct order here!
+    names(from) <- c("label", "accession", "name", "value")
+    from <- sapply(from, trim)
+    if (from["value"] != "") { ## User param
+        cv <- CVParam(name = from["name"],
+                      value = from["value"])
+    } else { ## CV para
+        cv <- CVParam(label = from["label"], 
+                      accession = from["accession"])
+        if (from["name"] != "" && cv@name != from["name"])
+            warning("The CV names did not match:\n  ",
+                    "Yours: '", from["name"], "' - OLS: '", cv@name, "'.")
+    }
+    cv
+}
+
+setAs("character", "CVParam",
+      function(from, to = "CVParam") {
+          ans <- lapply(from, cvCharToCVPar)
+          if (length(ans) == 1)
+              ans <- ans[[1]]
+          ans
+      })
+
+as.character.CVParam <- function(x, ...) as(x, "character")
