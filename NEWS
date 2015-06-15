@@ -1,3 +1,15 @@
+CHANGES IN VERSION 1.11.1
+-------------------------
+ o New char to CVParam coerce method <2015-06-15 Mon>
+
+CHANGES IN VERSION 1.11.0
+-------------------------
+ o Bioc devel 3.2
+
+CHANGES IN VERSION 1.10.0
+-------------------------
+ o Bioc release 3.1
+
 CHANGES IN VERSION 1.7.2
 ------------------------
  o Removing (temporarily) allIds("GO")) example as currently returns
