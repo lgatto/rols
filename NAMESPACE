@@ -27,6 +27,7 @@ export(allIds,
        as.character.Map,
        as.character.mapItem,
        as.character.CVParam,
+       charIsCVParam,
        CVParam)
 
 S3method(print, termMetadata)

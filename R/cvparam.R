@@ -1,3 +1,6 @@
+## trim leading and trailing whitespace
+trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+
 CVParam <- function(label,
                     name,
                     accession,
@@ -57,20 +60,14 @@ setMethod("rep", "CVParam",
           })
 
 cvCharToCVPar <- function(from) {
-    err <- paste("Your input character should be",
-                 "'[MS, MS:1000073, ESI, ]'.",
-                 "See ?CVParam for details.")
-    ## trim leading and trailing whitespace
-    trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-    from <- trim(from)
-    ## First and last chars must be '[' and ']'
-    valid <- c(substr(from, 1, 1) == "[",
-               substr(from, nchar(from), nchar(from)) == "]")
-    if (!all(valid))              
-        stop(err)
+    stopifnot(length(from) == 1)
+    if (!charIsCVParam(from))
+            stop(paste("Your input character should be",
+                       "'[MS, MS:1000073, ESI, ]'.",
+                       "See ?CVParam for details."))
     from <- substr(from, 2, nchar(from)-1)
     from <- strsplit(from, ",")[[1]]
-    if (length(from) != 4) stop(err)
+
     ## Assuming correct order here!
     ## 1: "label", 2: "accession", 3: "name", 4: "value"
     from <- sapply(from, trim, USE.NAMES = FALSE)
@@ -94,3 +91,19 @@ setAs("character", "CVParam",
       })
 
 as.character.CVParam <- function(x, ...) as(x, "character")
+
+charIsCVParam <- function(x) {
+    stopifnot(is.character(x))
+    x <- trim(x)
+    rx <- "\\[*([A-Z]+)?, *([A-Z]+:[[:digit:]]+)?, *([[:print:]]+)?, *([[:print:]]+)?\\]"
+    valid <- grepl(rx, x)
+    x <- substr(x, 2, nchar(x)-1)
+    x <- strsplit(x, ",")
+    valid2 <-
+        sapply(x, function(xx)
+            ifelse(xx[1] %in% ontologies()[, 1], TRUE, FALSE))
+    ## TODO: verify that either 3,4 for user param
+    ##                       or 1,2 for cv param
+    ##       are present
+    return(valid & valid2)
+}
