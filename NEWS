@@ -1,6 +1,7 @@
 CHANGES IN VERSION 1.11.4
 -------------------------
- o 
+ o Fix bug in as("[MS, MS:123, ]", "CVParam") and add unit test
+   <2015-06-19 Fri>
 
 CHANGES IN VERSION 1.11.3
 -------------------------
