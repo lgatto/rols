@@ -66,12 +66,12 @@ cvCharToCVPar <- function(from) {
                        "'[MS, MS:1000073, ESI, ]'.",
                        "See ?CVParam for details."))
     from <- substr(from, 2, nchar(from)-1)
-    from <- strsplit(from, ",")[[1]]
+    from <- trim(strsplit(from, ",")[[1]])
 
     ## Assuming correct order here!
     ## 1: "label", 2: "accession", 3: "name", 4: "value"
     from <- sapply(from, trim, USE.NAMES = FALSE)
-    if (from[1] != "") { ## label is missing -> user param
+    if (from[1] == "") { ## label is missing -> user param
         cv <- CVParam(name = from[3], value = from[4])
     } else { ## CV para
         cv <- CVParam(label = from[1], accession = from[2])

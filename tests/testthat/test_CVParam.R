@@ -24,3 +24,11 @@ test_that("testing chars are CV params", {
               trues <- rols:::validCVchars
               expect_true(all(charIsCVParam(trues)))
           })
+
+test_that("Convert char to CVParam", {
+              x <- "[MS, MS:1001207, Mascot, ]"
+              cv <- as(x, "CVParam")
+              expect_equal(cv@label, "MS")
+              expect_equal(cv@accession, "MS:1001207")
+              expect_equal(cv@name, "Mascot")
+          })
