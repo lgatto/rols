@@ -1,3 +1,8 @@
+CHANGES IN VERSION 1.11.3
+-------------------------
+ o New charIsCVParam function to check if a character represents a
+   valid CV param <2015-06-16 Tue>
+ 
 CHANGES IN VERSION 1.11.2
 -------------------------
  o Unit test <2015-06-15 Mon>

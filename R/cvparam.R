@@ -1,3 +1,6 @@
+## trim leading and trailing whitespace
+trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+
 CVParam <- function(label,
                     name,
                     accession,
@@ -57,20 +60,14 @@ setMethod("rep", "CVParam",
           })
 
 cvCharToCVPar <- function(from) {
-    err <- paste("Your input character should be",
-                 "'[MS, MS:1000073, ESI, ]'.",
-                 "See ?CVParam for details.")
-    ## trim leading and trailing whitespace
-    trim <- function (x) gsub("^\\s+|\\s+$", "", x)
-    from <- trim(from)
-    ## First and last chars must be '[' and ']'
-    valid <- c(substr(from, 1, 1) == "[",
-               substr(from, nchar(from), nchar(from)) == "]")
-    if (!all(valid))              
-        stop(err)
+    stopifnot(length(from) == 1)
+    if (!charIsCVParam(from))
+            stop(paste("Your input character should be",
+                       "'[MS, MS:1000073, ESI, ]'.",
+                       "See ?CVParam for details."))
     from <- substr(from, 2, nchar(from)-1)
     from <- strsplit(from, ",")[[1]]
-    if (length(from) != 4) stop(err)
+
     ## Assuming correct order here!
     ## 1: "label", 2: "accession", 3: "name", 4: "value"
     from <- sapply(from, trim, USE.NAMES = FALSE)
@@ -94,3 +91,52 @@ setAs("character", "CVParam",
       })
 
 as.character.CVParam <- function(x, ...) as(x, "character")
+
+
+.charIsCVParam <- function(x) {
+    ## NO SEMANTICS IS CHECKED
+    x <- x[1]
+    stopifnot(is.character(x))
+    x <- strsplit(x, ",")[[1]]
+    ## Order:
+    ## 1. label (ontology)
+    ## 2. accession
+    ## 3. name
+    ## 4. value
+    x <- trim(gsub("\\[|\\]", "", x))
+    if (all(x == "")) return(FALSE)
+    if (length(x) != 4) return(FALSE)
+    ## CV param: 1 and 2 are present
+    if (x[1] != "") {
+        if (x[2] == "" | !x[1] %in% ontologies()[, 1]) return(FALSE)
+        acc <- strsplit(x[2], ":")[[1]]
+        if (length(acc) != 2) return(FALSE)
+        if (acc[1] != x[1]) return(FALSE)        
+    } else {
+        if (x[2] != "") return(FALSE)
+        ## User param: 3 and 4 are present
+        if (x[4] != "" & x[3] == "") return(FALSE)
+        if (x[3] != "" & x[4] == "") return(FALSE)
+    }
+    return(TRUE)
+}
+
+charIsCVParam <- function(x)
+    sapply(x, .charIsCVParam)
+
+
+## TESTING
+notvalidCVchars<- c("[ , , , ]", "[, , , ]",
+                    "[ , , ,]", "[,,,]",
+                    "[AB, MS:123 , , ]", "[, MS:123 , , ]",
+                    "[MS, AB:123, , ]",
+                    "[, , foo, ]", "[, , , bar]",
+                    "[foo, , , ]", "[, bar, , ]",
+                    "[, foo, bar, ]",                          
+                    "[MS, , , bar]", "[MS, , foo, ]")
+
+
+validCVchars <- c("[MS, MS:123 , , ]", "[, , foo, bar]",
+                  "[MS, MS:123, foo, bar]", ## this one is questionable
+                  "[MS, MS:123, , foo]",    ## this one is questionable
+                  "[MS, MS:123, foo, ]")
