@@ -92,18 +92,51 @@ setAs("character", "CVParam",
 
 as.character.CVParam <- function(x, ...) as(x, "character")
 
-charIsCVParam <- function(x) {
+
+.charIsCVParam <- function(x) {
+    ## NO SEMANTICS IS CHECKED
+    x <- x[1]
     stopifnot(is.character(x))
-    x <- trim(x)
-    rx <- "\\[*([A-Z]+)?, *([A-Z]+:[[:digit:]]+)?, *([[:print:]]+)?, *([[:print:]]+)?\\]"
-    valid <- grepl(rx, x)
-    x <- substr(x, 2, nchar(x)-1)
-    x <- strsplit(x, ",")
-    valid2 <-
-        sapply(x, function(xx)
-            ifelse(xx[1] %in% ontologies()[, 1], TRUE, FALSE))
-    ## TODO: verify that either 3,4 for user param
-    ##                       or 1,2 for cv param
-    ##       are present
-    return(valid & valid2)
+    x <- strsplit(x, ",")[[1]]
+    ## Order:
+    ## 1. label (ontology)
+    ## 2. accession
+    ## 3. name
+    ## 4. value
+    x <- trim(gsub("\\[|\\]", "", x))
+    if (all(x == "")) return(FALSE)
+    if (length(x) != 4) return(FALSE)
+    ## CV param: 1 and 2 are present
+    if (x[1] != "") {
+        if (x[2] == "" | !x[1] %in% ontologies()[, 1]) return(FALSE)
+        acc <- strsplit(x[2], ":")[[1]]
+        if (length(acc) != 2) return(FALSE)
+        if (acc[1] != x[1]) return(FALSE)        
+    } else {
+        if (x[2] != "") return(FALSE)
+        ## User param: 3 and 4 are present
+        if (x[4] != "" & x[3] == "") return(FALSE)
+        if (x[3] != "" & x[4] == "") return(FALSE)
+    }
+    return(TRUE)
 }
+
+charIsCVParam <- function(x)
+    sapply(x, .charIsCVParam)
+
+
+## TESTING
+notvalidCVchars<- c("[ , , , ]", "[, , , ]",
+                    "[ , , ,]", "[,,,]",
+                    "[AB, MS:123 , , ]", "[, MS:123 , , ]",
+                    "[MS, AB:123, , ]",
+                    "[, , foo, ]", "[, , , bar]",
+                    "[foo, , , ]", "[, bar, , ]",
+                    "[, foo, bar, ]",                          
+                    "[MS, , , bar]", "[MS, , foo, ]")
+
+
+validCVchars <- c("[MS, MS:123 , , ]", "[, , foo, bar]",
+                  "[MS, MS:123, foo, bar]", ## this one is questionable
+                  "[MS, MS:123, , foo]",    ## this one is questionable
+                  "[MS, MS:123, foo, ]")

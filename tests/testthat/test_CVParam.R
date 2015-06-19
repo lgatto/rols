@@ -15,3 +15,12 @@ test_that("CVParam creation and coercion", {
                             name = cv@name)
               expect_equal(cv, cv2)
           })
+
+test_that("testing chars are CV params", {
+              falses <- rols:::notvalidCVchars
+              expect_false(any(charIsCVParam(falses)))
+              falses <- gsub(" ", "", falses)
+              expect_false(any(charIsCVParam(falses)))
+              trues <- rols:::validCVchars
+              expect_true(all(charIsCVParam(trues)))
+          })
