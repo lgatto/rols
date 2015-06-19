@@ -9,6 +9,7 @@
 \alias{rep,CVParam-method}
 \alias{as.character.CVParam}
 \alias{as.CVParam.character}
+\alias{charIsCVParam}
 
 \title{Class \code{"CVParam"}}
 
@@ -75,6 +76,20 @@ CVParam(label, name, accession, value, exact = TRUE)
 
 \section{Methods}{
   \describe{
+
+    \item{charIsCVParam(x)}{Checks if \code{x}, a character of the form
+      \code{"[ONTO, ACCESSION, NAME, VALUE]"}, is a valid (possibly
+      user-defined) \code{CVParam}. \code{"ONTO"} is the ontology label
+      (it must be one of \code{ontologies()}), \code{"ACCESSION"} is the
+      term accession number, \code{"NAME"} is the term's name and
+      \code{"VALUE"} is the value. Note that only synatex validity is
+      verified, not semantics.
+      See example below.  }
+  }
+}
+
+\section{Methods}{
+  \describe{
     \item{coerce}{\code{signature(from = "CVParam", to = "character")}:
       Coerces \code{CVParam} \code{from} to a \code{character} of the
       following form: \code{[label, accession, name,
@@ -129,6 +144,17 @@ as(cv, "CVParam")
 as("[MS, MS:1000073, , ]", "CVParam") ## no name
 as("[MS, MS:1000073, ESI, ]", "CVParam") ## name does not match
 as(c(cv, cv), "CVParam") ## more than 1 character
+
+x <- c("[MS, MS:1000073, , ]", ## valid CV param
+       "[, , Hello, world]",   ## valid User param
+       "[this, one is, not, valid]", ## bnot valid
+       "[ , , , ]") ## not valid
+
+stopifnot(charIsCVParam(x) == c(TRUE, TRUE, FALSE, FALSE))
+
+## A list of expected valid and non-valid entries
+rols:::validCVchars
+rols:::notvalidCVchars
 }
 
 
