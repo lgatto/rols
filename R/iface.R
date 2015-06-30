@@ -56,18 +56,18 @@ coerceListToS4(from, new("getAllTermsFromOntologyReturn"))
 
 
 )
-setClass( 'getChildrenFromRootReturn' ,
-	   representation(
-		getChildrenFromRootReturn = 'Map') ,
-	   contains = c( 'VirtualSOAPClass' ) ) 
-setAs('list', 'getChildrenFromRootReturn',
+## setClass( 'getChildrenFromRootReturn' ,
+## 	   representation(
+## 		getChildrenFromRootReturn = 'Map') ,
+## 	   contains = c( 'VirtualSOAPClass' ) ) 
+## setAs('list', 'getChildrenFromRootReturn',
 
 
-function (from, to = "getChildrenFromRootReturn", strict = TRUE) 
-coerceListToS4(from, new("getChildrenFromRootReturn"))
+## function (from, to = "getChildrenFromRootReturn", strict = TRUE) 
+## coerceListToS4(from, new("getChildrenFromRootReturn"))
 
 
-)
+## )
 setClass( 'getOntologyLoadDateReturn' ,
 	   representation(
 		getOntologyLoadDateReturn = 'character') ,
@@ -128,18 +128,16 @@ coerceListToS4(from, new("getTermByIdReturn"))
 
 
 )
-setClass( 'getTermChildrenReturn' ,
-	   representation(
-		getTermChildrenReturn = 'Map') ,
-	   contains = c( 'VirtualSOAPClass' ) ) 
-setAs('list', 'getTermChildrenReturn',
-
-
-function (from, to = "getTermChildrenReturn", strict = TRUE) 
-coerceListToS4(from, new("getTermChildrenReturn"))
-
-
-)
+## setClass( 'getTermChildrenReturn' ,
+## 	   representation(
+## 		getTermChildrenReturn = 'Map') ,
+## 	   contains = c( 'VirtualSOAPClass' ) ) 
+## setAs('list', 'getTermChildrenReturn',
+##
+## function (from, to = "getTermChildrenReturn", strict = TRUE) 
+## coerceListToS4(from, new("getTermChildrenReturn"))
+##
+## )
 setClass( 'getTermMetadataReturn' ,
 	   representation(
 		getTermMetadataReturn = 'Map') ,
@@ -176,30 +174,24 @@ coerceListToS4(from, new("getTermRelationsReturn"))
 
 
 )
-setClass( 'getTermsByAnnotationDataResponse' ,
-	   representation(
-		.Data = 'list') ,
-	   contains = c( 'list' ) ) 
-setAs('XMLInternalElementNode', 'getTermsByAnnotationDataResponse',
-
-
-function (from, to = "getTermsByAnnotationDataResponse", strict = TRUE) 
-xmlSApply(from, as, "DataHolder")
-
-
-)
-setClass( 'getTermsByExactNameReturn' ,
-	   representation(
-		getTermsByExactNameReturn = 'Map') ,
-	   contains = c( 'VirtualSOAPClass' ) ) 
-setAs('list', 'getTermsByExactNameReturn',
-
-
-function (from, to = "getTermsByExactNameReturn", strict = TRUE) 
-coerceListToS4(from, new("getTermsByExactNameReturn"))
-
-
-)
+## setClass( 'getTermsByAnnotationDataResponse' ,
+## 	   representation(
+## 		.Data = 'list') ,
+## 	   contains = c( 'list' ) ) 
+## setAs('XMLInternalElementNode', 'getTermsByAnnotationDataResponse',
+## function (from, to = "getTermsByAnnotationDataResponse", strict = TRUE) 
+## xmlSApply(from, as, "DataHolder")
+## )
+## setClass( 'getTermsByExactNameReturn' ,
+## 	   representation(
+## 		getTermsByExactNameReturn = 'Map') ,
+## 	   contains = c( 'VirtualSOAPClass' ) ) 
+## setAs('list', 'getTermsByExactNameReturn',
+##
+## function (from, to = "getTermsByExactNameReturn", strict = TRUE) 
+## coerceListToS4(from, new("getTermsByExactNameReturn"))
+##
+## )
 setClass( 'getTermsByNameReturn' ,
 	   representation(
 		getTermsByNameReturn = 'Map') ,
@@ -1079,105 +1071,105 @@ function (parameters = list(...), ..., server = new("HTTPSOAPServer",
 
 class( getTermsByName ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
-getTermsByExactName = 
-function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
-    host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
-    .convert = new("Element", type = new("ClassDefinition", slotTypes = list(getTermsByExactNameReturn = new("LocalElement", 
-        count = c(1L, 1L), type = new("SimpleSequenceType", elementType = character(0), 
-            elType = new("ClassDefinition", slotTypes = list(key = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = function () 
-                  NULL, count = c(1L, 1L), abstract = logical(0), 
-                  name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "key", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), value = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = function () 
-                  NULL, count = c(1L, 1L), abstract = logical(0), 
-                  name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "value", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE), uris = c("http://xml.apache.org/xml-soap", 
-            "http://xml.apache.org/xml-soap"), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-                name = "mapItem", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = c(0, Inf), abstract = logical(0), name = "Map", 
-            ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-        name = "getTermsByExactNameReturn", attributes = list(), 
-        xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0))), 
-        isAttribute = FALSE, uris = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        fromConverter = function () 
-        NULL, toConverter = function () 
-        NULL, count = numeric(0), abstract = logical(0), name = "getTermsByExactNameReturn", 
-        ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0)), 
-        name = "getTermsByExactNameResponse", attributes = list(), 
-        xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NULL, Rname = character(0), documentation = character(0)), 
-    .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
-{
-    .SOAP(server, "getTermsByExactName", parameters = as(parameters, 
-        "exactName.ontologyName"), action = "getTermsByExactName", 
-        xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        .types = list(parameters = new("Element", type = new("ClassDefinition", 
-            slotTypes = list(exactName = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "exactName", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), ontologyName = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "ontologyName", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
-            ), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-            name = "exactName.ontologyName", ns = character(0), 
-            nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-            name = "getTermsByExactName", attributes = list(), 
-            xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NULL, Rname = character(0), documentation = character(0))), 
-        .convert = .convert, .header = c(Accept = "text/xml", 
-            Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
-            SOAPAction = "\"getTermsByExactName\""), .opts = .opts, 
-        .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
-        .returnNodeName = "getTermsByExactNameResponse", .soapHeader = .soapHeader)
-}
-
-class( getTermsByExactName ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
+## getTermsByExactName = 
+## function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
+##     host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
+##     .convert = new("Element", type = new("ClassDefinition", slotTypes = list(getTermsByExactNameReturn = new("LocalElement", 
+##         count = c(1L, 1L), type = new("SimpleSequenceType", elementType = character(0), 
+##             elType = new("ClassDefinition", slotTypes = list(key = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = function () 
+##                   NULL, count = c(1L, 1L), abstract = logical(0), 
+##                   name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "key", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), value = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = function () 
+##                   NULL, count = c(1L, 1L), abstract = logical(0), 
+##                   name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "value", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE), uris = c("http://xml.apache.org/xml-soap", 
+##             "http://xml.apache.org/xml-soap"), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##                 name = "mapItem", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = c(0, Inf), abstract = logical(0), name = "Map", 
+##             ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         name = "getTermsByExactNameReturn", attributes = list(), 
+##         xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0))), 
+##         isAttribute = FALSE, uris = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         fromConverter = function () 
+##         NULL, toConverter = function () 
+##         NULL, count = numeric(0), abstract = logical(0), name = "getTermsByExactNameReturn", 
+##         ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         name = "getTermsByExactNameResponse", attributes = list(), 
+##         xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NULL, Rname = character(0), documentation = character(0)), 
+##     .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
+## {
+##     .SOAP(server, "getTermsByExactName", parameters = as(parameters, 
+##         "exactName.ontologyName"), action = "getTermsByExactName", 
+##         xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         .types = list(parameters = new("Element", type = new("ClassDefinition", 
+##             slotTypes = list(exactName = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "exactName", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), ontologyName = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "ontologyName", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
+##             ), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##             name = "exactName.ontologyName", ns = character(0), 
+##             nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##             name = "getTermsByExactName", attributes = list(), 
+##             xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NULL, Rname = character(0), documentation = character(0))), 
+##         .convert = .convert, .header = c(Accept = "text/xml", 
+##             Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
+##             SOAPAction = "\"getTermsByExactName\""), .opts = .opts, 
+##         .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
+##         .returnNodeName = "getTermsByExactNameResponse", .soapHeader = .soapHeader)
+## }
+##
+## class( getTermsByExactName ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
 getPrefixedTermsByName = 
 function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
@@ -1376,127 +1368,127 @@ function (parameters = list(...), ..., server = new("HTTPSOAPServer",
 
 class( getTermParents ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
-getTermChildren = 
-function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
-    host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
-    .convert = new("Element", type = new("ClassDefinition", slotTypes = list(getTermChildrenReturn = new("LocalElement", 
-        count = c(1L, 1L), type = new("SimpleSequenceType", elementType = character(0), 
-            elType = new("ClassDefinition", slotTypes = list(key = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = function () 
-                  NULL, count = c(1L, 1L), abstract = logical(0), 
-                  name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "key", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), value = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = function () 
-                  NULL, count = c(1L, 1L), abstract = logical(0), 
-                  name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "value", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE), uris = c("http://xml.apache.org/xml-soap", 
-            "http://xml.apache.org/xml-soap"), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-                name = "mapItem", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = c(0, Inf), abstract = logical(0), name = "Map", 
-            ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-        name = "getTermChildrenReturn", attributes = list(), 
-        xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0))), 
-        isAttribute = FALSE, uris = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        fromConverter = function () 
-        NULL, toConverter = function () 
-        NULL, count = numeric(0), abstract = logical(0), name = "getTermChildrenReturn", 
-        ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0)), 
-        name = "getTermChildrenResponse", attributes = list(), 
-        xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NULL, Rname = character(0), documentation = character(0)), 
-    .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
-{
-    .SOAP(server, "getTermChildren", parameters = as(parameters, 
-        "termId.ontologyName.distance.relationTypes"), action = "getTermChildren", 
-        xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        .types = list(parameters = new("Element", type = new("ClassDefinition", 
-            slotTypes = list(termId = new("LocalElement", count = c(1L, 
-            1L), type = new("PrimitiveSOAPType", fromConverter = function () 
-            NULL, toConverter = .Primitive("as.character"), count = c(1L, 
-            1L), abstract = logical(0), name = "string", ns = "xsd", 
-                nsuri = "http://www.w3.org/2001/XMLSchema", default = NA_character_, 
-                Rname = character(0), documentation = character(0)), 
-                name = "termId", attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), ontologyName = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "ontologyName", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), distance = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.integer"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "int", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "distance", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), relationTypes = new("LocalElement", 
-                count = c(1, Inf), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.integer"), 
-                  count = c(1, Inf), abstract = logical(0), name = "int", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "relationTypes", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE, FALSE, FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
-            ), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-            name = "termId.ontologyName.distance.relationTypes", 
-            ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-            name = "getTermChildren", attributes = list(), xmlAttrs = character(0), 
-            ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NULL, Rname = character(0), documentation = character(0))), 
-        .convert = .convert, .header = c(Accept = "text/xml", 
-            Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
-            SOAPAction = "\"getTermChildren\""), .opts = .opts, 
-        .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
-        .returnNodeName = "getTermChildrenResponse", .soapHeader = .soapHeader)
-}
-
-class( getTermChildren ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
+## getTermChildren = 
+## function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
+##     host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
+##     .convert = new("Element", type = new("ClassDefinition", slotTypes = list(getTermChildrenReturn = new("LocalElement", 
+##         count = c(1L, 1L), type = new("SimpleSequenceType", elementType = character(0), 
+##             elType = new("ClassDefinition", slotTypes = list(key = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = function () 
+##                   NULL, count = c(1L, 1L), abstract = logical(0), 
+##                   name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "key", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), value = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = function () 
+##                   NULL, count = c(1L, 1L), abstract = logical(0), 
+##                   name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "value", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE), uris = c("http://xml.apache.org/xml-soap", 
+##             "http://xml.apache.org/xml-soap"), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##                 name = "mapItem", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = c(0, Inf), abstract = logical(0), name = "Map", 
+##             ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         name = "getTermChildrenReturn", attributes = list(), 
+##         xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0))), 
+##         isAttribute = FALSE, uris = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         fromConverter = function () 
+##         NULL, toConverter = function () 
+##         NULL, count = numeric(0), abstract = logical(0), name = "getTermChildrenReturn", 
+##         ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         name = "getTermChildrenResponse", attributes = list(), 
+##         xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NULL, Rname = character(0), documentation = character(0)), 
+##     .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
+## {
+##     .SOAP(server, "getTermChildren", parameters = as(parameters, 
+##         "termId.ontologyName.distance.relationTypes"), action = "getTermChildren", 
+##         xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         .types = list(parameters = new("Element", type = new("ClassDefinition", 
+##             slotTypes = list(termId = new("LocalElement", count = c(1L, 
+##             1L), type = new("PrimitiveSOAPType", fromConverter = function () 
+##             NULL, toConverter = .Primitive("as.character"), count = c(1L, 
+##             1L), abstract = logical(0), name = "string", ns = "xsd", 
+##                 nsuri = "http://www.w3.org/2001/XMLSchema", default = NA_character_, 
+##                 Rname = character(0), documentation = character(0)), 
+##                 name = "termId", attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), ontologyName = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "ontologyName", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), distance = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.integer"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "int", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "distance", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), relationTypes = new("LocalElement", 
+##                 count = c(1, Inf), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.integer"), 
+##                   count = c(1, Inf), abstract = logical(0), name = "int", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "relationTypes", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE, FALSE, FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
+##             ), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##             name = "termId.ontologyName.distance.relationTypes", 
+##             ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##             name = "getTermChildren", attributes = list(), xmlAttrs = character(0), 
+##             ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NULL, Rname = character(0), documentation = character(0))), 
+##         .convert = .convert, .header = c(Accept = "text/xml", 
+##             Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
+##             SOAPAction = "\"getTermChildren\""), .opts = .opts, 
+##         .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
+##         .returnNodeName = "getTermChildrenResponse", .soapHeader = .soapHeader)
+## }
+##
+## class( getTermChildren ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
 getTermRelations = 
 function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
@@ -1596,123 +1588,123 @@ function (parameters = list(...), ..., server = new("HTTPSOAPServer",
 
 class( getTermRelations ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
-getChildrenFromRoot = 
-function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
-    host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
-    .convert = new("Element", type = new("ClassDefinition", slotTypes = list(getChildrenFromRootReturn = new("LocalElement", 
-        count = c(1L, 1L), type = new("SimpleSequenceType", elementType = character(0), 
-            elType = new("ClassDefinition", slotTypes = list(key = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = function () 
-                  NULL, count = c(1L, 1L), abstract = logical(0), 
-                  name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "key", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), value = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = function () 
-                  NULL, count = c(1L, 1L), abstract = logical(0), 
-                  name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "value", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE), uris = c("http://xml.apache.org/xml-soap", 
-            "http://xml.apache.org/xml-soap"), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-                name = "mapItem", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = c(0, Inf), abstract = logical(0), name = "Map", 
-            ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-        name = "getChildrenFromRootReturn", attributes = list(), 
-        xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0))), 
-        isAttribute = FALSE, uris = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        fromConverter = function () 
-        NULL, toConverter = function () 
-        NULL, count = numeric(0), abstract = logical(0), name = "getChildrenFromRootReturn", 
-        ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0)), 
-        name = "getChildrenFromRootResponse", attributes = list(), 
-        xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NULL, Rname = character(0), documentation = character(0)), 
-    .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
-{
-    .SOAP(server, "getChildrenFromRoot", parameters = as(parameters, 
-        "rootTermId.ontologyName.childrenIds"), action = "getChildrenFromRoot", 
-        xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        .types = list(parameters = new("Element", type = new("ClassDefinition", 
-            slotTypes = list(rootTermId = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "rootTermId", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), ontologyName = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "ontologyName", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), childrenIds = new("LocalElement", 
-                count = c(1L, 1L), type = new("SimpleSequenceType", 
-                  elementType = character(0), elType = new("PrimitiveSOAPType", 
-                    fromConverter = function () 
-                    NULL, toConverter = function () 
-                    NULL, count = c(0, Inf), abstract = logical(0), 
-                    name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                    default = NA_character_, Rname = character(0), 
-                    documentation = character(0)), fromConverter = function () 
-                  NULL, toConverter = function () 
-                  NULL, count = c(0, Inf), abstract = logical(0), 
-                  name = "Vector", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "childrenIds", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE, FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
-            ), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-            name = "rootTermId.ontologyName.childrenIds", ns = character(0), 
-            nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-            name = "getChildrenFromRoot", attributes = list(), 
-            xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NULL, Rname = character(0), documentation = character(0))), 
-        .convert = .convert, .header = c(Accept = "text/xml", 
-            Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
-            SOAPAction = "\"getChildrenFromRoot\""), .opts = .opts, 
-        .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
-        .returnNodeName = "getChildrenFromRootResponse", .soapHeader = .soapHeader)
-}
+## getChildrenFromRoot = 
+## function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
+##     host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
+##     .convert = new("Element", type = new("ClassDefinition", slotTypes = list(getChildrenFromRootReturn = new("LocalElement", 
+##         count = c(1L, 1L), type = new("SimpleSequenceType", elementType = character(0), 
+##             elType = new("ClassDefinition", slotTypes = list(key = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = function () 
+##                   NULL, count = c(1L, 1L), abstract = logical(0), 
+##                   name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "key", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), value = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = function () 
+##                   NULL, count = c(1L, 1L), abstract = logical(0), 
+##                   name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "value", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE), uris = c("http://xml.apache.org/xml-soap", 
+##             "http://xml.apache.org/xml-soap"), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##                 name = "mapItem", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = c(0, Inf), abstract = logical(0), name = "Map", 
+##             ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         name = "getChildrenFromRootReturn", attributes = list(), 
+##         xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0))), 
+##         isAttribute = FALSE, uris = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         fromConverter = function () 
+##         NULL, toConverter = function () 
+##         NULL, count = numeric(0), abstract = logical(0), name = "getChildrenFromRootReturn", 
+##         ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         name = "getChildrenFromRootResponse", attributes = list(), 
+##         xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NULL, Rname = character(0), documentation = character(0)), 
+##     .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
+## {
+##     .SOAP(server, "getChildrenFromRoot", parameters = as(parameters, 
+##         "rootTermId.ontologyName.childrenIds"), action = "getChildrenFromRoot", 
+##         xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         .types = list(parameters = new("Element", type = new("ClassDefinition", 
+##             slotTypes = list(rootTermId = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "rootTermId", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), ontologyName = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "ontologyName", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), childrenIds = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("SimpleSequenceType", 
+##                   elementType = character(0), elType = new("PrimitiveSOAPType", 
+##                     fromConverter = function () 
+##                     NULL, toConverter = function () 
+##                     NULL, count = c(0, Inf), abstract = logical(0), 
+##                     name = "anyType", ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                     default = NA_character_, Rname = character(0), 
+##                     documentation = character(0)), fromConverter = function () 
+##                   NULL, toConverter = function () 
+##                   NULL, count = c(0, Inf), abstract = logical(0), 
+##                   name = "Vector", ns = character(0), nsuri = "http://xml.apache.org/xml-soap", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "childrenIds", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE, FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
+##             ), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##             name = "rootTermId.ontologyName.childrenIds", ns = character(0), 
+##             nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##             name = "getChildrenFromRoot", attributes = list(), 
+##             xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NULL, Rname = character(0), documentation = character(0))), 
+##         .convert = .convert, .header = c(Accept = "text/xml", 
+##             Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
+##             SOAPAction = "\"getChildrenFromRoot\""), .opts = .opts, 
+##         .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
+##         .returnNodeName = "getChildrenFromRootResponse", .soapHeader = .soapHeader)
+## }
 
-class( getChildrenFromRoot ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
+## class( getChildrenFromRoot ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
 isObsolete = 
 function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
@@ -1781,166 +1773,165 @@ function (parameters = list(...), ..., server = new("HTTPSOAPServer",
 
 class( isObsolete ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
-getTermsByAnnotationData = 
-function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
-    host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
-    .convert = new("Element", type = new("SimpleSequenceType", 
-        elementType = character(0), elType = new("ClassDefinition", 
-            slotTypes = list(annotationNumberValue = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.double"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "double", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "annotationNumberValue", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), annotationStringValue = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "annotationStringValue", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), annotationType = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "annotationType", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), termId = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "termId", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), termName = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "termName", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE, FALSE, FALSE, FALSE), uris = c("http://model.web.ook.ebi.ac.uk", 
-            "http://model.web.ook.ebi.ac.uk", "http://model.web.ook.ebi.ac.uk", 
-            "http://model.web.ook.ebi.ac.uk", "http://model.web.ook.ebi.ac.uk"
-            ), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-            name = "DataHolder", ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-        fromConverter = function () 
-        NULL, toConverter = function () 
-        NULL, count = c(1, Inf), abstract = logical(0), name = "getTermsByAnnotationDataResponse", 
-        ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0)), 
-        name = "getTermsByAnnotationDataResponse", attributes = list(), 
-        xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        default = NA_character_, Rname = character(0), documentation = character(0)), 
-    .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
-{
-    .SOAP(server, "getTermsByAnnotationData", parameters = as(parameters, 
-        "ontologyName.annotationType.strValue.fromDblValue.toDblValue"), 
-        action = "getTermsByAnnotationData", xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-        .types = list(parameters = new("Element", type = new("ClassDefinition", 
-            slotTypes = list(ontologyName = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "ontologyName", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), annotationType = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "annotationType", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), strValue = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.character"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "string", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "strValue", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), fromDblValue = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.double"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "double", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "fromDblValue", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0)), toDblValue = new("LocalElement", 
-                count = c(1L, 1L), type = new("PrimitiveSOAPType", 
-                  fromConverter = function () 
-                  NULL, toConverter = .Primitive("as.double"), 
-                  count = c(1L, 1L), abstract = logical(0), name = "double", 
-                  ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
-                  default = NA_character_, Rname = character(0), 
-                  documentation = character(0)), name = "toDblValue", 
-                attributes = list(), xmlAttrs = character(0), 
-                ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-                default = NA_character_, Rname = character(0), 
-                documentation = character(0))), isAttribute = c(FALSE, 
-            FALSE, FALSE, FALSE, FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
-            ), fromConverter = function () 
-            NULL, toConverter = function () 
-            NULL, count = numeric(0), abstract = logical(0), 
-            name = "ontologyName.annotationType.strValue.fromDblValue.toDblValue", 
-            ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NA_character_, Rname = character(0), documentation = character(0)), 
-            name = "getTermsByAnnotationData", attributes = list(), 
-            xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
-            default = NULL, Rname = character(0), documentation = character(0))), 
-        .convert = .convert, .header = c(Accept = "text/xml", 
-            Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
-            SOAPAction = "\"getTermsByAnnotationData\""), .opts = .opts, 
-        .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
-        .returnNodeName = "getTermsByAnnotationDataResponse", 
-        .soapHeader = .soapHeader)
-}
-
-class( getTermsByAnnotationData ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
+## getTermsByAnnotationData = 
+## function (parameters = list(...), ..., server = new("HTTPSOAPServer", 
+##     host = "www.ebi.ac.uk", port = NA_integer_, url = "/ontology-lookup/services/OntologyQuery"), 
+##     .convert = new("Element", type = new("SimpleSequenceType", 
+##         elementType = character(0), elType = new("ClassDefinition", 
+##             slotTypes = list(annotationNumberValue = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.double"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "double", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "annotationNumberValue", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), annotationStringValue = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "annotationStringValue", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), annotationType = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "annotationType", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), termId = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "termId", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), termName = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "termName", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE, FALSE, FALSE, FALSE), uris = c("http://model.web.ook.ebi.ac.uk", 
+##             "http://model.web.ook.ebi.ac.uk", "http://model.web.ook.ebi.ac.uk", 
+##             "http://model.web.ook.ebi.ac.uk", "http://model.web.ook.ebi.ac.uk"
+##             ), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##             name = "DataHolder", ns = character(0), nsuri = "http://model.web.ook.ebi.ac.uk", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         fromConverter = function () 
+##         NULL, toConverter = function () 
+##         NULL, count = c(1, Inf), abstract = logical(0), name = "getTermsByAnnotationDataResponse", 
+##         ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0)), 
+##         name = "getTermsByAnnotationDataResponse", attributes = list(), 
+##         xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         default = NA_character_, Rname = character(0), documentation = character(0)), 
+##     .opts = list(), nameSpaces = "1.2", .soapHeader = NULL) 
+## {
+##     .SOAP(server, "getTermsByAnnotationData", parameters = as(parameters, 
+##         "ontologyName.annotationType.strValue.fromDblValue.toDblValue"), 
+##         action = "getTermsByAnnotationData", xmlns = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##         .types = list(parameters = new("Element", type = new("ClassDefinition", 
+##             slotTypes = list(ontologyName = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "ontologyName", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), annotationType = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "annotationType", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), strValue = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.character"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "string", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "strValue", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), fromDblValue = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.double"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "double", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "fromDblValue", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0)), toDblValue = new("LocalElement", 
+##                 count = c(1L, 1L), type = new("PrimitiveSOAPType", 
+##                   fromConverter = function () 
+##                   NULL, toConverter = .Primitive("as.double"), 
+##                   count = c(1L, 1L), abstract = logical(0), name = "double", 
+##                   ns = "xsd", nsuri = "http://www.w3.org/2001/XMLSchema", 
+##                   default = NA_character_, Rname = character(0), 
+##                   documentation = character(0)), name = "toDblValue", 
+##                 attributes = list(), xmlAttrs = character(0), 
+##                 ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##                 default = NA_character_, Rname = character(0), 
+##                 documentation = character(0))), isAttribute = c(FALSE, 
+##             FALSE, FALSE, FALSE, FALSE), uris = c("http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery"
+##             ), fromConverter = function () 
+##             NULL, toConverter = function () 
+##             NULL, count = numeric(0), abstract = logical(0), 
+##             name = "ontologyName.annotationType.strValue.fromDblValue.toDblValue", 
+##             ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NA_character_, Rname = character(0), documentation = character(0)), 
+##             name = "getTermsByAnnotationData", attributes = list(), 
+##             xmlAttrs = character(0), ns = character(0), nsuri = "http://www.ebi.ac.uk/ontology-lookup/OntologyQuery", 
+##             default = NULL, Rname = character(0), documentation = character(0))), 
+##         .convert = .convert, .header = c(Accept = "text/xml", 
+##             Accept = "multipart/*", `Content-Type` = "text/xml; charset=utf-8", 
+##             SOAPAction = "\"getTermsByAnnotationData\""), .opts = .opts, 
+##         .literal = TRUE, nameSpaces = nameSpaces, .elementFormQualified = TRUE, 
+##         .returnNodeName = "getTermsByAnnotationDataResponse", 
+##         .soapHeader = .soapHeader)
+## }
+## class( getTermsByAnnotationData ) = c( 'SerializedFunction', 'WSDLGeneratedSOAPFunction' )
 
