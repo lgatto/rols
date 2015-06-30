@@ -141,16 +141,16 @@ setMethod("show", "Map",
               cat(" with ", length(object)," items:\n", sep="")            
               k <- sapply(object, function(x) x@key)
               v <- sapply(object, function(x) x@value)
-              if (l > 2) {
-                cat(" Keys:   ", paste(k[1:2], collapse=", "), ", ...\n", sep="")
-                cat(" Values: ", paste(v[1:2], collapse=", "), ", ...\n", sep="")
-              } else if (l == 1) {
-                cat(" Key:   ", k[l], ".\n", sep="")
-                cat(" Value: ", v[l], ".\n", sep="")
-              } else {            
-                cat(" Keys:   ", paste(k[1:(l-1)], collapse=", "),", ", k[l], ".\n", sep="")
-                cat(" Values: ", paste(v[1:(l-1)], collapse=", "),", ", v[l], ".\n", sep="")
+              if (l == 1) {
+                  cat(" Key:   ", k[1], ".\n", sep="")
+                  cat(" Value: ", v[1], ".\n", sep="")
+              } else if (l == 2) {
+                  cat(" Keys:   ", paste0(k[1:2], collapse=", "), ".\n")
+                  cat(" Values: ", paste0(v[1:2], collapse=", "), ".\n")
+              } else {
+                  cat(" Keys:   ", paste0(k[1:2], collapse=", "), ", ...\n")
+                  cat(" Values: ", paste0(v[1:2], collapse=", "), ", ...\n")
               }
-            }
+          }
             invisible(NULL)
           })
