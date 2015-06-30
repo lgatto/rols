@@ -14,6 +14,7 @@ test_that("Map class", {
               ## show -----------------------
               expect_true(is.null(show(map))) 
               expect_true(is.null(show(new("Map"))))
+              expect_true(is.null(show(new("Map", .Data = map[1:2]))))
               expect_true(is.null(show(new("Map", .Data = map[1]))))
               ## ----------------------------
               xomapi <- map[[1]]

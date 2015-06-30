@@ -22,6 +22,7 @@ test_that("term/getTermById", {
 
 test_that("termMetadata/getTermMetadata", {
               mtd <- termMetadata("GO:0005802", "GO")
+              expect_null(rols:::print.termMetadata(mtd))
               expect_identical(mtd["exact_synonym_2"], c(exact_synonym_2 = "TGN"))
               expect_identical(length(mtd), 9L)
           })
@@ -66,7 +67,8 @@ test_that("rootId/getRootTerms",{
 test_that("olsQuery/getTermsByName", {
               tgn <- olsQuery("tgn","GO")               
               tgnres <- c("TGN", "clathrin coat of TGN vesicle",
-                          "TGN transport vesicle", "TGN to endosome transport",
+                          "TGN transport vesicle",
+                          "TGN to endosome transport",
                           "TGN transport vesicle membrane")
               names(tgnres) <- c("GO:0005802",
                                  "GO:0030130",
@@ -80,6 +82,10 @@ test_that("olsQuery/getTermsByName", {
               expect_identical(length(esi1), 1L)
               expect_identical(length(esi2), 2L)
               expect_true(esi1 %in% esi2)
+
+              expect_warning(olsQuery("tgn", exact=TRUE))
+              x <- olsQuery("foobar", "GO", exact=TRUE)
+              expect_equal(length(x), 0L)              
           })
 
 test_that("olsQuery/getPrefixedTermsByName", {
