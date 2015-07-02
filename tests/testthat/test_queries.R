@@ -31,7 +31,7 @@ test_that("termXrefs/getTermXrefs", {
               ans <- termXrefs("TGN transport vesicle", "GO")
               ans2 <- termXrefs("TGN", "GO")
               expect_equal(grep("GOC", ans), 1L)
-              expect_equal(grep("GOC", ans2), 1L)
+              expect_equal(grep("GOC", ans2), 3L)
           })
 
 test_that("onologyNames/getOntologyNames", {
@@ -58,23 +58,23 @@ test_that("allIds/getAllTermsFromOntology", {
 
 test_that("rootId/getRootTerms",{
               goroot <- rootId("GO")
-              goans <- c('GO:0008150' = "biological_process",
-                         'GO:0003674' = "molecular_function",
-                         'GO:0005575' = "cellular_component")
+              goans <-
+                  structure(c("biological_process",
+                              "cellular_component",
+                              "molecular_function"),
+                            .Names = c("GO:0008150",
+                                "GO:0005575", "GO:0003674"))
               expect_identical(goroot, goans)              
           })
 
 test_that("olsQuery/getTermsByName", {
-              tgn <- olsQuery("tgn","GO")               
-              tgnres <- c("TGN", "clathrin coat of TGN vesicle",
-                          "TGN transport vesicle",
-                          "TGN to endosome transport",
-                          "TGN transport vesicle membrane")
-              names(tgnres) <- c("GO:0005802",
-                                 "GO:0030130",
-                                 "GO:0030140",
-                                 "GO:0006895",
-                                 "GO:0012510")
+              tgn <- olsQuery("tgn","GO")
+              tgnres <- structure(c("TGN", "clathrin coat of TGN vesicle",
+                                    "TGN to endosome transport",
+                                    "TGN transport vesicle",
+                                    "TGN transport vesicle membrane"),
+                                  .Names = c("GO:0005802", "GO:0030130",
+                                      "GO:0006895", "GO:0030140", "GO:0012510")) 
               expect_identical(tgn, tgnres)
 
               esi2 <- olsQuery("ESI", "MS")
@@ -84,7 +84,8 @@ test_that("olsQuery/getTermsByName", {
               expect_true(esi1 %in% esi2)
 
               expect_warning(olsQuery("tgn", exact=TRUE))
-              x <- olsQuery("foobar", "GO", exact=TRUE)
+              expect_message(x <- olsQuery("foobar", "GO", exact=TRUE),
+                             "Empty query results after 3 attempts.")
               expect_equal(length(x), 0L)              
           })
 
