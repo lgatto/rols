@@ -1,3 +1,5 @@
+## Development script for rols version 2.
+
 ## "ontologies"
 
 ## > ls("package:rols")
@@ -9,6 +11,33 @@
 ## [16] "parents"              "rootId"               "show"                
 ## [19] "term"                 "termMetadata"         "termXrefs"           
 ## [22] "value"               
+
+library("httr")
+
+.getOntologies <- function() {
+    n <- 150
+    x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", n))
+    warn_for_status(x)
+    cx <- content(x)
+    if (cx$page$totalElements > n) {
+        n <- cx$page$totalElements
+        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", n))
+        warn_for_status(x)
+        cx <- content(x)
+    }        
+    ans <- lapply(cx[["_embedded"]][[1]], Ontology)
+    ## -- Iterating
+    ## .next <- cx[["_links"]][["next"]][[1]]
+    ## while (!is.null(.next)) {
+    ##     x <- GET(.next)
+    ##     warn_for_status(x)
+    ##     cx <- content(x)
+    ##     ans <- append(ans, lapply(cx[["_embedded"]][[1]], Ontology))
+    ##     .next <- cx[["_links"]][["next"]][[1]]
+    ## }
+    .Ontologies(x = ans)
+}
+
 
 setClassUnion("NullOrChar", c("NULL", "character"))
 
@@ -24,20 +53,7 @@ setClassUnion("NullOrChar", c("NULL", "character"))
                                 config = "list"
                                 ))
 
-
-f <- function(object) {
-    prefix <- function(object)
-        object@config$preferredPrefix
-    p <- sapply(ol@x, prefix)
-    p[duplicated(p)]
-}
-
 .Ontologies <- setClass("Ontologies", slots = c(x = "list"))
-
-as.data.frame.Ontolgies <- function(x) 
-    data.frame(Prefix = sapply(x@x, function(xx) xx@config$preferredPrefix),
-               Title = sapply(x@x, function(xx) xx@config$title))
-
 
 Ontology <- function(x)
     .Ontology(loaded = x$loaded,
@@ -53,28 +69,35 @@ Ontology <- function(x)
 
 setMethod("show", "Ontology",
           function(object) {
-              x <- object@config
-              cat("Ontology: ", x$title, " (", x$preferredPrefix , ")", sep = "")
-              cat("   ", strwrap(x$description), sep = "\n  ")
+              cat("Ontology: ", ontoTitle(object), " (", ontoPrefix(object) , ")", sep = "")
+              cat("   ", strwrap(ontoDesc(object)), sep = "\n  ")
           })
-
 
 setMethod("show", "Ontologies",
           function(object)
               cat("Object of class 'Ontologies' with", length(object@x), "entries\n"))
 
-ontologies <- function() {
-    x <- GET("http://www.ebi.ac.uk/ols/beta/api/ontologies", accept_json())
-    warn_for_status(x)
-    cx <- content(x)    
-    ans <- lapply(cx[["_embedded"]][[1]], Ontology)
-    .next <- cx[["_links"]][["next"]][[1]]    
-    while (!is.null(.next)) {
-        x <- GET(.next)
-        warn_for_status(x)
-        cx <- content(x)
-        ans <- append(ans, lapply(cx[["_embedded"]][[1]], Ontology))
-        .next <- cx[["_links"]][["next"]][[1]]
-    }
-    .Ontologies(x = ans)
-}
+setGeneric("ontoPrefix", function(object) standardGeneric("ontoPrefix"))
+setMethod("ontoPrefix", "Ontology", function(object) object@config$preferredPrefix)
+setMethod("ontoPrefix", "Ontologies", function(object) sapply(object@x, ontoPrefix))
+setGeneric("ontoDesc", function(object) standardGeneric("ontoDesc"))
+setMethod("ontoDesc", "Ontology", function(object) object@config$description)
+setMethod("ontoDesc", "Ontologies", function(object) sapply(object@x, ontoDesc))
+setGeneric("ontoTitle", function(object) standardGeneric("ontoTitle"))
+setMethod("ontoTitle", "Ontology", function(object) object@config$title)
+setMethod("ontoTitle", "Ontologies", function(object) sapply(object@x, ontoTitle))
+
+setGeneric("ontologies", function(object) standardGeneric("ontologies"))
+setMethod("ontologies", "missing", .getOntologies)
+
+setMethod("ontologies", "Ontologies", function(object) object@x)
+
+setMethod("[", "Ontologies",
+          function(x, i, j="missing", drop="missing") x@x[i])
+          
+setMethod("[[", "Ontologies",
+          function(x, i, j="missing", drop="missing") x@x[[i]])
+
+as.data.frame.Ontolgies <- function(x)
+    data.frame(Prefix = ontoPrefix(x),
+               Title = ontoTitle(x))
