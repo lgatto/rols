@@ -1,3 +1,15 @@
+CHANGES IN VERSION 1.13.1
+-------------------------
+ o
+ 
+CHANGES IN VERSION 1.13.0
+-------------------------
+ o Bioc devel 3.3
+ 
+CHANGES IN VERSION 1.12.0
+-------------------------
+ o Bio release 3.2
+ 
 CHANGES IN VERSION 1.11.6
 -------------------------
  o fix failing unit tests <2015-07-02 Thu>
