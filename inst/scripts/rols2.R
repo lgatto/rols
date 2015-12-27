@@ -63,8 +63,11 @@ setClassUnion("NullOrChar", c("NULL", "character"))
 .Ontologies <- setClass("Ontologies", slots = c(x = "list"))
 
 
+ontologyUrl <- function(x)
+    paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", x)
+
 Ontology <- function(x) {
-    url <- paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", x)
+    url <- ontologyUrl(x)
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
@@ -85,8 +88,15 @@ Ontology <- function(x) {
 
 setMethod("show", "Ontology",
           function(object) {
-              cat("Ontology: ", olsTitle(object), " (", olsPrefix(object) , ")", sep = "")
-              cat("   ", strwrap(olsDesc(object)), sep = "\n  ")
+              cat("Ontology: ", olsTitle(object),
+                  " (", olsPrefix(object) , ")", sep = "")
+              cat("  ", strwrap(olsDesc(object)), sep = "\n  ")
+              cat("   Loaded:", substr(object@loaded, 1, 10),
+                  "Updated:", substr(go@updated, 1, 10),
+                  "Version:", object@config$version, "\n")
+              cat("  ", object@numberOfTerms, "terms ", 
+                  object@numberOfProperties, "properties ",
+                  object@numberOfIndividuals, "individuals\n")
           })
 
 setMethod("show", "Ontologies",
@@ -118,16 +128,27 @@ setMethod("[", "Ontologies",
 setMethod("[[", "Ontologies",
           function(x, i, j="missing", drop="missing") x@x[[i]])
 
-as.data.frame.Ontolgies <- function(x)
+setAs("Ontologies", "data.frame",
+      function(from) as.data.frame.Ontologies(from))
+
+as.data.frame.Ontologies <- function(x)
     data.frame(Prefix = olsPrefix(x),
                Title = olsTitle(x))
 
+
+## get all ontolgies
 ol <- ontologies()
+ol
+
+## summarise ontolofies
 go <- ol[["GO"]]
 efo <- ol[["EFO"]]
 
-go2 <- Ontology("go")
-go3 <- Ontology("GO")
+## or directly initialise one ontology
+go1 <- Ontology("go")
+GO <- Ontology("GO")
 
-stopifnot(identical(go, go3))
-stopifnot(identical(go, go3))
+stopifnot(identical(go, GO))
+stopifnot(identical(go, go1))
+
+## Queries
