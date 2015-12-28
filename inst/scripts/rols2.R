@@ -1,5 +1,12 @@
 ## Development script for rols version 2.
 
+## Release plan
+##  Update release package on the 1st of March, so that the release
+##  version continues to work using the archive URL until the next
+##  release in April. Commit a devel version, that uses the REST api,
+##  before release.
+
+
 ## http://www.ebi.ac.uk/ols/beta/docs/api
 ## http://www.ebi.ac.uk/ols/beta/roadmap.html
 
@@ -23,6 +30,8 @@ setGeneric("olsDesc", function(object, ...) standardGeneric("olsDesc"))
 setGeneric("olsTitle", function(object, ...) standardGeneric("olsTitle"))
 setGeneric("olsTitle", function(object, ...) standardGeneric("olsTitle"))
 setGeneric("terms", function(object, ...) standardGeneric("terms"))
+setGeneric("term", function(object, id, ...) standardGeneric("term"))
+setGeneric("termId", function(object, ...) standardGeneric("termId"))
 
 .getOntologies <- function() {
     n <- 150
@@ -76,18 +85,16 @@ Ontologies <- setClass("Ontologies", slots = c(x = "list"))
 
 Terms <- setClass("Terms", slots = c(x = "list"))
 
-.termID <- function(x, simplify = TRUE) {
-    idlist <- x@annotation$id
-    if (length(idlist) == 0)
-        idlist <- NA_character_
-    if (simplify & length(idlist) == 1)
-        idlist <- idlist[[1]]
-    idlist    
-}
+.termId <- function(x) x@obo_id
+
+setMethod("termId", "Term", function(object) .termId(object))
+setMethod("termId", "Terms",
+          function(object) sapply(object@x, .termId))
+
 
 setMethod("show", "Term",
           function(object) {
-              ids <- paste(unlist(.termID(object)), collapse = ", ")
+              ids <- .termId(object)
               cat("A Term from the", object@ontology_prefix, "ontology:", ids, "\n")
               cat(" Label: ", object@label,"\n  ", sep = "")
               desc <- object@description
@@ -99,11 +106,19 @@ setMethod("show", "Term",
 setMethod("length", "Terms", function(x) length(x@x))
 
 setMethod("show", "Terms",
-          function(object)
-              cat("Object of class 'Terms' with", length(object), "entries\n"))
+          function(object) {
+              cat("Object of class 'Terms' with", length(object), "entries\n")
+              if (length(object) > 4)
+                  cat("  ", paste(head(termId(object), n=2), collapse = ", "),
+                      "...",
+                      paste(tail(termId(object), n=2), collapse = ", "), "\n")
+              else
+                  cat(paste(termId(object)[1:4], collapse = ", "), "\n")
+          })
+
 
 setMethod("[", "Terms",
-          function(x, i, j="missing", drop="missing") x@x[i])
+          function(x, i, j="missing", drop="missing") Terms(x = x@x[i]))
           
 setMethod("[[", "Terms",
           function(x, i, j="missing", drop="missing") x@x[[i]])
@@ -165,9 +180,12 @@ setMethod("show", "Ontology",
 setMethod("show", "Ontologies",
           function(object) {
               cat("Object of class 'Ontologies' with", length(object), "entries\n")
-              cat("  ", paste(head(olsPrefix(ol), n=3), collapse = ", "),
-                  "...",
-                  paste(tail(olsPrefix(ol), n=3), collapse = ", "), "\n")
+              if (length(object) > 4)
+                  cat("  ", paste(head(olsPrefix(object), n=3), collapse = ", "),
+                      "...",
+                      paste(tail(olsPrefix(object), n=3), collapse = ", "), "\n")
+              else
+                  cat(paste(olsPrefix(object)[1:4], collapse = ", "), "\n")
           })
 
 
@@ -186,7 +204,7 @@ setMethod("ontologies", "missing", .getOntologies)
 setMethod("ontologies", "Ontologies", function(object) object@x)
 
 setMethod("[", "Ontologies",
-          function(x, i, j="missing", drop="missing") x@x[i])
+          function(x, i, j="missing", drop="missing") Ontologies(x = x@x[i]))
           
 setMethod("[[", "Ontologies",
           function(x, i, j="missing", drop="missing") x@x[[i]])
@@ -217,36 +235,58 @@ as.data.frame.Ontologies <- function(x)
         .next <- cx[["_links"]][["next"]][[1]]
     }
     cat("\n")
+    names(ans) <- sapply(ans, termId)
     Terms(x = ans)
 }
 
 setMethod("terms", "character", function(object, ...) .terms(object, ...))
 setMethod("terms", "Ontology", function(object, ...) .terms(olsPrefix(object), ...))
 
+.term <- function(goid, termid) {
+    url <- paste(ontologyUrl(goid), "terms", sep = "/")
+    url <- paste(url, "http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F", sep = "/")
+    url <- paste0(url, sub(":", "_", termid))
+    x <- GET(url)
+    stop_for_status(x)
+    cx <- content(x)
+    .makeTerm(cx)
+}
+
+setMethod("term", c("character", "character"),
+          function(object, id, ...) .term(object, id, ...))
+setMethod("term", c("Ontology", "character"),
+          function(object, id,...) .term(olsPrefix(object), id, ...))
+
 # EXAMPLES
 
-## get all ontolgies
+## Get all ontolgies
 ol <- ontologies()
 ol
 
-## summarise ontolofies
+## Summarise ontologies
 (go <- ol[["GO"]])
 (efo <- ol[["EFO"]])
 
-## or directly initialise one ontology
+## Directly initialise one ontology
 go1 <- Ontology("go")
 GO <- Ontology("GO")
 
 stopifnot(identical(go, GO))
 stopifnot(identical(go, go1))
 
-
-
 ## Queries
-## (all) terms
 
+## (all) terms
 gotrms <- terms(go, pagesize = 1000)
 
 ## (one) term
+
+gotrms[[1]]
+gotrms[1:3]
+gotrms[["GO:0032801"]]
+
+term("GO", "GO:0032801")
+term(go, "GO:0032801")
+
 ## Properties and individuals
 ## Search/select
