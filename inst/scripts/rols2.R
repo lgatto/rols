@@ -11,12 +11,15 @@
 ## http://www.ebi.ac.uk/ols/beta/roadmap.html
 
 ## "ontologies"
+## ontologyLoadDate -> olsLoaded
+##                  -> olsUpdated
+## olsVersion -> olsVersion
 
 ## > ls("package:rols")
 ##  [1] "allIds"               "as.character.CVParam" "as.character.Map"    
 ##  [4] "as.character.mapItem" "charIsCVParam"        "childrenRelations"   
 ##  [7] "CVParam"              "isIdObsolete"         "key"                 
-## [10] "map"                  "olsQuery"             "olsVersion"          
+##    "olsQuery"             
 ## [13] "ontologyLoadDate" "ontologyNames"       
 ## [16] "parents"              "rootId"               "show"                
 ## [19] "term"                 "termMetadata"         "termXrefs"           
@@ -32,6 +35,10 @@ setGeneric("olsTitle", function(object, ...) standardGeneric("olsTitle"))
 setGeneric("terms", function(object, ...) standardGeneric("terms"))
 setGeneric("term", function(object, id, ...) standardGeneric("term"))
 setGeneric("termId", function(object, ...) standardGeneric("termId"))
+
+olsLoaded <- function(x) substr(x@loaded, 1, 10)
+olsUpdated <- function(x) substr(x@updated, 1, 10)
+olsVersion <- function(x) x@config$version
 
 .getOntologies <- function() {
     n <- 150
@@ -164,14 +171,15 @@ Ontology <- function(x) {
               config = x$config)
 
 
+
 setMethod("show", "Ontology",
           function(object) {
               cat("Ontology: ", olsTitle(object),
                   " (", olsPrefix(object) , ")", sep = "")
               cat("  ", strwrap(olsDesc(object)), sep = "\n  ")
-              cat("   Loaded:", substr(object@loaded, 1, 10),
-                  "Updated:", substr(go@updated, 1, 10),
-                  "Version:", object@config$version, "\n")
+              cat("   Loaded:", olsLoaded(object),
+                  "Updated:", olsUpdated(object),
+                  "Version:", olsVersion(object), "\n")
               cat("  ", object@numberOfTerms, "terms ", 
                   object@numberOfProperties, "properties ",
                   object@numberOfIndividuals, "individuals\n")
@@ -277,7 +285,7 @@ stopifnot(identical(go, go1))
 ## Queries
 
 ## (all) terms
-gotrms <- terms(go, pagesize = 1000)
+# gotrms <- terms(go, pagesize = 1000)
 
 ## (one) term
 
