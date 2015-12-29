@@ -16,6 +16,7 @@
 ## olsVersion -> olsVersion
 ## allIds -> terms
 ## "isIdObsolete" -> isObsolete
+## "rootId"       -> olsRoot
 
 ## CVParams
 ## "as.character.CVParam"
@@ -30,7 +31,7 @@
 ##  TODO
 ## > ls("package:rols")
 ##  "childrenRelations"    "olsQuery"             
-## "parents"               "rootId"               
+## "parents"               
 ## "term"                  "termMetadata"
 ##  "value"                "termXrefs"
 
@@ -293,6 +294,42 @@ setMethod("terms", "Ontology", function(object, ...) .terms(olsPrefix(object), .
     makeTerm(cx)
 }
 
+children <- function(id) { ## a Term
+    x <- GET(id@links$children[[1]])
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    names(ans) <- sapply(ans, termId)
+    Terms(x = ans)
+}
+
+parents <- function(id) { ## a Term
+    x <- GET(id@links$parents[[1]])
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    names(ans) <- sapply(ans, termId)
+    Terms(x = ans)
+}
+
+ancestors <- function(id) { ## a Term
+    x <- GET(id@links$ancestors[[1]])
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    names(ans) <- sapply(ans, termId)
+    Terms(x = ans)
+}
+
+descendants <- function(id) { ## a Term
+    x <- GET(id@links$descendants[[1]])
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    names(ans) <- sapply(ans, termId)
+    Terms(x = ans)
+}
+
 setMethod("term", c("character", "character"),
           function(object, id, ...) .term(object, id, ...))
 setMethod("term", c("Ontology", "character"),
@@ -346,3 +383,8 @@ for (ii in i)
 
 olsRoot(go)
 identical(olsRoot("GO"), olsRoot(go))
+
+parents(trm)
+ancestors(trm)
+children(trm)
+descendants(trm)
