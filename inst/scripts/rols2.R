@@ -346,23 +346,93 @@ setMethod("lapply", "Ontologies",
 setMethod("lapply", "Terms",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
 
-query <- "trans-golgi"
 
-## "http://www.ebi.ac.uk/ols/beta/api/search?q={trans-golgi}&rows=100&ontology=go"
+.OlsSearch <- setClass("OlsSearch",
+                       slots = c(q = "character",
+                                 ontology = "character",
+                                 type = "character",
+                                 slim = "character",
+                                 fieldList = "character",
+                                 queryFields = "character",
+                                 exact = "logical",
+                                 groupField = "logical",
+                                 obsoletes = "logical",
+                                 local = "character",
+                                 childrenOf = "character",
+                                 rows = "integer", 
+                                 start = "integer",
+                                 url = "character",
+                                 numFound = "integer"))
 
-.olsQuery <- function(object, query, ontology, fields, n = 100) {
-    ## .args <- as.list(match.call())[-1]    
-    url <- paste0("http://www.ebi.ac.uk/ols/beta/api/search?q={", query, "}&rows=", n)    
-    x <- GET(url, accept_json())
+setMethod("show", "OlsSearch",
+          function(object) {
+              cat("Object of class 'OlsSearch':\n")
+              if (object@ontology[1] != "") {
+                  if (length(object@ontology) == 1)
+                      cat("  ontolgy:", object@ontology, "\n")
+                  else
+                      cat("  ontolgies:",
+                          paste(object@ontology, collapse = ", "), "\n")
+              }
+              cat("  query:", object@q, "\n")
+              cat("  results: ", object@rows, " (out of ",
+                  object@numFound, ")\n", sep ="")
+          })
+
+OlsSearch <- function(q,
+                      ontology = "",
+                      type = "",
+                      slim = "",
+                      fieldList = "",
+                      queryFields = "",
+                      exact = FALSE,
+                      groupField = FALSE,
+                      obsoletes = FALSE,
+                      local = "",
+                      childrenOf = "",
+                      rows = 1L,
+                      start = 0L) {
+    if (missing(q))
+        stop("You must supply a query.")
+    .args <- as.list(match.call())[-1]
+    ## Create search URL and instantiate OlsSearch object
+    params <- c()
+    for (i in seq_along(.args)) {
+        nm <- names(.args)[i]
+        arg <- eval(.args[[i]])
+        if (length(arg) > 1)
+            arg <- paste(arg, collapse = ",")
+        params <- append(params, paste(nm, arg, sep = "="))
+    }
+    url <- paste0("http://www.ebi.ac.uk/ols/beta/api/search?",
+                  paste(params, collapse = "&"))
+    ## Make actual query, with rows = 1 to get the total number of
+    ## results found
+    url0 <- sub("rows=[0-9]+", "rows=1", url)
+    x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
     txt <- rawToChar(cx)
     ans <- jsonlite::fromJSON(txt)
-    ans <- ans[["response"]]
+    numFound <- ans[["response"]][["numFound"]]       
+    .OlsSearch(q = q, ontology = ontology, slim = slim,
+               fieldList = fieldList, queryFields = queryFields,
+               exact = exact, groupField = groupField,
+               obsoletes = obsoletes, local = local,
+               childrenOf = childrenOf, rows = as.integer(rows),
+               start = as.integer(start), url = url,
+               numFound = as.integer(numFound))    
 }
 
 
-# EXAMPLES
+
+
+olsSearch <- function(object) { ## OlsSearch
+    ## Make actual query for rows (possibly all) results
+}
+
+
+## EXAMPLES
 
 ## Get all ontolgies
 ol <- ontologies()
