@@ -14,16 +14,32 @@
 ## ontologyLoadDate -> olsLoaded
 ##                  -> olsUpdated
 ## olsVersion -> olsVersion
+## allIds -> terms
+## "isIdObsolete" -> isObsolete
 
+## CVParams
+## "as.character.CVParam"
+## "charIsCVParam"
+
+## Dropping
+## .rols environment
+## "as.character.Map"  "key"  "CVParam"
+## ontologyNames -> see ontologies
+## "as.character.mapItem"
+
+##  TODO
 ## > ls("package:rols")
-##  [1] "allIds"               "as.character.CVParam" "as.character.Map"    
-##  [4] "as.character.mapItem" "charIsCVParam"        "childrenRelations"   
-##  [7] "CVParam"              "isIdObsolete"         "key"                 
-##    "olsQuery"             
-## [13] "ontologyLoadDate" "ontologyNames"       
-## [16] "parents"              "rootId"               "show"                
-## [19] "term"                 "termMetadata"         "termXrefs"           
-## [22] "value"               
+##  "childrenRelations"    "olsQuery"             
+## "parents"               "rootId"               
+## "term"                  "termMetadata"
+##  "value"                "termXrefs"
+
+## term graph and jstree for a given term
+## term children, parents, ancestors and descendants from a given term
+
+## Properties and individuals
+## Search/select 
+
 
 library("httr")
 library("progress")
@@ -39,6 +55,8 @@ setGeneric("termId", function(object, ...) standardGeneric("termId"))
 olsLoaded <- function(x) substr(x@loaded, 1, 10)
 olsUpdated <- function(x) substr(x@updated, 1, 10)
 olsVersion <- function(x) x@config$version
+isObsolete <- function(x) x@is_obsolete
+isRoot <- function(x) x@is_root
 
 .getOntologies <- function() {
     n <- 150
@@ -265,6 +283,12 @@ setMethod("term", c("character", "character"),
 setMethod("term", c("Ontology", "character"),
           function(object, id,...) .term(olsPrefix(object), id, ...))
 
+setMethod("lapply", "Ontologies",
+          function(X, FUN, ...) lapply(X@x, FUN, ...))
+setMethod("lapply", "Terms",
+          function(X, FUN, ...) lapply(X@x, FUN, ...))
+
+
 # EXAMPLES
 
 ## Get all ontolgies
@@ -289,12 +313,18 @@ stopifnot(identical(go, go1))
 
 ## (one) term
 
-gotrms[[1]]
+(trm <- gotrms[[1]])
 gotrms[1:3]
 gotrms[["GO:0032801"]]
 
 term("GO", "GO:0032801")
 term(go, "GO:0032801")
 
-## Properties and individuals
-## Search/select
+isObsolete(gotrms[["GO:0030533"]])
+isObsolete(gotrms[["GO:0005563"]])
+
+isRoot(gotrms[["GO:0030533"]])
+
+i <- which(unlist(lapply(gotrms, function(x) isRoot(x) & !isObsolete(x))))
+for (ii in i)
+    show(gotrms[[ii]])
