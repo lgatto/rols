@@ -30,13 +30,11 @@
 
 ##  TODO
 ## > ls("package:rols")
-##  "childrenRelations"    "olsQuery"             
-## "parents"               
+## "olsQuery"             
 ## "term"                  "termMetadata"
 ##  "value"                "termXrefs"
 
 ## term graph and jstree for a given term
-## term children, parents, ancestors and descendants from a given term
 
 ## Properties and individuals
 ## Search/select 
@@ -44,6 +42,7 @@
 
 library("httr")
 library("progress")
+library("jsonlite")
 
 setGeneric("olsPrefix", function(object, ...) standardGeneric("olsPrefix"))
 setGeneric("olsDesc", function(object, ...) standardGeneric("olsDesc"))
@@ -53,6 +52,45 @@ setGeneric("olsRoot", function(object, ...) standardGeneric("olsRoot"))
 setGeneric("terms", function(object, ...) standardGeneric("terms"))
 setGeneric("term", function(object, id, ...) standardGeneric("term"))
 setGeneric("termId", function(object, ...) standardGeneric("termId"))
+setGeneric("ontologies", function(object) standardGeneric("ontologies"))
+setGeneric("olsQuery", function(object,  ...) standardGeneric("olsQuery"))
+
+setClassUnion("NullOrChar", c("NULL", "character"))
+setClassUnion("NullOrList", c("NULL", "list"))
+
+.Ontology <- setClass("Ontology",
+                      slots = c(loaded = "NullOrChar",
+                                updated = "NullOrChar",
+                                status = "NullOrChar",
+                                message = "NullOrChar",
+                                version = "NullOrChar",
+                                numberOfTerms = "integer",
+                                numberOfProperties = "integer",
+                                numberOfIndividuals = "integer",
+                                config = "list"
+                                ))
+
+Ontologies <- setClass("Ontologies", slots = c(x = "list"))
+
+.Term <- setClass("Term",
+                  slots = c(iri = "character",
+                            label = "character",
+                            description = "NullOrList",
+                            annotation = "list",
+                            synonym = "NullOrList",
+                            ontology_name = "character",
+                            ontology_prefix = "character",
+                            ontology_iri = "character",
+                            is_obsolete = "logical",
+                            is_defining_ontology = "logical",
+                            has_children = "logical",
+                            is_root = "logical",
+                            short_form = "character",
+                            obo_id = "NullOrChar",
+                            links = "list"))
+
+Terms <- setClass("Terms", slots = c(x = "list"))
+
 
 setMethod("olsRoot", "character",
           function(object) {
@@ -90,41 +128,9 @@ isRoot <- function(x) x@is_root
     Ontologies(x = ans)
 }
 
-setClassUnion("NullOrChar", c("NULL", "character"))
-setClassUnion("NullOrList", c("NULL", "list"))
 
-.Ontology <- setClass("Ontology",
-                      slots = c(loaded = "NullOrChar",
-                                updated = "NullOrChar",
-                                status = "NullOrChar",
-                                message = "NullOrChar",
-                                version = "NullOrChar",
-                                numberOfTerms = "integer",
-                                numberOfProperties = "integer",
-                                numberOfIndividuals = "integer",
-                                config = "list"
-                                ))
 
-Ontologies <- setClass("Ontologies", slots = c(x = "list"))
 
-.Term <- setClass("Term",
-                  slots = c(iri = "character",
-                            label = "character",
-                            description = "NullOrList",
-                            annotation = "list",
-                            synonym = "NullOrList",
-                            ontology_name = "character",
-                            ontology_prefix = "character",
-                            ontology_iri = "character",
-                            is_obsolete = "logical",
-                            is_defining_ontology = "logical",
-                            has_children = "logical",
-                            is_root = "logical",
-                            short_form = "character",
-                            obo_id = "NullOrChar",
-                            links = "list"))
-
-Terms <- setClass("Terms", slots = c(x = "list"))
 
 .termId <- function(x) x@obo_id
 
@@ -240,7 +246,6 @@ setMethod("olsDesc", "Ontologies", function(object) sapply(object@x, olsDesc))
 setMethod("olsTitle", "Ontology", function(object) object@config$title)
 setMethod("olsTitle", "Ontologies", function(object) sapply(object@x, olsTitle))
 
-setGeneric("ontologies", function(object) standardGeneric("ontologies"))
 setMethod("ontologies", "missing", .getOntologies)
 
 setMethod("ontologies", "Ontologies", function(object) object@x)
@@ -330,6 +335,7 @@ descendants <- function(id) { ## a Term
     Terms(x = ans)
 }
 
+
 setMethod("term", c("character", "character"),
           function(object, id, ...) .term(object, id, ...))
 setMethod("term", c("Ontology", "character"),
@@ -339,6 +345,21 @@ setMethod("lapply", "Ontologies",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
 setMethod("lapply", "Terms",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
+
+query <- "trans-golgi"
+
+## "http://www.ebi.ac.uk/ols/beta/api/search?q={trans-golgi}&rows=100&ontology=go"
+
+.olsQuery <- function(object, query, ontology, fields, n = 100) {
+    ## .args <- as.list(match.call())[-1]    
+    url <- paste0("http://www.ebi.ac.uk/ols/beta/api/search?q={", query, "}&rows=", n)    
+    x <- GET(url, accept_json())
+    stop_for_status(x)
+    cx <- content(x)
+    txt <- rawToChar(cx)
+    ans <- jsonlite::fromJSON(txt)
+    ans <- ans[["response"]]
+}
 
 
 # EXAMPLES
@@ -361,7 +382,7 @@ stopifnot(identical(go, go1))
 ## Queries
 
 ## (all) terms
-# gotrms <- terms(go, pagesize = 1000)
+gotrms <- terms(go, pagesize = 10000)
 
 ## (one) term
 
