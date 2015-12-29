@@ -48,9 +48,24 @@ setGeneric("olsPrefix", function(object, ...) standardGeneric("olsPrefix"))
 setGeneric("olsDesc", function(object, ...) standardGeneric("olsDesc"))
 setGeneric("olsTitle", function(object, ...) standardGeneric("olsTitle"))
 setGeneric("olsTitle", function(object, ...) standardGeneric("olsTitle"))
+setGeneric("olsRoot", function(object, ...) standardGeneric("olsRoot"))
 setGeneric("terms", function(object, ...) standardGeneric("terms"))
 setGeneric("term", function(object, id, ...) standardGeneric("term"))
 setGeneric("termId", function(object, ...) standardGeneric("termId"))
+
+setMethod("olsRoot", "character",
+          function(object) {
+              url <- ontologyUrl(object)
+              url <- paste0(url, "/terms/roots")
+              x <- GET(url)
+              stop_for_status(x)
+              cx <- content(x)
+              ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+              names(ans) <- sapply(ans, termId)
+              Terms(x = ans)
+          })
+
+setMethod("olsRoot", "Ontology", function(object) olsRoot(olsPrefix(object)))
 
 olsLoaded <- function(x) substr(x@loaded, 1, 10)
 olsUpdated <- function(x) substr(x@updated, 1, 10)
@@ -148,7 +163,7 @@ setMethod("[", "Terms",
 setMethod("[[", "Terms",
           function(x, i, j="missing", drop="missing") x@x[[i]])
 
-.makeTerm <- function(x)
+makeTerm <- function(x)
     .Term(iri = x$iri,
           label = x$label,
           description = x$description,
@@ -248,7 +263,7 @@ as.data.frame.Ontologies <- function(x)
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
-    ans <- lapply(cx[["_embedded"]][[1]], .makeTerm)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     ## -- Iterating
     .next <- cx[["_links"]][["next"]]$href
     pb <- progress_bar$new(total = cx[["page"]][["totalPages"]])
@@ -257,7 +272,7 @@ as.data.frame.Ontologies <- function(x)
         x <- GET(.next)
         warn_for_status(x)
         cx <- content(x)
-        ans <- append(ans, lapply(cx[["_embedded"]][[1]], .makeTerm))
+        ans <- append(ans, lapply(cx[["_embedded"]][[1]], makeTerm))
         .next <- cx[["_links"]][["next"]][[1]]
     }
     cat("\n")
@@ -275,7 +290,7 @@ setMethod("terms", "Ontology", function(object, ...) .terms(olsPrefix(object), .
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
-    .makeTerm(cx)
+    makeTerm(cx)
 }
 
 setMethod("term", c("character", "character"),
@@ -328,3 +343,6 @@ isRoot(gotrms[["GO:0030533"]])
 i <- which(unlist(lapply(gotrms, function(x) isRoot(x) & !isObsolete(x))))
 for (ii in i)
     show(gotrms[[ii]])
+
+olsRoot(go)
+identical(olsRoot("GO"), olsRoot(go))
