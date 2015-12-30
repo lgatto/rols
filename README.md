@@ -1,3 +1,13 @@
+
+> The onology lookup service, the backend behind rols has been
+> [updated](http://www.ebi.ac.uk/ols/beta/roadmap.html). As a result,
+> the rols package is being re-implemented and will undergo changes in
+> its user interface. The current interface will be maintained for
+> Bioconductor release 3.2 and will be discontinued afterwards. Please
+> see the
+> [`rols` version 2.0 branch](https://github.com/lgatto/rols/tree/v2.0)
+> for the new release.
+
 ### The Ontology Lookup Service 
 
 The [Ontology Lookup Service](http://www.ebi.ac.uk/ontology-lookup/) (OLS), developed at the [European Bioinformatics Institute](http://www.ebi.ac.uk/) (EBI), is a unified web interface to query multiple ontologies from a single location. It also provides Simple Object Access Protocol (SOAP) webservice for programmatic access.
