@@ -29,4 +29,59 @@ setClass("CVParam",
              }
            }
            if (is.null(msg)) TRUE else msg
-         })                     
+         })
+
+
+setClassUnion("NullOrChar", c("NULL", "character"))
+setClassUnion("NullOrList", c("NULL", "list"))
+
+.Ontology <- setClass("Ontology",
+                      slots = c(loaded = "NullOrChar",
+                                updated = "NullOrChar",
+                                status = "NullOrChar",
+                                message = "NullOrChar",
+                                version = "NullOrChar",
+                                numberOfTerms = "integer",
+                                numberOfProperties = "integer",
+                                numberOfIndividuals = "integer",
+                                config = "list"
+                                ))
+
+Ontologies <- setClass("Ontologies", slots = c(x = "list"))
+
+.Term <- setClass("Term",
+                  slots = c(iri = "character",
+                            label = "character",
+                            description = "NullOrList",
+                            annotation = "list",
+                            synonym = "NullOrList",
+                            ontology_name = "character",
+                            ontology_prefix = "character",
+                            ontology_iri = "character",
+                            is_obsolete = "logical",
+                            is_defining_ontology = "logical",
+                            has_children = "logical",
+                            is_root = "logical",
+                            short_form = "character",
+                            obo_id = "NullOrChar",
+                            links = "list"))
+
+Terms <- setClass("Terms", slots = c(x = "list"))
+
+.OlsSearch <- setClass("OlsSearch",
+                       slots = c(q = "character",
+                                 ontology = "character",
+                                 type = "character",
+                                 slim = "character",
+                                 fieldList = "character",
+                                 queryFields = "character",
+                                 exact = "logical",
+                                 groupField = "logical",
+                                 obsoletes = "logical",
+                                 local = "character",
+                                 childrenOf = "character",
+                                 rows = "integer", 
+                                 start = "integer",
+                                 url = "character",
+                                 numFound = "integer",
+                                 response = "data.frame"))
