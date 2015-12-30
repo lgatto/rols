@@ -1,3 +1,14 @@
+rolsDeprecationMessage <- function() {    
+    msg <- paste("The onology lookup service, the backend behind rols has",
+                 "been updated (see http://www.ebi.ac.uk/ols/beta/roadmap.html).",
+                 "As a result, the rols package is being re-implemented and ",
+                 "will undergo changes in its user interface. The current",
+                 "interface will be maintained for Bioconductor release 3.2",
+                 "and will be discontinued afterwards. Please see",
+                 "https://github.com/lgatto/rols/tree/v2.0 for the new release.")
+    message(cat(strwrap(msg), sep = "\n"))
+}
+
 
 ##' \code{key} slot accessor for the \code{mapItem} instances.
 ##'
