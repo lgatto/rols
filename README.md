@@ -6,15 +6,13 @@ The [Ontology Lookup Service](http://www.ebi.ac.uk/ontology-lookup/)
 unified web interface to query multiple ontologies from a single
 location. The
 [new version](http://www.ebi.ac.uk/ols/beta/roadmap.html) of the OLS
-uses a REST API.
-
-
-
-### The `rols` R package
+uses a REST API. 
 
 The `rols` package uses functionality from the
 [httr](https://cran.r-project.org/web/packages/httr/) package to query
-the OLS directly from R. 
+the OLS directly from R.
+
+#### Changes in version 1.99.0
 
 ### The `CVParam` class
 
