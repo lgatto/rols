@@ -14,13 +14,13 @@ CVParam <- function(label,
         if (missing(name) & missing(accession)) {
             stop("You need to provide at least one of 'name' or 'accession'")
         } else if (missing(name)) {
-            name <- term(accession, label)
+            name <- olsLabel(term(label, accession))
         } else { ## missing(accession)
-            .term <- olsQuery(name, label, exact = exact)
-            if (length(.term) != 1)
+            resp <- OlsSearch(q = name, ontology = label, exact = exact)
+            if (nrow(resp@response) != 1)
                 stop("Found more than one matching term: ",
-                     paste(.term, collapse = ", "))
-            accession <- names(.term)
+                     paste(resp@response$obo_id, collapse = ", "))
+            accession <- resp@response$obo_id
         }
     
         ans <- new("CVParam", label = label, name = name, accession = accession)
@@ -108,6 +108,7 @@ as.character.CVParam <- function(x, ...) as(x, "character")
     if (length(x) != 4) return(FALSE)
     ## CV param: 1 and 2 are present
     if (x[1] != "") {
+        ## FIXME - no ontologies() anymore - maybe add rolsEnv again?
         if (x[2] == "" | !x[1] %in% ontologies()[, 1]) return(FALSE)
         acc <- strsplit(x[2], ":")[[1]]
         if (length(acc) != 2) return(FALSE)

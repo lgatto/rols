@@ -42,16 +42,19 @@
 ## EXAMPLES
 
 ## Get all ontolgies
-ol <- ontologies()
+ol <- Ontologies()
 ol
 
 ## Summarise ontologies
 (go <- ol[["GO"]])
 (efo <- ol[["EFO"]])
 
+olsVersion(go)
+olsVersion(efo)
+
 ## Directly initialise one ontology
 go1 <- Ontology("go")
-GO <- Ontology("GO")
+(GO <- Ontology("GO"))
 
 stopifnot(identical(go, GO))
 stopifnot(identical(go, go1))
@@ -59,11 +62,13 @@ stopifnot(identical(go, go1))
 ## Queries
 
 ## (all) terms
-gotrms <- terms(go, pagesize = 10000)
+(gotrms <- terms("go", pagesize = 10000))
+## gotrms <- terms(go, pagesize = 10000)
 
 ## (one) term
 
 (trm <- gotrms[[1]])
+olsPrefix(trm)
 gotrms[1:3]
 gotrms[["GO:0032801"]]
 
@@ -103,3 +108,10 @@ res <- olsSearch(res)
 res
 as(res, "data.frame")
 as(res, "Terms")
+
+res2 <- OlsSearch(q = "trans-golgi")
+res2 <- olsSearch(res2)
+res2 <- as(res2, "Terms")
+res2
+olsPrefix(res2)
+termId(res2)

@@ -5,4 +5,4 @@ Sys.setenv("R_TESTS" = "")
 library(testthat)
 library(rols)
 
-test_check("rols")
+## test_check("rols")

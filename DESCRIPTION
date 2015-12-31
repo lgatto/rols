@@ -6,12 +6,16 @@ Author@R: person(given = "Laurent", family = "Gatto", email =
         "lg390@cam.ac.uk", role = c("aut","cre"))
 Author: Laurent Gatto <lg390@cam.ac.uk>
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
-Description: Interface to EBI's REST Ontology Lookup Service (OLS)    
+Description: An interface to the Ontology Lookup Service (OLS) to
+	     access and query hundred ofs ontolgies directly from R.
 Depends: methods
-Imports: httr, progress, jsonlite, utils
+Imports: httr, progress, jsonlite, utils, Biobase
 Suggests: xtable, GO.db, knitr (>= 1.1.0), BiocStyle, testthat
 biocViews: Software, Annotation, MassSpectrometry, GO
 License: GPL-2
 URL: http://lgatto.github.com/rols/
 BugReports: https://github.com/lgatto/rols/issues
+Collate: AllClasses.R AllGenerics.R utils.R cvparam.R
+	 methods-OlsSearch.R methods-Ontologies.R methods-Terms.R
+	 zzz.R
 VignetteBuilder: knitr

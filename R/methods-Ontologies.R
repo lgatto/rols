@@ -1,59 +1,22 @@
-olsVersion <- function(x) x@config$version
+##########################################
+## Constructors
+setMethod("Ontologies", "missing",
+          function() makeOntologies())
 
-.getOntologies <- function() {
-    n <- 150
-    x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", n))
-    warn_for_status(x)
-    cx <- content(x)
-    if (cx$page$totalElements > n) {
-        n <- cx$page$totalElements
-        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", n))
-        warn_for_status(x)
-        cx <- content(x)
-    }        
-    ans <- lapply(cx[["_embedded"]][[1]], .makeOntology)
-    names(ans) <- sapply(ans, olsPrefix)
-    Ontologies(x = ans)
-}
+setMethod("Ontologies", "Ontologies",
+          function(object) object@x)
 
-
-setMethod("olsRoot", "Ontology", function(object) olsRoot(olsPrefix(object)))
-
-setMethod("olsRoot", "character",
+setMethod("Ontology", "character",
           function(object) {
               url <- ontologyUrl(object)
-              url <- paste0(url, "/terms/roots")
               x <- GET(url)
               stop_for_status(x)
               cx <- content(x)
-              ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
-              names(ans) <- sapply(ans, termId)
-              Terms(x = ans)
+              makeOntology(cx)
           })
 
-ontologyUrl <- function(goid)
-    paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", goid)
-
-Ontology <- function(x) {
-    url <- ontologyUrl(x)
-    x <- GET(url)
-    stop_for_status(x)
-    cx <- content(x)
-    .makeOntology(cx)
-}
-
-.makeOntology <- function(x)
-    .Ontology(loaded = x$loaded,
-              updated = x$updated,
-              status = x$status,
-              message = x$message,
-              version = x$version,
-              numberOfTerms = x$numberOfTerms,
-              numberOfProperties = x$numberOfProperties,
-              numberOfIndividuals = x$numberOfIndividuals,
-              config = x$config)
-
-
+##########################################
+## show methods
 
 setMethod("show", "Ontology",
           function(object) {
@@ -80,24 +43,69 @@ setMethod("show", "Ontologies",
           })
 
 
-setMethod("length", "Ontologies", function(x) length(x@x))
+##########################################
+## Accessors
 
-setMethod("olsPrefix", "Ontology", function(object) object@config$preferredPrefix)
-setMethod("olsPrefix", "Ontologies", function(object) sapply(object@x, olsPrefix))
-setMethod("olsDesc", "Ontology", function(object) object@config$description)
-setMethod("olsDesc", "Ontologies", function(object) sapply(object@x, olsDesc))
-setMethod("olsTitle", "Ontology", function(object) object@config$title)
-setMethod("olsTitle", "Ontologies", function(object) sapply(object@x, olsTitle))
+olsVersion <- function(x) {
+    stopifnot(inherits(x, "Ontology"))
+    x@config$version
+}
 
-setMethod("ontologies", "missing", .getOntologies)
+olsLoaded <- function(x) {
+    stopifnot(inherits(x, "Ontology"))
+    substr(x@loaded, 1, 10)
+}
 
-setMethod("ontologies", "Ontologies", function(object) object@x)
+olsUpdated <- function(x) {
+    stopifnot(inherits(x, "Ontology"))
+    substr(x@updated, 1, 10)
+}
 
+setMethod("olsRoot", "Ontology",
+          function(object) olsRoot(olsPrefix(object)))
+
+setMethod("olsRoot", "character",
+          function(object) {
+              url <- ontologyUrl(object)
+              url <- paste0(url, "/terms/roots")
+              x <- GET(url)
+              stop_for_status(x)
+              cx <- content(x)
+              ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+              names(ans) <- sapply(ans, termId)
+              Terms(x = ans)
+          })
+
+setMethod("olsPrefix", "Ontology",
+          function(object) object@config$preferredPrefix)
+setMethod("olsPrefix", "Ontologies",
+          function(object) sapply(object@x, olsPrefix))
+
+setMethod("olsDesc", "Ontology",
+          function(object) object@config$description)
+setMethod("olsDesc", "Ontologies",
+          function(object) sapply(object@x, olsDesc))
+
+setMethod("olsTitle", "Ontology",
+          function(object) object@config$title)
+setMethod("olsTitle", "Ontologies",
+          function(object) sapply(object@x, olsTitle))
+
+
+##########################################
+## Data manipulation
+
+setMethod("lapply", "Ontologies",
+          function(X, FUN, ...) lapply(X@x, FUN, ...))
 setMethod("[", "Ontologies",
           function(x, i, j="missing", drop="missing") Ontologies(x = x@x[i]))
-          
 setMethod("[[", "Ontologies",
           function(x, i, j="missing", drop="missing") x@x[[i]])
+setMethod("length", "Ontologies", function(x) length(x@x))
+
+
+##########################################
+## Coercion
 
 setAs("Ontologies", "data.frame",
       function(from) as.data.frame.Ontologies(from))
@@ -106,16 +114,4 @@ as.data.frame.Ontologies <- function(x)
     data.frame(Prefix = olsPrefix(x),
                Title = olsTitle(x))
 
-
-setMethod("terms", "character", function(object, ...) .terms(object, ...))
-setMethod("terms", "Ontology", function(object, ...) .terms(olsPrefix(object), ...))
-
-
-setMethod("term", c("character", "character"),
-          function(object, id, ...) .term(object, id, ...))
-setMethod("term", c("Ontology", "character"),
-          function(object, id,...) .term(olsPrefix(object), id, ...))
-
-setMethod("lapply", "Ontologies",
-          function(X, FUN, ...) lapply(X@x, FUN, ...))
 

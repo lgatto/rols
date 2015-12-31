@@ -129,11 +129,10 @@ CVParam(label, name, accession, value, exact = TRUE)
 ## a user param
 CVParam(name = "A user param", value = "the value")
 ## a CVParam from PSI's Mass Spectrometry ontology
-term("MS:1000073", "MS")
+term("MS", "MS:1000073")
 CVParam(label = "MS", accession = "MS:1000073")
 CVParam(label = "MS", name ="electrospray ionization")
 CVParam(label = "MS", name ="ESI") ## using a synonym
-
 
 ## From a CVParam object to a character
 cv <- as(CVParam(label = "MS", accession = "MS:1000073"), "character")

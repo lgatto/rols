@@ -1,33 +1,38 @@
 import(methods)
 import(utils)
-import(SSOAP)
-import(XML)
-importFrom(XMLSchema, coerceListToS4)
+import(httr)
+import(jsonlite)
+import(progress)
 importFrom(Biobase, validMsg)
 importClassesFrom(Biobase, Versioned)
 
 exportClasses(CVParam)
 
-exportMethods(key, map, value,
-              show)
+exportMethods(show,
+              "[", "[[", lapply,
+              length,
+              ## Ontology/ies
+              Ontology, Ontologies,
+              olsRoot,
+              olsPrefix,
+              olsDesc,
+              olsTitle,
+              ## Term/s
+              olsLabel,
+              term, terms,
+              termId)
 
-export(allIds, 
-       childrenRelations,
-       isIdObsolete,
-       olsQuery,
+
+export(charIsCVParam, CVParam,
+       ## Ontology/ies
        olsVersion,
-       ontologies,
-       ontologyLoadDate,
-       ontologyNames,
-       parents,
-       rootId,
-       term,
-       termMetadata,
-       termXrefs,
-       as.character.Map,
-       as.character.mapItem,
-       as.character.CVParam,
-       charIsCVParam,
-       CVParam)
-
-S3method(print, termMetadata)
+       olsLoaded,
+       olsUpdated,
+       ## Term/s
+       isObsolete,
+       isRoot,
+       olsSynonym,
+       children, parents, ancestors, descendants,
+       ## Search/select
+       OlsSearch,
+       olsSearch)
