@@ -10,6 +10,7 @@ exportClasses(CVParam)
 
 exportMethods(show,
               "[", "[[", lapply,
+              coerce,
               length,
               ## Ontology/ies
               Ontology, Ontologies,
@@ -35,4 +36,5 @@ export(charIsCVParam, CVParam,
        children, parents, ancestors, descendants,
        ## Search/select
        OlsSearch,
-       olsSearch)
+       olsSearch,
+       olsRows, "olsRows<-", allRows)

@@ -177,6 +177,9 @@
 ol <- Ontologies()
 ol
 
+head(as(ol, "data.frame"))
+length(ol)
+
 ## Individual ontologies
 (go <- ol[["GO"]])
 (efo <- ol[["EFO"]])

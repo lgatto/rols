@@ -70,7 +70,8 @@
     
   }
 }
-\section{Methods}{
+
+\section{Methods and functions}{
   \describe{
     
     \item{coerce}{\code{signature(from = "OlsSearch", to =
@@ -80,6 +81,12 @@
       ... }
     
     \item{show}{\code{signature(object = "OlsSearch")}: ... }
+
+
+    \item{olsRows}{\code{signature(object = "OlsSearch")}: ... The value
+      can be updated with the \code{olsRows} replacement method. To
+      request all responses, use \code{allRows}. }
+
     
   }
 }
@@ -102,13 +109,24 @@ OlsSearch(q = "plasma", ontology = "go")
 OlsSearch(q = "membrane", ontology = "go")
 OlsSearch(q = "plasma,membrane", ontology = "go")
 
+## Request 5 results instead of 20 (default)
+OlsSearch(q = "plasma,membrane", ontology = "go", rows = 5)
+
+## or, once the object was created
+(res <- OlsSearch(q = "plasma,membrane", ontology = "go"))
+olsRows(res) <- 5
+res
+## all results
+res <- allRows(res)
+res
+
 res <- OlsSearch(q = "trans-golgi", ontology = "go", rows = 5)
 res
 res <- olsSearch(res)
 res
 as(res, "data.frame")
 res <- as(res, "Terms")
-
+res
 olsPrefix(res)
 termId(res)
 }
