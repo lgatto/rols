@@ -17,9 +17,11 @@ CVParam <- function(label,
             name <- olsLabel(term(label, accession))
         } else { ## missing(accession)
             resp <- OlsSearch(q = name, ontology = label, exact = exact)
-            if (nrow(resp@response) != 1)
+            if (resp@numFound != 1)
                 stop("Found more than one matching term: ",
                      paste(resp@response$obo_id, collapse = ", "))
+            olsRows(resp) <- 1 ## only 1 response
+            resp <- olsSearch(resp)
             accession <- resp@response$obo_id
         }
     
@@ -48,8 +50,6 @@ setMethod("show","CVParam",
             cat(as(object, "character"), "\n")
             invisible(NULL)
           })
-
-
 
 setMethod("rep", "CVParam",
           function(x, times) {
@@ -91,7 +91,6 @@ setAs("character", "CVParam",
       })
 
 as.character.CVParam <- function(x, ...) as(x, "character")
-
 
 .charIsCVParam <- function(x) {
     ## NO SEMANTICS IS CHECKED

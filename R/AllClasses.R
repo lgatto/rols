@@ -6,11 +6,10 @@
                          name = "character",
                          value = "character",
                          user = "logical"),
-                     ## contains = "Versioned",
+                     contains = "Versioned",
                      prototype = prototype(
-                         user = FALSE
-                         ## new("Versioned", versions=c(CVParam="0.2.0"))),
-                     ),
+                         user = FALSE,
+                         new("Versioned", versions=c(CVParam="0.2.0"))),
                      validity = function(object) {
                          msg <- validMsg(NULL, NULL)
                          if (object@user) {
@@ -23,7 +22,7 @@
                                  ._term <- term(object@label, object@accession)
                                  ._label <- olsLabel(._term)
                                  ._synonyms <- olsSynonym(._term)
-                                 if (!(object@name %in% c(._term, ._synonyms)))
+                                 if (!(object@name %in% c(._label, ._synonyms)))
                                      msg <- paste0("CVParam accession and name/synomyms do not match. Got [",
                                                    paste(c(._label, ._synonyms), collapse = ", "),
                                                    "], expected '", object@name, "'.")
