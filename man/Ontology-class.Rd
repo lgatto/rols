@@ -44,10 +44,12 @@
 \alias{show,Ontology-method}
 \alias{show,Ontologies-method}
 
-\alias{length,Ontologies-method}
+\alias{length,Ontologies-method}pp
 \alias{lapply,Ontologies-method}
 \alias{[,Ontologies-method}
 \alias{[[,Ontologies-method}
+
+\alias{coerce,Ontologies,data.frame-method}
 
 \title{Class \code{"Ontology"}}
 
