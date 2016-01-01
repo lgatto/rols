@@ -16,13 +16,13 @@ OlsSearch <- function(q,
     if (missing(q))
         stop("You must supply a query.")
     .args <- as.list(match.call())[-1]
-    if (missing(rows)) 
+    if (missing(rows))
         .args[["rows"]] <- rows <- 20L
     ## Create search URL and instantiate OlsSearch object
     params <- c()
     for (i in seq_along(.args)) {
         nm <- names(.args)[i]
-        arg <- eval(.args[[i]])
+        arg <- eval(.args[[i]], parent.frame())
         if (nm == "ontology")
             arg <- tolower(arg)
         if (length(arg) > 1)
