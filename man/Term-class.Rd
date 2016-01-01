@@ -2,10 +2,20 @@
 \Rdversion{1.1}
 \docType{class}
 \alias{Term-class}
+\alias{Terms-class}
+
 \alias{olsLabel,Term-method}
 \alias{olsPrefix,Term-method}
+
 \alias{show,Term-method}
+\alias{show,Terms-method}
+
+\alias{termId}
 \alias{termId,Term-method}
+\alias{termId,Terms-method}
+
+\alias{term,Ontology,character-method}
+\alias{terms,Ontology-method}
 
 \title{Class \code{"Term"}}
 \description{

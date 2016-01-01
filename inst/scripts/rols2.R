@@ -41,23 +41,6 @@
 
 ## EXAMPLES
 
-## Get all ontolgies
-ol <- Ontologies()
-ol
-
-## Summarise ontologies
-(go <- ol[["GO"]])
-(efo <- ol[["EFO"]])
-
-olsVersion(go)
-olsVersion(efo)
-
-## Directly initialise one ontology
-go1 <- Ontology("go")
-(GO <- Ontology("GO"))
-
-stopifnot(identical(go, GO))
-stopifnot(identical(go, go1))
 
 ## Queries
 

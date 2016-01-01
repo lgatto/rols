@@ -2,22 +2,36 @@
 \Rdversion{1.1}
 \docType{class}
 \alias{Ontology-class}
+\alias{Ontologies-class}
+\alias{olsDesc}
 \alias{olsDesc,Ontology-method}
+\alias{olsDesc,Ontologies-method}
+
+\alias{olsPrefix}
 \alias{olsPrefix,Ontology-method}
+\alias{olsPrefix,Ontologies-method}
+
+\alias{olsRoot}
 \alias{olsRoot,Ontology-method}
+
+\alias{olsTitle}
 \alias{olsTitle,Ontology-method}
+\alias{olsTitle,Ontologies -method}
+
 \alias{show,Ontology-method}
-\alias{term,Ontology,character-method}
-\alias{terms,Ontology-method}
+\alias{show,Ontologies-method}
 
 \title{Class \code{"Ontology"}}
+
 \description{
 %%  ~~ A concise (1-5 lines) description of what the class is. ~~
 }
+
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("Ontology", ...)}.
 %%  ~~ describe objects here ~~ 
 }
+
 \section{Slots}{
   \describe{
     \item{\code{loaded}:}{Object of class \code{"NullOrChar"} ~~ }
@@ -58,7 +72,31 @@ Objects can be created by calls of the form \code{new("Ontology", ...)}.
 %%  ~~objects to See Also as \code{\link{~~fun~~}}, ~~~
 %%  ~~or \code{\linkS4class{CLASSNAME}} for links to other classes ~~~
 }
+
 \examples{
-showClass("Ontology")
+## Get all ontolgies
+ol <- Ontologies()
+ol
+
+## Individual ontologies
+(go <- ol[["GO"]])
+(efo <- ol[["EFO"]])
+
+olsVersion(go)
+olsVersion(efo)
+
+olsDesc(go)
+olsTitle(go)
+olsPrefix(go)
+olsRoot(go)
+
+## Directly initialise a singleontology
+go1 <- Ontology("go")
+(GO <- Ontology("GO"))
+
+stopifnot(identical(go, GO))
+stopifnot(identical(go, go1))
 }
+
+
 \keyword{classes}
