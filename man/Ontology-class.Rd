@@ -8,6 +8,7 @@
 \alias{Ontologies}
 \alias{class:Ontologies}
 \alias{Ontologies-class}
+
 \alias{olsDesc}
 \alias{olsDesc,Ontology-method}
 \alias{olsDesc,Ontologies-method}
@@ -43,6 +44,11 @@
 \alias{show,Ontology-method}
 \alias{show,Ontologies-method}
 
+\alias{length,Ontologies-method}
+\alias{lapply,Ontologies-method}
+\alias{[,Ontologies-method}
+\alias{[[,Ontologies-method}
+
 \title{Class \code{"Ontology"}}
 
 \description{
@@ -61,9 +67,15 @@
   ontology prefix as argument will initialise the ontology of interest
   as an \code{Ontology} instance.
 
+  \code{Ontolgies} instances can be subset with \code{[} and \code{[[}
+  and iterated over with \code{lapply}. \code{Ontolgies} can be
+  converted into a simple \code{data.frame} containing the ontology
+  prefixes and titles using \code{as(., "data.frame")}).
+
 }
 
 \section{Slots}{
+
   \describe{
     
     \item{\code{loaded}:}{Object of class \code{NULL} or
@@ -108,14 +120,17 @@
 \section{Methods and functions}{
   \describe{
 
-    \item{olsDesc}{\code{signature(object = "Ontology")}: returns }
+    \item{olsDesc}{\code{signature(object = "Ontology")}: returns the
+      description of an ontology. Also works for \code{Ontologies}
+      objects. }
     
-    \item{olsPrefix}{\code{signature(object = "Ontology")}: ... }
+    \item{olsPrefix}{\code{signature(object = "Ontology")}: retruns the
+      prefix of an ontology. Also works for \code{Ontologies} objects. }
     
-    \item{olsRoot}{\code{signature(object = "Ontology")}: Returns the
+    \item{olsRoot}{\code{signature(object = "Ontology")}: returns the
       root of the ontology as a \code{\linkS4class{Terms}}
       instance. \code{object} could also be a \code{character} with an
-      ontology prefix, If \code{object} is of class \code{Ontologies},
+      ontology prefix. If \code{object} is of class \code{Ontologies},
       it returns a \code{list} of \code{\linkS4class{Terms}}. }
     
     \item{olsVersion}{\code{signature(object = "Ontology")}: returns the
@@ -133,32 +148,20 @@
       containing the ontology prefix or an object of class
       \code{Ontologies}.
 
-    \item{olsTitle}{\code{signature(object = "Ontology")}: ... }
+    \item{olsTitle}{\code{signature(object = "Ontology")}: returns the
+      title of an ontology. Also works for \code{Ontologies} objects. }
     
-    \item{show}{\code{signature(object = "Ontology")}: ... }
-    
-    \item{term}{\code{signature(object = "Ontology", id = "character")}:
-      ... }
-    
-    \item{terms}{\code{signature(x = "Ontology")}: ... }
+    \item{show}{\code{signature(object = "Ontology")}: prints a short
+      summary of \code{Ontology} and \code{Ontologies} objects. }
+
+    \item{length}{\code{signature(object = "Ontologies")}: returns the
+      number of ontolgies described by the \code{Ontologies} object. }
     
   }
 }
-\references{
-%%  ~~put references to the literature/web site here~~
-}
+
 \author{
-%%  ~~who you are~~
-}
-\note{
-%%  ~~further notes~~
-}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
-
-\seealso{
-%%  ~~objects to See Also as \code{\link{~~fun~~}}, ~~~
-%%  ~~or \code{\linkS4class{CLASSNAME}} for links to other classes ~~~
+  Laurent Gatto <lg390@cam.ac.uk>
 }
 
 \examples{
@@ -170,15 +173,17 @@ ol
 (go <- ol[["GO"]])
 (efo <- ol[["EFO"]])
 
+## some basic information
 olsVersion(go)
-olsVersion(efo)
-
 olsDesc(go)
 olsTitle(go)
 olsPrefix(go)
+
 olsRoot(go)
 
+## works with Ontology objects or their prefixes
 identical(olsRoot("GO"), olsRoot(go))
+identical(olsVersion("GO"), olsVersion(go))
 
 ## Directly initialise a singleontology
 go1 <- Ontology("go")
@@ -186,7 +191,6 @@ go1 <- Ontology("go")
 
 stopifnot(identical(go, GO))
 stopifnot(identical(go, go1))
-
 }
 
 
