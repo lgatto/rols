@@ -78,7 +78,9 @@
   returned as \code{Terms} objects.
 
   \code{Terms} instances can be subset with \code{[} and \code{[[} and
-  iterated over with \code{lapply}. 
+  iterated over with \code{lapply}.
+  
+}
 
 \section{Slots}{
   \describe{

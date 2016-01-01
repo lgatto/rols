@@ -9,6 +9,9 @@
 \alias{class:Ontologies}
 \alias{Ontologies-class}
 
+\alias{Ontologies,missing-method}
+\alias{Ontology,character-method}
+
 \alias{olsDesc}
 \alias{olsDesc,Ontology-method}
 \alias{olsDesc,Ontologies-method}
@@ -44,12 +47,13 @@
 \alias{show,Ontology-method}
 \alias{show,Ontologies-method}
 
-\alias{length,Ontologies-method}pp
+\alias{length,Ontologies-method}
 \alias{lapply,Ontologies-method}
 \alias{[,Ontologies-method}
 \alias{[[,Ontologies-method}
 
 \alias{coerce,Ontologies,data.frame-method}
+\alias{coerce,Ontologies,list-method}
 
 \title{Class \code{"Ontology"}}
 
@@ -72,7 +76,9 @@
   \code{Ontolgies} instances can be subset with \code{[} and \code{[[}
   and iterated over with \code{lapply}. \code{Ontolgies} can be
   converted into a simple \code{data.frame} containing the ontology
-  prefixes and titles using \code{as(., "data.frame")}).
+  prefixes and titles using \code{as(., "data.frame")}). An
+  \code{Ontologies} can also be coerced to lists of \code{Ontology}
+  ojects with \code{as(., "list")}.
 
 }
 
@@ -148,7 +154,7 @@
     \item{olsUpdated}{\code{signature(object = "Ontology")}: returns the
       update date of the ontology. Also works with a \code{character}
       containing the ontology prefix or an object of class
-      \code{Ontologies}.
+      \code{Ontologies}.}
 
     \item{olsTitle}{\code{signature(object = "Ontology")}: returns the
       title of an ontology. Also works for \code{Ontologies} objects. }

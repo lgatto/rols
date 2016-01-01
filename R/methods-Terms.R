@@ -3,9 +3,9 @@
 
 ## These methods query an Ontology (or its prefix) for all or one term
 setMethod("terms", "character",
-          function(x, ...) .terms(object, ...))
+          function(x, ...) .terms(x, ...))
 setMethod("terms", "Ontology",
-          function(x, ...) .terms(olsPrefix(object), ...))
+          function(x, ...) .terms(olsPrefix(x), ...))
 
 setMethod("term", c("character", "character"),
           function(object, id, ...) .term(object, id, ...))

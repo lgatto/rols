@@ -6,6 +6,12 @@
 \alias{class:OlsSearch}
 \alias{OlsSearch-class}
 
+\alias{olsSearch}
+
+\alias{olsRows}
+\alias{olsRows<-}
+\alias{allRows}
+
 \alias{coerce,OlsSearch,data.frame-method}
 \alias{coerce,OlsSearch,Terms-method}
 

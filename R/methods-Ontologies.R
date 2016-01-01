@@ -3,9 +3,6 @@
 setMethod("Ontologies", "missing",
           function() makeOntologies())
 
-setMethod("Ontologies", "Ontologies",
-          function(object) object@x)
-
 setMethod("Ontology", "character",
           function(object) {
               url <- ontologyUrl(object)
@@ -129,3 +126,6 @@ setAs("Ontologies", "data.frame",
 as.data.frame.Ontologies <- function(x)
     data.frame(Prefix = olsPrefix(x),
                Title = olsTitle(x))
+
+setAs("Ontologies", "list",
+      function(from) from@x)
