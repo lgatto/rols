@@ -129,5 +129,3 @@ setAs("Ontologies", "data.frame",
 as.data.frame.Ontologies <- function(x)
     data.frame(Prefix = olsPrefix(x),
                Title = olsTitle(x))
-
-

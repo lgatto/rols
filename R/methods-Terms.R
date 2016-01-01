@@ -6,6 +6,7 @@ setMethod("terms", "character",
           function(x, ...) .terms(object, ...))
 setMethod("terms", "Ontology",
           function(x, ...) .terms(olsPrefix(object), ...))
+
 setMethod("term", c("character", "character"),
           function(object, id, ...) .term(object, id, ...))
 setMethod("term", c("Ontology", "character"),
@@ -88,20 +89,25 @@ setMethod("show", "Terms",
 ##########################################
 ## Accessors
 
-isObsolete <- function(x) {
-    stopifnot(inherits(x, "Term"))
-    x@is_obsolete
-}
 
-isRoot <- function(x) {
-    stopifnot(inherits(x, "Term"))
-    x@is_root
-}
+setMethod("olsSynonym", "Term",
+          function(object) unlist(object@synonym))
 
-olsSynonym <- function(x) {
-    stopifnot(inherits(x, "Term"))
-    unlist(x@synonym)
-}
+setMethod("olsSynonym", "Terms",
+          function(object) sapply(object@x, olsSynonym))
+
+
+setMethod("isObsolete", "Term",
+          function(object) object@is_obsolete)
+
+setMethod("isObsolete", "Terms",
+          function(object) sapply(object@x, isObsolete))
+
+setMethod("isRoot", "Term",
+          function(object) object@is_root)
+
+setMethod("isRoot", "Terms",
+          function(object) sapply(object@x, isRoot))
 
 setMethod("olsLabel", "Term",
           function(object) object@label)
