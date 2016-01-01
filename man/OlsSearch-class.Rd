@@ -58,6 +58,26 @@ Objects can be created by calls of the form \code{new("OlsSearch", ...)}.
 %%  ~~or \code{\linkS4class{CLASSNAME}} for links to other classes ~~~
 }
 \examples{
-showClass("OlsSearch")
+
+OlsSearch(q = "trans-golgi")
+OlsSearch(q = "cell")
+OlsSearch(q = "cell", exact = TRUE)
+OlsSearch(q = "cell", exact = TRUE, ontology = "go")
+OlsSearch(q = "cell", exact = TRUE, ontology = "GO")
+
+OlsSearch(q = "plasma", ontology = "go")
+OlsSearch(q = "membrane", ontology = "go")
+OlsSearch(q = "plasma,membrane", ontology = "go")
+
+res <- OlsSearch(q = "trans-golgi", ontology = "go", rows = 5)
+res
+res <- olsSearch(res)
+res
+as(res, "data.frame")
+res <- as(res, "Terms")
+
+olsPrefix(res)
+termId(res)
 }
+
 \keyword{classes}

@@ -68,7 +68,39 @@ Objects can be created by calls of the form \code{new("Term", ...)}.
 %%  ~~objects to See Also as \code{\link{~~fun~~}}, ~~~
 %%  ~~or \code{\linkS4class{CLASSNAME}} for links to other classes ~~~
 }
+
 \examples{
-showClass("Term")
+
+## (all) terms
+(gotrms <- terms("go", pagesize = 10000))
+## gotrms <- terms(go, pagesize = 10000)
+
+## (one) term
+
+(trm <- gotrms[[1]])
+olsPrefix(trm)
+gotrms[1:3]
+gotrms[["GO:0032801"]]
+
+term("GO", "GO:0032801")
+term(go, "GO:0032801")
+
+isObsolete(gotrms[["GO:0030533"]])
+isObsolete(gotrms[["GO:0005563"]])
+
+isRoot(gotrms[["GO:0030533"]])
+
+i <- which(unlist(lapply(gotrms, function(x) isRoot(x) & !isObsolete(x))))
+for (ii in i)
+    show(gotrms[[ii]])
+
+olsRoot(go)
+
+parents(trm)
+ancestors(trm)
+children(trm)
+descendants(trm)
+
 }
+
 \keyword{classes}

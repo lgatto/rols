@@ -1,7 +1,12 @@
 \name{Ontology-class}
 \Rdversion{1.1}
 \docType{class}
+
+\alias{Ontology}
+\alias{class:Ontology}
 \alias{Ontology-class}
+\alias{Ontologies}
+\alias{class:Ontologies}
 \alias{Ontologies-class}
 \alias{olsDesc}
 \alias{olsDesc,Ontology-method}
@@ -12,11 +17,28 @@
 \alias{olsPrefix,Ontologies-method}
 
 \alias{olsRoot}
+\alias{olsRoot,character-method}
 \alias{olsRoot,Ontology-method}
+\alias{olsRoot,Ontologies-method}
 
 \alias{olsTitle}
 \alias{olsTitle,Ontology-method}
-\alias{olsTitle,Ontologies -method}
+\alias{olsTitle,Ontologies-method}
+
+\alias{olsVersion}
+\alias{olsVersion,Ontology-method}
+\alias{olsVersion,character-method}
+\alias{olsVersion,Ontologies-method}
+
+\alias{olsLoaded}
+\alias{olsLoaded,Ontology-method}
+\alias{olsLoaded,character-method}
+\alias{olsLoaded,Ontologies-method}
+
+\alias{olsUpdated}
+\alias{olsUpdated,Ontology-method}
+\alias{olsUpdated,character-method}
+\alias{olsUpdated,Ontologies-method}
 
 \alias{show,Ontology-method}
 \alias{show,Ontologies-method}
@@ -24,37 +46,103 @@
 \title{Class \code{"Ontology"}}
 
 \description{
-%%  ~~ A concise (1-5 lines) description of what the class is. ~~
+
+  Ontologies are stored as \code{Ontology} and \code{Ontologies}
+  instances, and contain various information as provided by the Ontology
+  Lookup Service. 
+  
 }
 
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("Ontology", ...)}.
-%%  ~~ describe objects here ~~ 
+  
+  Objects can be created in multiple ways. The \code{Ontologies}
+  function will initialise all available ontolgies as an
+  \code{Ontologies} object, while a call to \code{Ontology} with an
+  ontology prefix as argument will initialise the ontology of interest
+  as an \code{Ontology} instance.
+
 }
 
 \section{Slots}{
   \describe{
-    \item{\code{loaded}:}{Object of class \code{"NullOrChar"} ~~ }
-    \item{\code{updated}:}{Object of class \code{"NullOrChar"} ~~ }
-    \item{\code{status}:}{Object of class \code{"NullOrChar"} ~~ }
-    \item{\code{message}:}{Object of class \code{"NullOrChar"} ~~ }
-    \item{\code{version}:}{Object of class \code{"NullOrChar"} ~~ }
-    \item{\code{numberOfTerms}:}{Object of class \code{"integer"} ~~ }
-    \item{\code{numberOfProperties}:}{Object of class \code{"integer"} ~~ }
-    \item{\code{numberOfIndividuals}:}{Object of class \code{"integer"} ~~ }
-    \item{\code{config}:}{Object of class \code{"list"} ~~ }
+    
+    \item{\code{loaded}:}{Object of class \code{NULL} or
+      \code{character} containing the date the ontology was loaded on
+      the backend side. Accessed with the \code{olsLoaded} function.}
+    
+    \item{\code{updated}:}{Object of class \code{NULL} or
+      \code{character} containing the date the ontology was last updated
+      on the backend side. Accessed with the \code{olsUpdated}
+      function.}
+   
+    \item{\code{status}:}{Object of class \code{NULL} or
+      \code{character} documenting the status of the ontology on the
+      backend side. For example \code{"LOADED"}, \code{"FAILED"} or
+      \code{"NOTLOADED"}. }
+    
+    \item{\code{message}:}{Object of class \code{NULL} or
+      \code{character} documentating the status of the ontology on the
+      backend side.  }
+    
+    \item{\code{version}:}{Object of class \code{NULL} or
+      \code{character} documenting the version of the ontology.  Note
+      that there is also a \code{version} field in the \code{config}
+      slot below. Use \code{olsVersion} to access the appropriate
+      date. }
+    
+    \item{\code{numberOfTerms}:}{Object of class \code{"integer"}
+      documenting the number of terms available in the ontology. }
+    
+    \item{\code{numberOfProperties}:}{Object of class \code{"integer"}
+      documenting the number of properties available in the ontology. }
+
+    \item{\code{numberOfIndividuals}:}{Object of class \code{"integer"}
+      documenting the number of individuals available in the ontology. }
+
+    \item{\code{config}:}{Object of class \code{"list"} containing
+      further ontology configuration and metadata. }
+    
   }
 }
-\section{Methods}{
+
+\section{Methods and functions}{
   \describe{
-    \item{olsDesc}{\code{signature(object = "Ontology")}: ... }
+
+    \item{olsDesc}{\code{signature(object = "Ontology")}: returns }
+    
     \item{olsPrefix}{\code{signature(object = "Ontology")}: ... }
-    \item{olsRoot}{\code{signature(object = "Ontology")}: ... }
+    
+    \item{olsRoot}{\code{signature(object = "Ontology")}: Returns the
+      root of the ontology as a \code{\linkS4class{Terms}}
+      instance. \code{object} could also be a \code{character} with an
+      ontology prefix, If \code{object} is of class \code{Ontologies},
+      it returns a \code{list} of \code{\linkS4class{Terms}}. }
+    
+    \item{olsVersion}{\code{signature(object = "Ontology")}: returns the
+      version of the ontology. Also works with an ontology prefix as a
+      \code{character} or an object of class \code{Ontologies}, in which
+      case it returns a list of versions. }
+
+    \item{olsLoaded}{\code{signature(object = "Ontology")}: returns the
+      loading date of the ontology. Also works with a \code{character}
+      containing the ontology prefix or an object of class
+      \code{Ontologies}. }
+
+    \item{olsUpdated}{\code{signature(object = "Ontology")}: returns the
+      update date of the ontology. Also works with a \code{character}
+      containing the ontology prefix or an object of class
+      \code{Ontologies}.
+
     \item{olsTitle}{\code{signature(object = "Ontology")}: ... }
+    
     \item{show}{\code{signature(object = "Ontology")}: ... }
-    \item{term}{\code{signature(object = "Ontology", id = "character")}: ... }
+    
+    \item{term}{\code{signature(object = "Ontology", id = "character")}:
+      ... }
+    
     \item{terms}{\code{signature(x = "Ontology")}: ... }
-	 }
+    
+  }
 }
 \references{
 %%  ~~put references to the literature/web site here~~
@@ -90,12 +178,15 @@ olsTitle(go)
 olsPrefix(go)
 olsRoot(go)
 
+identical(olsRoot("GO"), olsRoot(go))
+
 ## Directly initialise a singleontology
 go1 <- Ontology("go")
 (GO <- Ontology("GO"))
 
 stopifnot(identical(go, GO))
 stopifnot(identical(go, go1))
+
 }
 
 
