@@ -46,20 +46,35 @@ setMethod("show", "Ontologies",
 ##########################################
 ## Accessors
 
-olsVersion <- function(x) {
-    stopifnot(inherits(x, "Ontology"))
-    x@config$version
-}
+setMethod("olsVersion", "Ontology",
+          function(object) object@config$version)
 
-olsLoaded <- function(x) {
-    stopifnot(inherits(x, "Ontology"))
-    substr(x@loaded, 1, 10)
-}
+setMethod("olsVersion", "Ontologies",
+          function(object) sapply(object@x, olsVersion))
 
-olsUpdated <- function(x) {
-    stopifnot(inherits(x, "Ontology"))
-    substr(x@updated, 1, 10)
-}
+setMethod("olsVersion", "character",
+          function(object) olsVersion(Ontology(object)))
+
+setMethod("olsLoaded", "Ontology",
+          function(object) substr(object@loaded, 1, 10))
+
+setMethod("olsLoaded", "Ontologies",
+          function(object) sapply(object@x, olsLoaded))
+
+setMethod("olsLoaded", "character",
+          function(object) olsLoaded(Ontology(object)))
+
+setMethod("olsUpdated", "Ontology",
+          function(object) substr(object@updated, 1, 10))
+
+setMethod("olsUpdated", "Ontologies",
+          function(object) sapply(object@x, olsUpdated))
+
+setMethod("olsUpdated", "character",
+          function(object) olsUpdated(Ontology(object)))
+
+setMethod("olsRoot", "Ontologies",
+          function(object) lapply(object@x, olsRoot))
 
 setMethod("olsRoot", "Ontology",
           function(object) olsRoot(olsPrefix(object)))
@@ -98,7 +113,8 @@ setMethod("olsTitle", "Ontologies",
 setMethod("lapply", "Ontologies",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
 setMethod("[", "Ontologies",
-          function(x, i, j="missing", drop="missing") Ontologies(x = x@x[i]))
+          function(x, i, j="missing", drop="missing")
+              new("Ontologies", x = x@x[i]))
 setMethod("[[", "Ontologies",
           function(x, i, j="missing", drop="missing") x@x[[i]])
 setMethod("length", "Ontologies", function(x) length(x@x))
