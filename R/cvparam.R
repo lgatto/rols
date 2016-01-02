@@ -108,7 +108,9 @@ as.character.CVParam <- function(x, ...) as(x, "character")
     ## CV param: 1 and 2 are present
     if (x[1] != "") {
         ## FIXME - no ontologies() anymore - maybe add rolsEnv again?
-        if (x[2] == "" | !x[1] %in% ontologies()[, 1]) return(FALSE)
+        ## if (x[2] == "" | !x[1] %in% ontologies()[, 1]) return(FALSE)
+        ## Using a simple (simplistic) pattern instead
+        if (x[2] == "" | !grepl("[A-Za-z]", x[1])) return(FALSE)
         acc <- strsplit(x[2], ":")[[1]]
         if (length(acc) != 2) return(FALSE)
         if (acc[1] != x[1]) return(FALSE)        

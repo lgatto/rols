@@ -31,7 +31,7 @@
 
 ##  TODO
 ## > ls("package:rols")
-## "term"                 "termMetadata"
+## termMetadata
 ## "value"                "termXrefs"
 
 ## term graph and jstree for a given term
