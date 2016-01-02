@@ -10,7 +10,8 @@ Description: An interface to the Ontology Lookup Service (OLS) to
 	     access and query hundred ofs ontolgies directly from R.
 Depends: methods
 Imports: httr, progress, jsonlite, utils, Biobase
-Suggests: xtable, GO.db, knitr (>= 1.1.0), BiocStyle, testthat
+Suggests: xtable, GO.db, knitr (>= 1.1.0), BiocStyle, testthat,
+	  lubridate
 biocViews: Software, Annotation, MassSpectrometry, GO
 License: GPL-2
 URL: http://lgatto.github.com/rols/

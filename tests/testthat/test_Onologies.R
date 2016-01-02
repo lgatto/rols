@@ -1,0 +1,98 @@
+context("Ontology/Ontologies")
+
+ol <- Ontologies()
+go <- go1 <- Ontology("go")
+
+test_that("constructors", {
+    ## expect_equal(length(ol), 143L) ## this will likely change
+    expect_true(length(ol) > 120L)
+    expect_true(is.integer(length(ol)))
+
+    go1 <- Ontology("go")
+    go2 <- Ontology("GO")
+    go3 <- Ontology("Go")
+    expect_identical(go1, go2)
+    expect_identical(go1, go3)
+    expect_identical(go1, ol[["GO"]])
+
+})
+
+test_that("show methods", {
+    expect_null(show(ol))
+    expect_null(show(go1))
+})
+
+test_that("accessors", {
+    library("lubridate")
+    n <- length(ol)
+    status <- olsStatus(ol)
+    ## is the loaded date is not valid (NA), then that ontology should
+    ## not have a status 'LOADED'.    
+    expect_warning(loaded <- lubridate::ymd(olsLoaded(ol)))
+    expect_true(all(which(is.na(loaded)) %in% which(status != "LOADED")))
+    ## all update dates must be correct
+    updated <- lubridate::ymd(olsUpdated(ol))
+    expect_false(any(is.na(updated)))
+    expect_identical(n, length(loaded))
+    expect_identical(n, length(updated))
+    i <- which(names(status) == "GO")
+    expect_identical(ymd(olsLoaded(go)), loaded[i])
+    expect_identical(olsLoaded(go), olsLoaded("GO"))
+    expect_identical(olsLoaded(go), olsLoaded("go"))
+    expect_identical(olsUpdated(go), olsUpdated("GO"))
+    expect_identical(olsUpdated(go), olsUpdated("go"))
+
+    vrs <- olsVersion(ol)
+    pre <- olsPrefix(ol)
+    expect_identical(n, length(vrs))
+    expect_identical(n, length(pre))
+    expect_identical(vrs[["GO"]], olsVersion(go))
+    expect_identical(olsVersion("GO"), olsVersion(go))
+    expect_identical(olsVersion("go"), olsVersion(go))
+
+    rts <- olsRoot(ol["GO"])
+    gort <- rts[[1]]
+    expect_identical(gort, olsRoot(go))
+    expect_identical(gort, olsRoot("go"))
+    expect_identical(gort, olsRoot("GO"))
+    trms <- rols:::Terms(x = list('GO:0005575' = term("GO", 'GO:0005575'),
+                                  'GO:0003674' = term("GO", 'GO:0003674'),
+                                  'GO:0008150' = term("GO", 'GO:0008150')))
+    expect_identical(trms, gort)
+    expect_identical(pre[[i]], olsPrefix(go))
+    expect_identical(pre[[i]], olsPrefix("go"))
+    expect_identical(pre[[i]], olsPrefix("GO"))
+    expect_identical(pre[[i]], olsPrefix("Go"))
+   
+     desc <- olsDesc(ol)
+    expect_identical(desc[[i]], olsDesc(go))
+    expect_identical(desc[[i]], olsDesc("go"))
+    expect_identical(desc[[i]], olsDesc("GO"))
+
+    ttl <- olsTitle(ol)
+    expect_identical(ttl[[i]], olsTitle(go))
+    expect_identical(ttl[[i]], olsTitle("go"))
+    expect_identical(ttl[[i]], olsTitle("GO"))
+
+    expect_identical(olsTitle(go), "Gene Ontology")
+    expect_identical(olsDesc(go), "An ontology for describing the function of genes and gene products")
+
+    expect_identical(status[[i]], "LOADED")
+    expect_identical(status[[i]], olsStatus(go))
+    expect_identical(status[[i]], olsStatus("go"))
+    expect_identical(status[[i]], olsStatus("GO"))    
+})
+
+test_that("apply over Ontologies", {
+    expect_identical(unlist(lapply(ol, olsPrefix)),
+                     olsPrefix(ol))
+})
+
+test_that("coercion", {
+    odf <- as(ol, "data.frame")
+    expect_equal(nrow(odf), length(ol))
+    expect_equal(names(odf), c("Prefix", "Title"))
+
+    olst <- as(ol, "list")
+    expect_identical(olst, ol@x)
+})

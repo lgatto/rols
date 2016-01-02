@@ -18,6 +18,7 @@ exportMethods(show,
               olsPrefix,
               olsDesc,
               olsTitle,
+              olsStatus,
               ## Term/s
               olsLabel,
               term, terms,

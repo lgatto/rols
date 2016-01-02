@@ -13,12 +13,19 @@
 \alias{Ontology,character-method}
 
 \alias{olsDesc}
+\alias{olsDesc,character-method}
 \alias{olsDesc,Ontology-method}
 \alias{olsDesc,Ontologies-method}
 
 \alias{olsPrefix}
+\alias{olsPrefix,character-method}
 \alias{olsPrefix,Ontology-method}
 \alias{olsPrefix,Ontologies-method}
+
+\alias{olsStatus}
+\alias{olsStatus,character-method}
+\alias{olsStatus,Ontology-method}
+\alias{olsStatus,Ontologies-method}
 
 \alias{olsRoot}
 \alias{olsRoot,character-method}
@@ -26,6 +33,7 @@
 \alias{olsRoot,Ontologies-method}
 
 \alias{olsTitle}
+\alias{olsTitle,character-method}
 \alias{olsTitle,Ontology-method}
 \alias{olsTitle,Ontologies-method}
 
@@ -88,17 +96,17 @@
     
     \item{\code{loaded}:}{Object of class \code{NULL} or
       \code{character} containing the date the ontology was loaded on
-      the backend side. Accessed with the \code{olsLoaded} function.}
+      the backend side. Accessed with the \code{olsLoaded} method.}
     
     \item{\code{updated}:}{Object of class \code{NULL} or
       \code{character} containing the date the ontology was last updated
       on the backend side. Accessed with the \code{olsUpdated}
-      function.}
+      method.}
    
     \item{\code{status}:}{Object of class \code{NULL} or
       \code{character} documenting the status of the ontology on the
       backend side. For example \code{"LOADED"}, \code{"FAILED"} or
-      \code{"NOTLOADED"}. }
+      \code{"NOTLOADED"}. Accessed with the \code{olsStatus} method.}
     
     \item{\code{message}:}{Object of class \code{NULL} or
       \code{character} documentating the status of the ontology on the
@@ -130,10 +138,11 @@
 
     \item{olsDesc}{\code{signature(object = "Ontology")}: returns the
       description of an ontology. Also works for \code{Ontologies}
-      objects. }
+      objects and \code{character} describing an ontology prefix. }
     
     \item{olsPrefix}{\code{signature(object = "Ontology")}: retruns the
-      prefix of an ontology. Also works for \code{Ontologies} objects. }
+      prefix of an ontology. Also works for \code{Ontologies} objects
+      describing an ontology prefix. }
     
     \item{olsRoot}{\code{signature(object = "Ontology")}: returns the
       root of the ontology as a \code{\linkS4class{Terms}}
@@ -156,8 +165,15 @@
       containing the ontology prefix or an object of class
       \code{Ontologies}.}
 
+    \item{olsStatus}{\code{signature(object = "Ontology")}: returns the
+      status of the ontology. Also works with a \code{character}
+      containing the ontology prefix or an object of class
+      \code{Ontologies}.}
+
     \item{olsTitle}{\code{signature(object = "Ontology")}: returns the
-      title of an ontology. Also works for \code{Ontologies} objects. }
+      title of an ontology. Also works with a \code{character}
+      containing the ontology prefix or an object of class
+      \code{Ontologies}.}
     
     \item{show}{\code{signature(object = "Ontology")}: prints a short
       summary of \code{Ontology} and \code{Ontologies} objects. }
