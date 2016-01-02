@@ -158,8 +158,12 @@ olsPrefix(trm)
 gotrms[1:3]
 gotrms[["GO:0032801"]]
 
-term("GO", "GO:0032801")
+
+## using an Ontology object
+(go <- ol[["GO"]])
 term(go, "GO:0032801")
+## using an ontology prefix
+term("GO", "GO:0032801")
 
 isObsolete(gotrms[["GO:0030533"]])
 isObsolete(gotrms[["GO:0005563"]])
