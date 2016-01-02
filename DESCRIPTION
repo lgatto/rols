@@ -9,7 +9,7 @@ Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: An interface to the Ontology Lookup Service (OLS) to
 	     access and query hundred ofs ontolgies directly from R.
 Depends: methods
-Imports: httr, progress, jsonlite, utils, Biobase, urltools
+Imports: httr, progress, jsonlite, utils, Biobase
 Suggests: xtable, GO.db, knitr (>= 1.1.0), BiocStyle, testthat
 biocViews: Software, Annotation, MassSpectrometry, GO
 License: GPL-2
