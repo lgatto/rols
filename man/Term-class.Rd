@@ -160,7 +160,7 @@ gotrms[["GO:0032801"]]
 
 
 ## using an Ontology object
-(go <- ol[["GO"]])
+go <- Ontology("GO")
 term(go, "GO:0032801")
 ## using an ontology prefix
 term("GO", "GO:0032801")
