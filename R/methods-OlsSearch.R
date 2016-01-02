@@ -22,7 +22,10 @@ OlsSearch <- function(q,
     params <- c()
     for (i in seq_along(.args)) {
         nm <- names(.args)[i]
-        arg <- eval(.args[[i]], parent.frame())
+        arg <- .args[[i]]
+        arg <- eval(arg, parent.frame())
+        if (is.character(arg))
+            arg <- url_encode(arg)
         if (nm == "ontology")
             arg <- tolower(arg)
         if (length(arg) > 1)

@@ -105,9 +105,10 @@ OlsSearch(q = "cell", exact = TRUE)
 OlsSearch(q = "cell", exact = TRUE, ontology = "go")
 OlsSearch(q = "cell", exact = TRUE, ontology = "GO")
 
-OlsSearch(q = "plasma", ontology = "go")
-OlsSearch(q = "membrane", ontology = "go")
-OlsSearch(q = "plasma,membrane", ontology = "go")
+OlsSearch(q = "electrospray", ontology = "MS")
+OlsSearch(q = "ionization", ontology = "MS")
+OlsSearch(q = "electrospray ionization", ontology = "MS")
+OlsSearch(q = "electrospray ionization", ontology = "MS", exact=TRUE)
 
 ## Request 5 results instead of 20 (default)
 OlsSearch(q = "plasma,membrane", ontology = "go", rows = 5)

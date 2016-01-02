@@ -4,6 +4,7 @@ import(httr)
 import(jsonlite)
 import(progress)
 importFrom(Biobase, validMsg)
+importFrom(urltools, url_encode)
 importClassesFrom(Biobase, Versioned)
 
 exportClasses(CVParam)
