@@ -21,6 +21,7 @@ exportMethods(show,
               olsStatus,
               ## Term/s
               olsLabel,
+              olsNamespace,
               term, terms,
               termId)
 

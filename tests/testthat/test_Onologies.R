@@ -7,7 +7,8 @@ test_that("constructors", {
     ## expect_equal(length(ol), 143L) ## this will likely change
     expect_true(length(ol) > 120L)
     expect_true(is.integer(length(ol)))
-
+    expect_equal(length(ol[1:10]), 10L)
+    
     go1 <- Ontology("go")
     go2 <- Ontology("GO")
     go3 <- Ontology("Go")

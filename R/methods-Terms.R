@@ -59,9 +59,9 @@ descendants <- function(id) {
 setMethod("show", "Term",
           function(object) {
               ids <- .termId(object)
-              cat("A Term from the", object@ontology_prefix, "ontology:", ids, "\n")
+              cat("A Term from the", olsPrefix(object), "ontology:", ids, "\n")
               cat(" Label: ", olsLabel(object),"\n  ", sep = "")
-              desc <- object@description
+              desc <- olsDesc(object)
               if (is.null(desc)) cat("No description\n")
               else for (i in 1:seq_along(desc))
                   cat(strwrap(desc[[i]]), sep = "\n  ")
@@ -89,44 +89,46 @@ setMethod("show", "Terms",
 ##########################################
 ## Accessors
 
-
 setMethod("olsSynonym", "Term",
           function(object) unlist(object@synonym))
-
 setMethod("olsSynonym", "Terms",
           function(object) sapply(object@x, olsSynonym))
 
 
 setMethod("isObsolete", "Term",
           function(object) object@is_obsolete)
-
 setMethod("isObsolete", "Terms",
           function(object) sapply(object@x, isObsolete))
 
 setMethod("isRoot", "Term",
           function(object) object@is_root)
-
 setMethod("isRoot", "Terms",
           function(object) sapply(object@x, isRoot))
 
 setMethod("olsLabel", "Term",
           function(object) object@label)
-
 setMethod("olsLabel", "Terms",
           function(object) sapply(object@x, olsLabel))
 
 setMethod("termId", "Term",
           function(object) .termId(object))
-
 setMethod("termId", "Terms",
           function(object) sapply(object@x, .termId))
 
 setMethod("olsPrefix", "Term",
           function(object) object@ontology_prefix)
-
 setMethod("olsPrefix", "Terms",
           function(object) sapply(object@x, olsPrefix))
 
+setMethod("olsDesc", "Term",
+          function(object) unlist(object@description))
+setMethod("olsDesc", "Terms",
+          function(object) sapply(object@x, olsDesc))
+
+setMethod("olsNamespace", "Term",
+          function(object) unlist(object@annotation$has_obo_namespace))
+setMethod("olsNamespace", "Terms",
+          function(object) sapply(object@x, olsNamespace))
 
 ##########################################
 ## Data manipulation
@@ -141,3 +143,53 @@ setMethod("[[", "Terms",
 
 setMethod("lapply", "Terms",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
+
+
+setMethod("all.equal", c("Term", "Term"),
+          function(target, current) {
+              msg <- Biobase::validMsg(NULL, NULL)
+              snms <- slotNames("Term")
+              for (i in snms[-grep("links", snms)]) {
+                  eq <- all.equal(slot(target, i), slot(current, i))
+                  if (is.character(eq)) {
+                      eq <- paste0("Slot '", i, "': ", eq)
+                      msg <- Biobase:::validMsg(msg, eq)
+                  }
+              }
+              lt <- slot(target, "links")
+              lc <- slot(current, "links")
+              ot <- order(names(lt))
+              oc <- order(names(lc))
+              msg <- Biobase:::validMsg(msg, all.equal(lt[ot], lc[oc]))
+              if (is.null(msg)) return(TRUE)
+              else msg                  
+          })
+
+
+setMethod("all.equal", c("Terms", "Terms"),
+          function(target, current) {
+              msg <- Biobase::validMsg(NULL, NULL)
+              if (length(target) != length(current)) {
+                  msg <- Biobase::validMsg(msg, "2 Terms are of different lengths")
+              } else {
+                  tg <- target@x
+                  ct <- current@x
+                  if (any(sort(names(tg)) != sort(names(ct)))) {
+                      msg <- Biobase::validMsg(msg, "Term ids don't match")
+                  } else {             
+                      ot <- order(names(tg))
+                      oc <- order(names(ct))
+                      tg <- tg[ot]
+                      ct <- ct[oc]
+                      for (i in seq_along(tg)) {
+                          eq <- all.equal(tg[[i]], ct[[i]])
+                          if (is.character(eq)) {
+                              eq <- paste0("Term id '", names(tg)[i], "': ", eq)
+                              msg <- Biobase:::validMsg(msg, eq)
+                          }
+                      }
+                  }
+              }
+              if (is.null(msg)) return(TRUE)
+              else msg
+          })

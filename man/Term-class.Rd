@@ -13,9 +13,16 @@
 \alias{olsLabel,Term-method}
 \alias{olsLabel,Terms-method}
 
+\alias{olsNamespace}
+\alias{olsNamespace,Term-method}
+\alias{olsNamespace,Terms-method}
+
 \alias{olsSynonym}
 \alias{olsSynonym,Term-method}
 \alias{olsSynonym,Terms-method}
+
+\alias{olsDesc,Term-method}
+\alias{olsDesc,Terms-method}
 
 \alias{olsPrefix,Term-method}
 \alias{olsPrefix,Terms-method}
@@ -115,6 +122,10 @@
     \item{olsPrefix}{\code{signature(object = "Term")}: ... }
 
     \item{olsSynonym}{\code{signature(object = "Term")}: ... }
+
+    \item{olsPrefix}{\code{signature(object = "Term")}: ... }
+
+    \item{olsNamespace}{\code{signature(object = "Term")}: ... }
 
     \item{isRoot}{\code{signature(object = "Term")}: ... }
 

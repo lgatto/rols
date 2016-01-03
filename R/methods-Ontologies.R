@@ -73,7 +73,7 @@ setMethod("olsRoot", "character",
               cx <- content(x)
               ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
               names(ans) <- sapply(ans, termId)
-              ans <- Terms(x = ans)              
+              Terms(x = ans)
           })
 setMethod("olsRoot", "Ontology",
           function(object) olsRoot(olsPrefix(object)))
