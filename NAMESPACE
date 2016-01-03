@@ -20,6 +20,7 @@ exportMethods(show,
               olsTitle,
               olsStatus,
               ## Term/s
+              all.equal,
               olsLabel,
               olsNamespace,
               term, terms,

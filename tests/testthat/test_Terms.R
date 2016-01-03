@@ -1,16 +1,18 @@
 context("Term/Terms")
 
+go <- Ontology("GO")
 trm <- term(go, "GO:0032801")
 trms <- terms("SO", pagesize = 1000)
 
 test_that("constructors", {
+    so <- Ontology("SO")
     trms <- terms("SO")
     trms2 <- terms(so)
-    expect_true(all.equal(trms, trms2))
+    expect_true(rols:::all.equal(trms, trms2))
     expect_identical(length(trms[1:10]), 10L)
-    
-    trm <- term(go, "GO:0032801")
+
     go <- Ontology("GO")
+    trm <- term(go, "GO:0032801")
     trm1 <- term(go, "GO:0032801")
     trm2 <- term("go", "GO:0032801")
     trm3 <- term("GO", "GO:0032801")
@@ -120,6 +122,7 @@ test_that("Term/Terms equality", {
     expect_false(isTRUE(all.equal(trms[[1]], trms[[2]])))
 
     xx1 <- xx2 <- trms[1:2]
+    xx1@x[[1]] <- xx1@x[[2]]
     expect_false(isTRUE(all.equal(xx1, xx2)))
     expect_match(all.equal(xx1, xx2), "Term id 'SO:0000579'")    
 })

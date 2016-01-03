@@ -60,6 +60,8 @@
 \alias{[,Terms-method}
 \alias{[[,Terms-method}
 
+\alias{all.equal,Term,Term-method}
+\alias{all.equal,Terms,Terms-method}
 
 \title{Class \code{"Term"}}
 
@@ -131,8 +133,6 @@
 
     \item{isObsolete}{\code{signature(object = "Term")}: ... }
     
-    \item{show}{\code{signature(object = "Term")}: ... }
-    
     \item{termId}{\code{signature(object = "Term")}: ... }
 
     \item{children}{\code{signature(object = "Term")}: ... }
@@ -142,6 +142,21 @@
     \item{ancestors}{\code{signature(object = "Term")}: ... }
     
     \item{descendants}{\code{signature(object = "Term")}: ... }
+
+    \item{show}{\code{signature(object = "Term")}: ... }
+
+    \item{show}{\code{signature(object = "Terms")}: ... }
+
+    \item{all.equal}{\code{signature(target = "Term", current =
+	"Term")}: ... }
+    
+    \item{all.equal}{\code{signature(target = "Terms", current =
+	"Terms")}: ... }
+    
+    \item{length}{\code{signature(object = "Terms")}: returns the number
+      of ontolgies described by the \code{Terms} object. }
+
+    
     
   }
   
