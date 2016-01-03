@@ -90,7 +90,7 @@ makeTerm <- function(x)
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     ## -- Iterating
     .next <- cx[["_links"]][["next"]]$href
-    pb <- progress_bar$new(total = cx[["page"]][["totalPages"]])
+    pb <- progress_bar$new(total = cx[["page"]][["totalPages"]]-1)
     while (!is.null(.next)) {
         pb$tick()
         x <- GET(.next)
