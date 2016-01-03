@@ -10,6 +10,7 @@
 \alias{Ontologies-class}
 
 \alias{Ontologies,missing-method}
+\alias{Ontologies,numeric-method}
 \alias{Ontology,character-method}
 
 \alias{olsDesc}
@@ -136,6 +137,11 @@
 \section{Methods and functions}{
   \describe{
 
+    \item{Ontologies}{\code{signature(object = "numeric")}:  }
+
+    \item{Ontology}{\code{signature(object = "character")}:  }
+
+    
     \item{olsDesc}{\code{signature(object = "Ontology")}: returns the
       description of an ontology. Also works for \code{Ontologies}
       objects and \code{character} describing an ontology prefix. }

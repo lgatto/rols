@@ -37,12 +37,4 @@
 ## term graph and jstree for a given term
 
 ## Properties and individuals
-## Select 
-
-## EXAMPLES
-
-
-## Queries
-
-## searching
-
+## Select

@@ -126,3 +126,15 @@ test_that("Term/Terms equality", {
     expect_false(isTRUE(all.equal(xx1, xx2)))
     expect_match(all.equal(xx1, xx2), "Term id 'SO:0000579'")    
 })
+
+test_that("terms(pagesize)", {
+    trms1 <- terms("SO", pagesize = 20)
+    trms2 <- terms("SO", pagesize = 200)
+    trms3 <- terms("SO", pagesize = 1000)
+    trms4 <- terms("SO", pagesize = 10000) ## 2302 entries
+    trms5 <- terms("SO", pagesize = 2302) ## 2302 entries
+    expect_true(all.equal(trms1, trms2))
+    expect_true(all.equal(trms1, trms3))
+    expect_true(all.equal(trms3, trms4))
+    expect_true(all.equal(trms3, trms5))
+})

@@ -3,6 +3,9 @@
 setMethod("Ontologies", "missing",
           function() makeOntologies())
 
+setMethod("Ontologies", "numeric",
+          function(object) makeOntologies(object))
+
 setMethod("Ontology", "character",
           function(object) {
               url <- ontologyUrl(object)

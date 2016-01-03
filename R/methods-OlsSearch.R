@@ -97,6 +97,8 @@ olsRows <- function(x) {
 
 "olsRows<-" <- function(x, value) {
     stopifnot(inherits(x, "OlsSearch"))
+    stopifnot(is.numeric(value))
+    x@url <- sub("rows=[0-9]+", paste0("rows=", as.integer(value)), x@url)
     x@rows <- as.integer(value)
     x
 }
@@ -111,9 +113,6 @@ allRows <- function(x) {
 
 ##########################################
 ## Coercion
-
-as.data.frame.OlsSearch <-
-    function(x) x@response
 
 setAs(from = "OlsSearch", to = "data.frame",
       function(from) from@response)

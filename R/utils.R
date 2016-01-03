@@ -22,14 +22,16 @@ makeOntology <- function(x)
 ##' @title Makes an Ontologies instance based on the response from
 ##'     api/ontologies @return
 ##' @return An object of class Ontologies
-makeOntologies <- function() {
-    n <- 150
-    x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", n))
+##' @param pagesize A numeric indicating the number of elements per
+##'     page (default in method is 150).
+makeOntologies <- function(pagesize = 150) {
+    x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=",
+                    pagesize))
     warn_for_status(x)
     cx <- content(x)
-    if (cx$page$totalElements > n) {
-        n <- cx$page$totalElements
-        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", n))
+    if (cx$page$totalElements > pagesize) {
+        pagesize <- cx$page$totalElements
+        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", pagesize))
         warn_for_status(x)
         cx <- content(x)
     }        
