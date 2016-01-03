@@ -124,5 +124,6 @@ setAs(from = "OlsSearch", to = "Terms",
           x <- apply(from@response, 1,
                      function(x) term(x[["ontology_prefix"]],
                                       x[["obo_id"]]))
+          names(x) <- from@response[["obo_id"]]
           Terms(x = x)
       })
