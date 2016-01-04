@@ -17,3 +17,6 @@ setGeneric("isRoot", function(object, ...) standardGeneric("isRoot"))
 setGeneric("olsSynonym", function(object, ...) standardGeneric("olsSynonym"))
 setGeneric("olsStatus", function(object, ...) standardGeneric("olsStatus"))
 setGeneric("olsNamespace", function(object, ...) standardGeneric("olsNamespace"))
+
+## private
+setGeneric("ontologyUrl", function(object, ...) standardGeneric("ontologyUrl"))

@@ -13,7 +13,6 @@
 \alias{olsLabel,Term-method}
 \alias{olsLabel,Terms-method}
 
-\alias{olsNamespace}
 \alias{olsNamespace,Term-method}
 \alias{olsNamespace,Terms-method}
 

@@ -21,7 +21,7 @@ setMethod("Ontology", "character",
 setMethod("show", "Ontology",
           function(object) {
               cat("Ontology: ", olsTitle(object),
-                  " (", olsPrefix(object) , ")", sep = "")
+                  " (", olsNamespace(object) , ")", sep = "")
               cat("  ", strwrap(olsDesc(object)), sep = "\n  ")
               cat("   Loaded:", olsLoaded(object),
                   "Updated:", olsUpdated(object),
@@ -111,7 +111,6 @@ setMethod("olsStatus", "Ontology",
 setMethod("olsStatus", "Ontologies",
           function(object) sapply(object@x, olsStatus))
 
-
 setMethod("olsNamespace", "character",
           function(object) olsNamespace(Ontology(object)))
 setMethod("olsNamespace", "Ontology",
@@ -142,7 +141,36 @@ setAs("Ontologies", "data.frame",
 
 as.data.frame.Ontologies <- function(x)
     data.frame(Prefix = olsPrefix(x),
+               Namespace = olsNamespace(x),
                Title = olsTitle(x))
 
 setAs("Ontologies", "list",
       function(from) from@x)
+
+## setMethod("all.equal", c("Ontologies", "Ontologies"),
+##           function(target, current) {
+##               msg <- Biobase::validMsg(NULL, NULL)
+##               if (length(target) != length(current)) {
+##                   msg <- Biobase::validMsg(msg, "2 Terms are of different lengths")
+##               } else {
+##                   tg <- target@x
+##                   ct <- current@x
+##                   if (any(sort(names(tg)) != sort(names(ct)))) {
+##                       msg <- Biobase::validMsg(msg, "Ontology names don't match")
+##                   } else {             
+##                       ot <- order(names(tg))
+##                       oc <- order(names(ct))
+##                       tg <- tg[ot]
+##                       ct <- ct[oc]
+##                       for (i in seq_along(tg)) {
+##                           eq <- all.equal(tg[[i]], ct[[i]])
+##                           if (is.character(eq)) {
+##                               eq <- paste0("Ontology '", names(tg)[i], "': ", eq)
+##                               msg <- Biobase:::validMsg(msg, eq)
+##                           }
+##                       }
+##                   }
+##               }
+##               if (is.null(msg)) return(TRUE)
+##               else msg
+##           })

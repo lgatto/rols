@@ -1,5 +1,13 @@
-ontologyUrl <- function(goid)
-    paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", goid)
+setMethod("ontologyUrl", "character",
+          function(object)
+              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", object))
+
+setMethod("ontologyUrl", "Ontology",
+          function(object) {
+              nsp <- olsNamespace(object)
+              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", nsp)
+          })
+
 
 .termId <- function(x) x@obo_id
 
@@ -36,11 +44,9 @@ makeOntologies <- function(pagesize = 150) {
         cx <- content(x)
     }        
     ans <- lapply(cx[["_embedded"]][[1]], makeOntology)
-    names(ans) <- sapply(ans, olsPrefix)
+    names(ans) <- sapply(ans, olsNamespace)
     .Ontologies(x = ans)
 }
-
-
 
 ##' @title Makes a Term instance based on the response from
 ##'     /api/ontologies/{ontology}/terms/{iri}
@@ -66,11 +72,11 @@ makeTerm <- function(x)
 
 ##' @title Constructs the query for a single term from a given
 ##'     ontology
-##' @param goid A character with an ontology prefix
+##' @param iod A character with an ontology prefix
 ##' @param termid A character with a term id
 ##' @return An object of class Term
-.term <- function(goid, termid) {
-    url <- paste(ontologyUrl(goid), "terms", sep = "/")
+.term <- function(iod, termid) {
+    url <- paste(ontologyUrl(iod), "terms", sep = "/")
     url <- paste(url, "http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F", sep = "/")
     url <- paste0(url, sub(":", "_", termid))
     x <- GET(url)
@@ -80,11 +86,11 @@ makeTerm <- function(x)
 }
 
 ##' @title Constructs the query for all term from a given ontology
-##' @param goid A character with an ontology prefix
+##' @param iod A character with an ontology prefix
 ##' @param pagesize How many results per page to return
 ##' @return An object of class Terms
-.terms <- function(goid, pagesize = 200) {
-    url <- paste(ontologyUrl(goid), "terms", sep = "/")
+.terms <- function(iod, pagesize = 200) {
+    url <- paste(ontologyUrl(iod), "terms", sep = "/")
     url <- paste0(url, "?&size=", pagesize)
     x <- GET(url)
     stop_for_status(x)

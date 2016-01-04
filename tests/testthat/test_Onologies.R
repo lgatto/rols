@@ -3,7 +3,7 @@ context("Ontology/Ontologies")
 ol <- Ontologies()
 go <- go1 <- Ontology("go")
 
-test_that("constructors", {
+test_that("Ontology constructors", {
     ol1 <- Ontologies(50)
     expect_identical(ol, ol1)
     
@@ -17,16 +17,20 @@ test_that("constructors", {
     go3 <- Ontology("Go")
     expect_identical(go1, go2)
     expect_identical(go1, go3)
-    expect_identical(go1, ol[["GO"]])
-
+    expect_identical(go1, ol[["go"]])
 })
 
-test_that("show methods", {
+test_that("Ontology show methods", {
     expect_null(show(ol))
+    expect_null(show(ol[1]))
+    expect_null(show(ol[1:2]))
+    expect_null(show(ol[1:3]))
+    expect_null(show(ol[1:4]))
+    expect_null(show(ol[1:5]))
     expect_null(show(go1))
 })
 
-test_that("accessors", {
+test_that("Ontology accessors", {
     library("lubridate")
     n <- length(ol)
     status <- olsStatus(ol)
@@ -39,7 +43,7 @@ test_that("accessors", {
     expect_false(any(is.na(updated)))
     expect_identical(n, length(loaded))
     expect_identical(n, length(updated))
-    i <- which(names(status) == "GO")
+    i <- which(names(status) == "go")
     expect_identical(ymd(olsLoaded(go)), loaded[i])
     expect_identical(olsLoaded(go), olsLoaded("GO"))
     expect_identical(olsLoaded(go), olsLoaded("go"))
@@ -50,11 +54,11 @@ test_that("accessors", {
     pre <- olsPrefix(ol)
     expect_identical(n, length(vrs))
     expect_identical(n, length(pre))
-    expect_identical(vrs[["GO"]], olsVersion(go))
+    expect_identical(vrs[["go"]], olsVersion(go))
     expect_identical(olsVersion("GO"), olsVersion(go))
     expect_identical(olsVersion("go"), olsVersion(go))
 
-    rts <- olsRoot(ol["GO"])
+    rts <- olsRoot(ol["go"])
     gort <- rts[[1]]
     expect_identical(gort, olsRoot(go))
     expect_identical(gort, olsRoot("go"))
@@ -89,9 +93,9 @@ test_that("accessors", {
     nsp0 <- olsNamespace(ol)
     nsp <- sapply(ol@x, olsNamespace)
     expect_identical(nsp0, nsp)
-    expect_identical(nsp[["GO"]], olsNamespace("GO"))
-    expect_identical(nsp[["GO"]], olsNamespace("go"))
-    expect_identical(nsp[["GO"]], olsNamespace(go))
+    expect_identical(nsp[["go"]], olsNamespace("GO"))
+    expect_identical(nsp[["go"]], olsNamespace("go"))
+    expect_identical(nsp[["go"]], olsNamespace(go))
 })
 
 test_that("apply over Ontologies", {
@@ -102,7 +106,7 @@ test_that("apply over Ontologies", {
 test_that("coercion", {
     odf <- as(ol, "data.frame")
     expect_equal(nrow(odf), length(ol))
-    expect_equal(names(odf), c("Prefix", "Title"))
+    expect_equal(names(odf), c("Prefix", "Namespace", "Title"))
 
     olst <- as(ol, "list")
     expect_identical(olst, ol@x)

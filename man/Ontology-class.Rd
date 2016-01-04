@@ -76,7 +76,24 @@
   Ontologies are stored as \code{Ontology} and \code{Ontologies}
   instances, and contain various information as provided by the Ontology
   Lookup Service. 
+}
+
+\details{
   
+  Ontologies are referred to by their namespace, which is lower case:
+  the Gene Onology is "go", the Mass spectrometry ontology is "ms",
+  etc. The ontologies also have prefixes, which are upper case: the Gene
+  Onology prefix "GO", the Mass spectrometry ontology prefix "MS". The
+  only exception to this rule is the Drosophila Phenotype Ontology,
+  whose namespace and prefix are "dpo" and "FBcv" respectively. This is
+  particularly confusing as the FlyBase Controlled Vocabulary has "fbcv"
+  and "FBcv" as namespace and prefix respectively.
+
+  When using a character to initialise an ontology or query a term,
+  "fbcv" (this is case insensitive) will refer to the the FlyBase Controlled
+  Vocabulary. The the Drosophila Phenotype Ontology will have to be
+  referred as "dpo" (also case insensitive).
+
 }
 
 \section{Objects from the Class}{
@@ -84,15 +101,17 @@
   Objects can be created in multiple ways. The \code{Ontologies}
   function will initialise all available ontolgies as an
   \code{Ontologies} object, while a call to \code{Ontology} with an
-  ontology prefix as argument will initialise the ontology of interest
-  as an \code{Ontology} instance.
+  ontology namespace or prefix (but see Details section) as argument
+  will initialise the ontology of interest as an \code{Ontology}
+  instance.
 
   \code{Ontolgies} instances can be subset with \code{[} and \code{[[}
-  and iterated over with \code{lapply}. \code{Ontolgies} can be
-  converted into a simple \code{data.frame} containing the ontology
-  prefixes and titles using \code{as(., "data.frame")}). An
-  \code{Ontologies} can also be coerced to lists of \code{Ontology}
-  ojects with \code{as(., "list")}.
+  (using their namespace, see Details) and iterated over with
+  \code{lapply}. \code{Ontolgies} can be converted into a simple
+  \code{data.frame} containing the ontology prefixes, namespaces and
+  titles using \code{as(., "data.frame")}). An \code{Ontologies} can
+  also be coerced to lists of \code{Ontology} ojects with \code{as(.,
+  "list")}.
 
 }
 
@@ -149,47 +168,49 @@
     
     \item{olsDesc}{\code{signature(object = "Ontology")}: returns the
       description of an ontology. Also works for \code{Ontologies}
-      objects and \code{character} describing an ontology prefix. }
+      objects and \code{character} describing an ontology namespace or
+      prefix (see Details). }
     
     \item{olsPrefix}{\code{signature(object = "Ontology")}: retruns the
       prefix of an ontology. Also works for \code{Ontologies} objects
-      describing an ontology prefix. }
+      describing an ontology namespace or prefix (see Details). }
     
     \item{olsRoot}{\code{signature(object = "Ontology")}: returns the
       root of the ontology as a \code{\linkS4class{Terms}}
       instance. \code{object} could also be a \code{character} with an
-      ontology prefix. If \code{object} is of class \code{Ontologies},
-      it returns a \code{list} of \code{\linkS4class{Terms}}. }
+      ontology namespace or prefix (see Details). If \code{object} is of
+      class \code{Ontologies}, it returns a \code{list} of
+      \code{\linkS4class{Terms}}. }
     
     \item{olsVersion}{\code{signature(object = "Ontology")}: returns the
-      version of the ontology. Also works with an ontology prefix as a
-      \code{character} or an object of class \code{Ontologies}, in which
-      case it returns a list of versions. }
+      version of the ontology. Also works with an ontology namespace or
+      prefix (see Details) as a \code{character} or an object of class
+      \code{Ontologies}, in which case it returns a list of versions. }
 
     \item{olsLoaded}{\code{signature(object = "Ontology")}: returns the
       loading date of the ontology. Also works with a \code{character}
-      containing the ontology prefix or an object of class
-      \code{Ontologies}. }
+      containing the ontology namespace or prefix (see Details) or an
+      object of class \code{Ontologies}. }
 
     \item{olsUpdated}{\code{signature(object = "Ontology")}: returns the
       update date of the ontology. Also works with a \code{character}
-      containing the ontology prefix or an object of class
-      \code{Ontologies}.}
+      containing the ontology namespace or prefix (see Details) or an
+      object of class \code{Ontologies}.}
 
     \item{olsStatus}{\code{signature(object = "Ontology")}: returns the
       status of the ontology. Also works with a \code{character}
-      containing the ontology prefix or an object of class
-      \code{Ontologies}.}
+      containing the ontology namespace or prefix (see Details) or an
+      object of class \code{Ontologies}.}
 
     \item{olsStatus}{\code{signature(object = "Ontology")}: returns the
       namespace of the ontology. Also works with a \code{character}
-      containing the ontology prefix or an object of class
-      \code{Ontologies}.}
+      containing the ontology namespace or prefix (see Details) or an
+      object of class \code{Ontologies}.}
 
     \item{olsTitle}{\code{signature(object = "Ontology")}: returns the
       title of an ontology. Also works with a \code{character}
-      containing the ontology prefix or an object of class
-      \code{Ontologies}.}
+      containing the ontology namespace or prefix (see Details) or an
+      object of class \code{Ontologies}.}
     
     \item{show}{\code{signature(object = "Ontology")}: prints a short
       summary of \code{Ontology} and \code{Ontologies} objects. }
@@ -213,27 +234,27 @@ head(as(ol, "data.frame"))
 length(ol)
 
 ## Individual ontologies
-(go <- ol[["GO"]])
-(efo <- ol[["EFO"]])
+(go <- ol[["go"]]) 
+(efo <- ol[["efo"]])
 
 ## some basic information
 olsVersion(go)
 olsDesc(go)
 olsTitle(go)
 olsPrefix(go)
+olsNamespace(go)
 
 olsRoot(go)
 
-## works with Ontology objects or their prefixes
-identical(olsRoot("GO"), olsRoot(go))
-identical(olsVersion("GO"), olsVersion(go))
+## works with Ontology objects or their namespace
+identical(olsRoot("go"), olsRoot(go))
+identical(olsVersion("go"), olsVersion(go))
 
-## Directly initialise a singleontology
-go1 <- Ontology("go")
-(GO <- Ontology("GO"))
-
-stopifnot(identical(go, GO))
+## Directly initialise a single ontology
+go1 <- Ontology("go") ## using the namespace (preferred)
+go2 <- Ontology("GO") ## using the prefix (see Details)
 stopifnot(identical(go, go1))
+stopifnot(identical(go, go2))
 }
 
 

@@ -144,7 +144,6 @@ setMethod("[[", "Terms",
 setMethod("lapply", "Terms",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
 
-
 setMethod("all.equal", c("Term", "Term"),
           function(target, current) {
               msg <- Biobase::validMsg(NULL, NULL)
