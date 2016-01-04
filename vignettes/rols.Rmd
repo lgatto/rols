@@ -170,6 +170,36 @@ is not possible to query a specific version of an ontology.
 
 # Changes in `r Biocpkg("rols")` 2.0
 
+```
+## Development script for rols version 2.
+
+## Release plan
+##  Update release package on the 1st of March, so that the release
+##  version continues to work using the archive URL until the next
+##  release in April. Commit a devel version, that uses the REST api,
+##  before release.
+
+
+## http://www.ebi.ac.uk/ols/beta/docs/api
+## http://www.ebi.ac.uk/ols/beta/roadmap.html
+
+## "ontologies"
+## ontologyLoadDate -> olsLoaded
+##                  -> olsUpdated
+## ontologyNames -> see ontologies
+## olsVersion -> olsVersion
+## allIds -> terms
+## "isIdObsolete" -> isObsolete
+## "rootId"       -> olsRoot
+## olsQuery       -> OlsSearch, olsSearch
+
+## CVParams unchanged
+
+## Dropping
+## .rols environment
+## "as.character.Map"  "key"  "CVParam"
+## "as.character.mapItem"
+```
 
 
 # Session information
