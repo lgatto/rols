@@ -14,6 +14,9 @@ the OLS directly from R.
 
 #### Changes in version 1.99.0
 
+See section *Changes in `rols` 2.0* in the
+[vignette](https://github.com/lgatto/rols/blob/v2.0/vignettes/rols.Rmd).
+
 ### The `CVParam` class
 
 The `CVParam` S4 class allows to generate controlled vocabulary
