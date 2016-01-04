@@ -84,7 +84,14 @@ test_that("accessors", {
     expect_identical(status[[i]], "LOADED")
     expect_identical(status[[i]], olsStatus(go))
     expect_identical(status[[i]], olsStatus("go"))
-    expect_identical(status[[i]], olsStatus("GO"))    
+    expect_identical(status[[i]], olsStatus("GO"))
+
+    nsp0 <- olsNamespace(ol)
+    nsp <- sapply(ol@x, olsNamespace)
+    expect_identical(nsp0, nsp)
+    expect_identical(nsp[["GO"]], olsNamespace("GO"))
+    expect_identical(nsp[["GO"]], olsNamespace("go"))
+    expect_identical(nsp[["GO"]], olsNamespace(go))
 })
 
 test_that("apply over Ontologies", {
