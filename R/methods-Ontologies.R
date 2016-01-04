@@ -35,11 +35,11 @@ setMethod("show", "Ontologies",
           function(object) {
               cat("Object of class 'Ontologies' with", length(object), "entries\n")
               if (length(object) > 4)
-                  cat("  ", paste(head(olsPrefix(object), n=3), collapse = ", "),
+                  cat("  ", paste(head(olsPrefix(object), n=2), collapse = ", "),
                       "...",
-                      paste(tail(olsPrefix(object), n=3), collapse = ", "), "\n")
+                      paste(tail(olsPrefix(object), n=2), collapse = ", "), "\n")
               else
-                  cat(paste(olsPrefix(object)[1:4], collapse = ", "), "\n")
+                  cat(paste(olsPrefix(object)[1:length(object)], collapse = ", "), "\n")
           })
 
 ##########################################
@@ -110,6 +110,16 @@ setMethod("olsStatus", "Ontology",
           function(object) object@status)
 setMethod("olsStatus", "Ontologies",
           function(object) sapply(object@x, olsStatus))
+
+
+setMethod("olsNamespace", "character",
+          function(object) olsNamespace(Ontology(object)))
+setMethod("olsNamespace", "Ontology",
+          function(object) object@config$namespace)
+setMethod("olsNamespace", "Ontologies",
+          function(object) sapply(object@x, olsNamespace))
+
+
 
 ##########################################
 ## Data manipulation

@@ -28,6 +28,11 @@
 \alias{olsStatus,Ontology-method}
 \alias{olsStatus,Ontologies-method}
 
+\alias{olsNamespace}
+\alias{olsNamespace,character-method}
+\alias{olsNamespace,Ontology-method}
+\alias{olsNamespace,Ontologies-method}
+
 \alias{olsRoot}
 \alias{olsRoot,character-method}
 \alias{olsRoot,Ontology-method}
@@ -173,6 +178,11 @@
 
     \item{olsStatus}{\code{signature(object = "Ontology")}: returns the
       status of the ontology. Also works with a \code{character}
+      containing the ontology prefix or an object of class
+      \code{Ontologies}.}
+
+    \item{olsStatus}{\code{signature(object = "Ontology")}: returns the
+      namespace of the ontology. Also works with a \code{character}
       containing the ontology prefix or an object of class
       \code{Ontologies}.}
 
