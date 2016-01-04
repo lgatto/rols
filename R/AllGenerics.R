@@ -20,3 +20,4 @@ setGeneric("olsNamespace", function(object, ...) standardGeneric("olsNamespace")
 
 ## private
 setGeneric("ontologyUrl", function(object, ...) standardGeneric("ontologyUrl"))
+setGeneric("ontologyUri", function(object, ...) standardGeneric("ontologyUri"))

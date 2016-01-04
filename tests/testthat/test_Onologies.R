@@ -4,8 +4,9 @@ ol <- Ontologies()
 go <- go1 <- Ontology("go")
 
 test_that("Ontology constructors", {
+
     ol1 <- Ontologies(50)
-    expect_identical(ol, ol1)
+    expect_true(all.equal(ol, ol1))
     
     ## expect_equal(length(ol), 143L) ## this will likely change
     expect_true(length(ol) > 120L)

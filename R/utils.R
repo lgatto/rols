@@ -1,13 +1,39 @@
 setMethod("ontologyUrl", "character",
           function(object)
-              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", object))
+              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", object, "/"))
 
 setMethod("ontologyUrl", "Ontology",
           function(object) {
               nsp <- olsNamespace(object)
-              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", nsp)
+              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", nsp, "/")
           })
 
+## This will not always be the correct URI (see for example
+## Orphaned/ORBO and https://github.com/EBISPOT/OLS/issues/35)
+setMethod("ontologyUri", "missing",
+          function(encode = TRUE) {
+              uri <- "http://purl.obolibrary.org/obo/"
+              if (encode)
+                  uri <- gsub("%", "%25", URLencode(uri, TRUE))
+              uri
+          })
+
+setMethod("ontologyUri", "Ontology",
+          function(object, encode = TRUE, withPrefix = FALSE) {
+              uri <- object@config$baseUris
+              if (length(uri) > 1) {
+                  msg <- paste0("More than one URI available:\n  ",
+                                paste(unlist(uri), collapse = ", "), "\n  ",
+                                "Choosing the first one.\n")
+                  warning(msg)
+              }
+              uri <- uri[[1]][1]
+              if (!withPrefix)
+                  uri <- sub("/[A-Za-z]+_$", "/", uri)
+              if (encode)
+                  uri <- gsub("%", "%25", URLencode(uri, TRUE))
+              uri
+          })
 
 .termId <- function(x) x@obo_id
 
@@ -72,13 +98,14 @@ makeTerm <- function(x)
 
 ##' @title Constructs the query for a single term from a given
 ##'     ontology
-##' @param iod A character with an ontology prefix
+##' @param oid A character with an ontology or an ontology
 ##' @param termid A character with a term id
 ##' @return An object of class Term
-.term <- function(iod, termid) {
-    url <- paste(ontologyUrl(iod), "terms", sep = "/")
-    url <- paste(url, "http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F", sep = "/")
-    url <- paste0(url, sub(":", "_", termid))
+.term <- function(oid, termid) {
+    ont <- Ontology(oid)
+    url <- paste0(ontologyUrl(ont), "terms", "/")
+    uri <- URLencode(ontologyUri(ont), TRUE)
+    url <- paste0(url, uri, sub(":", "_", termid))
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
@@ -86,11 +113,12 @@ makeTerm <- function(x)
 }
 
 ##' @title Constructs the query for all term from a given ontology
-##' @param iod A character with an ontology prefix
+##' @param oid A character with an ontology or an ontology
 ##' @param pagesize How many results per page to return
 ##' @return An object of class Terms
-.terms <- function(iod, pagesize = 200) {
-    url <- paste(ontologyUrl(iod), "terms", sep = "/")
+.terms <- function(oid, pagesize = 200) {
+    ont <- Ontology(oid)
+    url <- paste(ontologyUrl(ont), "terms", sep = "/")
     url <- paste0(url, "?&size=", pagesize)
     x <- GET(url)
     stop_for_status(x)

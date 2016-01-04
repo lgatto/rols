@@ -11,6 +11,7 @@
 
 \alias{Ontologies,missing-method}
 \alias{Ontologies,numeric-method}
+\alias{Ontology,Ontology-method}
 \alias{Ontology,character-method}
 
 \alias{olsDesc}
@@ -68,6 +69,8 @@
 
 \alias{coerce,Ontologies,data.frame-method}
 \alias{coerce,Ontologies,list-method}
+
+\alias{all.equal,Ontologies,Ontologies-method}
 
 \title{Class \code{"Ontology"}}
 
@@ -217,6 +220,9 @@
 
     \item{length}{\code{signature(object = "Ontologies")}: returns the
       number of ontolgies described by the \code{Ontologies} object. }
+
+    \item{all.equal}{\code{signature(target = "Ontologies", current =
+	"Ontologies")}: ... }    
     
   }
 }

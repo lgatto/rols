@@ -5,12 +5,12 @@
 setMethod("terms", "character",
           function(x, ...) .terms(x, ...))
 setMethod("terms", "Ontology",
-          function(x, ...) .terms(olsPrefix(x), ...))
+          function(x, ...) .terms(olsNamespace(x), ...))
 
 setMethod("term", c("character", "character"),
           function(object, id, ...) .term(object, id, ...))
 setMethod("term", c("Ontology", "character"),
-          function(object, id,...) .term(olsPrefix(object), id, ...))
+          function(object, id,...) .term(object, id, ...))
 
 
 children <- function(id) {

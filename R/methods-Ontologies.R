@@ -15,6 +15,9 @@ setMethod("Ontology", "character",
               makeOntology(cx)
           })
 
+setMethod("Ontology", "Ontology",
+          function(object) object)
+
 ##########################################
 ## show methods
 
@@ -147,30 +150,30 @@ as.data.frame.Ontologies <- function(x)
 setAs("Ontologies", "list",
       function(from) from@x)
 
-## setMethod("all.equal", c("Ontologies", "Ontologies"),
-##           function(target, current) {
-##               msg <- Biobase::validMsg(NULL, NULL)
-##               if (length(target) != length(current)) {
-##                   msg <- Biobase::validMsg(msg, "2 Terms are of different lengths")
-##               } else {
-##                   tg <- target@x
-##                   ct <- current@x
-##                   if (any(sort(names(tg)) != sort(names(ct)))) {
-##                       msg <- Biobase::validMsg(msg, "Ontology names don't match")
-##                   } else {             
-##                       ot <- order(names(tg))
-##                       oc <- order(names(ct))
-##                       tg <- tg[ot]
-##                       ct <- ct[oc]
-##                       for (i in seq_along(tg)) {
-##                           eq <- all.equal(tg[[i]], ct[[i]])
-##                           if (is.character(eq)) {
-##                               eq <- paste0("Ontology '", names(tg)[i], "': ", eq)
-##                               msg <- Biobase:::validMsg(msg, eq)
-##                           }
-##                       }
-##                   }
-##               }
-##               if (is.null(msg)) return(TRUE)
-##               else msg
-##           })
+setMethod("all.equal", c("Ontologies", "Ontologies"),
+          function(target, current) {
+              msg <- Biobase::validMsg(NULL, NULL)
+              if (length(target) != length(current)) {
+                  msg <- Biobase::validMsg(msg, "The 2 Ontologies are of different lengths")
+              } else {
+                  tg <- target@x
+                  ct <- current@x
+                  if (any(sort(names(tg)) != sort(names(ct)))) {
+                      msg <- validMsg(msg, "Ontology names don't match")
+                  } else {
+                      ## reorder before comparing Ontolgy objects one
+                      ## by one
+                      tg <- tg[order(names(tg))]
+                      ct <- ct[order(names(ct))]
+                      for (i in seq_along(tg)) {
+                          eq <- all.equal(tg[[i]], ct[[i]])
+                          if (is.character(eq)) {
+                              eq <- paste0("Ontology '", names(tg)[i], "': ", eq)
+                              msg <- validMsg(msg, eq)
+                          }
+                      }
+                  }
+              }
+              if (is.null(msg)) return(TRUE)
+              else msg
+          })
