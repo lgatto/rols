@@ -85,3 +85,7 @@ Terms <- setClass("Terms", slots = c(x = "list"))
                                  url = "character",
                                  numFound = "integer",
                                  response = "data.frame"))
+
+.Property <- setClass("Property",
+                      contains = "Term")
+Properties <- setClass("Properties", contains = "Terms")

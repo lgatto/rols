@@ -18,5 +18,5 @@ URL: http://lgatto.github.com/rols/
 BugReports: https://github.com/lgatto/rols/issues
 Collate: AllClasses.R AllGenerics.R utils.R cvparam.R
 	 methods-OlsSearch.R methods-Ontologies.R methods-Terms.R
-	 zzz.R
+	 methods-Properties.R zzz.R
 VignetteBuilder: knitr
