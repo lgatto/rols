@@ -59,9 +59,9 @@ descendants <- function(id) {
 setMethod("show", "Term",
           function(object) {
               ids <- .termId(object)
-              cat("A Term from the", olsPrefix(object), "ontology:", ids, "\n")
-              cat(" Label: ", olsLabel(object),"\n  ", sep = "")
-              desc <- olsDesc(object)
+              cat("A Term from the", termPrefix(object), "ontology:", ids, "\n")
+              cat(" Label: ", termLabel(object),"\n  ", sep = "")
+              desc <- termDesc(object)
               if (is.null(desc)) cat("No description\n")
               else for (i in 1:seq_along(desc))
                   cat(strwrap(desc[[i]]), sep = "\n  ")
@@ -71,7 +71,7 @@ setMethod("show", "Term",
 setMethod("show", "Terms",
           function(object) {
               cat("Object of class 'Terms' with", length(object), "entries\n")
-              onts <- unique(olsPrefix(object))
+              onts <- unique(termPrefix(object))
               if (length(onts) == 1)
                   cat(" From the", onts, "ontology\n")
               else if (length(onts) < 6)
@@ -89,10 +89,10 @@ setMethod("show", "Terms",
 ##########################################
 ## Accessors
 
-setMethod("olsSynonym", "Term",
+setMethod("termSynonym", "Term",
           function(object) unlist(object@synonym))
-setMethod("olsSynonym", "Terms",
-          function(object) sapply(object@x, olsSynonym))
+setMethod("termSynonym", "Terms",
+          function(object) sapply(object@x, termSynonym))
 
 
 setMethod("isObsolete", "Term",
@@ -105,30 +105,30 @@ setMethod("isRoot", "Term",
 setMethod("isRoot", "Terms",
           function(object) sapply(object@x, isRoot))
 
-setMethod("olsLabel", "Term",
+setMethod("termLabel", "Term",
           function(object) object@label)
-setMethod("olsLabel", "Terms",
-          function(object) sapply(object@x, olsLabel))
+setMethod("termLabel", "Terms",
+          function(object) sapply(object@x, termLabel))
 
 setMethod("termId", "Term",
           function(object) .termId(object))
 setMethod("termId", "Terms",
           function(object) sapply(object@x, .termId))
 
-setMethod("olsPrefix", "Term",
+setMethod("termPrefix", "Term",
           function(object) object@ontology_prefix)
-setMethod("olsPrefix", "Terms",
-          function(object) sapply(object@x, olsPrefix))
+setMethod("termPrefix", "Terms",
+          function(object) sapply(object@x, termPrefix))
 
-setMethod("olsDesc", "Term",
+setMethod("termDesc", "Term",
           function(object) unlist(object@description))
-setMethod("olsDesc", "Terms",
-          function(object) sapply(object@x, olsDesc))
+setMethod("termDesc", "Terms",
+          function(object) sapply(object@x, termDesc))
 
-setMethod("olsNamespace", "Term",
+setMethod("termNamespace", "Term",
           function(object) unlist(object@annotation$has_obo_namespace))
-setMethod("olsNamespace", "Terms",
-          function(object) sapply(object@x, olsNamespace))
+setMethod("termNamespace", "Terms",
+          function(object) sapply(object@x, termNamespace))
 
 ##########################################
 ## Data manipulation

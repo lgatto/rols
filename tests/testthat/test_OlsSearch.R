@@ -12,7 +12,7 @@ test_that("OlsSearch tgn", {
                         .Names = c("GO:0005802", "GO:0030130",
                                    "GO:0006895", "GO:0030140", "GO:0012510"))
 
-    expect_identical(olsLabel(as(tgn, "Terms")), tgnres)    
+    expect_identical(termLabel(as(tgn, "Terms")), tgnres)    
 })
 
 
@@ -75,5 +75,5 @@ test_that("OlsSearch coercion", {
 
     expect_identical(nrow(resdf), length(resterms))
     expect_equivalent(termId(resterms), resdf[, "obo_id"])
-    expect_equivalent(olsLabel(resterms), resdf[, "label"])
+    expect_equivalent(termLabel(resterms), resdf[, "label"])
 })

@@ -14,7 +14,7 @@ CVParam <- function(label,
         if (missing(name) & missing(accession)) {
             stop("You need to provide at least one of 'name' or 'accession'")
         } else if (missing(name)) {
-            name <- olsLabel(term(label, accession))
+            name <- termLabel(term(label, accession))
         } else { ## missing(accession)
             resp <- OlsSearch(q = name, ontology = label, exact = exact)
             if (resp@numFound != 1)

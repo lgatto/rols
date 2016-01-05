@@ -21,7 +21,9 @@ exportMethods(show,
               olsStatus,
               ## Term/s
               all.equal,
-              olsLabel,
+              termLabel,
+              termPrefix,
+              termDesc,
               olsNamespace,
               term, terms,
               termId)
@@ -35,7 +37,7 @@ export(charIsCVParam, CVParam,
        ## Term/s
        isObsolete,
        isRoot,
-       olsSynonym,
+       termSynonym,
        children, parents, ancestors, descendants,
        ## Search/select
        OlsSearch,

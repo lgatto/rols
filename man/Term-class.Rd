@@ -9,22 +9,25 @@
 \alias{class:Terms}
 \alias{Terms-class}
 
-\alias{olsLabel}
-\alias{olsLabel,Term-method}
-\alias{olsLabel,Terms-method}
+\alias{termLabel}
+\alias{termLabel,Term-method}
+\alias{termLabel,Terms-method}
 
-\alias{olsNamespace,Term-method}
-\alias{olsNamespace,Terms-method}
+\alias{termNamespace}
+\alias{termNamespace,Term-method}
+\alias{termNamespace,Terms-method}
 
-\alias{olsSynonym}
-\alias{olsSynonym,Term-method}
-\alias{olsSynonym,Terms-method}
+\alias{termSynonym}
+\alias{termSynonym,Term-method}
+\alias{termSynonym,Terms-method}
 
-\alias{olsDesc,Term-method}
-\alias{olsDesc,Terms-method}
+\alias{termDesc}
+\alias{termDesc,Term-method}
+\alias{termDesc,Terms-method}
 
-\alias{olsPrefix,Term-method}
-\alias{olsPrefix,Terms-method}
+\alias{termPrefix}
+\alias{termPrefix,Term-method}
+\alias{termPrefix,Terms-method}
 
 \alias{show,Term-method}
 \alias{show,Terms-method}
@@ -118,15 +121,15 @@
     
     \item{terms}{\code{signature(x = "Ontology")}: ... }
     
-    \item{olsLabel}{\code{signature(object = "Term")}: ... }
+    \item{termDesc}{\code{signature(object = "Term")}: ... }
     
-    \item{olsPrefix}{\code{signature(object = "Term")}: ... }
+    \item{termLabel}{\code{signature(object = "Term")}: ... }
+    
+    \item{termPrefix}{\code{signature(object = "Term")}: ... }
 
-    \item{olsSynonym}{\code{signature(object = "Term")}: ... }
+    \item{termSynonym}{\code{signature(object = "Term")}: ... }
 
-    \item{olsPrefix}{\code{signature(object = "Term")}: ... }
-
-    \item{olsNamespace}{\code{signature(object = "Term")}: ... }
+    \item{termNamespace}{\code{signature(object = "Term")}: ... }
 
     \item{isRoot}{\code{signature(object = "Term")}: ... }
 
@@ -179,7 +182,7 @@
 
 ## (one) term
 (trm <- gotrms[[1]])
-olsPrefix(trm)
+termPrefix(trm)
 gotrms[1:3]
 gotrms[["GO:0032801"]]
 

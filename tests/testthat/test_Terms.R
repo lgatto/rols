@@ -19,37 +19,37 @@ test_that("constructors", {
     expect_identical(trm1, trm2)
     expect_identical(trm1, trm3)
 
-    expect_identical(olsPrefix(trm), "GO")
-    expect_identical(olsLabel(trm), "receptor catabolic process")
+    expect_identical(termPrefix(trm), "GO")
+    expect_identical(termLabel(trm), "receptor catabolic process")
     expect_identical(termId(trm), "GO:0032801")
 
 
     trm1 <- trms[["SO:1000005"]]
     trm2 <- term("SO", "SO:1000005")
     expect_identical(trm1, trm2)
-    expect_identical(olsPrefix(trm1), "SO")
-    expect_true(all(olsPrefix(trms) == "SO"))
+    expect_identical(termPrefix(trm1), "SO")
+    expect_true(all(termPrefix(trms) == "SO"))
 
-    expect_identical(olsPrefix(trm), "GO")
+    expect_identical(termPrefix(trm), "GO")
     
-    expect_identical(olsSynonym(trm),
+    expect_identical(termSynonym(trm),
                      c("receptor breakdown",
                        "receptor degradation",
                        "receptor catabolism"))
 
-    expect_identical(olsDesc(trm),
+    expect_identical(termDesc(trm),
                      "The chemical reactions and pathways resulting in the breakdown of a receptor molecule, a macromolecule that undergoes combination with a hormone, neurotransmitter, drug or intracellular messenger to initiate a change in cell function.")
 
-    expect_identical(olsLabel(trm), "receptor catabolic process")
+    expect_identical(termLabel(trm), "receptor catabolic process")
 
-    expect_identical(sort(olsLabel(children(trm))),
+    expect_identical(sort(termLabel(children(trm))),
                      sort(c('GO:0038018' = "Wnt receptor catabolic process",
                             'GO:1990172' = "G-protein coupled receptor catabolic process",
                             'GO:0032802' = "low-density lipoprotein particle receptor catabolic process",
                             'GO:0097019' = "neurotransmitter receptor catabolic process")))
 
 
-    expect_identical(sort(olsLabel(parents(trm))),
+    expect_identical(sort(termLabel(parents(trm))),
                      sort(c('GO:0043112' = "receptor metabolic process",
                             'GO:0044248' = "cellular catabolic process",
                             'GO:0009057' = "macromolecule catabolic process")))
@@ -73,7 +73,7 @@ test_that("show methods", {
 })
 
 test_that("accessors", {
-    expect_identical(length(olsSynonym(trms[1:2])), 2L)
+    expect_identical(length(termSynonym(trms[1:2])), 2L)
     expect_false(isObsolete(trm))
     expect_true(isObsolete(term("GO", "GO:0005563")))
     expect_false(isObsolete(term("GO", "GO:0030533")))
@@ -93,13 +93,13 @@ test_that("accessors", {
                            "molecular_function"),
                          .Names = c("GO:0008150",
                                     "GO:0005575", "GO:0003674")))
-    expect_identical(sort(olsLabel(olsroot)), goroots)
+    expect_identical(sort(termLabel(olsroot)), goroots)
 
-    expect_identical(length(olsDesc(trms)), length(trms))
-    expect_identical(length(olsLabel(trms)), length(trms))
+    expect_identical(length(termDesc(trms)), length(trms))
+    expect_identical(length(termLabel(trms)), length(trms))
 
-    expect_true(all(unlist(olsNamespace(trms)) == "sequence"))
-    expect_identical(olsNamespace(trm), "biological_process")
+    expect_true(all(unlist(termNamespace(trms)) == "sequence"))
+    expect_identical(termNamespace(trm), "biological_process")
 })
 
 test_that("apply over Terms", {

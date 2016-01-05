@@ -128,7 +128,7 @@ res
 as(res, "data.frame")
 res <- as(res, "Terms")
 res
-olsPrefix(res)
+termPrefix(res)
 termId(res)
 }
 

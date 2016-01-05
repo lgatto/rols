@@ -20,8 +20,8 @@
                                     object@name, object@value) == ""
                              if (!all(x)) {
                                  ._term <- term(object@label, object@accession)
-                                 ._label <- olsLabel(._term)
-                                 ._synonyms <- olsSynonym(._term)
+                                 ._label <- termLabel(._term)
+                                 ._synonyms <- termSynonym(._term)
                                  if (!(object@name %in% c(._label, ._synonyms)))
                                      msg <- paste0("CVParam accession and name/synomyms do not match. Got [",
                                                    paste(c(._label, ._synonyms), collapse = ", "),
