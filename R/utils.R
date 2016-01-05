@@ -21,6 +21,8 @@ setMethod("ontologyUri", "missing",
 setMethod("ontologyUri", "Ontology",
           function(object, encode = TRUE, withPrefix = FALSE) {
               uri <- object@config$baseUris
+              if (is.null(uri) | length(uri) == 0)
+                  return(ontologyUri())
               if (length(uri) > 1) {
                   msg <- paste0("More than one URI available:\n  ",
                                 paste(unlist(uri), collapse = ", "), "\n  ",
@@ -126,7 +128,8 @@ makeTerm <- function(x)
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     ## -- Iterating
     .next <- cx[["_links"]][["next"]]$href
-    pb <- progress_bar$new(total = cx[["page"]][["totalPages"]]-1)
+    pb <- progress_bar$new(total = cx[["page"]][["totalPages"]])
+    pb$tick()
     while (!is.null(.next)) {
         pb$tick()
         x <- GET(.next)
