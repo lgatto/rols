@@ -6,7 +6,11 @@ import(progress)
 importFrom(Biobase, validMsg)
 importClassesFrom(Biobase, Versioned)
 
-exportClasses(CVParam)
+exportClasses(CVParam,
+              Term, Terms,
+              Ontology, Ontologies,
+              OlsSearch,
+              Property, Properties)
 
 exportMethods(show,
               "[", "[[", lapply,
@@ -26,7 +30,9 @@ exportMethods(show,
               termDesc,
               olsNamespace,
               term, terms,
-              termId)
+              termId,
+              ## Property/ies
+              properties)
 
 
 export(charIsCVParam, CVParam,
