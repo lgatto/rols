@@ -12,7 +12,8 @@ test_that("OlsSearch tgn", {
                         .Names = c("GO:0005802", "GO:0030130",
                                    "GO:0006895", "GO:0030140", "GO:0012510"))
 
-    expect_identical(termLabel(as(tgn, "Terms")), tgnres)    
+    expect_identical(sort(termLabel(as(tgn, "Terms"))),
+                     sort(tgnres))
 })
 
 
