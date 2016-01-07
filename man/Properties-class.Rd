@@ -1,5 +1,5 @@
 \name{Properties-class}
-n\Rdversion{1.1}
+\Rdversion{1.1}
 \docType{class}
 
 \alias{Properties}
@@ -23,12 +23,12 @@ n\Rdversion{1.1}
 \title{Class \code{"Properties"}}
 
 \description{
-%%  ~~ A concise (1-5 lines) description of what the class is. ~~
+  Description comes here
 }
 
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("Properties", ...)}.
-%%  ~~ describe objects here ~~ 
+  Objects can be created by calls of the form \code{new("Properties", ...)}.
+  %%  ~~ describe objects here ~~ 
 }
 
 \section{Slots}{
@@ -38,7 +38,7 @@ Objects can be created by calls of the form \code{new("Properties", ...)}.
 }
 
 \section{Extends}{
-Class \code{"\linkS4class{Terms}"}, directly.
+  Class \code{"\linkS4class{Terms}"}, directly.
 }
 
 \section{Methods}{
