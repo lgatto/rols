@@ -7,12 +7,12 @@ setMethod("properties", "Ontology",
 
 setMethod("properties", "Term",
           function(object, ...) {
-              urls <- rols:::getPropertyLinks(object)
+              urls <- getPropertyLinks(object)
               if (length(urls) == 0) {
                   message("No properties for term ", termId(object))
                   return(NULL)
               }
-              ans <- lapply(urls, rols:::makeProperties)
+              ans <- lapply(urls, makeProperties)
               ans <- unlist(lapply(ans, "slot", "x"))
               names(ans) <- sub("\\.href\\.", "/", names(ans))
               Properties(x = ans)
