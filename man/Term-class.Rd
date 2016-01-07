@@ -137,13 +137,21 @@
     
     \item{termId}{\code{signature(object = "Term")}: ... }
 
-    \item{children}{\code{signature(object = "Term")}: ... }
+    \item{children}{\code{signature(object = "Term")}: Returns a new
+      \code{Terms} instance with the \code{object}'s
+      children. \code{NULL} if there are not children. }
 
-    \item{parents}{\code{signature(object = "Term")}: ... }
+    \item{parents}{\code{signature(object = "Term")}: Returns a new
+      \code{Terms} instance with the \code{object}'s
+      parents. \code{NULL} if there are not parents.}
     
-    \item{ancestors}{\code{signature(object = "Term")}: ... }
+    \item{ancestors}{\code{signature(object = "Term")}: Returns a new
+      \code{Terms} instance with the \code{object}'s
+      ancestors. \code{NULL} if there are not ancestors. }
     
-    \item{descendants}{\code{signature(object = "Term")}: ... }
+    \item{descendants}{\code{signature(object = "Term")}: Returns a new
+      \code{Terms} instance with the \code{object}'s
+      descendants. \code{NULL} if there are not descendants. }
 
     \item{show}{\code{signature(object = "Term")}: ... }
 

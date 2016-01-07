@@ -41,8 +41,19 @@
   Class \code{"\linkS4class{Terms}"}, directly.
 }
 
-\section{Methods}{
+\section{Methods and functions}{
   \describe{
+
+    \item{properties}{\code{signature(object = "Ontology")}: ... Also
+      works with a \code{character} with the ontology namespace. See
+      \code{\link(Ontology)} for details. }
+
+    \item{properties}{\code{signature(object = "Term")}: ... Returns
+      \code{NULL} when no properties are available. }
+
+    \item{proterties}{\code{signature(object = "Terms")}: Returns a list
+      of .. }
+
     \item{show}{\code{signature(object = "Properties")}: ... }
 
     \item{length}{\code{signature(object = "Properties")}: ... }
