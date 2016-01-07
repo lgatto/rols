@@ -140,7 +140,7 @@ test_that("terms(pagesize)", {
 })
 
 test_that("No links", {
-    trm <- gotrms[[1]]
+    trm <- term("GO", "GO:0030232")
     ## does not have any children
     expect_message(x <- children(trm), "No children terms.")
     expect_null(x)
