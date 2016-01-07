@@ -47,4 +47,5 @@ test_that("Property/ies show", {
     trm <- term("uberon", "UBERON_0002107")
     p <- properties(trm)
     expect_null(show(p))
+    expect_null(show(p[[1]]))
 })
