@@ -138,7 +138,6 @@ makeTerm <- function(x)
         ans <- append(ans, lapply(cx[["_embedded"]][[1]], makeTerm))
         .next <- cx[["_links"]][["next"]][[1]]
     }
-    cat("\n")
     names(ans) <- sapply(ans, termId)
     Terms(x = ans)
 }
