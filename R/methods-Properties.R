@@ -5,10 +5,23 @@ setMethod("properties", "character",
 setMethod("properties", "Ontology",
           function(object, ...) .properties(olsNamespace(object), ...))
 
+setMethod("properties", "Term",
+          function(object, ...) {
+              urls <- rols:::getPropertyLinks(object)
+              if (length(urls) == 0) {
+                  message("No properties for term ", termId(object))
+                  return(NULL)
+              }
+              ans <- lapply(urls, rols:::makeProperties)
+              ans <- unlist(lapply(ans, "slot", "x"))
+              names(ans) <- sub("\\.href\\.", "/", names(ans))
+              Properties(x = ans)
+          })
 
-## TODo - see https://github.com/EBISPOT/OLS/issues/36
-## setMethod("properties", "Term", function(object, ...) ...)
-## setMethod("properties", "Terms", function(object, ...) ...)
+setMethod("properties", "Terms",
+          function(object, ...) {
+              lapply(object@x, properties)
+          })
 
 ##########################################
 ## show methods
@@ -23,7 +36,10 @@ setMethod("show", "Property",
 
 setMethod("show", "Properties",
           function(object) {
-              cat("Object of class 'Properties' with", length(object), "entries\n")
+              cat("Object of class 'Properties' with", length(object),
+                  ifelse(length(object) > 1,
+                         "entries\n",
+                         "entry\n"))
               onts <- unique(termPrefix(object))
               if (length(onts) == 1)
                   cat(" From the", onts, "ontology\n")
@@ -38,3 +54,8 @@ setMethod("show", "Properties",
               else
                   cat(paste(termLabel(object)[1:n], collapse = ", "), "\n")
           })
+
+##########################################
+## Data manipulation
+
+setMethod("length", "Properties", function(x) length(x@x))

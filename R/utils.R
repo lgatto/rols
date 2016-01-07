@@ -151,23 +151,23 @@ makeTerm <- function(x)
     ont <- Ontology(oid)
     url <- paste(ontologyUrl(ont), "properties", sep = "/")
     url <- paste0(url, "?&size=", pagesize)
+    makeProperties(url)
+}
+
+makeProperties <- function(url) {
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
     ans <- lapply(cx[["_embedded"]][[1]], makeProperty)
     ## -- Iterating
     .next <- cx[["_links"]][["next"]]$href
-    pb <- progress_bar$new(total = cx[["page"]][["totalPages"]])
-    pb$tick()
     while (!is.null(.next)) {
-        pb$tick()
         x <- GET(.next)
         warn_for_status(x)
         cx <- content(x)
         ans <- append(ans, lapply(cx[["_embedded"]][[1]], makeProperty))
         .next <- cx[["_links"]][["next"]][[1]]
     }
-    cat("\n")
     names(ans) <- sapply(ans, termLabel)
     Properties(x = ans)
 }
@@ -192,3 +192,13 @@ makeProperty <- function(x)
               short_form = x$short_form,
               obo_id = x$obo_id,
               links = x$`_links`)
+
+
+## see https://github.com/EBISPOT/OLS/issues/36
+getPropertyLinks <- function(trm) {
+    termlinks <- c("self", "parents", "ancestors", "children", "descendants")
+    graphlinks <- c("jstree", "graph")
+    nms <- names(trm@links)
+    p <- !nms %in% c(termlinks, graphlinks)
+    unlist(trm@links[p])
+}
