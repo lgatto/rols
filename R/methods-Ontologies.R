@@ -177,3 +177,17 @@ setMethod("all.equal", c("Ontologies", "Ontologies"),
               if (is.null(msg)) return(TRUE)
               else msg
           })
+
+setMethod("all.equal", c("Ontology", "Ontology"),
+          function(target, current) {
+              msg <- Biobase::validMsg(NULL, NULL)
+              sn <- slotNames("Ontology")
+              for (i in sn[sn != "config"])
+                  msg <- validMsg(all.equal(slot(current, i), slot(target, i)), msg)
+              c1 <- slot(current, "config")
+              c2 <- slot(target, "config")
+              c1 <- c1[order(names(c1))]
+              c2 <- c2[order(names(c2))]
+              msg <- Biobase::validMsg(all.equal(c1, c2), msg)
+              if (is.null(msg)) TRUE else msg              
+          })

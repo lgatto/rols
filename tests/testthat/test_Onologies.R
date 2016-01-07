@@ -16,9 +16,10 @@ test_that("Ontology constructors", {
     go1 <- Ontology("go")
     go2 <- Ontology("GO")
     go3 <- Ontology("Go")
-    expect_identical(go1, go2)
-    expect_identical(go1, go3)
-    expect_identical(go1, ol[["go"]])
+    expect_true(all.equal(go1, go))
+    expect_true(all.equal(go1, go2))
+    expect_true(all.equal(go1, go3))
+    expect_true(all.equal(go1, ol[["go"]]))
 })
 
 test_that("Ontology show methods", {

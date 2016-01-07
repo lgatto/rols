@@ -71,6 +71,7 @@
 \alias{coerce,Ontologies,list-method}
 
 \alias{all.equal,Ontologies,Ontologies-method}
+\alias{all.equal,Ontology,Ontology-method}
 
 \title{Class \code{"Ontology"}}
 
@@ -259,8 +260,8 @@ identical(olsVersion("go"), olsVersion(go))
 ## Directly initialise a single ontology
 go1 <- Ontology("go") ## using the namespace (preferred)
 go2 <- Ontology("GO") ## using the prefix (see Details)
-stopifnot(identical(go, go1))
-stopifnot(identical(go, go2))
+all.equal(go, go1)
+all.equal(go, go2)
 }
 
 
