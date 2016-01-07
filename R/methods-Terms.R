@@ -15,7 +15,12 @@ setMethod("term", c("Ontology", "character"),
 
 children <- function(id) {
     stopifnot(inherits(id, "Term"))
-    x <- GET(id@links$children[[1]])
+    url <- id@links$children[[1]]
+    if (is.null(url)) {
+        message("No children terms.")
+        return(NULL)
+    }        
+    x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
@@ -25,7 +30,12 @@ children <- function(id) {
 
 parents <- function(id) {
     stopifnot(inherits(id, "Term"))
-    x <- GET(id@links$parents[[1]])
+    url <- id@links$parents[[1]]
+    if (is.null(url)) {
+        message("No parent terms.")
+        return(NULL)
+    }        
+    x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
@@ -35,7 +45,12 @@ parents <- function(id) {
 
 ancestors <- function(id) {
     stopifnot(inherits(id, "Term"))
-    x <- GET(id@links$ancestors[[1]])
+    url <- id@links$ancestors[[1]]
+    if (is.null(url)) {
+        message("No ancestor terms.")
+        return(NULL)
+    }    
+    x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
@@ -45,7 +60,12 @@ ancestors <- function(id) {
 
 descendants <- function(id) {
     stopifnot(inherits(id, "Term"))
-    x <- GET(id@links$descendants[[1]])
+    url <- id@links$descendants[[1]]
+    if (is.null(url)) {
+        message("No descendant terms.")
+        return(NULL)
+    }    
+    x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)

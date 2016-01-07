@@ -138,3 +138,23 @@ test_that("terms(pagesize)", {
     expect_true(all.equal(trms3, trms4))
     expect_true(all.equal(trms3, trms5))
 })
+
+test_that("No links", {
+    trm <- gotrms[[1]]
+    ## does not have any children
+    expect_message(x <- children(trm), "No children terms.")
+    expect_null(x)
+    ## does not have any descendants
+    expect_message(x <- descendants(trm), "No descendant terms.")
+    expect_null(x)
+    ## does have parents and ancestors, though
+    expect_is(parents(trm), "Terms")
+    expect_is(ancestors(trm), "Terms")
+    ## not anymore
+    trm@links$parents <- NULL
+    trm@links$ancestors <- NULL
+    expect_message(x <- parents(trm), "No parent terms.")
+    expect_null(x)
+    expect_message(x <- ancestors(trm), "No ancestor terms.")
+    expect_null(x)
+})
