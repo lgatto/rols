@@ -28,7 +28,7 @@ test_that("Property constructors", {
     expect_is(pl, "list")
     expect_identical(length(pl), 3L)
 
-
+    so <- terms(ont)
     k <- c("SO:0000579", "SO:0000833", "SO:0000578", "SO:0000011",
            "SO:0000577", "SO:0000628", "SO:0001431", "SO:0000704",
            "SO:0000976", "SO:0000576")
