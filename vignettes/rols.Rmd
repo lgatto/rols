@@ -1,5 +1,5 @@
 ---
-title: `r Biocpkg("rols"): an R interface to the Ontology Lookup Service
+title: "`r Biocpkg('rols')`: an R interface to the Ontology Lookup Service"
 output:
   BiocStyle::html_document:
      toc: true
@@ -22,10 +22,10 @@ BiocStyle::markdown()
 
 
 ```{r env, echo=FALSE}
-library("xtable")
 suppressPackageStartupMessages(library("GO.db"))
 suppressPackageStartupMessages(library("rols"))
-nonto <- length(ontologyNames())
+suppressPackageStartupMessages(library("DT"))
+nonto <- length(ol <- Ontologies())
 ```
 
 # Introduction
@@ -33,14 +33,20 @@ nonto <- length(ontologyNames())
 The [Ontology Lookup Service](http://www.ebi.ac.uk/ontology-lookup/)
 (OLS)
 [[1](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-97),
-[2](http://nar.oxfordjournals.org/content/36/suppl_2/W372)] is a
-spin-off of the PRoteomics IDEntifications database (PRIDE) service,
-located at the EBI. OLS provides a unified interface to over hundred
-ontologies.
+[2](http://nar.oxfordjournals.org/content/36/suppl_2/W372)] is
+originally spin-off of the
+[PRoteomics IDEntifications](http://www.ebi.ac.uk/pride/archive/)
+database (PRIDE) service, located at the EBI, and is now developed and
+maintained by the
+[Samples, Phenotypes and Ontologies](http://www.ebi.ac.uk/about/spot-team)
+team at EMBL-EBI.
 
 
-`r Biocpkg("rols")` relies on the `r CRANpkg("httr")` to query the
-REST interface at the EBI and accesss the OLS.
+The OLS provides a REST interface to hundreds of ontologies from a
+single location with a unified output format. The `r Biocpkg("rols")`
+package make this possible from within R. Do do so, it relies on the
+`r CRANpkg("httr")` package to query the REST interface, and access
+and retrieve data.
 
 # Brief \Biocpkg{rols} overview
 
@@ -51,47 +57,11 @@ table below. Their name is to be use to defined which ontology to
 query.
 
 
-```{r ontTable, results='asis', echo = FALSE}
-tab <- ontologies()
-o <- order(tab$Name)
-print(xtable(tab[o,],
-             align=c("l", "l", "l"),
-             label="tab:onto",
-             caption='Available ontologies.'),
-      tabular.environment="longtable",
-      floating=FALSE,
-      include.rownames=FALSE)
+```{r ontTable, echo = FALSE}
+datatable(as(ol, "data.frame"))
 ```
 
 ## Interface
-
-The table below summarised the common interface available for the
-`r nonto` ontologies.  More information is provided in the respective
-manual pages.
-
-```{r funTables, echo = FALSE}
-funTab <- data.frame(rbind(
-  c("olsVersion", "Returns the OLS version"),
-  c("ontologies", "Returns all available ontologies"),
-  c("ontologyNames", "Returns all ontologyNames"), 
-  c("ontologyLoadDate", "Returns the ontology load date"), 
-  c("isIdObsolete", "Is the ontology id obsolete"), 
-  c("term", "Returns the term of a given identifier"),
-  c("termMetadata", "Retuns an identifier's metadata"),
-  c("termXrefs", "Returns the idenifier's ontology cross references"),
-  c("rootId", "Retuns the root identifiers of an ontology"), 
-  c("allIds", "Returns all identifiers and terms of an ontology"), 
-  c("olsQuery", "Returns matching identifiers"), 
-  c("parents", "Returns the parent(s) of a term."),
-  c("childrenRelations", "Returns the children relation type(s).")
-))
-colnames(funTab) <- c("Function", "Description")
-print(xtable(funTab,
-             align=c("l", "l", "l"),
-             label="tab:fun",
-             caption='Functions available to query the ontologies.'),
-      include.rownames=FALSE)
-```
 
 # Use case
 
@@ -103,23 +73,21 @@ relevant pattern. The code below describes how to achieve this.
 
 ```{r tgnquery, eval = TRUE}
 library("rols")
-alltgns <- olsQuery("trans-golgi network")
+(alltgns <- OlsSearch(q = "trans-golgi network"))
+(alltgns <- OlsSearch(q = "trans-golgi network", exact = TRUE))
+(alltgns <- OlsSearch(q = "trans-golgi network", ontology = "GO"))
+(alltgns <- OlsSearch(q = "trans-golgi network", ontology = "GO", exact = TRUE))
 ```
-
-As shown below, `r length(unique(sapply(strsplit(names(alltgns), ":"), "[", 1)))`
-different ontologies have matched the query string.
 
 ```{r tgnqueryShow}
-alltgns
-allonts <- sapply(strsplit(alltgns, ":"), "[", 1)
-onto.tab <- table(allonts)
-onto.tab
+
 ```
 
-The description of the `r length(onto.tab)` ontologies of interest can then be used to subset the ontology description:
+The description of the `r length(onto.tab)` ontologies of interest can
+then be used to subset the ontology description:
 
 ```{r tgnqueryTable}
-ontologies()[names(onto.tab),]
+
 ```
 
 To restrict the search to a specific ontology of interest, one can
