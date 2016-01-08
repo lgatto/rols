@@ -20,7 +20,7 @@ setMethod("properties", "Term",
 
 setMethod("properties", "Terms",
           function(object, ...) {
-              lapply(object@x, properties)
+              lapply(object@x, properties, ...)
           })
 
 ##########################################

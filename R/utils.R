@@ -67,7 +67,8 @@ makeOntologies <- function(pagesize = 150) {
     cx <- content(x)
     if (cx$page$totalElements > pagesize) {
         pagesize <- cx$page$totalElements
-        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=", pagesize))
+        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=",
+                        pagesize))
         warn_for_status(x)
         cx <- content(x)
     }        
@@ -118,7 +119,7 @@ makeTerm <- function(x)
 ##' @param oid A character with an ontology or an ontology
 ##' @param pagesize How many results per page to return
 ##' @return An object of class Terms
-.terms <- function(oid, pagesize = 200) {
+.terms <- function(oid, pagesize = 1000) {
     ont <- Ontology(oid)
     url <- paste(ontologyUrl(ont), "terms", sep = "/")
     url <- paste0(url, "?&size=", pagesize)

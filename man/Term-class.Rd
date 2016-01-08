@@ -119,7 +119,7 @@
     \item{term}{\code{signature(object = "Ontology", id = "character")}:
       ... }
     
-    \item{terms}{\code{signature(x = "Ontology")}: ... }
+    \item{terms}{\code{signature(x = "Ontology", pagesize = "numeric")}: ... }
     
     \item{termDesc}{\code{signature(object = "Term")}: ... }
     
