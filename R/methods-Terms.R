@@ -146,7 +146,7 @@ setMethod("termDesc", "Terms",
           function(object) sapply(object@x, termDesc))
 
 setMethod("termNamespace", "Term",
-          function(object) unlist(object@annotation$has_obo_namespace))
+          function(object) unlist(object@ontology_name))
 setMethod("termNamespace", "Terms",
           function(object) sapply(object@x, termNamespace))
 
@@ -154,6 +154,8 @@ setMethod("termNamespace", "Terms",
 ## Data manipulation
 
 setMethod("length", "Terms", function(x) length(x@x))
+
+setMethod("unique", "Terms", function(x) x[!duplicated(names(x@x))])
 
 setMethod("[", "Terms",
           function(x, i, j="missing", drop="missing") Terms(x = x@x[i]))

@@ -16,6 +16,7 @@ exportMethods(show,
               "[", "[[", lapply,
               coerce,
               length,
+              unique,
               ## Ontology/ies
               Ontology, Ontologies,
               olsRoot,
