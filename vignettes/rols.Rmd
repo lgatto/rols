@@ -63,25 +63,63 @@ datatable(as(ol, "data.frame"))
 
 ## Interface
 
+```{r}
+library("rols")
+```
+
 # Use case
 
-A researcher might be interested in the trans-Golgi network and
+```{r}
+alltgns <- OlsSearch(q = "trans-golgi network")
+```
+
+A researcher might be interested in the trans-Golgi network. Searching
+the OLS is assured by the `OlsSearch` and `olsSearch` functions. The
+first step is to defined the search query with `OlsSearch`, as shown
+below. This creates an search object of class `OlsSearch` that stores
+the query and its parameters. In records the number of requested
+results (default is 20) and the total number of possible results
+(there are `r alltgns@numFound` results across all ontologies, in this
+case). At this stage, the results have not yet been downloaded, as
+shown by the `r nrow(alltgns@response)` responses. 
+
+```{r tgnquery, eval = TRUE}
+OlsSearch(q = "trans-golgi network")
+```
+
+`r alltgns@numFound` results are probably too many to be
+relevant. Below we show how to perform an exact search by setting
+\code{exact = TRUE}, limiting the search the the GO ontology by
+specifying `ontology = "GO"` or doing both
+
+```{r tgnquery, eval = TRUE}
+OlsSearch(q = "trans-golgi network", exact = TRUE)
+OlsSearch(q = "trans-golgi network", ontology = "GO")
+OlsSearch(q = "trans-golgi network", ontology = "GO", exact = TRUE)
+```
+
+One case set the `rows` argument to set the number of desired results.
+
+```{r tgnquery2}
+OlsSearch(q = "trans-golgi network", ontology = "GO", rows = 200)
+```
+
+Alternatively, one can call the `allRows` function to request all results.
+
+```{r tgnquery3}
+(tgnq <- OlsSearch(q = "trans-golgi network", ontology = "GO"))
+(tgnq <- allRows(tgnq))
+```
+
+To 
+
+
 interested in knowing in which ontologies his favourite organelle is
 referenced. This can be done by querying all ontologies with a
 relevant pattern. The code below describes how to achieve this.
 
 
-```{r tgnquery, eval = TRUE}
-library("rols")
-(alltgns <- OlsSearch(q = "trans-golgi network"))
-(alltgns <- OlsSearch(q = "trans-golgi network", exact = TRUE))
-(alltgns <- OlsSearch(q = "trans-golgi network", ontology = "GO"))
-(alltgns <- OlsSearch(q = "trans-golgi network", ontology = "GO", exact = TRUE))
-```
 
-```{r tgnqueryShow}
-
-```
 
 The description of the `r length(onto.tab)` ontologies of interest can
 then be used to subset the ontology description:
