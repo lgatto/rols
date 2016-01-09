@@ -21,6 +21,7 @@ setGeneric("isRoot", function(object, ...) standardGeneric("isRoot"))
 setGeneric("termSynonym", function(object, ...) standardGeneric("termSynonym"))
 setGeneric("termDesc", function(object, ...) standardGeneric("termDesc"))
 setGeneric("termNamespace", function(object, ...) standardGeneric("termNamespace"))
+setGeneric("termOntology", function(object, ...) standardGeneric("termOntology"))
 
 setGeneric("properties", function(object, ...) standardGeneric("properties"))
 

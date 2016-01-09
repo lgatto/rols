@@ -17,6 +17,10 @@
 \alias{termNamespace,Term-method}
 \alias{termNamespace,Terms-method}
 
+\alias{termOntology}
+\alias{termOntology,Term-method}
+\alias{termOntology,Terms-method}
+
 \alias{termSynonym}
 \alias{termSynonym,Term-method}
 \alias{termSynonym,Terms-method}
@@ -131,6 +135,8 @@
     \item{termSynonym}{\code{signature(object = "Term")}: ... }
 
     \item{termNamespace}{\code{signature(object = "Term")}: ... }
+
+    \item{termOntology}{\code{signature(object = "Term")}: ... }
 
     \item{isRoot}{\code{signature(object = "Term")}: ... }
 

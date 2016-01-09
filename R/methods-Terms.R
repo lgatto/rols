@@ -145,8 +145,13 @@ setMethod("termDesc", "Term",
 setMethod("termDesc", "Terms",
           function(object) sapply(object@x, termDesc))
 
-setMethod("termNamespace", "Term",
+setMethod("termOntology", "Term",
           function(object) unlist(object@ontology_name))
+setMethod("termOntology", "Terms",
+          function(object) sapply(object@x, termOntology))
+
+setMethod("termNamespace", "Term",
+          function(object) unlist(object@annotation$has_obo_namespace))
 setMethod("termNamespace", "Terms",
           function(object) sapply(object@x, termNamespace))
 
