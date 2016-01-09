@@ -48,9 +48,6 @@ package make this possible from within R. Do do so, it relies on the
 `r CRANpkg("httr")` package to query the REST interface, and access
 and retrieve data.
 
-# Brief \Biocpkg{rols} overview
-
-## Ontologies
 
 There are `r nonto` ontologies available in the OLS, listed in the
 table below. Their name is to be use to defined which ontology to
@@ -61,10 +58,71 @@ query.
 datatable(as(ol, "data.frame"))
 ```
 
-## Interface
+# Brief \Biocpkg{rols} overview
+
+The `r Biocpkg('rols')` package is build around a few classes that
+enable to query the OLS and retrieve, store and manipule data. Each of
+these classes are described in more details in their respective manual
+pages. We start by loading the package.
 
 ```{r}
 library("rols")
+```
+
+## Ontologies
+
+The `Ontology` and `Ontologies` classes can store information about
+single of multiple ontologies. The latter can be easily subset using
+`[` and `[[`, as one would for lists.
+
+```{r ol}
+ol <- Ontologies()
+ol
+```
+
+```{r}
+head(olsNamespace(ol))
+ol[["go"]]
+```
+
+It is also possible to initialise a single ontology
+
+```{r}
+go <- Ontology("go")
+go
+```
+
+## Terms
+
+Singly ontology terms are stored in `Term` objects. When more terms
+need to be manipulated, they are stored as `Terms` objects. It is easy
+to obtain all terms of an ontology of interest, and the resulting
+`Terms` object can be subset using
+`[` and `[[`, as one would for lists.
+
+```{r}
+gotrms <- terms(go) ## or terms("go")
+gotrms
+gotrms[1:10]
+gotrms[["GO:0090575"]]
+```
+
+It is also possible to initialise a single term
+
+```{r}
+trm <- term(go, "GO:0090575")
+termId(trm)
+termLabel(trm)
+strwrap(termDesc(trm))
+```
+
+It is then possible to extract the `ancestors`, `descendants`,
+`parents` and `children` terms. Each of these functions return a
+`Terms` object
+
+```{r}
+parents(trm)
+children(trm)
 ```
 
 # Use case
@@ -159,15 +217,16 @@ and ` r Biocpkg("GO.db")`, as a result of the different ways they
 access the data. `r Biocpkg("rols")` or ` r Biocpkg("biomaRt")`
 perform direct online queries, while `r Biocpkg("GO.db")` and other
 annotation packages use database snapshot that are updated every
-release.
+release. 
 
 Both approaches have advantages. While online queries allow to obtain
 the latest up-to-date information, such approaches rely on network
 availability and quality. If reproducibility is a major issue, the
 version of the database to be queried can easily be controlled with
-off-line approaches. In the case of `r Biocpkg("rols")`, altough the
+off-line approaches. In the case of `r Biocpkg("rols")`, although the
 load date of a specific ontology can be queried with `olsVersion`, it
-is not possible to query a specific version of an ontology.
+is not possible to query a specific version of an ontology. 
+
 
 # Changes in `r Biocpkg("rols")` 2.0
 
