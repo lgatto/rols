@@ -168,8 +168,10 @@
       of ontolgies described by the \code{Terms} object. }
 
     \item{unique}{\code{signature(x = "Terms")}: returns a new
-      \code{Terms} object where all duplicated \code{Term} instances
-      have been removed. }   
+      \code{Terms} object where all duplicated \code{Term} instances,
+      i.e. those with the same term id (even when stemming from
+      different ontologies), have been removed (only the first occurence
+      is retained). }
     
   }
   
