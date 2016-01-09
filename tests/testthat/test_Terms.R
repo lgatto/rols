@@ -100,6 +100,20 @@ test_that("accessors", {
 
     expect_true(all(unlist(termNamespace(trms)) == "sequence"))
     expect_identical(termNamespace(trm), "biological_process")
+
+    expect_true(all(unlist(termOntology(trms)) == "so"))
+    expect_identical(termOntology(trm), "go")
+})
+
+test_that("unique terms", {
+    x <- list(term("go", "GO:0005802"),
+              term("nbo", "GO:0005802"),
+              term("cco", "GO:0005802"))
+    names(x) <- rep("GO:0005802", 3)
+    trms <- rols:::Terms(x = x)
+    expect_identical(length(trms), 3L)
+    expect_identical(length(unique(trms)), 1L)
+    expect_identical(unique(trms)[[1]], trms[[1]])
 })
 
 test_that("apply over Terms", {

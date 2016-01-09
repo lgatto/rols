@@ -113,3 +113,19 @@ test_that("coercion", {
     olst <- as(ol, "list")
     expect_identical(olst, ol@x)
 })
+
+test_that("all.equal ontolgies", {
+    ol0 <- ol <- Ontologies()
+    expect_identical(length(ol), length(ol[-1]) + 1L)
+    expect_identical(all.equal(ol, ol[-1]),
+                     "The 2 Ontologies are of different lengths")
+    names(ol@x)[1] <- "foo"
+    expect_identical(length(ol), length(ol0))
+    expect_identical(all.equal(ol, ol0),
+                     "Ontology names don't match")
+    expect_identical(names(ol@x)[-1], names(ol0@x)[-1])
+    ol <- ol0
+    ol@x[[1]]@loaded <- "123"
+    expect_equal(all.equal(ol, ol0),
+                 "Ontology 'cteno': loaded: 1 string mismatch")    
+})

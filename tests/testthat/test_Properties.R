@@ -49,3 +49,10 @@ test_that("Property/ies show", {
     expect_null(show(p))
     expect_null(show(p[[1]]))
 })
+
+test_that("iterating over next property", {
+    go <- Ontology("go")
+    p1 <- properties(go)
+    p2 <- properties(go, pagesize = 10)
+    expect_identical(p1, p2)
+})
