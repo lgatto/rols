@@ -69,7 +69,7 @@ library("rols")
 
 # Use case
 
-```{r}
+```{r, echo=FALSE}
 alltgns <- OlsSearch(q = "trans-golgi network")
 ```
 
@@ -92,7 +92,7 @@ relevant. Below we show how to perform an exact search by setting
 \code{exact = TRUE}, limiting the search the the GO ontology by
 specifying `ontology = "GO"` or doing both
 
-```{r tgnquery, eval = TRUE}
+```{r tgnquery1, eval = TRUE}
 OlsSearch(q = "trans-golgi network", exact = TRUE)
 OlsSearch(q = "trans-golgi network", ontology = "GO")
 OlsSearch(q = "trans-golgi network", ontology = "GO", exact = TRUE)
@@ -111,49 +111,44 @@ Alternatively, one can call the `allRows` function to request all results.
 (tgnq <- allRows(tgnq))
 ```
 
-To 
-
-
-interested in knowing in which ontologies his favourite organelle is
-referenced. This can be done by querying all ontologies with a
-relevant pattern. The code below describes how to achieve this.
-
-
-
-
-The description of the `r length(onto.tab)` ontologies of interest can
-then be used to subset the ontology description:
-
-```{r tgnqueryTable}
-
+```{r tgnsear4, echo=FALSE}
+qry <- OlsSearch(q = "trans-golgi network", exact = TRUE)
 ```
 
-To restrict the search to a specific ontology of interest, one can
-specify the ontolgy name as a parameter to `olsQuery`.
+Let's proceed with the exact serach and retrieve the results. Even if
+we request the default 20 results, only the `r qry@numFound` relevant
+result will be retrieved. The `olsSearch` function updates the
+previously created object (called `qry` below) by adding the results
+to it.
 
-
-```{r gotgnquery}
-gotgns <- olsQuery("trans-golgi network", "GO")
-gotgns
+```{r tgnquery5}
+qry <- OlsSearch(q = "trans-golgi network", exact = TRUE)
+(qry <- olsSearch(qry))
 ```
 
-Details about relevant terms can be retrieved with the `term` and
-`termMetadata` functions. This functionality provides on-line access
-to the same data that is available in the `r Biocpkg("GO.db")`, and
-can be extended to any of the `r nonto` available ontologies.
+We can now transform this search result object into a fully fledged
+`Terms` object or a `data.frame`.
 
-```{r godetails}
-term("GO:0005802", "GO")
-mtd <- termMetadata("GO:0005802", "GO")
-names(mtd)
-mtd
-strwrap(mtd["comment"])
-strwrap(mtd["definition"])
+```{r tgnres}
+(qtrms <- as(qry, "Terms"))
+(qdrf <- as(qry, "data.frame"))
+```
+
+In the case, we can that we actually retrieve the same term used
+across different ontologies. In such cases, it might be useful to use
+only keep non-redundant term instances, which would have been
+equivalent to search the `r termOntology(unique(qtrms))` ontology
+
+```{r uterms}
+qtrms <- unique(qtrms)
+termOntology(qtrms)
+termNamespace(qtrms)
 ```
 
 Below, we execute the same query using the \Biocpkg{GO.db} package.
 
-```{r go.db}
+```{r go.db, message=FALSE}
+library("GO.db")
 GOTERM[["GO:0005802"]]
 ```
 
