@@ -94,7 +94,7 @@ go
 
 ## Terms
 
-Singly ontology terms are stored in `Term` objects. When more terms
+Single ontology terms are stored in `Term` objects. When more terms
 need to be manipulated, they are stored as `Terms` objects. It is easy
 to obtain all terms of an ontology of interest, and the resulting
 `Terms` object can be subset using
@@ -147,8 +147,8 @@ OlsSearch(q = "trans-golgi network")
 
 `r alltgns@numFound` results are probably too many to be
 relevant. Below we show how to perform an exact search by setting
-\code{exact = TRUE}, limiting the search the the GO ontology by
-specifying `ontology = "GO"` or doing both
+`exact = TRUE`, and limiting the search the the GO ontology by
+specifying `ontology = "GO"`, or doing both.
 
 ```{r tgnquery1, eval = TRUE}
 OlsSearch(q = "trans-golgi network", exact = TRUE)
@@ -193,9 +193,9 @@ We can now transform this search result object into a fully fledged
 ```
 
 In the case, we can that we actually retrieve the same term used
-across different ontologies. In such cases, it might be useful to use
-only keep non-redundant term instances, which would have been
-equivalent to search the `r termOntology(unique(qtrms))` ontology
+across different ontologies. In such cases, it might be useful to keep
+only non-redundant term instances. In this case, this would have been
+equivalent to searching the `r termOntology(unique(qtrms))` ontology
 
 ```{r uterms}
 qtrms <- unique(qtrms)
@@ -203,7 +203,7 @@ termOntology(qtrms)
 termNamespace(qtrms)
 ```
 
-Below, we execute the same query using the \Biocpkg{GO.db} package.
+Below, we execute the same query using the `r \Biocpkg{GO.db}` package.
 
 ```{r go.db, message=FALSE}
 library("GO.db")
