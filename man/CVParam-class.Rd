@@ -48,25 +48,34 @@ CVParam(label, name, accession, value, exact = TRUE)
 
 \section{Slots}{
   \describe{
+    
     \item{\code{label}:}{Object of class \code{"character"} that defines
-    the label of the instance, i.e the ontology abbreviation. See
-    \code{\link{ontologyNames}} for a complete list. }
+      the label of the instance, i.e the ontology
+      abbreviation/prefix. See \code{\link{Ontologies}} to generate a
+      list of available ontologies and \code{\link{olsPrefix}} for
+      existing labels.}
+  
     \item{\code{accession}:}{Object of class \code{"character"} with the
       parameter's valid \code{label} ontology accession number. See
       below for validity constrains. }
+    
     \item{\code{name}:}{ Object of class \code{"character"} with the
       instance's valid name, i.e matching with the
       \code{accession}. \code{name} and \code{accession} must follow
       \code{term(accession, label) == name} for the instance to be
-      valid. } 
+      valid. }
+    
     \item{\code{value}:}{Object of class \code{"character"} with the
       \code{CVParams} value, if applicable, of empty string ("")
       otherwise. }
+    
     \item{\code{user}:}{Object of class \code{"logical"} defining if the 
       instance is a user-defined parameter (also called User params). }
+    
     \item{\code{.__classVersion__}:}{Object of class
       \code{"\linkS4class{Versions}"} describing the instance's class
       definition version. For development use. }
+    
   }
 }
 
@@ -80,11 +89,12 @@ CVParam(label, name, accession, value, exact = TRUE)
     \item{charIsCVParam(x)}{Checks if \code{x}, a character of the form
       \code{"[ONTO, ACCESSION, NAME, VALUE]"}, is a valid (possibly
       user-defined) \code{CVParam}. \code{"ONTO"} is the ontology label
-      (it must be one of \code{ontologies()}), \code{"ACCESSION"} is the
-      term accession number, \code{"NAME"} is the term's name and
-      \code{"VALUE"} is the value. Note that only synatex validity is
-      verified, not semantics.
-      See example below.  }
+      (prefi), \code{"ACCESSION"} is the term accession number,
+      \code{"NAME"} is the term's name and \code{"VALUE"} is the
+      value. Note that only syntax validity is verified, not semantics.
+      See example below.
+      
+    }
   }
 }
 
@@ -102,8 +112,8 @@ CVParam(label, name, accession, value, exact = TRUE)
       \code{label} is absent, the \code{character} is converted to a
       User param, else, the \code{label} and \code{accession} are used
       to query the Ontology Lookup Service (see
-      \code{\link{olsQuery}})). If a \code{name} is provided and does not
-      match the retrieved name, a warning is thrown.
+      \code{\link{OlsSearch}})). If a \code{name} is provided and does
+      not match the retrieved name, a warning is thrown.
 
       This function is vectorised; if the \code{from} character is of
       length greater than 1, then a list of \code{CVParam} is
@@ -129,11 +139,10 @@ CVParam(label, name, accession, value, exact = TRUE)
 ## a user param
 CVParam(name = "A user param", value = "the value")
 ## a CVParam from PSI's Mass Spectrometry ontology
-term("MS:1000073", "MS")
+term("MS", "MS:1000073")
 CVParam(label = "MS", accession = "MS:1000073")
 CVParam(label = "MS", name ="electrospray ionization")
 CVParam(label = "MS", name ="ESI") ## using a synonym
-
 
 ## From a CVParam object to a character
 cv <- as(CVParam(label = "MS", accession = "MS:1000073"), "character")
@@ -147,7 +156,7 @@ as(c(cv, cv), "CVParam") ## more than 1 character
 
 x <- c("[MS, MS:1000073, , ]", ## valid CV param
        "[, , Hello, world]",   ## valid User param
-       "[this, one is, not, valid]", ## bnot valid
+       "[this, one is, not, valid]", ## not valid
        "[ , , , ]") ## not valid
 
 stopifnot(charIsCVParam(x) == c(TRUE, TRUE, FALSE, FALSE))

@@ -14,13 +14,15 @@ CVParam <- function(label,
         if (missing(name) & missing(accession)) {
             stop("You need to provide at least one of 'name' or 'accession'")
         } else if (missing(name)) {
-            name <- term(accession, label)
+            name <- termLabel(term(label, accession))
         } else { ## missing(accession)
-            .term <- olsQuery(name, label, exact = exact)
-            if (length(.term) != 1)
+            resp <- OlsSearch(q = name, ontology = label, exact = exact)
+            if (resp@numFound != 1)
                 stop("Found more than one matching term: ",
-                     paste(.term, collapse = ", "))
-            accession <- names(.term)
+                     paste(resp@response$obo_id, collapse = ", "))
+            olsRows(resp) <- 1 ## only 1 response
+            resp <- olsSearch(resp)
+            accession <- resp@response$obo_id
         }
     
         ans <- new("CVParam", label = label, name = name, accession = accession)
@@ -48,8 +50,6 @@ setMethod("show","CVParam",
             cat(as(object, "character"), "\n")
             invisible(NULL)
           })
-
-
 
 setMethod("rep", "CVParam",
           function(x, times) {
@@ -92,7 +92,6 @@ setAs("character", "CVParam",
 
 as.character.CVParam <- function(x, ...) as(x, "character")
 
-
 .charIsCVParam <- function(x) {
     ## NO SEMANTICS IS CHECKED
     x <- x[1]
@@ -108,7 +107,10 @@ as.character.CVParam <- function(x, ...) as(x, "character")
     if (length(x) != 4) return(FALSE)
     ## CV param: 1 and 2 are present
     if (x[1] != "") {
-        if (x[2] == "" | !x[1] %in% ontologies()[, 1]) return(FALSE)
+        ## FIXME - no ontologies() anymore - maybe add rolsEnv again?
+        ## if (x[2] == "" | !x[1] %in% ontologies()[, 1]) return(FALSE)
+        ## Using a simple (simplistic) pattern instead
+        if (x[2] == "" | !grepl("[A-Za-z]", x[1])) return(FALSE)
         acc <- strsplit(x[2], ":")[[1]]
         if (length(acc) != 2) return(FALSE)
         if (acc[1] != x[1]) return(FALSE)        

@@ -2,7 +2,7 @@
 # https://github.com/hadley/testthat/issues/144
 # revert this when that issue in R is fixed.
 Sys.setenv("R_TESTS" = "")
-library(testthat)
-library(rols)
+library("testthat")
+library("rols")
 
 test_check("rols")

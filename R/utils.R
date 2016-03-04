@@ -1,167 +1,204 @@
-rolsDeprecationMessage <- function() {    
-    msg <- paste("The onology lookup service, the backend behind rols has",
-                 "been updated (see http://www.ebi.ac.uk/ols/beta/roadmap.html).",
-                 "As a result, the rols package is being re-implemented and ",
-                 "will undergo changes in its user interface. The current",
-                 "interface will be maintained for Bioconductor release 3.2",
-                 "and will be discontinued afterwards. Please see",
-                 "https://github.com/lgatto/rols/tree/v2.0 for the new release.")
-    message(cat(strwrap(msg), sep = "\n"))
+setMethod("ontologyUrl", "character",
+          function(object)
+              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", object, "/"))
+
+setMethod("ontologyUrl", "Ontology",
+          function(object) {
+              nsp <- olsNamespace(object)
+              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", nsp, "/")
+          })
+
+## This will not always be the correct URI (see for example
+## Orphaned/ORBO and https://github.com/EBISPOT/OLS/issues/35)
+setMethod("ontologyUri", "missing",
+          function(encode = TRUE) {
+              uri <- "http://purl.obolibrary.org/obo/"
+              if (encode)
+                  uri <- gsub("%", "%25", URLencode(uri, TRUE))
+              uri
+          })
+
+setMethod("ontologyUri", "Ontology",
+          function(object, encode = TRUE, withPrefix = FALSE) {
+              uri <- object@config$baseUris
+              if (is.null(uri) | length(uri) == 0)
+                  return(ontologyUri())
+              if (length(uri) > 1) {
+                  msg <- paste0("More than one URI available:\n  ",
+                                paste(unlist(uri), collapse = ", "), "\n  ",
+                                "Choosing the first one.\n")
+                  warning(msg)
+              }
+              uri <- uri[[1]][1]
+              if (!withPrefix)
+                  uri <- sub("/[A-Za-z]+_$", "/", uri)
+              if (encode)
+                  uri <- gsub("%", "%25", URLencode(uri, TRUE))
+              uri
+          })
+
+.termId <- function(x) x@obo_id
+
+##' @title Makes an Ontology instance based on the response from
+##'     /api/ontologies/{ontology_id}
+##' @param x A valid onology prefix
+##' @return An object of class Ontology
+makeOntology <- function(x)
+    .Ontology(loaded = x$loaded,
+              updated = x$updated,
+              status = x$status,
+              message = x$message,
+              version = x$version,
+              numberOfTerms = x$numberOfTerms,
+              numberOfProperties = x$numberOfProperties,
+              numberOfIndividuals = x$numberOfIndividuals,
+              config = x$config)
+
+
+##' @title Makes an Ontologies instance based on the response from
+##'     api/ontologies @return
+##' @return An object of class Ontologies
+##' @param pagesize A numeric indicating the number of elements per
+##'     page (default in method is 150).
+makeOntologies <- function(pagesize = 150) {
+    x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=",
+                    pagesize))
+    warn_for_status(x)
+    cx <- content(x)
+    if (cx$page$totalElements > pagesize) {
+        pagesize <- cx$page$totalElements
+        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=",
+                        pagesize))
+        warn_for_status(x)
+        cx <- content(x)
+    }        
+    ans <- lapply(cx[["_embedded"]][[1]], makeOntology)
+    names(ans) <- sapply(ans, olsNamespace)
+    .Ontologies(x = ans)
 }
 
-
-##' \code{key} slot accessor for the \code{mapItem} instances.
-##'
-##' @name key,mapItem-method
-##' @aliases key
-##' @rdname key-methods
-##' @docType methods
-##' @title \code{key} slot accessor.
-##' @param object An instance of class \code{Map} or \code{mapItem}.
-##' @return A \code{character}.
-##' @exportMethod key
-setMethod("key", "mapItem", function (object) object@key)
-
-##' \code{value} slot accessor for the \code{mapItem} instances.
-##'
-##' @name value,mapItem-method
-##' @aliases value
-##' @rdname value-methods
-##' @docType methods
-##' @title \code{value} slot accessor.
-##' @param object An instance of class \code{Map} or \code{mapItem}.
-##' @return A \code{character}.
-##' @exportMethod value
-setMethod("value", "mapItem", function (object) object@value)
+##' @title Makes a Term instance based on the response from
+##'     /api/ontologies/{ontology}/terms/{iri}
+##' @param x The content from the response
+##' @return An object of class Term
+makeTerm <- function(x)
+    .Term(iri = x$iri,
+          label = x$label,
+          description = x$description,
+          annotation = x$annotation,
+          synonym = x$synonym,
+          ontology_name = x$ontology_name,
+          ontology_prefix = x$ontology_prefix,
+          ontology_iri = x$ontology_iri,
+          is_obsolete = x$is_obsolete,
+          is_defining_ontology = x$is_defining_ontology,
+          has_children = x$has_children,
+          is_root = x$is_root,
+          short_form = x$short_form,
+          obo_id = x$obo_id,
+          links = x$`_links`)
 
 
-##' \code{key} slot accessor for the \code{Map} instances.
-##'
-##' @name key,Map-method
-##' @aliases key
-##' @rdname key-methods
-##' @docType methods
-##' @title \code{key} slot accessor.
-##' @return A \code{character}.
-##' @author Laurent Gatto
-##' @exportMethod key
-setMethod("key", "Map", function (object) sapply(object, key))
+##' @title Constructs the query for a single term from a given
+##'     ontology
+##' @param oid A character with an ontology or an ontology
+##' @param termid A character with a term id
+##' @return An object of class Term
+.term <- function(oid, termid) {
+    ont <- Ontology(oid)
+    url <- paste0(ontologyUrl(ont), "terms", "/")
+    uri <- URLencode(ontologyUri(ont), TRUE)
+    url <- paste0(url, uri, sub(":", "_", termid))
+    x <- GET(url)
+    stop_for_status(x)
+    cx <- content(x)
+    makeTerm(cx)
+}
 
-##' \code{value} slot accessor for the \code{Map} instances.
-##'
-##' @name value,Map-method
-##' @aliases value
-##' @rdname value-methods
-##' @docType methods
-##' @title \code{value} slot accessor.
-##' @return A \code{character}.
-##' @author Laurent Gatto
-##' @exportMethod value
-setMethod("value", "Map", function (object) sapply(object, value))
+##' @title Constructs the query for all term from a given ontology
+##' @param oid A character with an ontology or an ontology
+##' @param pagesize How many results per page to return
+##' @return An object of class Terms
+.terms <- function(oid, pagesize = 1000) {
+    ont <- Ontology(oid)
+    url <- paste(ontologyUrl(ont), "terms", sep = "/")
+    url <- paste0(url, "?&size=", pagesize)
+    x <- GET(url)
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    ## -- Iterating
+    .next <- cx[["_links"]][["next"]]$href
+    pb <- progress_bar$new(total = cx[["page"]][["totalPages"]])
+    pb$tick()
+    while (!is.null(.next)) {
+        pb$tick()
+        x <- GET(.next)
+        warn_for_status(x)
+        cx <- content(x)
+        ans <- append(ans, lapply(cx[["_embedded"]][[1]], makeTerm))
+        .next <- cx[["_links"]][["next"]][[1]]
+    }
+    names(ans) <- sapply(ans, termId)
+    Terms(x = ans)
+}
+
+##' @title Constructs the query for all properties from a given ontology
+##' @param oid A character with an ontology or an ontology
+##' @param pagesize How many results per page to return
+##' @return An object of class Terms
+.properties <- function(oid, pagesize = 200) {
+    ont <- Ontology(oid)
+    url <- paste(ontologyUrl(ont), "properties", sep = "/")
+    url <- paste0(url, "?&size=", pagesize)
+    makeProperties(url)
+}
+
+makeProperties <- function(url) {
+    x <- GET(url)
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeProperty)
+    ## -- Iterating
+    .next <- cx[["_links"]][["next"]]$href
+    while (!is.null(.next)) {
+        x <- GET(.next)
+        warn_for_status(x)
+        cx <- content(x)
+        ans <- append(ans, lapply(cx[["_embedded"]][[1]], makeProperty))
+        .next <- cx[["_links"]][["next"]][[1]]
+    }
+    names(ans) <- sapply(ans, termLabel)
+    Properties(x = ans)
+}
+
+##' @title Makes a Property instance based on the response from
+##'     /api/ontologies/{ontology}/terms/{iri}
+##' @param x The content from the response
+##' @return An object of class Property
+makeProperty <- function(x)
+    .Property(iri = x$iri,
+              label = x$label,
+              description = x$description,
+              annotation = x$annotation,
+              synonym = x$synonym,
+              ontology_name = x$ontology_name,
+              ontology_prefix = x$ontology_prefix,
+              ontology_iri = x$ontology_iri,
+              is_obsolete = x$is_obsolete,
+              is_defining_ontology = x$is_defining_ontology,
+              has_children = x$has_children,
+              is_root = x$is_root,
+              short_form = x$short_form,
+              obo_id = x$obo_id,
+              links = x$`_links`)
 
 
-
-##' Accessor for the \code{Map} data of the OLS
-##' return messages converted to their respective
-##' S4 classes. The actual data is stored in \code{Map}
-##' slots.
-##'
-##' @name map,ANY-method
-##' @aliases map
-##' @rdname map-methods
-##' @docType methods
-##' @title \code{Map} slot accessor.
-##' @param object An S4 class produced by an OLS return message.
-##' @return A instance of class \code{Map}.
-##' @author Laurent Gatto
-##' @exportMethod map
-setMethod("map", "ANY",
-          function(object) {
-            sn <- slotNames(object)
-            stopifnot(length(sn) == 1)
-            ans <- slot(object, sn)
-            stopifnot(class(ans) == "Map")
-            return(ans)
-          })
-
-setAs("Map", "character",
-            function (from, to = "character") {
-              ans <- sapply(from, slot, "value")
-              names(ans) <- sapply(from, slot, "key")
-              ans
-            })
-
-##' \code{as} method to coerce an instance of \code{Map}
-##' to a \code{character}. The maps keys are used to name
-##' the map values.
-##'
-##' @title Coerce \code{Map} to a \code{data.frame}
-##' @param x An instance \code{Map}.
-##' @param ... not used.
-##' @return A \code{character} of length \code{length(map)}.
-##' @author Laurent Gatto
-##' @method as.character Map
-##' @export
-##' @family as
-as.character.Map <- function(x, ...) as(x, "character")
-
-
-setAs("mapItem", "character",
-      function (from, to = "character") {
-        ans <- c(from@key,
-                 from@value)
-        names(ans) <- c("Key","Value")
-        ans
-      })
-
-##' \code{as} method to coerce an instance of \code{mapItem}
-##' to a \code{character} by concatenating the \code{key}
-##' and \code{value} variabels.
-##'
-##' @title Coerce \code{mapItem} to a \code{character}
-##' @param x An instance of \code{mapItem}.
-##' @param ... not used
-##' @return A \code{character} of length 2.
-##' @author Laurent Gatto
-##' @method as.character mapItem
-##' @export
-##' @family as
-as.character.mapItem <- function(x, ...) as(x, "character")
-
-
-##' show method for \code{Map} instances
-##'
-##' @name show,Map-method 
-##' @aliases show show?Map
-##' @docType methods
-##' @rdname show-methods
-##' @title \code{Map} show method
-##' @param object An \code{Map} instance.
-##' @return Returns an invisible 'NULL'. This function is used
-##' for its side-effect of printing a textual description
-##' of \code{object}.
-##' @author Laurent Gatto
-##' @exportMethod show
-setMethod("show", "Map",
-          function (object) {
-            l <- length(object)
-            if (l == 0) {
-              cat("Empty object of class \"",class(object),"\"\n",sep="")             
-            } else {
-              cat("Object of class \"",class(object),"\"",sep="")
-              cat(" with ", length(object)," items:\n", sep="")            
-              k <- sapply(object, function(x) x@key)
-              v <- sapply(object, function(x) x@value)
-              if (l == 1) {
-                  cat(" Key:   ", k[1], ".\n", sep="")
-                  cat(" Value: ", v[1], ".\n", sep="")
-              } else if (l == 2) {
-                  cat(" Keys:   ", paste0(k[1:2], collapse=", "), ".\n")
-                  cat(" Values: ", paste0(v[1:2], collapse=", "), ".\n")
-              } else {
-                  cat(" Keys:   ", paste0(k[1:2], collapse=", "), ", ...\n")
-                  cat(" Values: ", paste0(v[1:2], collapse=", "), ", ...\n")
-              }
-          }
-            invisible(NULL)
-          })
+## see https://github.com/EBISPOT/OLS/issues/36
+getPropertyLinks <- function(trm) {
+    termlinks <- c("self", "parents", "ancestors", "children", "descendants")
+    graphlinks <- c("jstree", "graph")
+    nms <- names(trm@links)
+    p <- !nms %in% c(termlinks, graphlinks)
+    unlist(trm@links[p])
+}
