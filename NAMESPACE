@@ -47,7 +47,7 @@ export(charIsCVParam, CVParam,
        isObsolete,
        isRoot,
        termSynonym,
-       children, parents, ancestors, descendants,
+       children, parents, ancestors, descendants, derives_from, part_of,
        ## Search/select
        OlsSearch,
        olsSearch,
