@@ -13,13 +13,44 @@ setMethod("term", c("Ontology", "character"),
           function(object, id,...) .term(object, id, ...))
 
 
+
+part_of <- function(id) {
+    stopifnot(inherits(id, "Term"))
+    url <- id@links$part_of[[1]]
+    if (is.null(url)) {
+        message("No part_of terms.")
+        return(NULL)
+    }
+    x <- GET(url)
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    names(ans) <- sapply(ans, termId)
+    Terms(x = ans)
+}
+
+derives_from <- function(id) {
+    stopifnot(inherits(id, "Term"))
+    url <- id@links$derives_from[[1]]
+    if (is.null(url)) {
+        message("No derives_from terms.")
+        return(NULL)
+    }
+    x <- GET(url)
+    stop_for_status(x)
+    cx <- content(x)
+    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    names(ans) <- sapply(ans, termId)
+    Terms(x = ans)
+}
+
 children <- function(id) {
     stopifnot(inherits(id, "Term"))
     url <- id@links$children[[1]]
     if (is.null(url)) {
         message("No children terms.")
         return(NULL)
-    }        
+    }
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
@@ -34,7 +65,7 @@ parents <- function(id) {
     if (is.null(url)) {
         message("No parent terms.")
         return(NULL)
-    }        
+    }
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
@@ -49,7 +80,7 @@ ancestors <- function(id) {
     if (is.null(url)) {
         message("No ancestor terms.")
         return(NULL)
-    }    
+    }
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
@@ -64,7 +95,7 @@ descendants <- function(id) {
     if (is.null(url)) {
         message("No descendant terms.")
         return(NULL)
-    }    
+    }
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
@@ -164,7 +195,7 @@ setMethod("unique", "Terms", function(x) x[!duplicated(names(x@x))])
 
 setMethod("[", "Terms",
           function(x, i, j="missing", drop="missing") Terms(x = x@x[i]))
-          
+
 setMethod("[[", "Terms",
           function(x, i, j="missing", drop="missing") x@x[[i]])
 
@@ -188,7 +219,7 @@ setMethod("all.equal", c("Term", "Term"),
               oc <- order(names(lc))
               msg <- Biobase:::validMsg(msg, all.equal(lt[ot], lc[oc]))
               if (is.null(msg)) return(TRUE)
-              else msg                  
+              else msg
           })
 
 
@@ -202,7 +233,7 @@ setMethod("all.equal", c("Terms", "Terms"),
                   ct <- current@x
                   if (any(sort(names(tg)) != sort(names(ct)))) {
                       msg <- Biobase::validMsg(msg, "Term ids don't match")
-                  } else {             
+                  } else {
                       ot <- order(names(tg))
                       oc <- order(names(ct))
                       tg <- tg[ot]
