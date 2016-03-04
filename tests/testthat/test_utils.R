@@ -16,7 +16,7 @@ test_that("ontologyUri", {
 test_that("ontologyUri with multiple URIs", {
     go0 <- go <- Ontology("go")
     go@config$baseUris[[2]] <- "foo"
-    expect_warning(rols:::ontologyUri(go, encode = FALSE))                   
+    expect_warning(rols:::ontologyUri(go, encode = FALSE))
     expect_equal(rols:::ontologyUri(go, encode = FALSE),
                  rols:::ontologyUri(go0, encode = FALSE))
 })
