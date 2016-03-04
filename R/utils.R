@@ -71,7 +71,7 @@ makeOntologies <- function(pagesize = 150) {
                         pagesize))
         warn_for_status(x)
         cx <- content(x)
-    }        
+    }
     ans <- lapply(cx[["_embedded"]][[1]], makeOntology)
     names(ans) <- sapply(ans, olsNamespace)
     .Ontologies(x = ans)
@@ -196,7 +196,7 @@ makeProperty <- function(x)
 
 ## see https://github.com/EBISPOT/OLS/issues/36
 getPropertyLinks <- function(trm) {
-    termlinks <- c("self", "parents", "ancestors", "children", "descendants")
+    termlinks <- c("self", "parents", "ancestors", "children", "descendants","part_of","derives_from")
     graphlinks <- c("jstree", "graph")
     nms <- names(trm@links)
     p <- !nms %in% c(termlinks, graphlinks)
