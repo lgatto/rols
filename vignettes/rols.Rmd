@@ -125,6 +125,12 @@ parents(trm)
 children(trm)
 ```
 
+Similarly, the `partOf` and `derivesFrom` functions return, for an
+input term, the terms it is a part of and derived from.
+
+## Properties
+
+
 # Use case
 
 ```{r, echo=FALSE}
