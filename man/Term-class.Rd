@@ -60,6 +60,8 @@
 \alias{parents}
 \alias{ancestors}
 \alias{descendants}
+\alias{partOf}
+\alias{derivesFrom}
 
 \alias{unique,Terms-method}
 \alias{length,Terms-method}
@@ -90,8 +92,9 @@
   term. See also the 'Methods and functions' sections.
 
   For any given \code{Term} object, the \code{children}, \code{parents},
-  \code{ancestors} and \code{descendants} terms can be generated and
-  returned as \code{Terms} objects.
+  \code{ancestors}, \code{descendants}, \code{partOf} and
+  \code{derivesFrom} terms can be generated and returned as \code{Terms}
+  objects.
 
   \code{Terms} instances can be subset with \code{[} and \code{[[} and
   iterated over with \code{lapply}.
@@ -160,6 +163,14 @@
       \code{Terms} instance with the \code{object}'s
       descendants. \code{NULL} if there are not descendants. }
 
+    \item{partOf}{\code{signature(object = "Term")}: Returns a new
+      \code{Terms} instance with terms the \code{object}'s is a part
+      of. \code{NULL} if none. }
+
+    \item{derivesFrom}{\code{signature(object = "Term")}: Returns a new
+      \code{Terms} instance with terms the \code{object}'s is derived
+      from. \code{NULL} if none. }
+    
     \item{show}{\code{signature(object = "Term")}: ... }
 
     \item{show}{\code{signature(object = "Terms")}: ... }
@@ -229,6 +240,12 @@ parents(trm)
 ancestors(trm)
 children(trm)
 descendants(trm)
+
+partOf(gotrms[["GO:0008308"]])
+partOf(term("BTO", "BTO:0000142"))
+
+derivesFrom(term("BTO", "BTO:0002600"))
+derivesFrom(term("BTO", "BTO:0001023"))
 
 }
 

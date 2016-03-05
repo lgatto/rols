@@ -4,10 +4,11 @@ Title: An R interface to the Ontology Lookup Service
 Version: 1.99.0
 Author@R: person(given = "Laurent", family = "Gatto", email =
         "lg390@cam.ac.uk", role = c("aut","cre"))
-Author: Laurent Gatto <lg390@cam.ac.uk>
+Author: Laurent Gatto <lg390@cam.ac.uk>, with contributions from Tiago
+	Chedraoui Silva.
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: An interface to the Ontology Lookup Service (OLS) to
-	     access and query hundred ofs ontolgies directly from R.
+	     access and query hundred of ontolgies directly from R.
 Depends: methods
 Imports: httr, progress, jsonlite, utils, Biobase
 Suggests: GO.db, knitr (>= 1.1.0), BiocStyle, testthat,

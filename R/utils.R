@@ -196,7 +196,9 @@ makeProperty <- function(x)
 
 ## see https://github.com/EBISPOT/OLS/issues/36
 getPropertyLinks <- function(trm) {
-    termlinks <- c("self", "parents", "ancestors", "children", "descendants","part_of","derives_from")
+    termlinks <- c("self", "parents", "ancestors",
+                   "children", "descendants",
+                   "part_of","derives_from")
     graphlinks <- c("jstree", "graph")
     nms <- names(trm@links)
     p <- !nms %in% c(termlinks, graphlinks)

@@ -14,11 +14,11 @@ setMethod("term", c("Ontology", "character"),
 
 
 
-part_of <- function(id) {
+partOf <- function(id) {
     stopifnot(inherits(id, "Term"))
     url <- id@links$part_of[[1]]
     if (is.null(url)) {
-        message("No part_of terms.")
+        message("No 'part of' terms.")
         return(NULL)
     }
     x <- GET(url)
@@ -29,11 +29,11 @@ part_of <- function(id) {
     Terms(x = ans)
 }
 
-derives_from <- function(id) {
+derivesFrom <- function(id) {
     stopifnot(inherits(id, "Term"))
     url <- id@links$derives_from[[1]]
     if (is.null(url)) {
-        message("No derives_from terms.")
+        message("No 'derives from' terms.")
         return(NULL)
     }
     x <- GET(url)

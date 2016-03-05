@@ -172,3 +172,31 @@ test_that("No links", {
     expect_message(x <- ancestors(trm), "No ancestor terms.")
     expect_null(x)
 })
+
+test_that("partOf and derivesFrom", {
+    pof <- partOf(term("GO", "GO:0008308"))
+    expect_identical(length(pof), 1L)
+    expect_identical(termId(pof[[1]]), "GO:1903959")
+
+    pof <- partOf(term("BTO", "BTO:0000142"))
+    expect_identical(length(pof), 2L)
+    expect_identical(lapply(pof, termLabel),
+                     list(`BTO:0000227` = "central nervous system",
+                          `BTO:0000282` = "head"))
+
+    defrom <- derivesFrom(term("BTO", "BTO:0002600"))
+    expect_identical(length(defrom), 1L)
+    expect_identical(termId(defrom[[1]]), "BTO:0000099")
+
+    defrom <- derivesFrom(term("BTO", "BTO:0001023"))
+    expect_identical(length(defrom), 1L)
+    expect_identical(termId(defrom[[1]]), "BTO:0000975")
+
+    expect_null(derivesFrom(term("GO", "GO:0008308")))
+    expect_message(derivesFrom(term("GO", "GO:0008308")),
+                   "No 'derives from' terms")
+
+    expect_null(partOf(term("BTO", "BTO:0002600")))
+    expect_message(partOf(term("BTO", "BTO:0002600")),
+                   "No 'part of' terms")    
+})
