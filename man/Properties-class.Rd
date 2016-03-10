@@ -23,18 +23,21 @@
 \title{Class \code{"Properties"}}
 
 \description{
-  Description comes here
+
+  Propteries (relationships) between terms can be queries for complete
+  \code{\linkS4class{Ontology}} objects and
+  \code{\linkS4class{Term}}/\code{\linkS4class{Terms}} instances, and
+  the results are stored as objects of class \code{Property} or
+  \code{Properties}.
+  
 }
 
 \section{Objects from the Class}{
-  Objects can be created by calls of the form \code{new("Properties", ...)}.
-  %%  ~~ describe objects here ~~ 
-}
+  Objects can be created by calls to \code{properties}, as described
+  below.  }
 
 \section{Slots}{
-  \describe{
-    \item{\code{x}:}{Object of class \code{"list"} ~~ }
-  }
+  See the \code{\linkS4class{Term}} and \code{\linkS4class{Terms}} classes.
 }
 
 \section{Extends}{
@@ -48,17 +51,19 @@
       200)}: ... Also works with a \code{character} with the ontology
       namespace. See \code{\link{Ontology}} for details. }
 
-    \item{properties}{\code{signature(object = "Term")}: ... Returns
-      \code{NULL} when no properties are available. }
+    \item{properties}{\code{signature(object = "Term")}: retrieves the
+      properties of term \code{object} and returns a \code{Properties}
+      object.  Returns \code{NULL} when no properties are available. }
 
-    \item{proterties}{\code{signature(object = "Terms", ...)}: Returns a
-      list of .. }
+    \item{proterties}{\code{signature(object = "Terms", ...)}: retrieves
+      the properties of each term of \code{object} and returns a list of
+      \code{Properties} (or \code{NULL}) items. }
 
-    \item{show}{\code{signature(object = "Properties")}: ... }
+    \item{show}{\code{signature(object = "Properties")}: shows a textual
+      summary of the object. }
 
-    \item{length}{\code{signature(object = "Properties")}: ... }
-  }
-}
+    \item{length}{\code{signature(object = "Properties")}: returns the
+      number of properties in \code{object}. } } }
 
 
 \author{
