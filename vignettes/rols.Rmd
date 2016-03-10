@@ -130,6 +130,18 @@ input term, the terms it is a part of and derived from.
 
 ## Properties
 
+Properties (relationships) of single or multiple terms or complete
+ontologies can be queries with the `properties` method, as briefly
+illustrated below.
+
+```{r propex}
+trm <- term("uberon", "UBERON:0002107")
+trm
+p <- properties(trm)
+p
+p[[1]]
+termLabel(p[[1]])
+```
 
 # Use case
 
