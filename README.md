@@ -4,9 +4,8 @@
 > the rols package is being re-implemented and will undergo changes in
 > its user interface. The current interface will be maintained for
 > Bioconductor release 3.2 and will be discontinued afterwards. Please
-> see the
-> [`rols` version 2.0 branch](https://github.com/lgatto/rols/tree/v2.0)
-> for the new release.
+> see the [`rols`](https://github.com/lgatto/rols/) github page for
+> the new release.
 
 ### The Ontology Lookup Service 
 
@@ -25,7 +24,7 @@ the OLS directly from R.
 #### Changes in version 1.99.0
 
 See section *Changes in `rols` 2.0* in the
-[vignette](https://github.com/lgatto/rols/blob/v2.0/vignettes/rols.Rmd).
+[vignette](https://github.com/lgatto/rols/blob/master/vignettes/rols.Rmd).
 
 ### The `CVParam` class
 
@@ -46,7 +45,7 @@ biocLite("rols")
 ```
 
 See also the `rols`
-[Bioconductor page](http://bioconductor.org/packages/2.11/bioc/html/rols.html)
+[Bioconductor page](http://bioconductor.org/packages/release/bioc/html/rols.html)
 for on-line access to the vignette and the reference manual.
 
 ### Help
