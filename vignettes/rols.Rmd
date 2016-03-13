@@ -150,14 +150,14 @@ alltgns <- OlsSearch(q = "trans-golgi network")
 ```
 
 A researcher might be interested in the trans-Golgi network. Searching
-the OLS is assured by the `OlsSearch` and `olsSearch` functions. The
-first step is to defined the search query with `OlsSearch`, as shown
-below. This creates an search object of class `OlsSearch` that stores
-the query and its parameters. In records the number of requested
-results (default is 20) and the total number of possible results
-(there are `r alltgns@numFound` results across all ontologies, in this
-case). At this stage, the results have not yet been downloaded, as
-shown by the `r nrow(alltgns@response)` responses. 
+the OLS is assured by the `OlsSearch` and `olsSearch`
+classes/functions. The first step is to defined the search query with
+`OlsSearch`, as shown below. This creates an search object of class
+`OlsSearch` that stores the query and its parameters. In records the
+number of requested results (default is 20) and the total number of
+possible results (there are `r alltgns@numFound` results across all
+ontologies, in this case). At this stage, the results have not yet
+been downloaded, as shown by the `r nrow(alltgns@response)` responses.
 
 ```{r tgnquery, eval = TRUE}
 OlsSearch(q = "trans-golgi network")
@@ -248,36 +248,49 @@ is not possible to query a specific version of an ontology.
 
 # Changes in `r Biocpkg("rols")` 2.0
 
+`r Biocpkg("rols")` 2.0 has substantially changed. While the table
+below shows some correspondence between the old and new interface,
+this is not always the case. The new interface relies on the
+`Ontology`/`Ontologies`, `Term`/`Terms` and `OlsSearch` classes, that
+need to be instantiated and can then be queried, as described above.
+
+
+| version < 1.99     | version >= 1.99 |
+|--------------------|-----------------|
+| `ontologyLoadDate` | `olsLoaded`  and `olsUpdated` |
+| `ontologyNames`    | `Ontologies` |
+| `olsVersion`       | `olsVersion` |
+| `allIds`           | `terms`      |
+| `isIdObsolete`     | `isObsolete` |
+| `rootId`           | `olsRoot`    |
+| `olsQuery`         | `OlsSearch` and `olsSearch` |
+
+Not all functionality is currently available. If there is anything
+that you need but not available in the new version, please contact the
+maintained by opening an
+[issue](https://github.com/lgatto/rols/issues) on the package
+development site.
+
+
+# CVParams 
+
+The `CVParam` class is used to handle controlled vocabulary. It can be
+used for user-defined parameters
+
+```{r}
+CVParam(name = "A user param", value = "the value")
 ```
-## Development script for rols version 2.
 
-## Release plan
-##  Update release package on the 1st of March, so that the release
-##  version continues to work using the archive URL until the next
-##  release in April. Commit a devel version, that uses the REST api,
-##  before release.
+or official controlled vocabulary (which triggers a query to the OLS
+service)
 
-
-## http://www.ebi.ac.uk/ols/beta/docs/api
-## http://www.ebi.ac.uk/ols/beta/roadmap.html
-
-## "ontologies"
-## ontologyLoadDate -> olsLoaded
-##                  -> olsUpdated
-## ontologyNames -> see ontologies
-## olsVersion -> olsVersion
-## allIds -> terms
-## "isIdObsolete" -> isObsolete
-## "rootId"       -> olsRoot
-## olsQuery       -> OlsSearch, olsSearch
-
-## CVParams unchanged
-
-## Dropping
-## .rols environment
-## "as.character.Map"  "key"  "CVParam"
-## "as.character.mapItem"
+```{r}
+CVParam(label = "MS", accession = "MS:1000073")
+CVParam(label = "MS", name ="electrospray ionization")
+CVParam(label = "MS", name ="ESI") ## using a synonym
 ```
+
+See `?CVParam` for more details and examples.
 
 
 # Session information
