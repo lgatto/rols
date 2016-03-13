@@ -58,10 +58,10 @@ query.
 datatable(as(ol, "data.frame"))
 ```
 
-# Brief `r Biocpkg("rols")` overview
+# A Brief rols overview
 
 The `r Biocpkg('rols')` package is build around a few classes that
-enable to query the OLS and retrieve, store and manipule data. Each of
+enable to query the OLS and retrieve, store and manipulate data. Each of
 these classes are described in more details in their respective manual
 pages. We start by loading the package.
 
@@ -191,7 +191,7 @@ Alternatively, one can call the `allRows` function to request all results.
 qry <- OlsSearch(q = "trans-golgi network", exact = TRUE)
 ```
 
-Let's proceed with the exact serach and retrieve the results. Even if
+Let's proceed with the exact search and retrieve the results. Even if
 we request the default 20 results, only the `r qry@numFound` relevant
 result will be retrieved. The `olsSearch` function updates the
 previously created object (called `qry` below) by adding the results
