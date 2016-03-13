@@ -1,4 +1,30 @@
-setGeneric("key", function(object) standardGeneric("key"))
-setGeneric("value", function(object) standardGeneric("value"))
-setGeneric("map", function(object) standardGeneric("map"))
+setGeneric("Ontologies", function(object) standardGeneric("Ontologies"))
+setGeneric("Ontology", function(object) standardGeneric("Ontology"))
 
+setGeneric("olsPrefix", function(object, ...) standardGeneric("olsPrefix"))
+setGeneric("olsDesc", function(object, ...) standardGeneric("olsDesc"))
+setGeneric("olsTitle", function(object, ...) standardGeneric("olsTitle"))
+setGeneric("olsRoot", function(object, ...) standardGeneric("olsRoot"))
+setGeneric("olsVersion", function(object, ...) standardGeneric("olsVersion"))
+setGeneric("olsLoaded", function(object, ...) standardGeneric("olsLoaded"))
+setGeneric("olsUpdated", function(object, ...) standardGeneric("olsUpdated"))
+setGeneric("olsStatus", function(object, ...) standardGeneric("olsStatus"))
+setGeneric("olsNamespace", function(object, ...) standardGeneric("olsNamespace"))
+
+setGeneric("termLabel", function(object, ...) standardGeneric("termLabel"))
+setGeneric("termPrefix", function(object, ...) standardGeneric("termPrefix"))
+setGeneric("terms", function(x, ...) standardGeneric("terms"))
+setGeneric("term", function(object, id, ...) standardGeneric("term"))
+setGeneric("termId", function(object, ...) standardGeneric("termId"))
+setGeneric("isObsolete", function(object, ...) standardGeneric("isObsolete"))
+setGeneric("isRoot", function(object, ...) standardGeneric("isRoot"))
+setGeneric("termSynonym", function(object, ...) standardGeneric("termSynonym"))
+setGeneric("termDesc", function(object, ...) standardGeneric("termDesc"))
+setGeneric("termNamespace", function(object, ...) standardGeneric("termNamespace"))
+setGeneric("termOntology", function(object, ...) standardGeneric("termOntology"))
+
+setGeneric("properties", function(object, ...) standardGeneric("properties"))
+
+## private
+setGeneric("ontologyUrl", function(object, ...) standardGeneric("ontologyUrl"))
+setGeneric("ontologyUri", function(object, ...) standardGeneric("ontologyUri"))
