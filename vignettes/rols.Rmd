@@ -58,7 +58,7 @@ query.
 datatable(as(ol, "data.frame"))
 ```
 
-# Brief \Biocpkg{rols} overview
+# Brief `r Biocpkg("rols")` overview
 
 The `r Biocpkg('rols')` package is build around a few classes that
 enable to query the OLS and retrieve, store and manipule data. Each of
@@ -210,7 +210,7 @@ We can now transform this search result object into a fully fledged
 (qdrf <- as(qry, "data.frame"))
 ```
 
-In the case, we can that we actually retrieve the same term used
+In this case, we can see that we actually retrieve the same term used
 across different ontologies. In such cases, it might be useful to keep
 only non-redundant term instances. In this case, this would have been
 equivalent to searching the `r termOntology(unique(qtrms))` ontology
@@ -221,7 +221,7 @@ termOntology(qtrms)
 termNamespace(qtrms)
 ```
 
-Below, we execute the same query using the `r \Biocpkg{GO.db}` package.
+Below, we execute the same query using the `r Biocpkg("GO.db")` package.
 
 ```{r go.db, message=FALSE}
 library("GO.db")
