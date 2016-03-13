@@ -12,7 +12,7 @@ Description: An interface to the Ontology Lookup Service (OLS) to
 Depends: methods
 Imports: httr, progress, jsonlite, utils, Biobase
 Suggests: GO.db, knitr (>= 1.1.0), BiocStyle, testthat,
-	  lubridate, DT
+	  lubridate, DT, rmarkdown
 biocViews: Software, Annotation, MassSpectrometry, GO
 License: GPL-2
 URL: http://lgatto.github.com/rols/
