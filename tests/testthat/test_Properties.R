@@ -35,8 +35,8 @@ test_that("Property constructors", {
     
     pl <- properties(so[k])
 
-    expect_message(x <- properties(so[k[1]]), "No properties for term SO:0000579")
-    expect_null(x[[1]])
+    ## expect_message(x <- properties(so[k[1]]), "No properties for term SO:0000579")
+    ## expect_null(x[[1]])
     ## x <- properties(so[k])
     ## expect_identical(sum(sapply(x, is.null)), 7L)
 })
