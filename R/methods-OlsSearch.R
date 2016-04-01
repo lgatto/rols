@@ -39,7 +39,7 @@ OlsSearch <- function(q,
     url0 <- sub("rows=[0-9]+", "rows=1", url)
     x <- GET(url)
     stop_for_status(x)
-    cx <- content(x)
+    cx <- content(x, as = "raw")
     txt <- rawToChar(cx)
     ans <- jsonlite::fromJSON(txt)
     numFound <- ans[["response"]][["numFound"]]
@@ -59,7 +59,7 @@ olsSearch <- function(object, all = FALSE) {
         x <- allRows(x)
     x <- GET(object@url)
     stop_for_status(x)
-    cx <- content(x)
+    cx <- content(x, as = "raw")
     txt <- rawToChar(cx)
     ans <- jsonlite::fromJSON(txt)
     object@response <- ans[["response"]][["docs"]]
