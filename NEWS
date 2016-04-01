@@ -1,3 +1,7 @@
+CHANGES IN VERSION 1.99.1
+-------------------------
+ o Explicitly extract raw content to fix error <2016-04-02 Sat>
+ 
 CHANGES IN VERSION 1.99.0
 -------------------------
  o Using the REST API 
