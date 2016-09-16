@@ -77,12 +77,11 @@ test_that("accessors", {
     expect_false(isObsolete(trm))
     expect_true(isObsolete(term("GO", "GO:0005563")))
     expect_false(isObsolete(term("GO", "GO:0030533")))
-    expect_equal(sum(isObsolete(trms)), 202)
-    expect_equal(sum(!isObsolete(trms)), length(trms) - 202)
+    expect_equal(sum(isObsolete(trms)), 203)
+    expect_equal(sum(!isObsolete(trms)), length(trms) - 203)
 
     expect_true(isRoot(trms[["SO:0000400"]]))
     expect_true(isRoot(trms[["SO:0000110"]]))
-    expect_true(isRoot(trms[["SO:0002072"]]))
     expect_true(isRoot(trms[["SO:0001260"]]))
 
     expect_true(all(termId(olsRoot("SO")) %in% names(which(isRoot(trms)))))
