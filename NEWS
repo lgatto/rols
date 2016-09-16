@@ -1,6 +1,7 @@
 CHANGES IN VERSION 1.99.2
 -------------------------
-
+ o Fix failing tests <2016-09-16 Fri>
+ 
 CHANGES IN VERSION 1.99.1
 -------------------------
  o Explicitly extract raw content to fix error <2016-04-02 Sat>

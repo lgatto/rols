@@ -26,7 +26,7 @@ test_that("OlsSearch ESI", {
     esi2 <- olsSearch(esi2)
     
     expect_identical(esi1@numFound, 1L)
-    expect_identical(esi2@numFound, 28L)    
+    expect_identical(esi2@numFound, 34L)
     expect_true(termId(as(esi1, "Terms")) %in% termId(as(esi2, "Terms")))
 })
 
