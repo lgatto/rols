@@ -1,12 +1,4 @@
 
-> The onology lookup service, the backend behind rols has been
-> [updated](http://www.ebi.ac.uk/ols/beta/roadmap.html). As a result,
-> the rols package is being re-implemented and will undergo changes in
-> its user interface. The current interface will be maintained for
-> Bioconductor release 3.2 and will be discontinued afterwards. Please
-> see the [`rols`](https://github.com/lgatto/rols/) github page for
-> the new release.
-
 ### The Ontology Lookup Service 
 
 The [Ontology Lookup Service](http://www.ebi.ac.uk/ontology-lookup/)
