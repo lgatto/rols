@@ -1,4 +1,4 @@
-https://travis-ci.org/lgatto/rols.svg?branch=master
+[![Build Status](https://travis-ci.org/lgatto/rols.svg?branch=master)](https://travis-ci.org/lgatto/rols) [![codecov.io](https://codecov.io/github/lgatto/rols/coverage.svg?branch=master)](https://codecov.io/github/lgatto/rols?branch=master)
 
 ### The Ontology Lookup Service 
 
