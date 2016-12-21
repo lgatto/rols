@@ -1,3 +1,4 @@
+https://travis-ci.org/lgatto/rols.svg?branch=master
 
 ### The Ontology Lookup Service 
 
