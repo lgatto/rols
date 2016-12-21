@@ -74,7 +74,7 @@ test_that("Ontology accessors", {
     expect_identical(pre[[i]], olsPrefix("GO"))
     expect_identical(pre[[i]], olsPrefix("Go"))
    
-     desc <- olsDesc(ol)
+    desc <- olsDesc(ol)
     expect_identical(desc[[i]], olsDesc(go))
     expect_identical(desc[[i]], olsDesc("go"))
     expect_identical(desc[[i]], olsDesc("GO"))
@@ -84,7 +84,7 @@ test_that("Ontology accessors", {
     expect_identical(ttl[[i]], olsTitle("go"))
     expect_identical(ttl[[i]], olsTitle("GO"))
 
-    expect_identical(olsTitle(go), "Gene Ontology")
+    expect_identical(olsTitle(go), "Uberon Ontology Module for GO")
     expect_identical(olsDesc(go), "An ontology for describing the function of genes and gene products")
 
     expect_identical(status[[i]], "LOADED")
