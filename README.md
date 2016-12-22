@@ -14,18 +14,6 @@ The `rols` package uses functionality from the
 [httr](https://cran.r-project.org/web/packages/httr/) package to query
 the OLS directly from R.
 
-#### Changes in version 1.99.0
-
-See section *Changes in `rols` 2.0* in the
-[vignette](https://github.com/lgatto/rols/blob/master/vignettes/rols.Rmd).
-
-### The `CVParam` class
-
-The `CVParam` S4 class allows to generate controlled vocabulary
-parameters for all 88 ontologies through the OLS, as used in the frame
-of the [Proteomics Standards Initiative](http://www.psidev.info/)
-(PSI) effort.
-
 ### Installation
 
 `rols` is available from the
