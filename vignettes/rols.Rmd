@@ -1,27 +1,24 @@
 ---
-title: "`r Biocpkg('rols')`: an R interface to the Ontology Lookup Service"
+title: "An R interface to the Ontology Lookup Service"
+author: 
+- name: Laurent Gatto
+  affiliation: Computational Proteomics Unit, Cambridge, UK
+package: rols
+abstract: >
+  How to query the Ontology Lookup Service directly from R and how to
+  create and parse controlled vocabulary.
 output:
-  BiocStyle::html_document:
-     toc: true
-     toc_depth: 1
+  BiocStyle::html_document2:
+    toc_float: true
 vignette: >
-  %\VignetteIndexEntry{The rols interface to the Ontology Lookup Service}
-  % \VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{An R interface to the Ontology Lookup Service}
+  %\VignetteEngine{knitr::rmarkdown}
   %\VignetteKeywords{Infrastructure, Bioinformatics, ontology, data}
-  %\VignettePackage{rols}
+  %\VignetteEncoding{UTF-8}
 ---
 
-```{r style, echo = FALSE, results = 'asis', message=FALSE}
-BiocStyle::markdown()
-```
-
-**Package**: `r Biocpkg("rols")`<br />
-**Authors**: `r packageDescription("rols")[["Author"]]`<br />
-**Modified:** `r file.info("rols.Rmd")$mtime`<br />
-**Compiled**: `r date()`
-
-
 ```{r env, echo=FALSE}
+suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("GO.db"))
 suppressPackageStartupMessages(library("rols"))
 suppressPackageStartupMessages(library("DT"))
@@ -29,6 +26,26 @@ nonto <- length(ol <- Ontologies())
 ```
 
 # Introduction
+
+## Installation
+
+`r Biocpkg("rols")` is a Bioconductor package and should hence be
+installed using the dedicated functionality
+
+```{r install, eval=FALSE}
+## try http:// if https:// URLs are not supported
+source("https://bioconductor.org/biocLite.R")
+biocLite("rols")
+```
+
+## Getting help
+
+To get help, either post your question on the
+[Bioconductor support site](https://support.bioconductor.org/) or open
+an issue on the `r Biocpkg("rols")`
+[github page](https://github.com/lgatto/rols/issues).
+
+## The resource
 
 The [Ontology Lookup Service](http://www.ebi.ac.uk/ontology-lookup/)
 (OLS)
@@ -41,6 +58,7 @@ maintained by the
 [Samples, Phenotypes and Ontologies](http://www.ebi.ac.uk/about/spot-team)
 team at EMBL-EBI.
 
+## The package
 
 The OLS provides a REST interface to hundreds of ontologies from a
 single location with a unified output format. The `r Biocpkg("rols")`
@@ -207,7 +225,7 @@ We can now transform this search result object into a fully fledged
 
 ```{r tgnres}
 (qtrms <- as(qry, "Terms"))
-(qdrf <- as(qry, "data.frame"))
+str(qdrf <- as(qry, "data.frame"))
 ```
 
 In this case, we can see that we actually retrieve the same term used
@@ -231,8 +249,8 @@ GOTERM[["GO:0005802"]]
 # On-line vs. off-line data
 
 It is possible to observe different results with `r Biocpkg("rols")`
-and ` r Biocpkg("GO.db")`, as a result of the different ways they
-access the data. `r Biocpkg("rols")` or ` r Biocpkg("biomaRt")`
+and `r Biocpkg("GO.db")`, as a result of the different ways they
+access the data. `r Biocpkg("rols")` or `r Biocpkg("biomaRt")`
 perform direct online queries, while `r Biocpkg("GO.db")` and other
 annotation packages use database snapshot that are updated every
 release. 
@@ -246,7 +264,7 @@ load date of a specific ontology can be queried with `olsVersion`, it
 is not possible to query a specific version of an ontology. 
 
 
-# Changes in `r Biocpkg("rols")` 2.0
+# Changes in version 2.0
 
 `r Biocpkg("rols")` 2.0 has substantially changed. While the table
 below shows some correspondence between the old and new interface,

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/lgatto/rols.svg?branch=master)](https://travis-ci.org/lgatto/rols) [![codecov](https://codecov.io/gh/lgatto/rols/branch/master/graph/badge.svg)](https://codecov.io/gh/lgatto/rols)
 
 ### The Ontology Lookup Service 
 
@@ -13,17 +14,8 @@ The `rols` package uses functionality from the
 [httr](https://cran.r-project.org/web/packages/httr/) package to query
 the OLS directly from R.
 
-#### Changes in version 1.99.0
-
-See section *Changes in `rols` 2.0* in the
-[vignette](https://github.com/lgatto/rols/blob/master/vignettes/rols.Rmd).
-
-### The `CVParam` class
-
-The `CVParam` S4 class allows to generate controlled vocabulary
-parameters for all 88 ontologies through the OLS, as used in the frame
-of the [Proteomics Standards Initiative](http://www.psidev.info/)
-(PSI) effort.
+See the [package's page](http://lgatto.github.io/rols/index.html) on
+GitHub for details, documentation and vignette.
 
 ### Installation
 
@@ -43,7 +35,7 @@ for on-line access to the vignette and the reference manual.
 ### Help
 
 * `rols` comes with plenty of documentation. Have a start with the
-  vignette ``vignette("rols", package="rols")``.
+  vignette `vignette("rols", package="rols")`.
 
 * Please direct your questions to the
   [Bioconductor support site](https://support.bioconductor.org/).
