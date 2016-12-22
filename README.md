@@ -14,6 +14,9 @@ The `rols` package uses functionality from the
 [httr](https://cran.r-project.org/web/packages/httr/) package to query
 the OLS directly from R.
 
+See the [package's page](http://lgatto.github.io/rols/index.html) on
+GitHub for details, documentation and vignette.
+
 ### Installation
 
 `rols` is available from the
@@ -32,7 +35,7 @@ for on-line access to the vignette and the reference manual.
 ### Help
 
 * `rols` comes with plenty of documentation. Have a start with the
-  vignette ``vignette("rols", package="rols")``.
+  vignette `vignette("rols", package="rols")`.
 
 * Please direct your questions to the
   [Bioconductor support site](https://support.bioconductor.org/).
