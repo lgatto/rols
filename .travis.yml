@@ -20,9 +20,10 @@ r_packages:
   - lubridate
   - DT
   - rmarkdown
+  - covr
   
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - Rscript -e 'library(covr); codecov()'
 
 # print timings (of examples) and sysinfo
 after_script:
