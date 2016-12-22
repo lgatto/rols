@@ -16,6 +16,7 @@ vignette: >
 ---
 
 ```{r env, echo=FALSE}
+suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("GO.db"))
 suppressPackageStartupMessages(library("rols"))
 suppressPackageStartupMessages(library("DT"))
@@ -261,7 +262,7 @@ load date of a specific ontology can be queried with `olsVersion`, it
 is not possible to query a specific version of an ontology. 
 
 
-# Changes in `r Biocpkg("rols")` 2.0
+# Changes in version 2.0
 
 `r Biocpkg("rols")` 2.0 has substantially changed. While the table
 below shows some correspondence between the old and new interface,
