@@ -1,6 +1,8 @@
 ---
 title: "An R interface to the Ontology Lookup Service"
-author: Laurent Gatto
+author: 
+- name: Laurent Gatto
+  affiliation: Computational Proteomics Unit, Cambridge, UK
 package: rols
 abstract: >
   How to query the Ontology Lookup Service directly from R and how to
