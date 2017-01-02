@@ -1,10 +1,12 @@
 Package: rols
 Type: Package
 Title: An R interface to the Ontology Lookup Service
-Version: 2.3.2
-Authors@R: person(given = "Laurent", family = "Gatto",
-                  email = "lg390@cam.ac.uk",
-	          role = c("aut","cre"))
+Version: 2.3.3
+Authors@R: c(person(given = "Laurent", family = "Gatto",
+                    email = "lg390@cam.ac.uk",
+	            role = c("aut","cre")),
+             person(given = "Tiage", family = "Chedraoui Silva",
+	            role = "ctb"))
 Author: Laurent Gatto <lg390@cam.ac.uk>, with contributions from Tiago
 	Chedraoui Silva.
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
