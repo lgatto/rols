@@ -1,5 +1,9 @@
 # rols 2.3
 
+## CHANGES IN VERSION 2.3.4
+
+- (nothing yet)
+
 ## CHANGES IN VERSION 2.3.3
 
 - Add ctb to Authors@R <2016-12-28 Wed>
