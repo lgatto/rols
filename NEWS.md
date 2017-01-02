@@ -4,6 +4,7 @@
 
 - Add ctb to Authors@R <2016-12-28 Wed>
 - use NEWS.md <2016-12-28 Wed>
+- Ammend failing Ontologies unit test <2017-01-02 Mon>
  
 ## CHANGES IN VERSION 2.3.2
 
