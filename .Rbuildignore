@@ -10,3 +10,4 @@ pkgdown.css
 pkgdown.js
 reference
 NEWS.md
+.travis.yml
