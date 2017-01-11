@@ -1,5 +1,11 @@
 # rols 2.3
 
+## CHANGES IN VERSION 2.3.4
+
+- Ammend failing Ontologies unit test (related to changes made in
+  version 2.3.3: the GO name reverted back to Gene Ontolgy)
+  <2017-01-11 Wed>
+
 ## CHANGES IN VERSION 2.3.3
 
 - Add ctb to Authors@R <2016-12-28 Wed>
