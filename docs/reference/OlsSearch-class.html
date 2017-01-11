@@ -54,6 +54,9 @@
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -125,10 +128,10 @@
     <pre class="examples"><div class='input'>
 <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"trans-golgi"</span>)</div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:
 #&gt;   query: trans-golgi 
-#&gt;   requested: 20 (out of 11529)
+#&gt;   requested: 20 (out of 11562)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>)</div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:
 #&gt;   query: cell 
-#&gt;   requested: 20 (out of 137881)
+#&gt;   requested: 20 (out of 138052)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:
 #&gt;   query: cell 
 #&gt;   requested: 20 (out of 4667)
@@ -162,24 +165,24 @@
 <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"plasma,membrane"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 5 (out of 3846)
+#&gt;   requested: 5 (out of 3849)
 #&gt;   response(s): 0 </div><div class='input'>
 <span class='co'>## or, once the object was created</span>
 (<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"plasma,membrane"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>))</div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 20 (out of 3846)
+#&gt;   requested: 20 (out of 3849)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>olsRows</span>(<span class='no'>res</span>) <span class='kw'>&lt;-</span> <span class='fl'>5</span>
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 5 (out of 3846)
+#&gt;   requested: 5 (out of 3849)
 #&gt;   response(s): 0 </div><div class='input'><span class='co'>## all results</span>
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>allRows</span>(<span class='no'>res</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 3846 (out of 3846)
+#&gt;   requested: 3849 (out of 3849)
 #&gt;   response(s): 0 </div><div class='input'>
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"trans-golgi"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class &#39;OlsSearch&#39;:

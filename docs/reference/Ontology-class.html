@@ -54,6 +54,9 @@
 <li>
   <a href="../articles/index.html">Articles</a>
 </li>
+<li>
+  <a href="../news/index.html">News</a>
+</li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
@@ -201,20 +204,27 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Get all ontolgies</span>
 <span class='no'>ol</span> <span class='kw'>&lt;-</span> <span class='fu'>Ontologies</span>()
-<span class='no'>ol</span></div><div class='output co'>#&gt; Object of class &#39;Ontologies&#39; with 158 entries
-#&gt;    AEO, AERO ... ZECO, ZFA </div><div class='input'>
-<span class='fu'>head</span>(<span class='fu'>as</span>(<span class='no'>ol</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt;            Prefix Namespace                               Title
-#&gt; aeo           AEO       aeo          Anatomical Entity Ontology
-#&gt; aero         AERO      aero    Adverse Event Reporting Ontology
-#&gt; agro         AGRO      agro                   Agronomy Ontology
-#&gt; ancestro ancestro  ancestro                   Ancestry Ontology
-#&gt; apo           APO       apo       Ascomycete phenotype ontology
-#&gt; atol         ATOL      atol Animal Trait Ontology for Livestock</div><div class='input'><span class='fu'>length</span>(<span class='no'>ol</span>)</div><div class='output co'>#&gt; [1] 158</div><div class='input'>
+<span class='no'>ol</span></div><div class='output co'>#&gt; Object of class &#39;Ontologies&#39; with 160 entries
+#&gt;    CARO, CCO ... UO, VARIO </div><div class='input'>
+<span class='fu'>head</span>(<span class='fu'>as</span>(<span class='no'>ol</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt;          Prefix Namespace
+#&gt; caro       CARO      caro
+#&gt; cco         CCO       cco
+#&gt; cheminf CHEMINF   cheminf
+#&gt; chmo       CHMO      chmo
+#&gt; cio         CIO       cio
+#&gt; cl           CL        cl
+#&gt;                                                                                          Title
+#&gt; caro                                                         Common Anatomy Reference Ontology
+#&gt; cco                                                                        Cell Cycle Ontology
+#&gt; cheminf chemical information ontology (cheminf) - information entities about chemical entities
+#&gt; chmo                                                                 Chemical Methods Ontology
+#&gt; cio                                                            Confidence Information Ontology
+#&gt; cl                                                                               Cell Ontology</div><div class='input'><span class='fu'>length</span>(<span class='no'>ol</span>)</div><div class='output co'>#&gt; [1] 160</div><div class='input'>
 <span class='co'>## Individual ontologies</span>
-(<span class='no'>go</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"go"</span>]])</div><div class='output co'>#&gt; Ontology: Uberon Ontology Module for GO (go)  
+(<span class='no'>go</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"go"</span>]])</div><div class='output co'>#&gt; Ontology: Gene Ontology (go)  
 #&gt;   An ontology for describing the function of genes and gene products
-#&gt;    Loaded: 2016-12-22 Updated: 2016-12-22 Version: 2016-12-21 
-#&gt;    47892 terms  68 properties  0 individuals</div><div class='input'>(<span class='no'>efo</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"efo"</span>]])</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
+#&gt;    Loaded: 2017-01-09 Updated: 2017-01-10 Version: 2017-01-08 
+#&gt;    47914 terms  66 properties  0 individuals</div><div class='input'>(<span class='no'>efo</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"efo"</span>]])</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
 #&gt;   The Experimental Factor Ontology (EFO) provides a systematic
 #&gt;   description of many experimental variables available in EBI databases,
 #&gt;   and for external projects such as the NHGRI GWAS catalogue. It combines
@@ -222,10 +232,10 @@
 #&gt;   chemical compounds. The scope of EFO is to support the annotation,
 #&gt;   analysis and visualization of data handled by many groups at the EBI
 #&gt;   and as the core ontology for OpenTargets.org
-#&gt;    Loaded: 2016-12-20 Updated: 2016-12-22 Version: 2.79 
+#&gt;    Loaded: 2016-12-20 Updated: 2017-01-10 Version: 2.79 
 #&gt;    19217 terms  296 properties  0 individuals</div><div class='input'>
 <span class='co'>## some basic information</span>
-<span class='fu'>olsVersion</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;2016-12-21&quot;</div><div class='input'><span class='fu'>olsDesc</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;An ontology for describing the function of genes and gene products&quot;</div><div class='input'><span class='fu'>olsTitle</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;Uberon Ontology Module for GO&quot;</div><div class='input'><span class='fu'>olsPrefix</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;GO&quot;</div><div class='input'><span class='fu'>olsNamespace</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;go&quot;</div><div class='input'>
+<span class='fu'>olsVersion</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;2017-01-08&quot;</div><div class='input'><span class='fu'>olsDesc</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;An ontology for describing the function of genes and gene products&quot;</div><div class='input'><span class='fu'>olsTitle</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;Gene Ontology&quot;</div><div class='input'><span class='fu'>olsPrefix</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;GO&quot;</div><div class='input'><span class='fu'>olsNamespace</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] &quot;go&quot;</div><div class='input'>
 <span class='fu'>olsRoot</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; Object of class &#39;Terms&#39; with 3 entries
 #&gt;  From the GO ontology
 #&gt; GO:0005575, GO:0003674, GO:0008150 </div><div class='input'>
