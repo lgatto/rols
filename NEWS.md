@@ -1,5 +1,9 @@
 # rols 2.3
 
+## CHANGES IN VERSION 2.3.5
+
+- Fix failing test <2017-03-15 Wed>
+
 ## CHANGES IN VERSION 2.3.4
 
 - Ammend failing Ontologies unit test (related to changes made in
