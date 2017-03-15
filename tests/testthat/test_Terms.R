@@ -107,11 +107,10 @@ test_that("accessors", {
 
 test_that("unique terms", {
     x <- list(term("go", "GO:0005802"),
-              term("nbo", "GO:0005802"),
               term("cco", "GO:0005802"))
-    names(x) <- rep("GO:0005802", 3)
+    names(x) <- rep("GO:0005802", 2)
     trms <- rols:::Terms(x = x)
-    expect_identical(length(trms), 3L)
+    expect_identical(length(trms), 2L)
     expect_identical(length(unique(trms)), 1L)
     expect_identical(unique(trms)[[1]], trms[[1]])
 })
