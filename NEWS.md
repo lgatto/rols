@@ -1,6 +1,10 @@
 # rols 2.5
 
-## CHNAGES IN VERSION 2.5.1
+## CHANGES IN VERSION 2.5.2
+- Update to latest BiocStyle <2017-09-01 Fri>
+- Quick fix for issue #24 (reported upsteams) <2017-09-02 Sat>
+
+## CHANGES IN VERSION 2.5.1
 - Fix unit test <2017-06-20 Tue>
 
 ## CHNAGES IN VERSION 2.5.0
