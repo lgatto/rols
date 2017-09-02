@@ -1,5 +1,5 @@
 setGeneric("Ontologies", function(object) standardGeneric("Ontologies"))
-setGeneric("Ontology", function(object) standardGeneric("Ontology"))
+## setGeneric("Ontology", function(object) standardGeneric("Ontology")) 
 
 setGeneric("olsPrefix", function(object, ...) standardGeneric("olsPrefix"))
 setGeneric("olsDesc", function(object, ...) standardGeneric("olsDesc"))
