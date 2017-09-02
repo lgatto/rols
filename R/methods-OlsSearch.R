@@ -120,9 +120,15 @@ setAs(from = "OlsSearch", to = "data.frame",
 ## Terms constructor
 setAs(from = "OlsSearch", to = "Terms",
       function(from) {
-          x <- apply(from@response, 1,
+          resp <- from@response
+          ## see issue #24
+          if (anyNA(resp$obo_id)) {
+              i <- is.na(resp$obo_id)
+              resp$obo_id[i] <- sub("_", ":", resp$short_form)[i]
+          }
+          x <- apply(resp, 1,
                      function(x) term(x[["ontology_prefix"]],
                                       x[["obo_id"]]))
-          names(x) <- from@response[["obo_id"]]
+          names(x) <- resp[["obo_id"]]
           Terms(x = x)
       })
