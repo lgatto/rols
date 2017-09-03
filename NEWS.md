@@ -8,12 +8,12 @@
 ## CHANGES IN VERSION 2.5.1
 - Fix unit test <2017-06-20 Tue>
 
-## CHNAGES IN VERSION 2.5.0
+## CHANGES IN VERSION 2.5.0
 - Bioconductor devel 3.6
 
 # rols 2.4
 
-## CHNAGES IN VERSION 2.4.0
+## CHANGES IN VERSION 2.4.0
 - Bioconductor release 3.5
 
 # rols 2.3
