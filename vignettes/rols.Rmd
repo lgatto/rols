@@ -18,6 +18,7 @@ vignette: >
 ---
 
 ```{r env, echo=FALSE}
+suppressPackageStartupMessages(library("GO.db"))
 suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("rols"))
 suppressPackageStartupMessages(library("DT"))
@@ -229,8 +230,8 @@ str(qdrf <- as(qry, "data.frame"))
 
 In this case, we can see that we actually retrieve the same term used
 across different ontologies. In such cases, it might be useful to keep
-only non-redundant term instances. This would have been equivalent to
-searching the `r termOntology(unique(qtrms))` ontology
+only non-redundant term instances. Here, this would have been
+equivalent to searching the `r termOntology(unique(qtrms))` ontology
 
 ```{r uterms}
 qtrms <- unique(qtrms)
