@@ -8,7 +8,7 @@ abstract: >
   How to query the Ontology Lookup Service directly from R and how to
   create and parse controlled vocabulary.
 output:
-  BiocStyle::html_document2:
+  BiocStyle::html_document:
     toc_float: true
 vignette: >
   %\VignetteIndexEntry{An R interface to the Ontology Lookup Service}
@@ -18,8 +18,8 @@ vignette: >
 ---
 
 ```{r env, echo=FALSE}
-suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("GO.db"))
+suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("rols"))
 suppressPackageStartupMessages(library("DT"))
 nonto <- length(ol <- Ontologies())
@@ -115,8 +115,8 @@ go
 Single ontology terms are stored in `Term` objects. When more terms
 need to be manipulated, they are stored as `Terms` objects. It is easy
 to obtain all terms of an ontology of interest, and the resulting
-`Terms` object can be subset using
-`[` and `[[`, as one would for lists.
+`Terms` object can be subset using `[` and `[[`, as one would for
+lists.
 
 ```{r}
 gotrms <- terms(go) ## or terms("go")
@@ -230,7 +230,7 @@ str(qdrf <- as(qry, "data.frame"))
 
 In this case, we can see that we actually retrieve the same term used
 across different ontologies. In such cases, it might be useful to keep
-only non-redundant term instances. In this case, this would have been
+only non-redundant term instances. Here, this would have been
 equivalent to searching the `r termOntology(unique(qtrms))` ontology
 
 ```{r uterms}
