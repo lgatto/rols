@@ -1,5 +1,8 @@
 # rols 2.5
 
+## CHANGES IN VERSION 2.5.4
+- Nothing yet
+
 ## CHANGES IN VERSION 2.5.3
 - Add import Ontology in NAMESPACE 
 
