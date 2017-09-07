@@ -1,7 +1,7 @@
 # rols 2.5
 
 ## CHANGES IN VERSION 2.5.3
-- Nothing yet
+- Add import Ontology in NAMESPACE 
 
 ## CHANGES IN VERSION 2.5.2
 - Update to latest BiocStyle <2017-09-01 Fri>
