@@ -48,6 +48,10 @@
 \alias{isRoot,Term-method}
 \alias{isRoot,Terms-method}
 
+\alias{coerce,Term,data.frame-method}
+\alias{coerce,Terms,data.frame-method}
+\alias{as.Term.data.frame}
+\alias{as.Terms.data.frame}
 
 \alias{terms}
 \alias{term}
@@ -189,6 +193,15 @@
       i.e. those with the same term id (even when stemming from
       different ontologies), have been removed (only the first occurence
       is retained). }
+
+    \item{\code{as(x, "data.fram")}}{Coerces a single \code{Term} or
+      \code{Terms} into a \code{data.frame} of length 1 (for the former)
+      or length \code{length(x)} for the latter. The result will contain
+      the following columns: id, label, description of the term(s),
+      their ontology, whether they are obsolete, have children or are
+      root node, the first synonym only, their iri and whether they are
+      defining the ontology. Any missing value will be reported as
+      \code{NA}. }
     
   }
   
@@ -210,12 +223,15 @@
     gotrms <- terms(go, pagesize = 10000)
 }
 
+as(gotrms[1:10], "data.frame") ## data,frame with 10 rows
+
 ## (one) term
 (trm <- gotrms[[1]])
 termPrefix(trm)
 gotrms[1:3]
 gotrms[["GO:0032801"]]
 
+as(trm, "data.frame") ## data,frame with 1 row
 
 ## using an Ontology object
 go <- Ontology("GO")

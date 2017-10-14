@@ -51,6 +51,8 @@ export(charIsCVParam, CVParam,
        children, parents,
        ancestors, descendants,
        derivesFrom, partOf,
+       as.Term.data.frame,
+       as.Terms.data.frame,
        ## Search/select
        OlsSearch,
        olsSearch,

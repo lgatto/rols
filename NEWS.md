@@ -1,7 +1,7 @@
 # rols 2.5
 
 ## CHANGES IN VERSION 2.5.4
-- Nothing yet
+- New term(s) to data.frame coersion methods <2017-10-14 Sat>
 
 ## CHANGES IN VERSION 2.5.3
 - Add import Ontology in NAMESPACE 
