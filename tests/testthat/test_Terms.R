@@ -199,3 +199,19 @@ test_that("partOf and derivesFrom", {
     expect_message(partOf(term("BTO", "BTO:0002600")),
                    "No 'part of' terms")    
 })
+
+
+test_that("coerce term(s) as df", {
+    x <- as(trm, "data.frame")
+    expect_identical(dim(x), c(1L, 10L))
+    x <- as(trms, "data.frame")
+    expect_identical(dim(x), c(length(trms), 10L))
+    for (i in 1:length(trms)) {
+        x1 <- x[i, ]
+        x2 <- as(trms[[i]], "data.frame")
+        x1[is.na(x1)] <- NA_character_
+        x2[is.na(x2)] <- NA_character_        
+        rownames(x2) <- rownames(x1)
+        expect_identical(x1, x2)
+    }
+})

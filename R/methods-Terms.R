@@ -250,3 +250,34 @@ setMethod("all.equal", c("Terms", "Terms"),
               if (is.null(msg)) return(TRUE)
               else msg
           })
+
+fix_null <- function(x) {
+    if (is.null(x)) return(NA)
+    if (is.list(x)) return(x[[1]])
+    return(x)
+}
+
+setAs("Term", "data.frame",
+      function(from) 
+          data.frame(
+              id = fix_null(from@obo_id),
+              label = fix_null(from@label),
+              description = fix_null(from@description),
+              ontology = fix_null(from@ontology_name),
+              is_obsolete = fix_null(from@is_obsolete),
+              has_children = fix_null(from@has_children),
+              is_root = fix_null(from@is_root),
+              first_synonym = fix_null(from@synonym),
+              iri = fix_null(from@iri),
+              is_defining_ontology = fix_null(from@is_defining_ontology),
+              stringsAsFactors = FALSE)
+          )
+
+as.Term.data.frame <- function(x)
+    as(x, "data.frame")
+
+setAs("Terms", "data.frame",
+      function(from) do.call(rbind, lapply(from, as, "data.frame")))
+
+as.Terms.data.frame <- function(x)
+    as(x, "data.frame")

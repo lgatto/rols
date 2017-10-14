@@ -146,6 +146,9 @@ children(trm)
 Similarly, the `partOf` and `derivesFrom` functions return, for an
 input term, the terms it is a part of and derived from.
 
+Finally, a single term or terms object can be coerced to a
+`data.frame` using `as(x, "data.frame")`.
+
 ## Properties
 
 Properties (relationships) of single or multiple terms or complete
