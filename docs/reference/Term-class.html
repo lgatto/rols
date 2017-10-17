@@ -181,7 +181,7 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## (all) terms</span>
-(<span class='no'>gotrms</span> <span class='kw'>&lt;-</span> <span class='fu'>terms</span>(<span class='st'>"go"</span>, <span class='kw'>pagesize</span> <span class='kw'>=</span> <span class='fl'>10000</span>))</div><div class='output co'>#&gt; Object of class 'Terms' with 49143 entries
+(<span class='no'>gotrms</span> <span class='kw'>&lt;-</span> <span class='fu'>terms</span>(<span class='st'>"go"</span>, <span class='kw'>pagesize</span> <span class='kw'>=</span> <span class='fl'>10000</span>))</div><div class='output co'>#&gt; Object of class 'Terms' with 49148 entries
 #&gt;  From the GO ontology
 #&gt;   GO:0005230, GO:0015276 ... GO:0032942, GO:0019987 </div><div class='input'>
 <span class='fu'>not_run</span>({
@@ -316,9 +316,9 @@
 <span class='fu'><a href='Ontology-class.html'>olsRoot</a></span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; <span class='error'>Error in olsRoot(go): object 'go' not found</span></div><div class='input'>
 <span class='fu'>parents</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
 #&gt;  From the GO ontology
-#&gt; GO:0015276 </div><div class='input'><span class='fu'>ancestors</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 17 entries
+#&gt; GO:0015276 </div><div class='input'><span class='fu'>ancestors</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
 #&gt;  From the GO ontology
-#&gt;   GO:0015276, GO:0022834 ... GO:0022892, GO:0022838 </div><div class='input'><span class='fu'>children</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 5 entries
+#&gt; GO:0015276 </div><div class='input'><span class='fu'>children</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 5 entries
 #&gt;  From the GO ontology
 #&gt;   GO:0036081, GO:0036082 ... GO:0005237, GO:0005231 </div><div class='input'><span class='fu'>descendants</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 20 entries
 #&gt;  From the GO ontology
