@@ -54,7 +54,9 @@ test_that("constructors", {
                             'GO:0044248' = "cellular catabolic process",
                             'GO:0009057' = "macromolecule catabolic process")))
 
-    expect_identical(length(ancestors(trm)), 13L) ## was 20 before 20-June-2017
+    ## was 20 before 2017-06-20
+    ## was 13 before 2017-10-17
+    expect_identical(length(ancestors(trm)), 3L) 
 
     nms <- names(descendants(trm)@x)
     expect_identical(children(trm)@x[nms],
