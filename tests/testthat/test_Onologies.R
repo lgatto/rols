@@ -68,6 +68,8 @@ test_that("Ontology accessors", {
     trms <- rols:::Terms(x = list('GO:0005575' = term("GO", 'GO:0005575'),
                                   'GO:0003674' = term("GO", 'GO:0003674'),
                                   'GO:0008150' = term("GO", 'GO:0008150')))
+    trms <- trms[order(termId(trms))]
+    gort <- gort[order(termId(gort))]
     expect_identical(trms, gort)
     expect_identical(pre[[i]], olsPrefix(go))
     expect_identical(pre[[i]], olsPrefix("go"))
