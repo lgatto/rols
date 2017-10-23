@@ -205,19 +205,19 @@
     <pre class="examples"><div class='input'><span class='co'>## Get all ontolgies</span>
 <span class='no'>ol</span> <span class='kw'>&lt;-</span> <span class='fu'>Ontologies</span>()
 <span class='no'>ol</span></div><div class='output co'>#&gt; Object of class 'Ontologies' with 198 entries
-#&gt;    AEO, EXO ... ZFA, ZFS </div><div class='input'>
-<span class='fu'>head</span>(<span class='fu'>as</span>(<span class='no'>ol</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt;      Prefix Namespace                                   Title
-#&gt; aeo     AEO       aeo              Anatomical Entity Ontology
-#&gt; exo     EXO       exo                       Exposure ontology
-#&gt; fao     FAO       fao                    Fungal gross anatomy
-#&gt; fbbi   FBbi      fbbi              Biological imaging methods
-#&gt; fbcv   FBcv      fbcv           FlyBase Controlled Vocabulary
-#&gt; fix     FIX       fix Physico-chemical methods and properties</div><div class='input'><span class='fu'>length</span>(<span class='no'>ol</span>)</div><div class='output co'>#&gt; [1] 198</div><div class='input'>
+#&gt;    FBbi, FBbt ... WBLS, XCO </div><div class='input'>
+<span class='fu'>head</span>(<span class='fu'>as</span>(<span class='no'>ol</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt;        Prefix Namespace                        Title
+#&gt; fbbi     FBbi      fbbi   Biological imaging methods
+#&gt; fbbt     FBbt      fbbt     Drosophila gross anatomy
+#&gt; gaz       GAZ       gaz                    Gazetteer
+#&gt; hao       HAO       hao Hymenoptera Anatomy Ontology
+#&gt; ico       ICO       ico    Informed Consent Ontology
+#&gt; idomal IDOMAL    idomal             Malaria Ontology</div><div class='input'><span class='fu'>length</span>(<span class='no'>ol</span>)</div><div class='output co'>#&gt; [1] 198</div><div class='input'>
 <span class='co'>## Individual ontologies</span>
 (<span class='no'>go</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"go"</span>]])</div><div class='output co'>#&gt; Ontology: Gene Ontology (go)  
 #&gt;   An ontology for describing the function of genes and gene products
-#&gt;    Loaded: 2017-10-16 Updated: 2017-10-16 Version: 2017-10-14 
-#&gt;    49147 terms  67 properties  0 individuals</div><div class='input'>(<span class='no'>efo</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"efo"</span>]])</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
+#&gt;    Loaded: 2017-10-23 Updated: 2017-10-23 Version: 2017-10-21 
+#&gt;    49155 terms  67 properties  0 individuals</div><div class='input'>(<span class='no'>efo</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"efo"</span>]])</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
 #&gt;   The Experimental Factor Ontology (EFO) provides a systematic
 #&gt;   description of many experimental variables available in EBI databases,
 #&gt;   and for external projects such as the NHGRI GWAS catalogue. It combines
@@ -225,13 +225,13 @@
 #&gt;   chemical compounds. The scope of EFO is to support the annotation,
 #&gt;   analysis and visualization of data handled by many groups at the EBI
 #&gt;   and as the core ontology for OpenTargets.org
-#&gt;    Loaded: 2017-09-19 Updated: 2017-10-16 Version: 2.88 
-#&gt;    20412 terms  298 properties  0 individuals</div><div class='input'>
+#&gt;    Loaded: 2017-10-17 Updated: 2017-10-23 Version: 2.89 
+#&gt;    20460 terms  298 properties  0 individuals</div><div class='input'>
 <span class='co'>## some basic information</span>
-<span class='fu'>olsVersion</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "2017-10-14"</div><div class='input'><span class='fu'>olsDesc</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "An ontology for describing the function of genes and gene products"</div><div class='input'><span class='fu'>olsTitle</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "Gene Ontology"</div><div class='input'><span class='fu'>olsPrefix</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='fu'>olsNamespace</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "go"</div><div class='input'>
+<span class='fu'>olsVersion</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "2017-10-21"</div><div class='input'><span class='fu'>olsDesc</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "An ontology for describing the function of genes and gene products"</div><div class='input'><span class='fu'>olsTitle</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "Gene Ontology"</div><div class='input'><span class='fu'>olsPrefix</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='fu'>olsNamespace</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "go"</div><div class='input'>
 <span class='fu'>olsRoot</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
 #&gt;  From the GO ontology
-#&gt; GO:0005575, GO:0003674, GO:0008150 </div><div class='input'>
+#&gt; GO:0003674, GO:0008150, GO:0005575 </div><div class='input'>
 <span class='co'>## works with Ontology objects or their namespace</span>
 <span class='fu'>identical</span>(<span class='fu'>olsRoot</span>(<span class='st'>"go"</span>), <span class='fu'>olsRoot</span>(<span class='no'>go</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'>identical</span>(<span class='fu'>olsVersion</span>(<span class='st'>"go"</span>), <span class='fu'>olsVersion</span>(<span class='no'>go</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'>## Directly initialise a single ontology</span>
