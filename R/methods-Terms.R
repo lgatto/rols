@@ -45,60 +45,96 @@ derivesFrom <- function(id) {
 }
 
 children <- function(id) {
+    pagesize <- 20
     stopifnot(inherits(id, "Term"))
-    url <- id@links$children[[1]]
-    if (is.null(url)) {
+    url0 <- id@links$children[[1]]
+    if (is.null(url0)) {
         message("No children terms.")
         return(NULL)
     }
+    url <- paste0(url0, "?page=0&size=", pagesize)
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
+    if (cx$page$totalElements > pagesize) {
+        pagesize <- cx$page$totalElements
+        url <- paste0(url0, "?page=0&size=", pagesize)
+        x <- GET(url)
+        warn_for_status(x)
+        cx <- content(x)
+    }
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     names(ans) <- sapply(ans, termId)
     Terms(x = ans)
 }
 
 parents <- function(id) {
+    pagesize <- 20
     stopifnot(inherits(id, "Term"))
-    url <- id@links$parents[[1]]
-    if (is.null(url)) {
+    url0 <- id@links$parents[[1]]
+    if (is.null(url0)) {
         message("No parent terms.")
         return(NULL)
     }
+    url <- paste0(url0, "?page=0&size=", pagesize)
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
+    if (cx$page$totalElements > pagesize) {
+        pagesize <- cx$page$totalElements
+        url <- paste0(url0, "?page=0&size=", pagesize)
+        x <- GET(url)
+        warn_for_status(x)
+        cx <- content(x)
+    }
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     names(ans) <- sapply(ans, termId)
     Terms(x = ans)
 }
 
 ancestors <- function(id) {
+    pagesize <- 20
     stopifnot(inherits(id, "Term"))
-    url <- id@links$ancestors[[1]]
-    if (is.null(url)) {
+    url0 <- id@links$parents[[1]]
+    if (is.null(url0)) {
         message("No ancestor terms.")
         return(NULL)
     }
+    url <- paste0(url0, "?page=0&size=", pagesize)
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
+    if (cx$page$totalElements > pagesize) {
+        pagesize <- cx$page$totalElements
+        url <- paste0(url0, "?page=0&size=", pagesize)
+        x <- GET(url)
+        warn_for_status(x)
+        cx <- content(x)
+    }    
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     names(ans) <- sapply(ans, termId)
     Terms(x = ans)
 }
 
 descendants <- function(id) {
+    pagesize <- 20    
     stopifnot(inherits(id, "Term"))
-    url <- id@links$descendants[[1]]
-    if (is.null(url)) {
+    url0 <- id@links$descendants[[1]]
+    if (is.null(url0)) {
         message("No descendant terms.")
         return(NULL)
     }
+    url <- paste0(url0, "?page=0&size=", pagesize)
     x <- GET(url)
     stop_for_status(x)
     cx <- content(x)
+    if (cx$page$totalElements > pagesize) {
+        pagesize <- cx$page$totalElements
+        url <- paste0(url0, "?page=0&size=", pagesize)
+        x <- GET(url)
+        warn_for_status(x)
+        cx <- content(x)
+    }    
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     names(ans) <- sapply(ans, termId)
     Terms(x = ans)

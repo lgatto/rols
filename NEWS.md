@@ -1,5 +1,12 @@
 # rols 2.5
 
+## CHANGES IN VERSION 2.5.5
+- Fix failing test do to different order <2017-10-23 Mon>
+
+## CHANGES IN VERSION 2.5.4
+- Fix bug in pagesize limit when reporting children, ancestors,
+  ... (see issue #25) <2017-10-17 Tue>
+
 ## CHANGES IN VERSION 2.5.4
 - New term(s) to data.frame coersion methods <2017-10-14 Sat>
 
