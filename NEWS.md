@@ -1,5 +1,8 @@
 # rols 2.5
 
+## CHANGES IN VERSION 2.5.6
+- bump version 
+
 ## CHANGES IN VERSION 2.5.5
 - Fix failing test do to different order <2017-10-23 Mon>
 
