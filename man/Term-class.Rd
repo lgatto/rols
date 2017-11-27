@@ -229,7 +229,7 @@ as(gotrms[1:10], "data.frame") ## data,frame with 10 rows
 (trm <- gotrms[[1]])
 termPrefix(trm)
 gotrms[1:3]
-gotrms[["GO:0032801"]]
+gotrms[["GO:0005230"]]
 
 as(trm, "data.frame") ## data,frame with 1 row
 
@@ -239,10 +239,11 @@ term(go, "GO:0032801")
 ## using an ontology prefix
 term("GO", "GO:0032801")
 
-isObsolete(gotrms[["GO:0030533"]])
-isObsolete(gotrms[["GO:0005563"]])
+isObsolete(gotrms[["GO:0005230"]])
+isObsolete(gotrms[["GO:0005232"]])
 
-isRoot(gotrms[["GO:0030533"]])
+isRoot(gotrms[["GO:0005230"]])
+isRoot(gotrms[["GO:0005232"]])
 
 i <- isRoot(gotrms) & !isObsolete(gotrms)
 gotrms[i]
@@ -257,7 +258,7 @@ ancestors(trm)
 children(trm)
 descendants(trm)
 
-partOf(gotrms[["GO:0008308"]])
+partOf(gotrms[["GO:0044429"]])
 partOf(term("BTO", "BTO:0000142"))
 
 derivesFrom(term("BTO", "BTO:0002600"))
