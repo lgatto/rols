@@ -1,5 +1,8 @@
 # rols 2.7
 
+## CHANGES IN VERSION 2.7.2
+- Nothing yet
+
 ## CHANGES IN VERSION 2.7.1
 - Fix failing partOf unit test <2017-11-27 Mon>
 
