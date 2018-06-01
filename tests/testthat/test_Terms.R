@@ -23,7 +23,6 @@ test_that("constructors", {
     expect_identical(termLabel(trm), "receptor catabolic process")
     expect_identical(termId(trm), "GO:0032801")
 
-
     trm1 <- trms[["SO:1000005"]]
     trm2 <- term("SO", "SO:1000005")
     expect_identical(trm1, trm2)
@@ -31,7 +30,7 @@ test_that("constructors", {
     expect_true(all(termPrefix(trms) == "SO"))
 
     expect_identical(termPrefix(trm), "GO")
-    
+
     expect_identical(termSynonym(trm),
                      c("receptor breakdown",
                        "receptor degradation",
@@ -56,12 +55,13 @@ test_that("constructors", {
 
     ## was 20 before 2017-06-20
     ## was 13 before 2017-10-17
-    expect_identical(length(ancestors(trm)), 3L) 
+    ## set to 13 after fixing a bug (see #26) 2018-06-01
+    expect_identical(length(ancestors(trm)), 13L)
 
     nms <- names(descendants(trm)@x)
     expect_identical(children(trm)@x[nms],
                      descendants(trm)@x[nms])
-    
+
 })
 
 test_that("show methods", {
@@ -139,7 +139,7 @@ test_that("Term/Terms equality", {
     xx1 <- xx2 <- trms[1:2]
     xx1@x[[1]] <- xx1@x[[2]]
     expect_false(isTRUE(all.equal(xx1, xx2)))
-    expect_match(all.equal(xx1, xx2), "Term id 'SO:0000579'")    
+    expect_match(all.equal(xx1, xx2), "Term id 'SO:0000579'")
 })
 
 test_that("terms(pagesize)", {
@@ -199,7 +199,7 @@ test_that("partOf and derivesFrom", {
 
     expect_null(partOf(term("BTO", "BTO:0002600")))
     expect_message(partOf(term("BTO", "BTO:0002600")),
-                   "No 'part of' terms")    
+                   "No 'part of' terms")
 })
 
 
@@ -212,7 +212,7 @@ test_that("coerce term(s) as df", {
         x1 <- x[i, ]
         x2 <- as(trms[[i]], "data.frame")
         x1[is.na(x1)] <- NA_character_
-        x2[is.na(x2)] <- NA_character_        
+        x2[is.na(x2)] <- NA_character_
         rownames(x2) <- rownames(x1)
         expect_identical(x1, x2)
     }

@@ -1,3 +1,18 @@
+# rols 2.9
+
+## CHANGES IN VERSION 2.9.1
+- Fix bug ancestors function, reported by Christian Holland (see
+  https://github.com/lgatto/rols/issues/26 for details)
+  <2018-06-01 Fri>
+
+## CHANGES IN VERSION 2.9.0
+- Bioconductor devel
+
+# rols 2.8
+
+## CHANGES IN VERSION 2.8.0
+- Bioconductor release
+
 # rols 2.7
 
 ## CHANGES IN VERSION 2.7.2
@@ -8,6 +23,7 @@
 
 ## CHANGES IN VERSION 2.7.0
 - Bioconductor devel 3.7
+
 # rols 2.6
 
 ## CHANGES IN VERSION 2.6.0
@@ -16,7 +32,7 @@
 # rols 2.5
 
 ## CHANGES IN VERSION 2.5.6
-- bump version 
+- bump version
 
 ## CHANGES IN VERSION 2.5.5
 - Fix failing test do to different order <2017-10-23 Mon>
@@ -29,7 +45,7 @@
 - New term(s) to data.frame coersion methods <2017-10-14 Sat>
 
 ## CHANGES IN VERSION 2.5.3
-- Add import Ontology in NAMESPACE 
+- Add import Ontology in NAMESPACE
 
 ## CHANGES IN VERSION 2.5.2
 - Update to latest BiocStyle <2017-09-01 Fri>
@@ -64,11 +80,11 @@
 - Add ctb to Authors@R <2016-12-28 Wed>
 - use NEWS.md <2016-12-28 Wed>
 - Ammend failing Ontologies unit test <2017-01-02 Mon>
- 
+
 ## CHANGES IN VERSION 2.3.2
 
 - Update test to reflect GO's new title <2016-12-21 Wed>
- 
+
 ## CHANGES IN VERSION 2.3.1
 
 - Fix failing unit test <2016-11-22 Tue>
@@ -82,27 +98,27 @@
 ## CHANGES IN VERSION 2.2.0
 
 - Bioconductor release 3.4
- 
+
 ## CHANGES IN VERSION 2.1.3
 
 - Fix failing tests <2016-09-16 Fri>
- 
+
 # rols 1.99
 
 ## CHANGES IN VERSION 1.99.1
 
 - Explicitly extract raw content to fix error <2016-04-02 Sat>
- 
+
 ## CHANGES IN VERSION 1.99.0
 
-- Using the REST API 
- 
+- Using the REST API
+
 # rols 1.13
 
 ## CHANGES IN VERSION 1.13.1
 
 - Package deprecation message <2015-12-30 Wed>
- 
+
 ## CHANGES IN VERSION 1.13.0
 
 - Bioc devel 3.3
@@ -118,7 +134,7 @@
 ## CHANGES IN VERSION 1.11.6
 
 - fix failing unit tests <2015-07-02 Thu>
- 
+
 ## CHANGES IN VERSION 1.11.5
 
 - add test script <2015-06-30 Tue>
@@ -133,11 +149,11 @@
 
 - New charIsCVParam function to check if a character represents a
    valid CV param <2015-06-16 Tue>
- 
+
 ## CHANGES IN VERSION 1.11.2
 
 - Unit test <2015-06-15 Mon>
- 
+
 ## CHANGES IN VERSION 1.11.1
 
 - New char to CVParam coerce method <2015-06-15 Mon>
@@ -222,7 +238,7 @@ Changes IN VERSION 1.3.0
 
 ## CHANGES IN VERSION 1.1.5
 
-- update vignette for knitr 1.0 compatibility, 
+- update vignette for knitr 1.0 compatibility,
    based-n Dan's updates in stable version <2013-01-15 Tue>
 
 ## CHANGES IN VERSION 1.1.4
@@ -275,7 +291,7 @@ o using knitr instead-f pgfSweave <2012-08-13 Mon>
 - using pdfSweave <2012-05-16 Wed>
 - changed VignetteIndexEntry <2012-05-16 Wed>
 - removed roxygen2 from Suggests <2012-05-16 Wed>
-- added README file describinh Rd generation 
+- added README file describinh Rd generation
    with roxygen2 <2012-05-16 Wed>
 
 ## CHANGES IN VERSION 0.99.6
@@ -283,25 +299,25 @@ o using knitr instead-f pgfSweave <2012-08-13 Mon>
 - implementing Mark Carlson's suggestions
 - (Temporarily) removing pgf  <2012-05-15 Tue>
 - added Collate field <2012-05-15 Tue>
-- moving generics and class definitions to 
+- moving generics and class definitions to
    AllGenerics.R and AllClasses.R <2012-05-15 Tue>
---lsQuery now repeats query 'n' times if reply 
-   is empty - see man page for a brief 
+--lsQuery now repeats query 'n' times if reply
+   is empty - see man page for a brief
    discussion <2012-05-15 Tue>
-- updated vignette to discuss-ff/on-line data 
+- updated vignette to discuss-ff/on-line data
    access <2012-05-15 Tue>
 
 ## CHANGES IN VERSION 0.99.5
 
-- downgraded SSOAP dependency to (>= 0.8.0), as later 
-   SSOAP versions are not available through biocLite 
-   (due to check errors). rols works with SSOAP 0.8.0 
+- downgraded SSOAP dependency to (>= 0.8.0), as later
+   SSOAP versions are not available through biocLite
+   (due to check errors). rols works with SSOAP 0.8.0
    and XMLSchema 0.7.2. <2012-05-11 Fri>
 
 ## CHANGES IN VERSION 0.99.4
 
 - added url to DESCRIPTION <2012-05-11 Fri>
-- released CVParam validity contrains: now CVParam name 
+- released CVParam validity contrains: now CVParam name
    must match term-r any synonym <2012-05-11 Fri>
 - new CVParam constructor <2012-05-11 Fri>
 
@@ -336,11 +352,10 @@ o using knitr instead-f pgfSweave <2012-08-13 Mon>
 
 ## CHANGES IN VERSION 0.2.1
 
-- added specific SSOAP and XMLSchema version 
+- added specific SSOAP and XMLSchema version
    requirements <2011-12-18 Sun>
 - fixed a couple-f typos <2011-12-18 Sun>
 
 ## CHANGES IN VERSION 0.2.0
 
 - initial release
-

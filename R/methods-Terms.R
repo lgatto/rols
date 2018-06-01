@@ -95,7 +95,7 @@ parents <- function(id) {
 ancestors <- function(id) {
     pagesize <- 20
     stopifnot(inherits(id, "Term"))
-    url0 <- id@links$parents[[1]]
+    url0 <- id@links$ancestors[[1]]
     if (is.null(url0)) {
         message("No ancestor terms.")
         return(NULL)
@@ -110,14 +110,14 @@ ancestors <- function(id) {
         x <- GET(url)
         warn_for_status(x)
         cx <- content(x)
-    }    
+    }
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     names(ans) <- sapply(ans, termId)
     Terms(x = ans)
 }
 
 descendants <- function(id) {
-    pagesize <- 20    
+    pagesize <- 20
     stopifnot(inherits(id, "Term"))
     url0 <- id@links$descendants[[1]]
     if (is.null(url0)) {
@@ -134,7 +134,7 @@ descendants <- function(id) {
         x <- GET(url)
         warn_for_status(x)
         cx <- content(x)
-    }    
+    }
     ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
     names(ans) <- sapply(ans, termId)
     Terms(x = ans)
@@ -294,7 +294,7 @@ fix_null <- function(x) {
 }
 
 setAs("Term", "data.frame",
-      function(from) 
+      function(from)
           data.frame(
               id = fix_null(from@obo_id),
               label = fix_null(from@label),
