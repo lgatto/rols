@@ -34,8 +34,9 @@ installed using the dedicated functionality
 
 ```{r install, eval=FALSE}
 ## try http:// if https:// URLs are not supported
-source("https://bioconductor.org/biocLite.R")
-biocLite("rols")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("rols")
 ```
 
 ## Getting help

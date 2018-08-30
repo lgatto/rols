@@ -24,8 +24,9 @@ GitHub for details, documentation and vignette.
 and its dependencies can be installed
 
 ```
-source("http://www.bioconductor.org/biocLite.R")
-biocLite("rols")
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("rols")
 ```
 
 See also the `rols`
