@@ -1,5 +1,11 @@
 # rols 2.9
 
+## CHANGES IN VERSION 2.9.3
+- Update news and pkgdown
+
+## CHANGES IN VERSION 2.9.2
+- replace BiocInstaller biocLite mentions with BiocManager
+
 ## CHANGES IN VERSION 2.9.1
 - Fix bug ancestors function, reported by Christian Holland (see
   https://github.com/lgatto/rols/issues/26 for details)
