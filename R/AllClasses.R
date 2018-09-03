@@ -1,3 +1,6 @@
+setClassUnion("NullOrChar", c("NULL", "character"))
+setClassUnion("NullOrList", c("NULL", "list"))
+
 ## a param is [CV label, accession, name|synonym, value]
 .CVParam <- setClass("CVParam",
                      representation = representation(
@@ -31,9 +34,6 @@
                          if (is.null(msg)) TRUE else msg
                      })
 
-
-setClassUnion("NullOrChar", c("NULL", "character"))
-setClassUnion("NullOrList", c("NULL", "list"))
 
 .Ontology <- setClass("Ontology",
                       slots = c(loaded = "NullOrChar",
@@ -80,7 +80,7 @@ Terms <- setClass("Terms", slots = c(x = "list"))
                                  obsoletes = "logical",
                                  local = "character",
                                  childrenOf = "character",
-                                 rows = "integer", 
+                                 rows = "integer",
                                  start = "integer",
                                  url = "character",
                                  numFound = "integer",
