@@ -41,12 +41,13 @@ test_that("constructors", {
 
     expect_identical(termLabel(trm), "receptor catabolic process")
 
-    expect_identical(sort(termLabel(children(trm))),
-                     sort(c('GO:0038018' = "Wnt receptor catabolic process",
-                            'GO:1990172' = "G-protein coupled receptor catabolic process",
-                            'GO:0032802' = "low-density lipoprotein particle receptor catabolic process",
-                            'GO:0097019' = "neurotransmitter receptor catabolic process")))
+    ## The labels have changed on 2018-10-06
+    xt <- c('GO:0038018', 'GO:1990172', 'GO:0032802', 'GO:0097019')
+    chld <- children(trm)
 
+
+    expect_identical(sort(names(termLabel(chld))),
+                     sort(sort(xt)))
 
     expect_identical(sort(termLabel(parents(trm))),
                      sort(c('GO:0043112' = "receptor metabolic process",

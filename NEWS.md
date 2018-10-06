@@ -1,5 +1,8 @@
 # rols 2.9
 
+## CHANGES IN VERSION 2.9.4
+- Fix unit test <2018-10-06 Sat>
+
 ## CHANGES IN VERSION 2.9.3
 - Update news and pkgdown
 
