@@ -1,8 +1,8 @@
 ---
 title: "An R interface to the Ontology Lookup Service"
-author: 
+author:
 - name: Laurent Gatto
-  affiliation: Computational Proteomics Unit, Cambridge, UK
+  affiliation: https://lgatto.github.io/about/
 package: rols
 abstract: >
   How to query the Ontology Lookup Service directly from R and how to
@@ -257,7 +257,7 @@ and `r Biocpkg("GO.db")`, as a result of the different ways they
 access the data. `r Biocpkg("rols")` or `r Biocpkg("biomaRt")`
 perform direct online queries, while `r Biocpkg("GO.db")` and other
 annotation packages use database snapshot that are updated every
-release. 
+release.
 
 Both approaches have advantages. While online queries allow to obtain
 the latest up-to-date information, such approaches rely on network
@@ -265,7 +265,7 @@ availability and quality. If reproducibility is a major issue, the
 version of the database to be queried can easily be controlled with
 off-line approaches. In the case of `r Biocpkg("rols")`, although the
 load date of a specific ontology can be queried with `olsVersion`, it
-is not possible to query a specific version of an ontology. 
+is not possible to query a specific version of an ontology.
 
 
 # Changes in version 2.0
@@ -294,7 +294,7 @@ maintained by opening an
 development site.
 
 
-# CVParams 
+# CVParams
 
 The `CVParam` class is used to handle controlled vocabulary. It can be
 used for user-defined parameters
