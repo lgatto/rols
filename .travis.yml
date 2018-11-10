@@ -3,8 +3,6 @@ language: r
 r: bioc-devel
 cache:
   packages: true
-  directories:
-    - ~/.AnnotationHub
 sudo: required
 warnings_are_errors: true
 dist: trusty
@@ -16,9 +14,6 @@ dist: trusty
 addons:
   apt:
     packages:
-      - libnetcdf-dev
-      - netcdf-bin # libnetcdf-dev doesn't contain nc-config in ubuntu 12.04 (in 16.04 [xerus] it is part of libnetcdf-dev)
-      - libhdf5-dev
       - libgit2-dev # git2r
 
 jobs:
@@ -30,6 +25,16 @@ jobs:
         - testthat
         - knitr
         - roxygen2
+        - httr
+        - progress
+        - lubridate
+        - jsonlite
+        - DT
+        - pkgdown
+      bioc_packages:
+        - Biobase
+        - BiocStyle
+        - GO.db
       before_install:
         - mkdir -p ~/.R
         - echo -e 'MAKEFLAGS = -j2' > ~/.R/Makevars
@@ -54,11 +59,11 @@ jobs:
     - stage: "Deploy"
       install: skip
       script:
-        - travis_wait 20 Rscript -e 'covr::codecov()'
+        - Rscript -e 'covr::codecov()'
       name: "codecov and pkgdown (on master)"
       before_deploy:
         - R CMD INSTALL .
-        - travis_wait 20 Rscript -e 'pkgdown::build_site()'
+        - Rscript -e 'pkgdown::build_site()'
       deploy:
         provider: pages
         skip-cleanup: true
@@ -75,6 +80,6 @@ after_failure: sleep 10
 
 notifications:
   email:
-    recipients: lg390@cam.ac.uk
+    recipients: laurent.gatto@gmail.com
     on_failure: change
     on_success: change
