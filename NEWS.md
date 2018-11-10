@@ -1,3 +1,13 @@
+# rols 2.11
+
+## CHANGES IN VERSION 2.11.0
+- New version for Bioc 3.9 (devel)
+
+# rols 2.10
+
+## CHANGES IN VERSION 2.10.0
+- New version for Bioc 3.8 (release)
+
 # rols 2.9
 
 ## CHANGES IN VERSION 2.9.4

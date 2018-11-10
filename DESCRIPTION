@@ -3,21 +3,21 @@ Type: Package
 Title: An R interface to the Ontology Lookup Service
 Version: 2.11.0
 Authors@R: c(person(given = "Laurent", family = "Gatto",
-                    email = "lg390@cam.ac.uk",
-                    role = c("aut","cre")),
-             person(given = "Tiage", family = "Chedraoui Silva",
-                    role = "ctb"))
+		    email = "lg390@cam.ac.uk",
+		    role = c("aut","cre")),
+	     person(given = "Tiage", family = "Chedraoui Silva",
+		    role = "ctb"))
 Author: Laurent Gatto <lg390@cam.ac.uk>, with contributions from Tiago
-        Chedraoui Silva.
+	Chedraoui Silva.
 Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: The rols package is an interface to the Ontology Lookup
-             Service (OLS) to access and query hundred of ontolgies
-             directly from R.
+	     Service (OLS) to access and query hundred of ontolgies
+	     directly from R.
 Depends: methods
 Imports: httr, progress, jsonlite, utils, Biobase,
-         BiocGenerics (>= 0.23.1)
+	 BiocGenerics (>= 0.23.1)
 Suggests: GO.db, knitr (>= 1.1.0), BiocStyle (>= 2.5.19),
-          testthat, lubridate, DT, rmarkdown,
+	  testthat, lubridate, DT, rmarkdown,
 biocViews: Software, Annotation, MassSpectrometry, GO
 VignetteBuilder: knitr
 License: GPL-2
@@ -25,6 +25,6 @@ Encoding: UTF-8
 URL: http://lgatto.github.com/rols/
 BugReports: https://github.com/lgatto/rols/issues
 Collate: AllClasses.R AllGenerics.R utils.R cvparam.R
-         methods-OlsSearch.R methods-Ontologies.R methods-Terms.R
-         methods-Properties.R zzz.R
+	 methods-OlsSearch.R methods-Ontologies.R methods-Terms.R
+	 methods-Properties.R zzz.R
 RoxygenNote: 6.1.0
