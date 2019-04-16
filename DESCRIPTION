@@ -1,7 +1,7 @@
 Package: rols
 Type: Package
 Title: An R interface to the Ontology Lookup Service
-Version: 2.11.0
+Version: 2.11.1
 Authors@R: c(person(given = "Laurent", family = "Gatto",
                     email = "lg390@cam.ac.uk",
                     role = c("aut","cre")),
@@ -18,7 +18,7 @@ Imports: httr, progress, jsonlite, utils, Biobase,
          BiocGenerics (>= 0.23.1)
 Suggests: GO.db, knitr (>= 1.1.0), BiocStyle (>= 2.5.19),
           testthat, lubridate, DT, rmarkdown,
-biocViews: Software, Annotation, MassSpectrometry, GO
+biocViews: ImmunoOncology, Software, Annotation, MassSpectrometry, GO
 VignetteBuilder: knitr
 License: GPL-2
 Encoding: UTF-8
