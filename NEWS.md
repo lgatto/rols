@@ -1,5 +1,11 @@
 # rols 2.11
 
+## CHANGES IN VERSION 2.11.2
+- Fix failing test <2019-04-16 Tue>
+
+## CHANGES IN VERSION 2.11.1
+- Add ImmunoOncology biocView
+
 ## CHANGES IN VERSION 2.11.0
 - New version for Bioc 3.9 (devel)
 
