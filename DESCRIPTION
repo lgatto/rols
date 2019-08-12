@@ -7,9 +7,6 @@ Authors@R: c(person(given = "Laurent", family = "Gatto",
 		    role = c("aut","cre")),
 	     person(given = "Tiage", family = "Chedraoui Silva",
 		    role = "ctb"))
-Author: Laurent Gatto <lg390@cam.ac.uk>, with contributions from Tiago
-	Chedraoui Silva.
-Maintainer: Laurent Gatto <lg390@cam.ac.uk>
 Description: The rols package is an interface to the Ontology Lookup
 	     Service (OLS) to access and query hundred of ontolgies
 	     directly from R.
