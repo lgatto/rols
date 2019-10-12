@@ -176,10 +176,6 @@ test_that("No links", {
 })
 
 test_that("partOf and derivesFrom", {
-    pof <- partOf(term("GO", "GO:0044429"))
-    expect_identical(length(pof), 1L)
-    expect_identical(termId(pof[[1]]), "GO:0005739")
-
     pof <- partOf(term("BTO", "BTO:0000142"))
     expect_identical(length(pof), 2L)
     expect_identical(lapply(pof, termLabel),

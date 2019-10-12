@@ -1,5 +1,8 @@
 # rols 2.13
 
+## CHANGES IN VERSION 2.13.2
+- Remove failing test - term is now obsolete <2019-10-12 sam.>
+
 ## CHANGES IN VERSION 2.13.1
 - Fix failing test <2019-08-12 Mon>
 
