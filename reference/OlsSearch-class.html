@@ -72,7 +72,7 @@ Searching the OLS is done using the OlsSearch data
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.13.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.15.0</span>
       </span>
     </div>
 
@@ -194,13 +194,13 @@ Searching the OLS is done using the OlsSearch data
     <pre class="examples"><div class='input'>
 <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"trans-golgi"</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   query: trans-golgi 
-#&gt;   requested: 20 (out of 12359)
+#&gt;   requested: 20 (out of 12388)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   query: cell 
-#&gt;   requested: 20 (out of 185127)
+#&gt;   requested: 20 (out of 191323)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   query: cell 
-#&gt;   requested: 20 (out of 5302)
+#&gt;   requested: 20 (out of 5315)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: cell 
@@ -231,35 +231,35 @@ Searching the OLS is done using the OlsSearch data
 <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"plasma,membrane"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 5 (out of 4107)
+#&gt;   requested: 5 (out of 4110)
 #&gt;   response(s): 0 </div><div class='input'>
 <span class='co'>## or, once the object was created</span>
 (<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"plasma,membrane"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>))</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 20 (out of 4107)
+#&gt;   requested: 20 (out of 4110)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>olsRows</span>(<span class='no'>res</span>) <span class='kw'>&lt;-</span> <span class='fl'>5</span>
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 5 (out of 4107)
+#&gt;   requested: 5 (out of 4110)
 #&gt;   response(s): 0 </div><div class='input'><span class='co'>## all results</span>
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>allRows</span>(<span class='no'>res</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 4107 (out of 4107)
+#&gt;   requested: 4110 (out of 4110)
 #&gt;   response(s): 0 </div><div class='input'>
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"trans-golgi"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: trans-golgi 
-#&gt;   requested: 5 (out of 635)
+#&gt;   requested: 5 (out of 637)
 #&gt;   response(s): 0 </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>olsSearch</span>(<span class='no'>res</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: trans-golgi 
-#&gt;   requested: 5 (out of 635)
+#&gt;   requested: 5 (out of 637)
 #&gt;   response(s): 5 </div><div class='input'><span class='fu'>as</span>(<span class='no'>res</span>, <span class='st'>"data.frame"</span>)</div><div class='output co'>#&gt;                                                   id
 #&gt; 1 go:class:http://purl.obolibrary.org/obo/GO_0005802
 #&gt; 2 go:class:http://purl.obolibrary.org/obo/GO_0032588
