@@ -1,3 +1,8 @@
+# rols 2.15
+
+## CHANGES IN VERSION 2.15.0
+- Bioconductor version bump
+
 # rols 2.13
 
 ## CHANGES IN VERSION 2.13.2
