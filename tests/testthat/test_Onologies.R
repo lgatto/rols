@@ -87,7 +87,8 @@ test_that("Ontology accessors", {
     expect_identical(ttl[[i]], olsTitle("GO"))
 
     expect_identical(olsTitle(go), "Gene Ontology")
-    expect_identical(olsDesc(go), "An ontology for describing the function of genes and gene products")
+    ## next test fixed on 2020/05/01 - changed description
+    expect_identical(olsDesc(go), "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.")
 
     ## expect_identical(status[[i]], "LOADED") ## failed Sun Jan  1 20:36:00 GMT 2017
     expect_identical(status[[i]], olsStatus(go))

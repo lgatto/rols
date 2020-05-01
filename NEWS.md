@@ -1,5 +1,8 @@
 # rols 2.15
 
+## CHANGES IN VERSION 2.15.1
+- Fix failing unit test (GO description changed) <2020-05-01 Fri>
+
 ## CHANGES IN VERSION 2.15.0
 - Bioconductor version bump
 
