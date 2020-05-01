@@ -1,3 +1,13 @@
+# rols 2.17
+
+## CHANGES IN VERSION 2.17.0
+- Bioconductor devel version (Bioc 3.12)
+
+# rols 2.16
+
+## CHANGES IN VERSION 2.16.0
+- Bioconductor release version (Bioc 3.11)
+
 # rols 2.15
 
 ## CHANGES IN VERSION 2.15.0
