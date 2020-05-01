@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -40,7 +44,6 @@
 
 Searching the OLS is done using the OlsSearch data
   structure." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -58,7 +61,7 @@ Searching the OLS is done using the OlsSearch data
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -72,7 +75,7 @@ Searching the OLS is done using the OlsSearch data
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.15.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.17.1</span>
       </span>
     </div>
 
@@ -95,7 +98,12 @@ Searching the OLS is done using the OlsSearch data
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/lgatto/rols/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -131,7 +139,7 @@ Searching the OLS is done using the OlsSearch data
   <code>OlsSearch</code>.</p>
     <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
 
-    <p></p><dl class='dl-horizontal'>
+    <p></p><dl'>
     
     <dt><code>q</code>:</dt><dd><p>Object of class <code>"character"</code> ~~</p></dd>
     
@@ -170,7 +178,7 @@ Searching the OLS is done using the OlsSearch data
 
     <h2 class="hasAnchor" id="methods-and-functions"><a class="anchor" href="#methods-and-functions"></a>Methods and functions</h2>
 
-    <p></p><dl class='dl-horizontal'>
+    <p></p><dl'>
     
     <dt>coerce</dt><dd><p><code>signature(from = "OlsSearch", to =
 	"data.frame")</code>: ...</p></dd>
@@ -194,13 +202,13 @@ Searching the OLS is done using the OlsSearch data
     <pre class="examples"><div class='input'>
 <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"trans-golgi"</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   query: trans-golgi 
-#&gt;   requested: 20 (out of 12388)
+#&gt;   requested: 20 (out of 12572)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   query: cell 
-#&gt;   requested: 20 (out of 191323)
+#&gt;   requested: 20 (out of 197036)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   query: cell 
-#&gt;   requested: 20 (out of 5315)
+#&gt;   requested: 20 (out of 7260)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"cell"</span>, <span class='kw'>exact</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: cell 
@@ -231,35 +239,35 @@ Searching the OLS is done using the OlsSearch data
 <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"plasma,membrane"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fl'>5</span>)</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 5 (out of 4110)
+#&gt;   requested: 5 (out of 4115)
 #&gt;   response(s): 0 </div><div class='input'>
 <span class='co'>## or, once the object was created</span>
 (<span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"plasma,membrane"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>))</div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 20 (out of 4110)
+#&gt;   requested: 20 (out of 4115)
 #&gt;   response(s): 0 </div><div class='input'><span class='fu'>olsRows</span>(<span class='no'>res</span>) <span class='kw'>&lt;-</span> <span class='fl'>5</span>
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 5 (out of 4110)
+#&gt;   requested: 5 (out of 4115)
 #&gt;   response(s): 0 </div><div class='input'><span class='co'>## all results</span>
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>allRows</span>(<span class='no'>res</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: plasma,membrane 
-#&gt;   requested: 4110 (out of 4110)
+#&gt;   requested: 4115 (out of 4115)
 #&gt;   response(s): 0 </div><div class='input'>
 <span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>OlsSearch</span>(<span class='kw'>q</span> <span class='kw'>=</span> <span class='st'>"trans-golgi"</span>, <span class='kw'>ontology</span> <span class='kw'>=</span> <span class='st'>"go"</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fl'>5</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: trans-golgi 
-#&gt;   requested: 5 (out of 637)
+#&gt;   requested: 5 (out of 639)
 #&gt;   response(s): 0 </div><div class='input'><span class='no'>res</span> <span class='kw'>&lt;-</span> <span class='fu'>olsSearch</span>(<span class='no'>res</span>)
 <span class='no'>res</span></div><div class='output co'>#&gt; Object of class 'OlsSearch':
 #&gt;   ontolgy: go 
 #&gt;   query: trans-golgi 
-#&gt;   requested: 5 (out of 637)
+#&gt;   requested: 5 (out of 639)
 #&gt;   response(s): 5 </div><div class='input'><span class='fu'>as</span>(<span class='no'>res</span>, <span class='st'>"data.frame"</span>)</div><div class='output co'>#&gt;                                                   id
 #&gt; 1 go:class:http://purl.obolibrary.org/obo/GO_0005802
 #&gt; 2 go:class:http://purl.obolibrary.org/obo/GO_0032588
@@ -296,17 +304,10 @@ Searching the OLS is done using the OlsSearch data
 #&gt;       "GO"       "GO"       "GO"       "GO"       "GO" </div><div class='input'><span class='fu'><a href='Term-class.html'>termId</a></span>(<span class='no'>res</span>)</div><div class='output co'>#&gt;   GO:0005802   GO:0032588   GO:1990676   GO:0000138   GO:0098629 
 #&gt; "GO:0005802" "GO:0032588" "GO:1990676" "GO:0000138" "GO:0098629" </div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#objects-from-the-class">Objects from the Class</a></li>
-      <li><a href="#slots">Slots</a></li>
-      <li><a href="#methods-and-functions">Methods and functions</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Laurent Gatto &lt;lg390@cam.ac.uk&gt;</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -317,7 +318,7 @@ Searching the OLS is done using the OlsSearch data
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>

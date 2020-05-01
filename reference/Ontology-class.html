@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -41,7 +45,6 @@
 Ontologies are stored as Ontology and Ontologies
   instances, and contain various information as provided by the Ontology
   Lookup Service." />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -59,7 +62,7 @@ Ontologies are stored as Ontology and Ontologies
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -73,7 +76,7 @@ Ontologies are stored as Ontology and Ontologies
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.15.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.17.1</span>
       </span>
     </div>
 
@@ -96,7 +99,12 @@ Ontologies are stored as Ontology and Ontologies
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/lgatto/rols/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -162,7 +170,7 @@ Ontologies are stored as Ontology and Ontologies
 
     
 
-<p></p><dl class='dl-horizontal'>
+<p></p><dl'>
     
     <dt><code>loaded</code>:</dt><dd><p>Object of class <code>NULL</code> or
       <code>character</code> containing the date the ontology was loaded on
@@ -205,7 +213,7 @@ Ontologies are stored as Ontology and Ontologies
 
     <h2 class="hasAnchor" id="methods-and-functions"><a class="anchor" href="#methods-and-functions"></a>Methods and functions</h2>
 
-    <p></p><dl class='dl-horizontal'>
+    <p></p><dl'>
 
     <dt>Ontologies</dt><dd><p><code>signature(object = "numeric")</code>:</p></dd>
 
@@ -274,20 +282,21 @@ Ontologies are stored as Ontology and Ontologies
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Get all ontolgies</span>
 <span class='no'>ol</span> <span class='kw'>&lt;-</span> <span class='fu'>Ontologies</span>()
-<span class='no'>ol</span></div><div class='output co'>#&gt; Object of class 'Ontologies' with 240 entries
-#&gt;    AEO, AFO ... WBbt, WBLS </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>as</span>(<span class='no'>ol</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt;              Prefix Namespace                                    Title
-#&gt; aeo             AEO       aeo               Anatomical Entity Ontology
-#&gt; afo             AFO       afo          Allotrope Merged Ontology Suite
-#&gt; agro           AGRO      agro                        Agronomy Ontology
-#&gt; apo             APO       apo            Ascomycete phenotype ontology
-#&gt; apollo_sv APOLLO_SV apollo_sv Apollo Structured Vocabulary (Apollo-SV)
-#&gt; aro             ARO       aro           Antibiotic Resistance Ontology</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>ol</span>)</div><div class='output co'>#&gt; [1] 240</div><div class='input'>
+<span class='no'>ol</span></div><div class='output co'>#&gt; Object of class 'Ontologies' with 249 entries
+#&gt;    AEO, AFO ... NOMEN, OAE </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>as</span>(<span class='no'>ol</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt;       Prefix Namespace                                              Title
+#&gt; aeo      AEO       aeo                         Anatomical Entity Ontology
+#&gt; afo      AFO       afo                    Allotrope Merged Ontology Suite
+#&gt; agro    AGRO      agro                                  Agronomy Ontology
+#&gt; amphx  AMPHX     amphx Amphioxus Development and Anatomy Ontology (AMPHX)
+#&gt; apo      APO       apo                      Ascomycete phenotype ontology
+#&gt; cob      COB       cob          Core Ontology for Biology and Biomedicine</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>ol</span>)</div><div class='output co'>#&gt; [1] 249</div><div class='input'>
 <span class='co'>## Individual ontologies</span>
 (<span class='no'>go</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"go"</span>]])</div><div class='output co'>#&gt; Ontology: Gene Ontology (go)  
-#&gt;   An ontology for describing the function of genes and gene products
-#&gt;    Loaded: 2019-12-16 Updated: 2019-12-16 Version: 2019-12-09 
-#&gt;    50087 terms  61 properties  0 individuals</div><div class='input'>(<span class='no'>efo</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"efo"</span>]])</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
+#&gt;   The Gene Ontology (GO) provides a framework and set of concepts for
+#&gt;   describing the functions of gene products from all organisms.
+#&gt;    Loaded: 2020-04-27 Updated: 2020-04-27 Version: 2020-04-23 
+#&gt;    50249 terms  63 properties  0 individuals</div><div class='input'>(<span class='no'>efo</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"efo"</span>]])</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
 #&gt;   The Experimental Factor Ontology (EFO) provides a systematic
 #&gt;   description of many experimental variables available in EBI databases,
 #&gt;   and for external projects such as the NHGRI GWAS catalogue. It combines
@@ -295,10 +304,10 @@ Ontologies are stored as Ontology and Ontologies
 #&gt;   chemical compounds. The scope of EFO is to support the annotation,
 #&gt;   analysis and visualization of data handled by many groups at the EBI
 #&gt;   and as the core ontology for OpenTargets.org
-#&gt;    Loaded: 2019-11-20 Updated: 2019-12-16 Version: 3.12.0 
-#&gt;    26300 terms  201 properties  0 individuals</div><div class='input'>
+#&gt;    Loaded: 2020-04-25 Updated: 2020-04-27 Version: 3.17.1 
+#&gt;    27414 terms  201 properties  0 individuals</div><div class='input'>
 <span class='co'>## some basic information</span>
-<span class='fu'>olsVersion</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "2019-12-09"</div><div class='input'><span class='fu'>olsDesc</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "An ontology for describing the function of genes and gene products"</div><div class='input'><span class='fu'>olsTitle</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "Gene Ontology"</div><div class='input'><span class='fu'>olsPrefix</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='fu'>olsNamespace</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "go"</div><div class='input'>
+<span class='fu'>olsVersion</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "2020-04-23"</div><div class='input'><span class='fu'>olsDesc</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms."</div><div class='input'><span class='fu'>olsTitle</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "Gene Ontology"</div><div class='input'><span class='fu'>olsPrefix</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='fu'>olsNamespace</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "go"</div><div class='input'>
 <span class='fu'>olsRoot</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
 #&gt;  From the GO ontology
 #&gt; GO:0003674, GO:0008150, GO:0005575 </div><div class='input'>
@@ -309,18 +318,10 @@ Ontologies are stored as Ontology and Ontologies
 <span class='no'>go2</span> <span class='kw'>&lt;-</span> <span class='fu'>Ontology</span>(<span class='st'>"GO"</span>) <span class='co'>## using the prefix (see Details)</span>
 <span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>go</span>, <span class='no'>go1</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>go</span>, <span class='no'>go2</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#details">Details</a></li>
-      <li><a href="#objects-from-the-class">Objects from the Class</a></li>
-      <li><a href="#slots">Slots</a></li>
-      <li><a href="#methods-and-functions">Methods and functions</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-    <h2>Author</h2>
-    <p>Laurent Gatto &lt;lg390@cam.ac.uk&gt;</p>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -331,7 +332,7 @@ Ontologies are stored as Ontology and Ontologies
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
 
       </footer>
