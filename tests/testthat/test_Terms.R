@@ -140,7 +140,7 @@ test_that("Term/Terms equality", {
     xx1 <- xx2 <- trms[1:2]
     xx1@x[[1]] <- xx1@x[[2]]
     expect_false(isTRUE(all.equal(xx1, xx2)))
-    expect_match(all.equal(xx1, xx2), "Term id 'SO:0000579'")
+    expect_match(all.equal(xx1, xx2), "Term id 'SO:0000995'")
 })
 
 test_that("terms(pagesize)", {

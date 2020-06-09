@@ -1,6 +1,9 @@
 # rols 2.17
 
 ## CHANGES IN VERSION 2.17.1
+- Fix failing unit test (Terms changed) <2020-06-09 Tue>
+
+## CHANGES IN VERSION 2.17.1
 - Fix failing unit test (GO description changed) <2020-05-01 Fri>
 
 ## CHANGES IN VERSION 2.17.0
