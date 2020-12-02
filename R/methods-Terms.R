@@ -121,23 +121,39 @@ descendants <- function(id) {
     stopifnot(inherits(id, "Term"))
     url0 <- id@links$descendants[[1]]
     if (is.null(url0)) {
-        message("No descendant terms.")
-        return(NULL)
+      message("No descendant terms.")
+      return(NULL)
     }
     url <- paste0(url0, "?page=0&size=", pagesize)
-    x <- GET(url)
+    x <- httr::GET(url)
     stop_for_status(x)
     cx <- content(x)
-    if (cx$page$totalElements > pagesize) {
-        pagesize <- cx$page$totalElements
-        url <- paste0(url0, "?page=0&size=", pagesize)
-        x <- GET(url)
-        warn_for_status(x)
-        cx <- content(x)
+    if(cx$page$totalElements > pagesize){
+      pagesize <- cx$page$totalElements
+      
+      #Figure out how many pages the results will divide into.
+      url_pages <- c(0:(ceiling(pagesize/1000)-1))
+      
+      #Make as many URLs as there are pages anticipated.
+      url <- paste0(url0, "?page=",url_pages,"&size=", pagesize)
+      
+      #Loop through queries of each URL.
+      cx  <- lapply(url, function(x) {
+        a <- GET(x)
+        warn_for_status(a)
+        a <- content(a)})
+    }else{
+      #Put singular <cx> into a list for lapply()'s sake.
+      cx  <- list(cx)
     }
-    ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+    ans   <- lapply(cx, function(x)
+      lapply(x[["_embedded"]][[1]], rols:::makeTerm))
+    
+    #Concatenate all <cx> results into one list.
+    ans   <- do.call(c,ans)
+    
     names(ans) <- sapply(ans, termId)
-    Terms(x = ans)
+    rols:::Terms(x = ans)
 }
 
 ##########################################
