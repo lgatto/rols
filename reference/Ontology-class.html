@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class <code>"Ontology"</code> — Ontology-class • rols</title>
+<title>Class "Ontology" — Ontology-class • rols</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Class <code>"Ontology"</code> — Ontology-class" />
+<meta property="og:title" content="Class "Ontology" — Ontology-class" />
 <meta property="og:description" content="
 
 Ontologies are stored as Ontology and Ontologies
@@ -76,19 +76,13 @@ Ontologies are stored as Ontology and Ontologies
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.17.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/rols.html">Get started</a>
 </li>
 <li>
@@ -159,7 +153,7 @@ Ontologies are stored as Ontology and Ontologies
   ontology namespace or prefix (but see Details section) as argument
   will initialise the ontology of interest as an <code>Ontology</code>
   instance.</p>
-<p><code>Ontolgies</code> instances can be subset with <code>[</code> and <code>[[</code>
+<p><code>Ontolgies</code> instances can be subset with <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code>
   (using their namespace, see Details) and iterated over with
   <code>lapply</code>. <code>Ontolgies</code> can be converted into a simple
   <code>data.frame</code> containing the ontology prefixes, namespaces and
@@ -170,7 +164,7 @@ Ontologies are stored as Ontology and Ontologies
 
     
 
-<p></p><dl'>
+<p></p><dl>
     
     <dt><code>loaded</code>:</dt><dd><p>Object of class <code>NULL</code> or
       <code>character</code> containing the date the ontology was loaded on
@@ -213,7 +207,7 @@ Ontologies are stored as Ontology and Ontologies
 
     <h2 class="hasAnchor" id="methods-and-functions"><a class="anchor" href="#methods-and-functions"></a>Methods and functions</h2>
 
-    <p></p><dl'>
+    <p></p><dl>
 
     <dt>Ontologies</dt><dd><p><code>signature(object = "numeric")</code>:</p></dd>
 
@@ -278,32 +272,40 @@ Ontologies are stored as Ontology and Ontologies
   
 </dl>
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Laurent Gatto &lt;lg390@cam.ac.uk&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Get all ontolgies</span>
-<span class='no'>ol</span> <span class='kw'>&lt;-</span> <span class='fu'>Ontologies</span>()
-<span class='no'>ol</span></div><div class='output co'>#&gt; Object of class 'Ontologies' with 251 entries
-#&gt;    AEO, AFO ... VT, WBbt </div><div class='input'>
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='fu'>as</span>(<span class='no'>ol</span>, <span class='st'>"data.frame"</span>))</div><div class='output co'>#&gt;              Prefix Namespace
-#&gt; aeo             AEO       aeo
-#&gt; afo             AFO       afo
-#&gt; agro           AGRO      agro
-#&gt; amphx         AMPHX     amphx
-#&gt; apo             APO       apo
-#&gt; apollo_sv APOLLO_SV apollo_sv
-#&gt;                                                        Title
-#&gt; aeo                               Anatomical Entity Ontology
-#&gt; afo                          Allotrope Merged Ontology Suite
-#&gt; agro                                       Agronomy Ontology
-#&gt; amphx     Amphioxus Development and Anatomy Ontology (AMPHX)
-#&gt; apo                            Ascomycete phenotype ontology
-#&gt; apollo_sv           Apollo Structured Vocabulary (Apollo-SV)</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span>(<span class='no'>ol</span>)</div><div class='output co'>#&gt; [1] 251</div><div class='input'>
+<span class='va'>ol</span> <span class='op'>&lt;-</span> <span class='fu'>Ontologies</span><span class='op'>(</span><span class='op'>)</span>
+<span class='va'>ol</span>
+</div><div class='output co'>#&gt; Object of class 'Ontologies' with 257 entries
+#&gt;    AEO, ECTO ... ZFA, ZP </div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>as</span><span class='op'>(</span><span class='va'>ol</span>, <span class='st'>"data.frame"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;      Prefix Namespace
+#&gt; aeo     AEO       aeo
+#&gt; ecto   ECTO      ecto
+#&gt; afo     AFO       afo
+#&gt; edam   EDAM      edam
+#&gt; agro   AGRO      agro
+#&gt; efo     EFO       efo
+#&gt;                                                                       Title
+#&gt; aeo                                              Anatomical Entity Ontology
+#&gt; ecto                                          Environment Exposure Ontology
+#&gt; afo                                         Allotrope Merged Ontology Suite
+#&gt; edam Bioinformatics operations, data types, formats, identifiers and topics
+#&gt; agro                                                      Agronomy Ontology
+#&gt; efo                                            Experimental Factor Ontology</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>ol</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 257</div><div class='input'>
 <span class='co'>## Individual ontologies</span>
-(<span class='no'>go</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"go"</span>]])</div><div class='output co'>#&gt; Ontology: Gene Ontology (go)  
+<span class='op'>(</span><span class='va'>go</span> <span class='op'>&lt;-</span> <span class='va'>ol</span><span class='op'>[[</span><span class='st'>"go"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> 
+</div><div class='output co'>#&gt; Ontology: Gene Ontology (go)  
 #&gt;   The Gene Ontology (GO) provides a framework and set of concepts for
 #&gt;   describing the functions of gene products from all organisms.
-#&gt;    Loaded: 2020-06-03 Updated: 2020-06-30 Version: 2020-06-01 
-#&gt;    50272 terms  61 properties  0 individuals</div><div class='input'>(<span class='no'>efo</span> <span class='kw'>&lt;-</span> <span class='no'>ol</span><span class='kw'>[[</span><span class='st'>"efo"</span>]])</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
+#&gt;    Loaded: 2020-11-20 Updated: 2020-12-01 Version: 2020-11-18 
+#&gt;    50469 terms  62 properties  0 individuals</div><div class='input'><span class='op'>(</span><span class='va'>efo</span> <span class='op'>&lt;-</span> <span class='va'>ol</span><span class='op'>[[</span><span class='st'>"efo"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
 #&gt;   The Experimental Factor Ontology (EFO) provides a systematic
 #&gt;   description of many experimental variables available in EBI databases,
 #&gt;   and for external projects such as the NHGRI GWAS catalogue. It combines
@@ -311,19 +313,29 @@ Ontologies are stored as Ontology and Ontologies
 #&gt;   chemical compounds. The scope of EFO is to support the annotation,
 #&gt;   analysis and visualization of data handled by many groups at the EBI
 #&gt;   and as the core ontology for OpenTargets.org
-#&gt;    Loaded: 2020-06-18 Updated: 2020-06-30 Version: 3.19.0 
-#&gt;    27613 terms  202 properties  0 individuals</div><div class='input'>
+#&gt;    Loaded: 2020-11-17 Updated: 2020-12-01 Version: 3.24.0 
+#&gt;    28091 terms  200 properties  0 individuals</div><div class='input'>
 <span class='co'>## some basic information</span>
-<span class='fu'>olsVersion</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "2020-06-01"</div><div class='input'><span class='fu'>olsDesc</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms."</div><div class='input'><span class='fu'>olsTitle</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "Gene Ontology"</div><div class='input'><span class='fu'>olsPrefix</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='fu'>olsNamespace</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; [1] "go"</div><div class='input'>
-<span class='fu'>olsRoot</span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
+<span class='fu'>olsVersion</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "2020-11-18"</div><div class='input'><span class='fu'>olsDesc</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms."</div><div class='input'><span class='fu'>olsTitle</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "Gene Ontology"</div><div class='input'><span class='fu'>olsPrefix</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='fu'>olsNamespace</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "go"</div><div class='input'>
+<span class='fu'>olsRoot</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
 #&gt;  From the GO ontology
 #&gt; GO:0003674, GO:0008150, GO:0005575 </div><div class='input'>
 <span class='co'>## works with Ontology objects or their namespace</span>
-<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='fu'>olsRoot</span>(<span class='st'>"go"</span>), <span class='fu'>olsRoot</span>(<span class='no'>go</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span>(<span class='fu'>olsVersion</span>(<span class='st'>"go"</span>), <span class='fu'>olsVersion</span>(<span class='no'>go</span>))</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='fu'>olsRoot</span><span class='op'>(</span><span class='st'>"go"</span><span class='op'>)</span>, <span class='fu'>olsRoot</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/identical.html'>identical</a></span><span class='op'>(</span><span class='fu'>olsVersion</span><span class='op'>(</span><span class='st'>"go"</span><span class='op'>)</span>, <span class='fu'>olsVersion</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
 <span class='co'>## Directly initialise a single ontology</span>
-<span class='no'>go1</span> <span class='kw'>&lt;-</span> <span class='fu'>Ontology</span>(<span class='st'>"go"</span>) <span class='co'>## using the namespace (preferred)</span>
-<span class='no'>go2</span> <span class='kw'>&lt;-</span> <span class='fu'>Ontology</span>(<span class='st'>"GO"</span>) <span class='co'>## using the prefix (see Details)</span>
-<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>go</span>, <span class='no'>go1</span>)</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span>(<span class='no'>go</span>, <span class='no'>go2</span>)</div><div class='output co'>#&gt; [1] TRUE</div></pre>
+<span class='va'>go1</span> <span class='op'>&lt;-</span> <span class='fu'>Ontology</span><span class='op'>(</span><span class='st'>"go"</span><span class='op'>)</span> <span class='co'>## using the namespace (preferred)</span>
+<span class='va'>go2</span> <span class='op'>&lt;-</span> <span class='fu'>Ontology</span><span class='op'>(</span><span class='st'>"GO"</span><span class='op'>)</span> <span class='co'>## using the prefix (see Details)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>go</span>, <span class='va'>go1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/all.equal.html'>all.equal</a></span><span class='op'>(</span><span class='va'>go</span>, <span class='va'>go2</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -339,7 +351,7 @@ Ontologies are stored as Ontology and Ontologies
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

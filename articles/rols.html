@@ -31,18 +31,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.17.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/rols.html">Get started</a>
 </li>
@@ -70,8 +64,8 @@
 
       
 
-      </header><script src="rols_files/htmlwidgets-1.5.1/htmlwidgets.js"></script><script src="rols_files/jquery-1.12.4/jquery.min.js"></script><link href="rols_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="rols_files/datatables-binding-0.14/datatables.js"></script><link href="rols_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
+      </header><script src="rols_files/accessible-code-block-0.0.1/empty-anchor.js"></script><script src="rols_files/htmlwidgets-1.5.2/htmlwidgets.js"></script><script src="rols_files/jquery-1.12.4/jquery.min.js"></script><link href="rols_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="rols_files/datatables-binding-0.16/datatables.js"></script><link href="rols_files/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet">
 <link href="rols_files/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet">
 <script src="rols_files/dt-core-1.10.20/js/jquery.dataTables.min.js"></script><link href="rols_files/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet">
 <script src="rols_files/crosstalk-1.1.0.1/js/crosstalk.min.js"></script><div class="row">
@@ -89,7 +83,7 @@
     
         <div class="abstract">
       <p class="abstract">Abstract</p>
-      How to query the Ontology Lookup Service directly from R and how to create and parse controlled vocabulary.
+      <p>How to query the Ontology Lookup Service directly from R and how to create and parse controlled vocabulary.</p>
     </div>
     
 <div id="introduction" class="section level1">
@@ -98,16 +92,17 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p><em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em> is a Bioconductor package and should hence be installed using the dedicated functionality</p>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co">## try http:// if https:// URLs are not supported</span>
-<span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span><span class="kw">=</span><span class="fl">TRUE</span>))
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
-<span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span>(<span class="st">"rols"</span>)</pre></body></html></div>
+<p><em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em> is a Bioconductor package and should hence be installed using the dedicated functionality</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co">## try http:// if https:// URLs are not supported</span>
+<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span><span class="op">(</span><span class="st">"rols"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="getting-help" class="section level2">
 <h2 class="hasAnchor">
 <a href="#getting-help" class="anchor"></a>Getting help</h2>
-<p>To get help, either post your question on the <a href="https://support.bioconductor.org/">Bioconductor support site</a> or open an issue on the <em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em> <a href="https://github.com/lgatto/rols/issues">github page</a>.</p>
+<p>To get help, either post your question on the <a href="https://support.bioconductor.org/">Bioconductor support site</a> or open an issue on the <em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em> <a href="https://github.com/lgatto/rols/issues">github page</a>.</p>
 </div>
 <div id="the-resource" class="section level2">
 <h2 class="hasAnchor">
@@ -117,76 +112,89 @@
 <div id="the-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-package" class="anchor"></a>The package</h2>
-<p>The OLS provides a REST interface to hundreds of ontologies from a single location with a unified output format. The <em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em> package make this possible from within R. Do do so, it relies on the <em><a href="https://CRAN.R-project.org/package=httr">httr</a></em> package to query the REST interface, and access and retrieve data.</p>
-<p>There are 251 ontologies available in the OLS, listed in the table below. Their name is to be use to defined which ontology to query.</p>
-<div id="htmlwidget-13ed91273f32eb933a4e" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-13ed91273f32eb933a4e">{"x":{"filter":"none","data":[["aeo","afo","agro","amphx","apo","apollo_sv","aro","atol","bao","bcgo","bco","bfo","bspo","bto","caro","cco","cdao","ceph","chebi","cheminf","chiro","chmo","cido","cio","cl","clo","clyh","cmo","cmpo","co_320","co_321","co_321:root","co_322","co_323","co_324","co_325","co_327","co_330","co_331","co_333","co_334","cro","cteno","ddanat","dicom","doid","efo","emap","emapa","enm","ensemblglossary","envo","eo","eol","epo","ero","eupath","exo","fao","fbbi","fbbt","fbcv","fbdv","fix","flopo","flu","fma","fobi","genepio","geno","geo","gexo","gno","go","hancestro","hao","hcao","hom","hp","hpath","hsapdv","htn","iao","iceo","ico","ido","idomal","ino","labo","mamo","maxo","aero","mco","mf","co_335","mfmo","mfoem","co_336","mfomd","co_337","co_338","co_339","co_340","co_341","co_343","mi","co_345","miapa","co_346","co_347","micro","co_348","mirnao","co_350","miro","mmo","co_356","mmusdv","mod","co_357","mop","co_358","mp","co_359","mpath","co_360","ms","co_365","co_366","msio","cob","nbo","cvdo","nomen","ddpheno","oae","dideo","oarcs","dinto","oba","dpo","obcs","dron","obi","duo","obib","eco","ogg","ecocore","ogi","ecto","ogms","edam","ogsf","ohd","ohmi","ohpi","olatdv","ehdaa2","foodon","fovt","fypo","gaz","omiabis","omit","omo","kisao","omp","lbo","omrse","ontoneo","ma","mondo","oostt","opl","mpio","opmi","mro","ordo","ornaseq","ncbitaxon","ovae","pato","ncit","pco","ncro","pdro","pdumdv","nmrcv","peco","phi","phipo","poro","plana","ppo","planp","pr","po","pride","to","probonto","txpo","unimod","psdo","pw","uo","reto","rex","upa","rexo","rnao","upheno","ro","rs","vario","rxno","vo","sbo","scdo","vto","sdgio","sep","wbls","wbphenotype","xao","sepio","xco","xl","xlmod","sibo","xpo","sio","zeco","zfa","so","zfs","zp","spd","srao","stato","swo","symp","tads","taxrank","teddy","tgma","trans","tto","uberon","vt","wbbt"],["AEO","AFO","AGRO","AMPHX","APO","APOLLO_SV","ARO","ATOL","BAO","BCGO","BCO","BFO","BSPO","BTO","CARO","CCO","CDAO","CEPH","CHEBI","CHEMINF","CHIRO","CHMO","CIDO","CIO","CL","CLO","CLYH","CMO","CMPO","CO_320","CO_321","CO_321:ROOT","CO_322","CO_323","CO_324","CO_325","CO_327","CO_330","CO_331","CO_333","CO_334","CRO","CTENO","DDANAT","DICOM","DOID","EFO","EMAP","EMAPA","ENM","ENSGLOSS","ENVO","EO","EOL","EPO","ERO","EUPATH","EXO","FAO","FBbi","FBbt","FBcv","FBdv","FIX","FLOPO","FLU","FMA","FOBI","GENEPIO","GENO","GEO","GeXO","GNO","GO","HANCESTRO","HAO","HCAO","HOM","HP","MC","HSAPDV","HTN","IAO","ICEO","ICO","IDO","IDOMAL","INO","LABO","MAMO","MAXO","AERO","MCO","MF","CO_335","MFMO","MFOEM","CO_336","MFOMD","CO_337","CO_338","CO_339","CO_340","CO_341","CO_343","MI","CO_345","MIAPA","CO_346","CO_347","MICRO","CO_348","MIRNAO","CO_350","MIRO","MMO","CO_356","MMUSDV","MOD","CO_357","MOP","CO_358","MP","CO_359","MPATH","CO_360","MS","CO_365","CO_366","MSIO","COB","NBO","CVDO","NOMEN","DDPHENO","OAE","DIDEO","OARCS","DINTO","OBA","FBcv","OBCS","DRON","OBI","DUO","OBIB","ECO","OGG","ECOCORE","OGI","ECTO","OGMS","EDAM","OGSF","OHD","OHMI","OHPI","OLATDV","EHDAA2","FOODON","FOVT","FYPO","GAZ","OMIABIS","OMIT","OMO","KISAO","OMP","LBO","OMRSE","ONTONEO","MA","MONDO","OOSTT","OPL","MPIO","OPMI","MRO","ORDO","ORNASEQ","NCBITAXON","OVAE","PATO","NCIT","PCO","NCRO","PDRO","PDUMDV","NMR","PECO","PHI","PHIPO","PORO","PLANA","PPO","PLANP","PR","PO","PRIDE","TO","PROBONTO","TXPO","UNIMOD","PSDO","PW","UO","ReTO","REX","UPA","ReXO","RNAO","UPHENO","RO","RS","VARIO","RXNO","VO","SBO","SCDO","VTO","SDGIO","SEP","WBls","WBPhenotype","XAO","SEPIO","XCO","XL","XLMOD","SIBO","XPO","SIO","ZECO","ZFA","SO","ZFS","ZP","SPD","SRAO","STATO","SWO","SYMP","TADS","TAXRANK","TEDDY","TGMA","TRANS","TTO","UBERON","VT","WBbt"],["aeo","afo","agro","amphx","apo","apollo_sv","aro","atol","bao","bcgo","bco","bfo","bspo","bto","caro","cco","cdao","ceph","chebi","cheminf","chiro","chmo","cido","cio","cl","clo","clyh","cmo","cmpo","co_320","co_321","co_321:root","co_322","co_323","co_324","co_325","co_327","co_330","co_331","co_333","co_334","cro","cteno","ddanat","dicom","doid","efo","emap","emapa","enm","ensemblglossary","envo","eo","eol","epo","ero","eupath","exo","fao","fbbi","fbbt","fbcv","fbdv","fix","flopo","flu","fma","fobi","genepio","geno","geo","gexo","gno","go","hancestro","hao","hcao","hom","hp","hpath","hsapdv","htn","iao","iceo","ico","ido","idomal","ino","labo","mamo","maxo","aero","mco","mf","co_335","mfmo","mfoem","co_336","mfomd","co_337","co_338","co_339","co_340","co_341","co_343","mi","co_345","miapa","co_346","co_347","micro","co_348","mirnao","co_350","miro","mmo","co_356","mmusdv","mod","co_357","mop","co_358","mp","co_359","mpath","co_360","ms","co_365","co_366","msio","cob","nbo","cvdo","nomen","ddpheno","oae","dideo","oarcs","dinto","oba","dpo","obcs","dron","obi","duo","obib","eco","ogg","ecocore","ogi","ecto","ogms","edam","ogsf","ohd","ohmi","ohpi","olatdv","ehdaa2","foodon","fovt","fypo","gaz","omiabis","omit","omo","kisao","omp","lbo","omrse","ontoneo","ma","mondo","oostt","opl","mpio","opmi","mro","ordo","ornaseq","ncbitaxon","ovae","pato","ncit","pco","ncro","pdro","pdumdv","nmrcv","peco","phi","phipo","poro","plana","ppo","planp","pr","po","pride","to","probonto","txpo","unimod","psdo","pw","uo","reto","rex","upa","rexo","rnao","upheno","ro","rs","vario","rxno","vo","sbo","scdo","vto","sdgio","sep","wbls","wbphenotype","xao","sepio","xco","xl","xlmod","sibo","xpo","sio","zeco","zfa","so","zfs","zp","spd","srao","stato","swo","symp","tads","taxrank","teddy","tgma","trans","tto","uberon","vt","wbbt"],["Anatomical Entity Ontology","Allotrope Merged Ontology Suite","Agronomy Ontology","Amphioxus Development and Anatomy Ontology (AMPHX)","Ascomycete phenotype ontology","Apollo Structured Vocabulary (Apollo-SV)","Antibiotic Resistance Ontology","Animal Trait Ontology for Livestock","BioAssay Ontology","Beta Cell Genomics Ontology","Biological Collections Ontology","Basic Formal Ontology","Biological Spatial Ontology","The BRENDA Tissue Ontology (BTO)","Common Anatomy Reference Ontology","Cell Cycle Ontology","Comparative Data Analysis Ontology","Cephalopod Ontology","Chemical Entities of Biological Interest","chemical information ontology (cheminf) - information entities about chemical entities","CHEBI Integrated Role Ontology","Chemical Methods Ontology","CIDO: Ontology of Coronavirus Infectious Disease","Confidence Information Ontology","Cell Ontology","CLO: Cell Line Ontology","Clytia hemisphaerica Development and Anatomy Ontology (CLYH)","Clinical measurement ontology","Cellular Microscopy Phenotype Ontology","Rice ontology","Wheat ontology","Wheat ontology","Maize ontology","Barley ontology","Sorghum ontology","Banana ontology","Pearl millet ontology","Potato ontology","Sweet Potato ontology","Beet Ontology ontology","Cassava ontology","Contributor Role Ontology","Ctenophore Ontology","Dictyostelium discoideum anatomy","DICOM Controlled Terminology","Human Disease Ontology","Experimental Factor Ontology","Mouse gross anatomy and development, timed","Mouse Developmental Anatomy Ontology","eNanoMapper Ontology","Ensembl Glossary","Environment Ontology","Plant Environment Ontology","Environment Ontology for Livestock","Epidemiology Ontology","eagle-i resource ontology","VEuPathDB Ontology","Exposure ontology","Fungal gross anatomy","Biological Imaging Methods Ontology","Drosophila Anatomy Ontology (DAO)","FlyBase Controlled Vocabulary (FBcv)","FlyBase Developmental Ontology (FBdv)","Physico-chemical methods and properties","Flora Phenotype Ontology","Influenza ontology","Foundational Model of Anatomy Ontology (subset)","FOBI","Genomic Epidemiology Ontology","GENO ontology","Geographical Entity Ontology","Gene Expression Ontology","Glycan Naming Ontology","Gene Ontology","Human Ancestry Ontology","Hymenoptera Anatomy Ontology","Human Cell Atlas Ontology","Homology Ontology","Human Phenotype Ontology","Histopathology Ontology","Human Developmental Stages","Hypertension Ontology For Clinical Data","Information Artifact Ontology (IAO)","ICEO: Ontology of Integrative and Conjugative Elements","Informed Consent Ontology","Infectious Disease Ontology","Malaria Ontology","INO: Interaction Network Ontology","clinical LABoratory Ontology","Mathematical Modelling Ontology","Medical Action Ontology","Adverse Event Reporting Ontology","Microbial Conditions Ontology","Mental Functioning Ontology","Common Bean ontology","Mammalian Feeding Muscle Ontology","Emotion Ontology","Soybean ontology","Mental Disease Ontology","Groundnut ontology","Chickpea ontology","Lentil ontology","Cowpea ontology","Pigeonpea ontology","Yam ontology","Molecular Interactions Controlled Vocabulary","Brachiaria ontology","Minimum Information for A Phylogenetic Analysis (MIAPA) Ontology","Mungbean ontology","Castor bean ontology","Ontology of Prokaryotic Phenotypic and Metabolic Characters","Brassica ontology","microRNA Ontology","Oat ontology","Mosquito insecticide resistance","Measurement method ontology","Vitis ontology","Mouse Developmental Stages","Protein modification","Woody Plant Ontology ontology","MOP","Cotton ontology","The Mammalian Phenotype Ontology","Sunflower ontology","Mouse pathology ontology","Sugar Kelp trait ontology","Mass spectrometry ontology","Fababean ontology","Bambara groundnut ontology","Metabolomics Standards Initiative Ontology (MSIO)","Core Ontology for Biology and Biomedicine","Neuro Behavior Ontology","Cardiovascular Disease Ontology","NOMEN - A nomenclatural ontology for biological names","Dicty Phenotype Ontology (DDPHENO)","OAE: Ontology of Adverse Events","Drug-drug Interaction and Drug-drug Interaction Evidence Ontology","Ontology of Arthropod Circulatory Systems","The Drug-Drug Interactions Ontology","Ontology of Biological Attributes","Drosophila Phenotype Ontology (DPO)","Ontology of Biological and Clinical Statistics","The Drug Ontology","Ontology for Biomedical Investigations","The Data Use Ontology","Ontology for BIoBanking (OBIB)","Evidence &amp; Conclusion Ontology (ECO)","OGG: Ontology of Genes and Genomes","An ontology of core ecological entities","Ontology for genetic interval","Environment Exposure Ontology","Ontology for General Medical Science","Bioinformatics operations, data types, formats, identifiers and topics","Ontology of Genetic Susceptibility Factor","The Oral Health and Disease Ontology","OHMI: Ontology of Host-Microbiome Interactions","OHPI: Ontology of Host-Pathogen Interactions","Medaka Developmental Stages","Human developmental anatomy, abstract","Food Ontology","FuTRES Ontology of Vertebrate Traits","Fission Yeast Phenotype Ontology (FYPO)","Gazetteer","Ontologized MIABIS","Ontology for MIRNA Target","OBO Metadata Ontology","Kinetic Simulation Algorithm Ontology","Ontology of Microbial Phenotypes","Livestock Breed Ontology","Ontology of Medically Related Social Entities","Obstetric and Neonatal Ontology","Mouse adult gross anatomy","Mondo Disease Ontology","Ontology of Organizational Structures of Trauma centers and Trauma Systems","Ontology for Parasite Lifecycle","Minimum PDDI Information Ontology","OPMI: Ontology of Precision Medicine and Investigation","MHC Restriction Ontology","Orphanet Rare Disease Ontolog","Ontology for RNA sequencing (ORNASEQ)","NCBI organismal classification","OVAE: Ontology of Vaccine Adverse Events","PATO - the Phenotype And Trait Ontology","NCI Thesaurus OBO Edition","Population and Community Ontology","Non-Coding RNA Ontology","The Prescription of Drugs Ontology","Platynereis Developmental Stages","nuclear magnetic resonance CV","Plant Experimental Conditions Ontology","PHI-base Ontology","Pathogen Host Interactions Phenotype Ontology","Porifera (sponge) ontology","planaria-ontology","Plant Phenology Ontology","Planarian Phenotype Ontology (PLANP)","PRotein Ontology (PRO)","Plant Ontology","PRIDE Controlled Vocabulary","Plant Trait Ontology","Probability Distribution Ontology","TOXic Process Ontology (TXPO)","Unimod protein modification database for mass spectrometry","Performance Summary Display Ontology","Pathway ontology","Units of measurement ontology","Regulation of Transcription Ontology","Physico-chemical process","Unipathway","Regulation of Gene Expression Ontology","The RNA Ontology (RNAO): An Ontology for Integrating RNA Sequence and Structure Data","Unified phenotype ontology (uPheno)","OBO Relations Ontology","Rat Strain Ontology","Variation Ontology","RXNO","Vaccine Ontology","Systems Biology Ontology","Sickle Cell Disease Ontology","Vertebrate Taxonomy Ontology","Sustainable Development Goals Interface Ontology","Sample processing and separation techniques","C. elegans Development Ontology","C elegans Phenotype Ontology","Xenopus Anatomy Ontology","Scientific Evidence and Provenance Information Ontology","Experimental condition ontology","Cross-linker reagents ontology","HUPO-PSI cross-linking and derivatization reagents controlled vocabulary","Social Insect Behavior Ontology","Xenopus Phenotype Ontology","Semanticscience Integrated Ontology","Zebrafish Experimental Conditions Ontology","Zebrafish anatomy and development ontology","Sequence types and features ontology","Zebrafish developmental stages ontology","Zebrafish Phenotype Ontology","Spider Ontology","FAIRsharing Subject Ontology (SRAO)","STATO: the statistical methods ontology","SWO (The Software Ontology)","Symptom Ontology","Tick Anatomy Ontology","Taxonomic rank vocabulary","Terminology for Description of Dynamics","Mosquito gross anatomy ontology","Pathogen Transmission Ontology","Teleost taxonomy ontology","Uber-anatomy ontology","Vertebrate trait ontology","C. elegans Gross Anatomy Ontology"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Prefix<\/th>\n      <th>Namespace<\/th>\n      <th>Title<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<p>The OLS provides a REST interface to hundreds of ontologies from a single location with a unified output format. The <em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em> package make this possible from within R. Do do so, it relies on the <em><a href="https://CRAN.R-project.org/package=httr">httr</a></em> package to query the REST interface, and access and retrieve data.</p>
+<p>There are 257 ontologies available in the OLS, listed in the table below. Their name is to be use to defined which ontology to query.</p>
+<div id="htmlwidget-e4d93bb35305a0325c34" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e4d93bb35305a0325c34">{"x":{"filter":"none","data":[["aeo","ecto","afo","edam","agro","efo","amphx","apo","ehdaa2","apollo_sv","emapa","enm","aro","ensemblglossary","atol","envo","eol","bao","ero","eupath","bcio","exo","fao","fbbi","bco","fbbt","fbcv","bfo","fbdv","fideo","fix","bspo","flopo","fma","fobi","bto","foodon","caro","fovt","fypo","cco","gaz","cdao","gecko","ceph","genepio","chebi","geno","geo","cheminf","gexo","gno","chiro","go","gsso","chmo","hancestro","hao","cido","hcao","hom","cio","hp","cl","hpath","hsapdv","clao","htn","iao","clo","iceo","clyh","cmo","ico","cmpo","ido","co_320","idocovid19","idomal","ino","co_321","kisao","co_321:root","co_322","labo","co_323","lbo","co_324","ma","mamo","co_325","maxo","co_327","mco","co_330","mf","co_331","mfmo","co_333","mfoem","co_334","mfomd","co_335","mi","co_336","miapa","micro","co_337","co_338","miro","co_339","mmo","co_340","co_341","mmusdv","mod","co_343","co_345","co_346","mondo","co_347","mop","co_348","mp","co_350","mpath","co_356","mpio","co_357","mro","ms","co_358","msio","co_359","nbo","co_360","ncbitaxon","ncit","co_365","ncro","co_366","nmrcv","cob","covoc","cro","cteno","cto","cvdo","ddanat","ddpheno","dicom","dideo","doid","dpo","dron","duo","ecao","eco","ecocore","ogg","ohmi","nomen","ohpi","olatdv","oae","omit","omp","oarcs","omrse","oba","obcs","obi","one","ons","obib","ontoneo","ogi","pdro","phi","ogms","phipo","po","ogsf","ppo","probonto","pso","ohd","reto","rexo","ro","rs","om","rxno","sbo","omiabis","scdo","sdgio","omo","sepio","oostt","opl","sibo","opmi","spd","srao","ordo","stato","ornaseq","symp","tads","ovae","pato","taxrank","pco","teddy","pdumdv","tgma","peco","to","plana","unimod","uo","planp","vido","poro","vo","pr","pride","wbbt","psdo","pw","xco","reproduceme","xlmod","rex","rnao","zeco","sio","zfs","so","swo","trans","tto","txpo","uberon","upa","upheno","vario","vt","vto","wbls","wbphenotype","xao","xl","xpo","zfa","zp"],["AEO","ECTO","AFO","EDAM","AGRO","EFO","AMPHX","APO","EHDAA2","APOLLO_SV","EMAPA","ENM","ARO","ENSGLOSS","ATOL","ENVO","EOL","BAO","ERO","EUPATH","BCIO","EXO","FAO","FBbi","BCO","FBbt","FBcv","BFO","FBdv","FIDEO","FIX","BSPO","FLOPO","FMA","FOBI","BTO","FOODON","CARO","FOVT","FYPO","CCO","GAZ","CDAO","GECKO","CEPH","GENEPIO","CHEBI","GENO","GEO","CHEMINF","GeXO","GNO","CHIRO","GO","GSSO","CHMO","HANCESTRO","HAO","CIDO","HCAO","HOM","CIO","HP","CL","MC","HSAPDV","CLAO","HTN","IAO","CLO","ICEO","CLYH","CMO","ICO","CMPO","IDO","CO_320","IDO-COVID-19","IDOMAL","INO","CO_321","KISAO","CO_321:ROOT","CO_322","LABO","CO_323","LBO","CO_324","MA","MAMO","CO_325","MAXO","CO_327","MCO","CO_330","MF","CO_331","MFMO","CO_333","MFOEM","CO_334","MFOMD","CO_335","MI","CO_336","MIAPA","MICRO","CO_337","CO_338","MIRO","CO_339","MMO","CO_340","CO_341","MMUSDV","MOD","CO_343","CO_345","CO_346","MONDO","CO_347","MOP","CO_348","MP","CO_350","MPATH","CO_356","MPIO","CO_357","MRO","MS","CO_358","MSIO","CO_359","NBO","CO_360","NCBITAXON","NCIT","CO_365","NCRO","CO_366","NMR","COB","COVOC","CRO","CTENO","CTO","CVDO","DDANAT","DDPHENO","DICOM","DIDEO","DOID","FBcv","DRON","DUO","ECAO","ECO","ECOCORE","OGG","OHMI","NOMEN","OHPI","OLATDV","OAE","OMIT","OMP","OARCS","OMRSE","OBA","OBCS","OBI","ONE","ONS","OBIB","ONTONEO","OGI","PDRO","PHI","OGMS","PHIPO","PO","OGSF","PPO","PROBONTO","PSO","OHD","ReTO","ReXO","RO","RS","OM","RXNO","SBO","OMIABIS","SCDO","SDGIO","OMO","SEPIO","OOSTT","OPL","SIBO","OPMI","SPD","SRAO","ORDO","STATO","ORNASEQ","SYMP","TADS","OVAE","PATO","TAXRANK","PCO","TEDDY","PDUMDV","TGMA","PECO","TO","PLANA","UNIMOD","UO","PLANP","VIDO","PORO","VO","PR","PRIDE","WBbt","PSDO","PW","XCO","REPR","XLMOD","REX","RNAO","ZECO","SIO","ZFS","SO","SWO","TRANS","TTO","TXPO","UBERON","UPA","UPHENO","VARIO","VT","VTO","WBls","WBPhenotype","XAO","XL","XPO","ZFA","ZP"],["aeo","ecto","afo","edam","agro","efo","amphx","apo","ehdaa2","apollo_sv","emapa","enm","aro","ensemblglossary","atol","envo","eol","bao","ero","eupath","bcio","exo","fao","fbbi","bco","fbbt","fbcv","bfo","fbdv","fideo","fix","bspo","flopo","fma","fobi","bto","foodon","caro","fovt","fypo","cco","gaz","cdao","gecko","ceph","genepio","chebi","geno","geo","cheminf","gexo","gno","chiro","go","gsso","chmo","hancestro","hao","cido","hcao","hom","cio","hp","cl","hpath","hsapdv","clao","htn","iao","clo","iceo","clyh","cmo","ico","cmpo","ido","co_320","idocovid19","idomal","ino","co_321","kisao","co_321:root","co_322","labo","co_323","lbo","co_324","ma","mamo","co_325","maxo","co_327","mco","co_330","mf","co_331","mfmo","co_333","mfoem","co_334","mfomd","co_335","mi","co_336","miapa","micro","co_337","co_338","miro","co_339","mmo","co_340","co_341","mmusdv","mod","co_343","co_345","co_346","mondo","co_347","mop","co_348","mp","co_350","mpath","co_356","mpio","co_357","mro","ms","co_358","msio","co_359","nbo","co_360","ncbitaxon","ncit","co_365","ncro","co_366","nmrcv","cob","covoc","cro","cteno","cto","cvdo","ddanat","ddpheno","dicom","dideo","doid","dpo","dron","duo","ecao","eco","ecocore","ogg","ohmi","nomen","ohpi","olatdv","oae","omit","omp","oarcs","omrse","oba","obcs","obi","one","ons","obib","ontoneo","ogi","pdro","phi","ogms","phipo","po","ogsf","ppo","probonto","pso","ohd","reto","rexo","ro","rs","om","rxno","sbo","omiabis","scdo","sdgio","omo","sepio","oostt","opl","sibo","opmi","spd","srao","ordo","stato","ornaseq","symp","tads","ovae","pato","taxrank","pco","teddy","pdumdv","tgma","peco","to","plana","unimod","uo","planp","vido","poro","vo","pr","pride","wbbt","psdo","pw","xco","reproduceme","xlmod","rex","rnao","zeco","sio","zfs","so","swo","trans","tto","txpo","uberon","upa","upheno","vario","vt","vto","wbls","wbphenotype","xao","xl","xpo","zfa","zp"],["Anatomical Entity Ontology","Environment Exposure Ontology","Allotrope Merged Ontology Suite","Bioinformatics operations, data types, formats, identifiers and topics","Agronomy Ontology","Experimental Factor Ontology","Amphioxus Development and Anatomy Ontology (AMPHX)","Ascomycete phenotype ontology","Human developmental anatomy, abstract","Apollo Structured Vocabulary (Apollo-SV)","Mouse Developmental Anatomy Ontology","eNanoMapper Ontology","Antibiotic Resistance Ontology","Ensembl Glossary","Animal Trait Ontology for Livestock","The Environment Ontology","Environment Ontology for Livestock","BioAssay Ontology","eagle-i resource ontology","VEuPathDB Ontology","The Behaviour Change Intervention Ontology","Exposure ontology","Fungal gross anatomy","Biological Imaging Methods Ontology","Biological Collections Ontology","Drosophila Anatomy Ontology (DAO)","FlyBase Controlled Vocabulary (FBcv)","Basic Formal Ontology","FlyBase Developmental Ontology (FBdv)","Food Interactions with Drugs Evidence Ontology","Physico-chemical methods and properties","Biological Spatial Ontology","Flora Phenotype Ontology","Foundational Model of Anatomy Ontology (subset)","FOBI","The BRENDA Tissue Ontology (BTO)","Food Ontology","Common Anatomy Reference Ontology","FuTRES Ontology of Vertebrate Traits","Fission Yeast Phenotype Ontology (FYPO)","Cell Cycle Ontology","Gazetteer","Comparative Data Analysis Ontology","Genomics Cohorts Knowledge Ontology","Cephalopod Ontology","Genomic Epidemiology Ontology","Chemical Entities of Biological Interest","GENO ontology","Geographical Entity Ontology","chemical information ontology (cheminf) - information entities about chemical entities","Gene Expression Ontology","Glycan Naming Ontology","CHEBI Integrated Role Ontology","Gene Ontology","GSSO - the Gender, Sex, and Sexual Orientation ontology","Chemical Methods Ontology","Human Ancestry Ontology","Hymenoptera Anatomy Ontology","CIDO: Ontology of Coronavirus Infectious Disease","Human Cell Atlas Ontology","Homology Ontology","Confidence Information Ontology","Human Phenotype Ontology","Cell Ontology","Histopathology Ontology","Human Developmental Stages","Collembola Anatomy Ontology","Hypertension Ontology For Clinical Data","Information Artifact Ontology (IAO)","CLO: Cell Line Ontology","ICEO: Ontology of Integrative and Conjugative Elements","Clytia hemisphaerica Development and Anatomy Ontology (CLYH)","Clinical measurement ontology","Informed Consent Ontology","Cellular Microscopy Phenotype Ontology","Infectious Disease Ontology","Rice ontology","The COVID-19 Infectious Disease Ontology","Malaria Ontology","INO: Interaction Network Ontology","Wheat ontology","Kinetic Simulation Algorithm Ontology","Wheat ontology","Maize ontology","clinical LABoratory Ontology","Barley ontology","Livestock Breed Ontology","Sorghum ontology","Mouse adult gross anatomy","Mathematical Modelling Ontology","Banana ontology","Medical Action Ontology","Pearl millet ontology","Microbial Conditions Ontology","Potato ontology","Mental Functioning Ontology","Sweet Potato ontology","Mammalian Feeding Muscle Ontology","Beet Ontology ontology","Emotion Ontology","Cassava ontology","Mental Disease Ontology","Common Bean ontology","Molecular Interactions Controlled Vocabulary","Soybean ontology","Minimum Information for A Phylogenetic Analysis (MIAPA) Ontology","Ontology of Prokaryotic Phenotypic and Metabolic Characters","Groundnut ontology","Chickpea ontology","Mosquito insecticide resistance","Lentil ontology","Measurement method ontology","Cowpea ontology","Pigeonpea ontology","Mouse Developmental Stages","Protein modification","Yam ontology","Brachiaria ontology","Mungbean ontology","Mondo Disease Ontology","Castor bean ontology","MOP","Brassica ontology","The Mammalian Phenotype Ontology","Oat ontology","Mouse pathology ontology","Vitis ontology","Minimum PDDI Information Ontology","Woody Plant Ontology ontology","MHC Restriction Ontology","Mass spectrometry ontology","Cotton ontology","Metabolomics Standards Initiative Ontology (MSIO)","Sunflower ontology","Neuro Behavior Ontology","Sugar Kelp trait ontology","NCBI organismal classification","NCI Thesaurus OBO Edition","Fababean ontology","Non-Coding RNA Ontology","Bambara groundnut ontology","nuclear magnetic resonance CV","Core Ontology for Biology and Biomedicine","CoVoc Coronavirus Vocabulary","Contributor Role Ontology","Ctenophore Ontology","CTO: Core Ontology of Clinical Trials","Cardiovascular Disease Ontology","Dictyostelium discoideum anatomy","Dicty Phenotype Ontology (DDPHENO)","DICOM Controlled Terminology","Drug-drug Interaction and Drug-drug Interaction Evidence Ontology","Human Disease Ontology","Drosophila Phenotype Ontology (DPO)","The Drug Ontology","Data Use Ontology","Echinoderm Anatomy and Development Ontology","Evidence &amp; Conclusion Ontology (ECO)","An ontology of core ecological entities","OGG: Ontology of Genes and Genomes","OHMI: Ontology of Host-Microbiome Interactions","NOMEN - A nomenclatural ontology for biological names","OHPI: Ontology of Host-Pathogen Interactions","Medaka Developmental Stages","OAE: Ontology of Adverse Events","Ontology for MIRNA Target","Ontology of Microbial Phenotypes","Ontology of Arthropod Circulatory Systems","Ontology of Medically Related Social Entities","Ontology of Biological Attributes","Ontology of Biological and Clinical Statistics","Ontology for Biomedical Investigations","Ontology for Nutritional Epidemiology","Ontology for Nutritional Studies","Ontology for BIoBanking (OBIB)","Obstetric and Neonatal Ontology","Ontology for genetic interval","The Prescription of Drugs Ontology","PHI-base Ontology","Ontology for General Medical Science","Pathogen Host Interactions Phenotype Ontology","Plant Ontology","Ontology of Genetic Susceptibility Factor","Plant Phenology Ontology","Probability Distribution Ontology","Plant Stress Ontology","The Oral Health and Disease Ontology","Regulation of Transcription Ontology","Regulation of Gene Expression Ontology","OBO Relations Ontology","Rat Strain Ontology","Ontology of units of Measure (OM)","RXNO","Systems Biology Ontology","Ontologized MIABIS","Sickle Cell Disease Ontology","Sustainable Development Goals Interface Ontology","OBO Metadata Ontology","Scientific Evidence and Provenance Information Ontology","Ontology of Organizational Structures of Trauma centers and Trauma Systems","Ontology for Parasite Lifecycle","Social Insect Behavior Ontology","OPMI: Ontology of Precision Medicine and Investigation","Spider Ontology","FAIRsharing Subject Ontology (SRAO)","Orphanet Rare Disease Ontology","STATO: the statistical methods ontology","Ontology for RNA sequencing (ORNASEQ)","Symptom Ontology","Tick Anatomy Ontology","OVAE: Ontology of Vaccine Adverse Events","PATO - the Phenotype And Trait Ontology","Taxonomic rank vocabulary","Population and Community Ontology","Terminology for Description of Dynamics","Platynereis Developmental Stages","Mosquito gross anatomy ontology","Plant Experimental Conditions Ontology","Plant Trait Ontology","planaria-ontology","Unimod protein modification database for mass spectrometry","Units of measurement ontology","Planarian Phenotype Ontology (PLANP)","The Virus Infectious Disease Ontology","Porifera (sponge) ontology","Vaccine Ontology","PRotein Ontology (PRO)","PRIDE Controlled Vocabulary","C. elegans Gross Anatomy Ontology","Performance Summary Display Ontology","Pathway ontology","Experimental condition ontology","REPRODUCE-ME Ontology","HUPO-PSI cross-linking and derivatization reagents controlled vocabulary","Physico-chemical process","The RNA Ontology (RNAO): An Ontology for Integrating RNA Sequence and Structure Data","Zebrafish Experimental Conditions Ontology","Semanticscience Integrated Ontology","Zebrafish developmental stages ontology","Sequence types and features ontology","SWO (The Software Ontology)","Pathogen Transmission Ontology","Teleost taxonomy ontology","TOXic Process Ontology (TXPO)","Uber-anatomy ontology","Unipathway","Unified phenotype ontology (uPheno)","Variation Ontology","Vertebrate trait ontology","Vertebrate Taxonomy Ontology","C. elegans Development Ontology","C elegans Phenotype Ontology","Xenopus Anatomy Ontology","Cross-linker reagents ontology","Xenopus Phenotype Ontology","Zebrafish anatomy and development ontology","Zebrafish Phenotype Ontology"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Prefix<\/th>\n      <th>Namespace<\/th>\n      <th>Title<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div id="a-brief-rols-overview" class="section level1">
 <h1 class="hasAnchor">
 <a href="#a-brief-rols-overview" class="anchor"></a>A Brief rols overview</h1>
-<p>The <em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em> package is build around a few classes that enable to query the OLS and retrieve, store and manipulate data. Each of these classes are described in more details in their respective manual pages. We start by loading the package.</p>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"rols"</span>)</pre></body></html></div>
+<p>The <em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em> package is build around a few classes that enable to query the OLS and retrieve, store and manipulate data. Each of these classes are described in more details in their respective manual pages. We start by loading the package.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st"><a href="http://lgatto.github.com/rols/">"rols"</a></span><span class="op">)</span></code></pre></div>
 <div id="ontologies" class="section level2">
 <h2 class="hasAnchor">
 <a href="#ontologies" class="anchor"></a>Ontologies</h2>
 <p>The <code>Ontology</code> and <code>Ontologies</code> classes can store information about single of multiple ontologies. The latter can be easily subset using <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> and <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code>, as one would for lists.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="no">ol</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Ontology-class.html">Ontologies</a></span>()
-<span class="no">ol</span></pre></body></html></div>
-<pre><code>## Object of class 'Ontologies' with 251 entries
-##    AEO, AFO ... VT, WBbt</code></pre>
-<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/Ontology-class.html">olsNamespace</a></span>(<span class="no">ol</span>))</pre></body></html></div>
-<pre><code>##         aeo         afo        agro       amphx         apo   apollo_sv 
-##       "aeo"       "afo"      "agro"     "amphx"       "apo" "apollo_sv"</code></pre>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="no">ol</span><span class="kw">[[</span><span class="st">"go"</span>]]</pre></body></html></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Ontology-class.html">Ontologies</a></span><span class="op">(</span><span class="op">)</span>
+<span class="va">ol</span></code></pre></div>
+<pre><code>## Object of class 'Ontologies' with 257 entries
+##    AEO, ECTO ... ZFA, ZP</code></pre>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/Ontology-class.html">olsNamespace</a></span><span class="op">(</span><span class="va">ol</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<pre><code>##    aeo   ecto    afo   edam   agro    efo 
+##  "aeo" "ecto"  "afo" "edam" "agro"  "efo"</code></pre>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">ol</span><span class="op">[[</span><span class="st">"go"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## Ontology: Gene Ontology (go)  
 ##   The Gene Ontology (GO) provides a framework and set of concepts for
 ##   describing the functions of gene products from all organisms.
-##    Loaded: 2020-06-03 Updated: 2020-06-30 Version: 2020-06-01 
-##    50272 terms  61 properties  0 individuals</code></pre>
+##    Loaded: 2020-11-20 Updated: 2020-12-01 Version: 2020-11-18 
+##    50469 terms  62 properties  0 individuals</code></pre>
 <p>It is also possible to initialise a single ontology</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="no">go</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Ontology-class.html">Ontology</a></span>(<span class="st">"go"</span>)
-<span class="no">go</span></pre></body></html></div>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">go</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Ontology-class.html">Ontology</a></span><span class="op">(</span><span class="st">"go"</span><span class="op">)</span>
+<span class="va">go</span></code></pre></div>
 <pre><code>## Ontology: Gene Ontology (go)  
 ##   The Gene Ontology (GO) provides a framework and set of concepts for
 ##   describing the functions of gene products from all organisms.
-##    Loaded: 2020-06-03 Updated: 2020-06-30 Version: 2020-06-01 
-##    50272 terms  61 properties  0 individuals</code></pre>
+##    Loaded: 2020-11-20 Updated: 2020-12-01 Version: 2020-11-18 
+##    50469 terms  62 properties  0 individuals</code></pre>
 </div>
 <div id="terms" class="section level2">
 <h2 class="hasAnchor">
 <a href="#terms" class="anchor"></a>Terms</h2>
 <p>Single ontology terms are stored in <code>Term</code> objects. When more terms need to be manipulated, they are stored as <code>Terms</code> objects. It is easy to obtain all terms of an ontology of interest, and the resulting <code>Terms</code> object can be subset using <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> and <code><a href="https://rdrr.io/r/base/Extract.html">[[</a></code>, as one would for lists.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="no">gotrms</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Term-class.html">terms</a></span>(<span class="no">go</span>) <span class="co">## or terms("go")</span>
-<span class="no">gotrms</span></pre></body></html></div>
-<pre><code>## Object of class 'Terms' with 50273 entries
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gotrms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Term-class.html">terms</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span> <span class="co">## or terms("go")</span>
+<span class="va">gotrms</span></code></pre></div>
+<pre><code>## Object of class 'Terms' with 50423 entries
 ##  From the GO ontology
 ##   GO:0005230, GO:0015276 ... GO:0032942, GO:0032947</code></pre>
-<div class="sourceCode" id="cb13"><html><body><pre class="r"><span class="no">gotrms</span>[<span class="fl">1</span>:<span class="fl">10</span>]</pre></body></html></div>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gotrms</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">]</span></code></pre></div>
 <pre><code>## Object of class 'Terms' with 10 entries
 ##  From the GO ontology
-##   GO:0005230, GO:0015276 ... GO:0001819, GO:0044831</code></pre>
-<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="no">gotrms</span><span class="kw">[[</span><span class="st">"GO:0090575"</span>]]</pre></body></html></div>
+##   GO:0005230, GO:0015276 ... GO:0044831, GO:0044833</code></pre>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">gotrms</span><span class="op">[[</span><span class="st">"GO:0090575"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## A Term from the GO ontology: GO:0090575 
 ##  Label: RNA polymerase II transcription regulator complex
 ##   A transcription factor complex that acts at a regulatory region of a
 ##   gene transcribed by RNA polymerase II.</code></pre>
 <p>It is also possible to initialise a single term</p>
-<div class="sourceCode" id="cb17"><html><body><pre class="r"><span class="no">trm</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Term-class.html">term</a></span>(<span class="no">go</span>, <span class="st">"GO:0090575"</span>)
-<span class="fu"><a href="../reference/Term-class.html">termId</a></span>(<span class="no">trm</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">trm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Term-class.html">term</a></span><span class="op">(</span><span class="va">go</span>, <span class="st">"GO:0090575"</span><span class="op">)</span>
+<span class="fu"><a href="../reference/Term-class.html">termId</a></span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "GO:0090575"</code></pre>
-<div class="sourceCode" id="cb19"><html><body><pre class="r"><span class="fu"><a href="../reference/Term-class.html">termLabel</a></span>(<span class="no">trm</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/Term-class.html">termLabel</a></span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "RNA polymerase II transcription regulator complex"</code></pre>
-<div class="sourceCode" id="cb21"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/strwrap.html">strwrap</a></span>(<span class="fu"><a href="../reference/Term-class.html">termDesc</a></span>(<span class="no">trm</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/strwrap.html">strwrap</a></span><span class="op">(</span><span class="fu"><a href="../reference/Term-class.html">termDesc</a></span><span class="op">(</span><span class="va">trm</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "A transcription factor complex that acts at a regulatory region of a"
 ## [2] "gene transcribed by RNA polymerase II."</code></pre>
 <p>It is then possible to extract the <code>ancestors</code>, <code>descendants</code>, <code>parents</code> and <code>children</code> terms. Each of these functions return a <code>Terms</code> object</p>
-<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="fu"><a href="../reference/Term-class.html">parents</a></span>(<span class="no">trm</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/Term-class.html">parents</a></span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'Terms' with 1 entries
 ##  From the GO ontology
 ## GO:0005667</code></pre>
-<div class="sourceCode" id="cb25"><html><body><pre class="r"><span class="fu"><a href="../reference/Term-class.html">children</a></span>(<span class="no">trm</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/Term-class.html">children</a></span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'Terms' with 42 entries
 ##  From the GO ontology
 ##   GO:0062071, GO:0008230 ... GO:0034718, GO:0030232</code></pre>
@@ -197,86 +205,100 @@
 <h2 class="hasAnchor">
 <a href="#properties" class="anchor"></a>Properties</h2>
 <p>Properties (relationships) of single or multiple terms or complete ontologies can be queries with the <code>properties</code> method, as briefly illustrated below.</p>
-<div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="no">trm</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Term-class.html">term</a></span>(<span class="st">"uberon"</span>, <span class="st">"UBERON:0002107"</span>)
-<span class="no">trm</span></pre></body></html></div>
+<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">trm</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Term-class.html">term</a></span><span class="op">(</span><span class="st">"uberon"</span>, <span class="st">"UBERON:0002107"</span><span class="op">)</span>
+<span class="va">trm</span></code></pre></div>
 <pre><code>## A Term from the UBERON ontology: UBERON:0002107 
 ##  Label: liver
 ##   An exocrine gland which secretes bile and functions in metabolism of
 ##   protein and carbohydrate and fat, synthesizes substances involved in
 ##   the clotting of the blood, synthesizes vitamin A, detoxifies poisonous
 ##   substances, stores glycogen, and breaks down worn-out erythrocytes[GO].</code></pre>
-<div class="sourceCode" id="cb29"><html><body><pre class="r"><span class="no">p</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/Properties-class.html">properties</a></span>(<span class="no">trm</span>)
-<span class="no">p</span></pre></body></html></div>
-<pre><code>## Object of class 'Properties' with 112 entries
+<div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Properties-class.html">properties</a></span><span class="op">(</span><span class="va">trm</span><span class="op">)</span>
+<span class="va">p</span></code></pre></div>
+<pre><code>## Object of class 'Properties' with 115 entries
 ##  From the UBERON ontology
-##   digestive system gland, abdomen element ... hepatobiliary system, bile</code></pre>
-<div class="sourceCode" id="cb31"><html><body><pre class="r"><span class="no">p</span><span class="kw">[[</span><span class="fl">1</span>]]</pre></body></html></div>
+##   digestive system gland, abdomen element ... liver bud, liver lobule</code></pre>
+<div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## A Property from the UBERON ontology: UBERON:0006925 
 ##  Label: digestive system gland</code></pre>
-<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="../reference/Term-class.html">termLabel</a></span>(<span class="no">p</span><span class="kw">[[</span><span class="fl">1</span>]])</pre></body></html></div>
+<div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/Term-class.html">termLabel</a></span><span class="op">(</span><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></code></pre></div>
 <pre><code>## [1] "digestive system gland"</code></pre>
 </div>
 </div>
 <div id="use-case" class="section level1">
 <h1 class="hasAnchor">
 <a href="#use-case" class="anchor"></a>Use case</h1>
-<p>A researcher might be interested in the trans-Golgi network. Searching the OLS is assured by the <code>OlsSearch</code> and <code>olsSearch</code> classes/functions. The first step is to defined the search query with <code>OlsSearch</code>, as shown below. This creates an search object of class <code>OlsSearch</code> that stores the query and its parameters. In records the number of requested results (default is 20) and the total number of possible results (there are 15880 results across all ontologies, in this case). At this stage, the results have not yet been downloaded, as shown by the 0 responses.</p>
-<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="st">"trans-golgi network"</span>)</pre></body></html></div>
+<p>A researcher might be interested in the trans-Golgi network. Searching the OLS is assured by the <code>OlsSearch</code> and <code>olsSearch</code> classes/functions. The first step is to defined the search query with <code>OlsSearch</code>, as shown below. This creates an search object of class <code>OlsSearch</code> that stores the query and its parameters. In records the number of requested results (default is 20) and the total number of possible results (there are 16306 results across all ontologies, in this case). At this stage, the results have not yet been downloaded, as shown by the 0 responses.</p>
+<div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   query: trans-golgi network 
-##   requested: 20 (out of 15880)
+##   requested: 20 (out of 16306)
 ##   response(s): 0</code></pre>
-<p>15880 results are probably too many to be relevant. Below we show how to perform an exact search by setting <code>exact = TRUE</code>, and limiting the search the the GO ontology by specifying <code>ontology = "GO"</code>, or doing both.</p>
-<div class="sourceCode" id="cb37"><html><body><pre class="r"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="st">"trans-golgi network"</span>, <span class="kw">exact</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<p>16306 results are probably too many to be relevant. Below we show how to perform an exact search by setting <code>exact = TRUE</code>, and limiting the search the the GO ontology by specifying <code>ontology = "GO"</code>, or doing both.</p>
+<div class="sourceCode" id="cb37"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   query: trans-golgi network 
 ##   requested: 20 (out of 10)
 ##   response(s): 0</code></pre>
-<div class="sourceCode" id="cb39"><html><body><pre class="r"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="st">"trans-golgi network"</span>, <span class="kw">ontology</span> <span class="kw">=</span> <span class="st">"GO"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span>, ontology <span class="op">=</span> <span class="st">"GO"</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   ontolgy: GO 
 ##   query: trans-golgi network 
-##   requested: 20 (out of 765)
+##   requested: 20 (out of 774)
 ##   response(s): 0</code></pre>
-<div class="sourceCode" id="cb41"><html><body><pre class="r"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="st">"trans-golgi network"</span>, <span class="kw">ontology</span> <span class="kw">=</span> <span class="st">"GO"</span>, <span class="kw">exact</span> <span class="kw">=</span> <span class="fl">TRUE</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb41"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span>, ontology <span class="op">=</span> <span class="st">"GO"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   ontolgy: GO 
 ##   query: trans-golgi network 
 ##   requested: 20 (out of 1)
 ##   response(s): 0</code></pre>
 <p>One case set the <code>rows</code> argument to set the number of desired results.</p>
-<div class="sourceCode" id="cb43"><html><body><pre class="r"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="st">"trans-golgi network"</span>, <span class="kw">ontology</span> <span class="kw">=</span> <span class="st">"GO"</span>, <span class="kw">rows</span> <span class="kw">=</span> <span class="fl">200</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb43"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span>, ontology <span class="op">=</span> <span class="st">"GO"</span>, rows <span class="op">=</span> <span class="fl">200</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   ontolgy: GO 
 ##   query: trans-golgi network 
-##   requested: 200 (out of 765)
+##   requested: 200 (out of 774)
 ##   response(s): 0</code></pre>
 <p>Alternatively, one can call the <code>allRows</code> function to request all results.</p>
-<div class="sourceCode" id="cb45"><html><body><pre class="r">(<span class="no">tgnq</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="st">"trans-golgi network"</span>, <span class="kw">ontology</span> <span class="kw">=</span> <span class="st">"GO"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">tgnq</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span>, ontology <span class="op">=</span> <span class="st">"GO"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   ontolgy: GO 
 ##   query: trans-golgi network 
-##   requested: 20 (out of 765)
+##   requested: 20 (out of 774)
 ##   response(s): 0</code></pre>
-<div class="sourceCode" id="cb47"><html><body><pre class="r">(<span class="no">tgnq</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">allRows</a></span>(<span class="no">tgnq</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb47"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">tgnq</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">allRows</a></span><span class="op">(</span><span class="va">tgnq</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   ontolgy: GO 
 ##   query: trans-golgi network 
-##   requested: 765 (out of 765)
+##   requested: 774 (out of 774)
 ##   response(s): 0</code></pre>
 <p>Let’s proceed with the exact search and retrieve the results. Even if we request the default 20 results, only the 10 relevant result will be retrieved. The <code>olsSearch</code> function updates the previously created object (called <code>qry</code> below) by adding the results to it.</p>
-<div class="sourceCode" id="cb49"><html><body><pre class="r"><span class="no">qry</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span>(<span class="kw">q</span> <span class="kw">=</span> <span class="st">"trans-golgi network"</span>, <span class="kw">exact</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
-(<span class="no">qry</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">olsSearch</a></span>(<span class="no">qry</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb49"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">qry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="op">(</span><span class="va">qry</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">olsSearch</a></span><span class="op">(</span><span class="va">qry</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'OlsSearch':
 ##   query: trans-golgi network 
 ##   requested: 20 (out of 10)
 ##   response(s): 10</code></pre>
 <p>We can now transform this search result object into a fully fledged <code>Terms</code> object or a <code>data.frame</code>.</p>
-<div class="sourceCode" id="cb51"><html><body><pre class="r">(<span class="no">qtrms</span> <span class="kw">&lt;-</span> <span class="fu">as</span>(<span class="no">qry</span>, <span class="st">"Terms"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb51"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="op">(</span><span class="va">qtrms</span> <span class="op">&lt;-</span> <span class="fu">as</span><span class="op">(</span><span class="va">qry</span>, <span class="st">"Terms"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## Object of class 'Terms' with 10 entries
 ##  From  7 ontologies
 ##   NCIT:C33802, OMIT:0020822 ... GO:0005802, GO:0005802</code></pre>
-<div class="sourceCode" id="cb53"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(<span class="no">qdrf</span> <span class="kw">&lt;-</span> <span class="fu">as</span>(<span class="no">qry</span>, <span class="st">"data.frame"</span>))</pre></body></html></div>
+<div class="sourceCode" id="cb53"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">qdrf</span> <span class="op">&lt;-</span> <span class="fu">as</span><span class="op">(</span><span class="va">qry</span>, <span class="st">"data.frame"</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <pre><code>## 'data.frame':    10 obs. of  10 variables:
 ##  $ id                  : chr  "ncit:class:http://purl.obolibrary.org/obo/NCIT_C33802" "omit:class:http://purl.obolibrary.org/obo/OMIT_0020822" "go:class:http://purl.obolibrary.org/obo/GO_0005802" "cco:http://purl.obolibrary.org/obo/GO_0005802" ...
 ##  $ iri                 : chr  "http://purl.obolibrary.org/obo/NCIT_C33802" "http://purl.obolibrary.org/obo/OMIT_0020822" "http://purl.obolibrary.org/obo/GO_0005802" "http://purl.obolibrary.org/obo/GO_0005802" ...
@@ -299,11 +321,13 @@
 ##  $ type                : chr  "class" "class" "class" "class" ...
 ##  $ is_defining_ontology: logi  TRUE TRUE TRUE FALSE FALSE FALSE ...</code></pre>
 <p>In this case, we can see that we actually retrieve the same term used across different ontologies. In such cases, it might be useful to keep only non-redundant term instances. Here, this would have been equivalent to searching the ncit, omit, go ontology</p>
-<div class="sourceCode" id="cb55"><html><body><pre class="r"><span class="no">qtrms</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span>(<span class="no">qtrms</span>)
-<span class="fu"><a href="../reference/Term-class.html">termOntology</a></span>(<span class="no">qtrms</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb55"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">qtrms</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html">unique</a></span><span class="op">(</span><span class="va">qtrms</span><span class="op">)</span>
+<span class="fu"><a href="../reference/Term-class.html">termOntology</a></span><span class="op">(</span><span class="va">qtrms</span><span class="op">)</span></code></pre></div>
 <pre><code>##  NCIT:C33802 OMIT:0020822   GO:0005802 
 ##       "ncit"       "omit"         "go"</code></pre>
-<div class="sourceCode" id="cb57"><html><body><pre class="r"><span class="fu"><a href="../reference/Term-class.html">termNamespace</a></span>(<span class="no">qtrms</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb57"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/Term-class.html">termNamespace</a></span><span class="op">(</span><span class="va">qtrms</span><span class="op">)</span></code></pre></div>
 <pre><code>## $`NCIT:C33802`
 ## NULL
 ## 
@@ -312,9 +336,10 @@
 ## 
 ## $`GO:0005802`
 ## [1] "cellular_component"</code></pre>
-<p>Below, we execute the same query using the <em><a href="https://bioconductor.org/packages/3.12/GO.db">GO.db</a></em> package.</p>
-<div class="sourceCode" id="cb59"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"GO.db"</span>)
-<span class="no">GOTERM</span><span class="kw">[[</span><span class="st">"GO:0005802"</span>]]</pre></body></html></div>
+<p>Below, we execute the same query using the <em><a href="https://bioconductor.org/packages/3.13/GO.db">GO.db</a></em> package.</p>
+<div class="sourceCode" id="cb59"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="st">"GO.db"</span><span class="op">)</span>
+<span class="va">GOTERM</span><span class="op">[[</span><span class="st">"GO:0005802"</span><span class="op">]</span><span class="op">]</span></code></pre></div>
 <pre><code>## GOID: GO:0005802
 ## Term: trans-Golgi network
 ## Ontology: CC
@@ -332,16 +357,16 @@
 ## Synonym: maturing face
 ## Synonym: trans face</code></pre>
 </div>
-<div id="on-line-vs-off-line-data" class="section level1">
+<div id="on-line-vs--off-line-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#on-line-vs-off-line-data" class="anchor"></a>On-line vs. off-line data</h1>
-<p>It is possible to observe different results with <em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em> and <em><a href="https://bioconductor.org/packages/3.12/GO.db">GO.db</a></em>, as a result of the different ways they access the data. <em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em> or <em><a href="https://bioconductor.org/packages/3.12/biomaRt">biomaRt</a></em> perform direct online queries, while <em><a href="https://bioconductor.org/packages/3.12/GO.db">GO.db</a></em> and other annotation packages use database snapshot that are updated every release.</p>
-<p>Both approaches have advantages. While online queries allow to obtain the latest up-to-date information, such approaches rely on network availability and quality. If reproducibility is a major issue, the version of the database to be queried can easily be controlled with off-line approaches. In the case of <em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em>, although the load date of a specific ontology can be queried with <code>olsVersion</code>, it is not possible to query a specific version of an ontology.</p>
+<a href="#on-line-vs--off-line-data" class="anchor"></a>On-line vs. off-line data</h1>
+<p>It is possible to observe different results with <em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em> and <em><a href="https://bioconductor.org/packages/3.13/GO.db">GO.db</a></em>, as a result of the different ways they access the data. <em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em> or <em><a href="https://bioconductor.org/packages/3.13/biomaRt">biomaRt</a></em> perform direct online queries, while <em><a href="https://bioconductor.org/packages/3.13/GO.db">GO.db</a></em> and other annotation packages use database snapshot that are updated every release.</p>
+<p>Both approaches have advantages. While online queries allow to obtain the latest up-to-date information, such approaches rely on network availability and quality. If reproducibility is a major issue, the version of the database to be queried can easily be controlled with off-line approaches. In the case of <em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em>, although the load date of a specific ontology can be queried with <code>olsVersion</code>, it is not possible to query a specific version of an ontology.</p>
 </div>
 <div id="changes-in-version-2-0" class="section level1">
 <h1 class="hasAnchor">
 <a href="#changes-in-version-2-0" class="anchor"></a>Changes in version 2.0</h1>
-<p><em><a href="https://bioconductor.org/packages/3.12/rols">rols</a></em> 2.0 has substantially changed. While the table below shows some correspondence between the old and new interface, this is not always the case. The new interface relies on the <code>Ontology</code>/<code>Ontologies</code>, <code>Term</code>/<code>Terms</code> and <code>OlsSearch</code> classes, that need to be instantiated and can then be queried, as described above.</p>
+<p><em><a href="https://bioconductor.org/packages/3.13/rols">rols</a></em> 2.0 has substantially changed. While the table below shows some correspondence between the old and new interface, this is not always the case. The new interface relies on the <code>Ontology</code>/<code>Ontologies</code>, <code>Term</code>/<code>Terms</code> and <code>OlsSearch</code> classes, that need to be instantiated and can then be queried, as described above.</p>
 <table class="table">
 <thead><tr class="header">
 <th>version &lt; 1.99</th>
@@ -388,52 +413,55 @@
 <h1 class="hasAnchor">
 <a href="#cvparams" class="anchor"></a>CVParams</h1>
 <p>The <code>CVParam</code> class is used to handle controlled vocabulary. It can be used for user-defined parameters</p>
-<div class="sourceCode" id="cb61"><html><body><pre class="r"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span>(<span class="kw">name</span> <span class="kw">=</span> <span class="st">"A user param"</span>, <span class="kw">value</span> <span class="kw">=</span> <span class="st">"the value"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb61"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span><span class="op">(</span>name <span class="op">=</span> <span class="st">"A user param"</span>, value <span class="op">=</span> <span class="st">"the value"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [, , A user param, the value]</code></pre>
 <p>or official controlled vocabulary (which triggers a query to the OLS service)</p>
-<div class="sourceCode" id="cb63"><html><body><pre class="r"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span>(<span class="kw">label</span> <span class="kw">=</span> <span class="st">"MS"</span>, <span class="kw">accession</span> <span class="kw">=</span> <span class="st">"MS:1000073"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb63"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, accession <span class="op">=</span> <span class="st">"MS:1000073"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [MS, MS:1000073, electrospray ionization, ]</code></pre>
-<div class="sourceCode" id="cb65"><html><body><pre class="r"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span>(<span class="kw">label</span> <span class="kw">=</span> <span class="st">"MS"</span>, <span class="kw">name</span> <span class="kw">=</span><span class="st">"electrospray ionization"</span>)</pre></body></html></div>
+<div class="sourceCode" id="cb65"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, name <span class="op">=</span><span class="st">"electrospray ionization"</span><span class="op">)</span></code></pre></div>
 <pre><code>## [MS, MS:1000073, electrospray ionization, ]</code></pre>
-<div class="sourceCode" id="cb67"><html><body><pre class="r"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span>(<span class="kw">label</span> <span class="kw">=</span> <span class="st">"MS"</span>, <span class="kw">name</span> <span class="kw">=</span><span class="st">"ESI"</span>) <span class="co">## using a synonym</span></pre></body></html></div>
+<div class="sourceCode" id="cb67"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/CVParam-class.html">CVParam</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, name <span class="op">=</span><span class="st">"ESI"</span><span class="op">)</span> <span class="co">## using a synonym</span></code></pre></div>
 <pre><code>## [MS, MS:1000073, ESI, ]</code></pre>
 <p>See <code><a href="../reference/CVParam-class.html">?CVParam</a></code> for more details and examples.</p>
 </div>
 <div id="session-information" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-information" class="anchor"></a>Session information</h1>
-<pre><code>## R Under development (unstable) (2020-07-01 r78759)
+<pre><code>## R Under development (unstable) (2020-11-26 r79513)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 14.04.5 LTS
+## Running under: Ubuntu 20.04.1 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /home/travis/R-bin/lib/R/lib/libRblas.so
-## LAPACK: /home/travis/R-bin/lib/R/lib/libRlapack.so
+## BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
 ## 
 ## attached base packages:
 ## [1] parallel  stats4    stats     graphics  grDevices utils     datasets 
 ## [8] methods   base     
 ## 
 ## other attached packages:
-## [1] DT_0.14              rols_2.17.3          GO.db_3.11.4        
-## [4] AnnotationDbi_1.51.1 IRanges_2.23.10      S4Vectors_0.27.12   
-## [7] Biobase_2.49.0       BiocGenerics_0.35.4  BiocStyle_2.17.0    
+## [1] DT_0.16              rols_2.19.1          GO.db_3.12.1        
+## [4] AnnotationDbi_1.53.0 IRanges_2.25.3       S4Vectors_0.29.4    
+## [7] Biobase_2.51.0       BiocGenerics_0.37.0  BiocStyle_2.19.1    
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.4.6        compiler_4.1.0      BiocManager_1.30.10
+##  [1] Rcpp_1.0.5          compiler_4.1.0      BiocManager_1.30.10
 ##  [4] prettyunits_1.1.1   progress_1.2.2      tools_4.1.0        
-##  [7] digest_0.6.25       bit_1.1-15.2        jsonlite_1.7.0     
-## [10] evaluate_0.14       memoise_1.1.0       RSQLite_2.2.0      
-## [13] pkgconfig_2.0.3     rlang_0.4.6         DBI_1.1.0          
+##  [7] digest_0.6.27       bit_4.0.4           jsonlite_1.7.1     
+## [10] evaluate_0.14       memoise_1.1.0       RSQLite_2.2.1      
+## [13] pkgconfig_2.0.3     rlang_0.4.9         DBI_1.1.0          
 ## [16] crosstalk_1.1.0.1   curl_4.3            yaml_2.2.1         
-## [19] pkgdown_1.5.1       xfun_0.15           httr_1.4.1         
-## [22] stringr_1.4.0       knitr_1.29          htmlwidgets_1.5.1  
-## [25] hms_0.5.3           desc_1.2.0          fs_1.4.1           
-## [28] vctrs_0.3.1         rprojroot_1.3-2     bit64_0.9-7        
-## [31] R6_2.4.1            rmarkdown_2.3       bookdown_0.20      
-## [34] blob_1.2.1          magrittr_1.5        backports_1.1.8    
-## [37] htmltools_0.5.0     MASS_7.3-51.6       assertthat_0.2.1   
-## [40] stringi_1.4.6       crayon_1.3.4</code></pre>
+## [19] pkgdown_1.6.1.9000  xfun_0.19           httr_1.4.2         
+## [22] stringr_1.4.0       knitr_1.30          htmlwidgets_1.5.2  
+## [25] hms_0.5.3           desc_1.2.0          fs_1.5.0           
+## [28] vctrs_0.3.5         systemfonts_0.3.2   rprojroot_2.0.2    
+## [31] bit64_4.0.5         R6_2.5.0            textshaping_0.2.1  
+## [34] rmarkdown_2.5       bookdown_0.21       blob_1.2.1         
+## [37] magrittr_2.0.1      htmltools_0.5.0     assertthat_0.2.1   
+## [40] ragg_0.4.0          stringi_1.5.3       crayon_1.3.4</code></pre>
 </div>
   </div>
 
@@ -452,7 +480,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

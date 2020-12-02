@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Class <code>"Term"</code> — Term-class • rols</title>
+<title>Class "Term" — Term-class • rols</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Class <code>"Term"</code> — Term-class" />
+<meta property="og:title" content="Class "Term" — Term-class" />
 <meta property="og:description" content="
 
 The Term class describes an ontology term. A set of terms are
@@ -75,19 +75,13 @@ The Term class describes an ontology term. A set of terms are
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.17.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.1</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../articles/rols.html">Get started</a>
 </li>
 <li>
@@ -146,11 +140,11 @@ The Term class describes an ontology term. A set of terms are
   <code>ancestors</code>, <code>descendants</code>, <code>partOf</code> and
   <code>derivesFrom</code> terms can be generated and returned as <code>Terms</code>
   objects.</p>
-<p><code>Terms</code> instances can be subset with <code>[</code> and <code>[[</code> and
+<p><code>Terms</code> instances can be subset with <code><a href='https://rdrr.io/r/base/Extract.html'>[</a></code> and <code><a href='https://rdrr.io/r/base/Extract.html'>[[</a></code> and
   iterated over with <code>lapply</code>.</p>
     <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
 
-    <p></p><dl'>
+    <p></p><dl>
     <dt><code>iri</code>:</dt><dd><p>Object of class <code>"character"</code> ~~</p></dd>
     <dt><code>label</code>:</dt><dd><p>Object of class <code>"character"</code> ~~</p></dd>
     <dt><code>description</code>:</dt><dd><p>Object of class <code>"NullOrList"</code> ~~</p></dd>
@@ -171,7 +165,7 @@ The Term class describes an ontology term. A set of terms are
 
     <h2 class="hasAnchor" id="methods-and-functions"><a class="anchor" href="#methods-and-functions"></a>Methods and functions</h2>
 
-    <p></p><dl'>
+    <p></p><dl>
 
     <dt>term</dt><dd><p><code>signature(object = "Ontology", id = "character")</code>:
       ...</p></dd>
@@ -252,98 +246,108 @@ The Term class describes an ontology term. A set of terms are
 </dl>
   
 
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Laurent Gatto &lt;lg390@cam.ac.uk&gt;</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='co'>## (all) terms</span>
-(<span class='no'>gotrms</span> <span class='kw'>&lt;-</span> <span class='fu'>terms</span>(<span class='st'>"go"</span>, <span class='kw'>pagesize</span> <span class='kw'>=</span> <span class='fl'>10000</span>))</div><div class='output co'>#&gt; Object of class 'Terms' with 50273 entries
+<span class='op'>(</span><span class='va'>gotrms</span> <span class='op'>&lt;-</span> <span class='fu'>terms</span><span class='op'>(</span><span class='st'>"go"</span>, pagesize <span class='op'>=</span> <span class='fl'>10000</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 50423 entries
 #&gt;  From the GO ontology
 #&gt;   GO:0005230, GO:0015276 ... GO:0032942, GO:0032947 </div><div class='input'>
-<span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
     <span class='co'>## or, using on ontology object</span>
-    <span class='no'>go</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Ontology-class.html'>Ontology</a></span>(<span class='st'>"go"</span>)
-    <span class='no'>gotrms</span> <span class='kw'>&lt;-</span> <span class='fu'>terms</span>(<span class='no'>go</span>, <span class='kw'>pagesize</span> <span class='kw'>=</span> <span class='fl'>10000</span>)
-}
+    <span class='va'>go</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Ontology-class.html'>Ontology</a></span><span class='op'>(</span><span class='st'>"go"</span><span class='op'>)</span>
+    <span class='va'>gotrms</span> <span class='op'>&lt;-</span> <span class='fu'>terms</span><span class='op'>(</span><span class='va'>go</span>, pagesize <span class='op'>=</span> <span class='fl'>10000</span><span class='op'>)</span>
+<span class='op'>}</span>
 
-<span class='fu'>as</span>(<span class='no'>gotrms</span>[<span class='fl'>1</span>:<span class='fl'>10</span>], <span class='st'>"data.frame"</span>) <span class='co'>## data,frame with 10 rows</span></div><div class='output co'>#&gt;                    id
+<span class='fu'>as</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>10</span><span class='op'>]</span>, <span class='st'>"data.frame"</span><span class='op'>)</span> <span class='co'>## data,frame with 10 rows</span>
+</div><div class='output co'>#&gt;                    id
 #&gt; GO:0005230 GO:0005230
 #&gt; GO:0015276 GO:0015276
 #&gt; GO:0005231 GO:0005231
-#&gt; GO:0060079 GO:0060079
 #&gt; GO:0005232 GO:0005232
 #&gt; NULL             &lt;NA&gt;
 #&gt; GO:0005234 GO:0005234
 #&gt; GO:0044832 GO:0044832
 #&gt; GO:0001819 GO:0001819
 #&gt; GO:0044831 GO:0044831
+#&gt; GO:0044833 GO:0044833
 #&gt;                                                                 label
 #&gt; GO:0005230            extracellular ligand-gated ion channel activity
 #&gt; GO:0015276                          ligand-gated ion channel activity
 #&gt; GO:0005231 excitatory extracellular ligand-gated ion channel activity
-#&gt; GO:0060079                          excitatory postsynaptic potential
 #&gt; GO:0005232                                                 GO_0005232
 #&gt; NULL                                                            Thing
 #&gt; GO:0005234       extracellularly glutamate-gated ion channel activity
 #&gt; GO:0044832   positive regulation by virus of host cytokine production
 #&gt; GO:0001819                 positive regulation of cytokine production
 #&gt; GO:0044831            modulation by virus of host cytokine production
-#&gt;                                                                                                                                                                                                                                                                                                description
-#&gt; GO:0005230                                                                                                                Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts.
-#&gt; GO:0015276                                                                                                                              Enables the transmembrane transfer of an ion by a channel that opens when a specific ligand has been bound by the channel complex or one of its constituent parts.
-#&gt; GO:0005231                                        Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts, where channel opening contributes to an increase in membrane potential.
-#&gt; GO:0060079 A process that leads to a temporary increase in postsynaptic potential due to the flow of positively charged ions into the postsynaptic cell. The flow of ions that causes an EPSP is an excitatory postsynaptic current (EPSC) and makes it easier for the neuron to fire an action potential.
-#&gt; GO:0005232                                                                                                                                                                                                                                                                                            &lt;NA&gt;
-#&gt; NULL                                                                                                                                                                                                                                                                                                  &lt;NA&gt;
-#&gt; GO:0005234                                                                                          Enables the transmembrane transfer of an ion by a channel that opens when glutamate is  bound by the channel complex or one of its constituent parts on the extracellular side of the plasma membrane.
-#&gt; GO:0044832                                                                                                                                                                               The process in which a virus increases the frequency, rate or extent of cytokine production in its host organism.
-#&gt; GO:0001819                                                                                                                                                                                              Any process that activates or increases the frequency, rate or extent of production of a cytokine.
-#&gt; GO:0044831                                                                                                                                                                               Any process in which a virus modulates the frequency, rate or extent of cytokine production in its host organism.
+#&gt; GO:0044833              modulation by virus of host protein transport
+#&gt;                                                                                                                                                                                                                                                         description
+#&gt; GO:0005230                                                                         Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts.
+#&gt; GO:0015276                                                                                       Enables the transmembrane transfer of an ion by a channel that opens when a specific ligand has been bound by the channel complex or one of its constituent parts.
+#&gt; GO:0005231 Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts, where channel opening contributes to an increase in membrane potential.
+#&gt; GO:0005232                                                                                                                                                                                                                                                     &lt;NA&gt;
+#&gt; NULL                                                                                                                                                                                                                                                           &lt;NA&gt;
+#&gt; GO:0005234                                                   Enables the transmembrane transfer of an ion by a channel that opens when glutamate is  bound by the channel complex or one of its constituent parts on the extracellular side of the plasma membrane.
+#&gt; GO:0044832                                                                                                                                        The process in which a virus increases the frequency, rate or extent of cytokine production in its host organism.
+#&gt; GO:0001819                                                                                                                                                       Any process that activates or increases the frequency, rate or extent of production of a cytokine.
+#&gt; GO:0044831                                                                                                                                        Any process in which a virus modulates the frequency, rate or extent of cytokine production in its host organism.
+#&gt; GO:0044833                                                                                                                                                Any viral process that modulates the frequency, rate or extent of protein transport in its host organism.
 #&gt;            ontology is_obsolete has_children is_root
 #&gt; GO:0005230       go       FALSE         TRUE   FALSE
 #&gt; GO:0015276       go       FALSE         TRUE   FALSE
 #&gt; GO:0005231       go       FALSE         TRUE   FALSE
-#&gt; GO:0060079       go       FALSE         TRUE   FALSE
 #&gt; GO:0005232       go        TRUE        FALSE    TRUE
 #&gt; NULL             go       FALSE        FALSE    TRUE
 #&gt; GO:0005234       go       FALSE         TRUE   FALSE
 #&gt; GO:0044832       go       FALSE        FALSE   FALSE
 #&gt; GO:0001819       go       FALSE         TRUE   FALSE
 #&gt; GO:0044831       go       FALSE         TRUE   FALSE
-#&gt;                                                        first_synonym
-#&gt; GO:0005230                                                      &lt;NA&gt;
-#&gt; GO:0015276                                                      &lt;NA&gt;
-#&gt; GO:0005231                                                      &lt;NA&gt;
-#&gt; GO:0060079 regulation of excitatory post-synaptic membrane potential
-#&gt; GO:0005232                                                      &lt;NA&gt;
-#&gt; NULL                                                            &lt;NA&gt;
-#&gt; GO:0005234        extracellular-glutamate-gated ion channel activity
-#&gt; GO:0044832                                                      &lt;NA&gt;
-#&gt; GO:0001819                      up-regulation of cytokine production
-#&gt; GO:0044831                                                      &lt;NA&gt;
+#&gt; GO:0044833       go       FALSE        FALSE   FALSE
+#&gt;                                                 first_synonym
+#&gt; GO:0005230                                               &lt;NA&gt;
+#&gt; GO:0015276                                               &lt;NA&gt;
+#&gt; GO:0005231                                               &lt;NA&gt;
+#&gt; GO:0005232                                               &lt;NA&gt;
+#&gt; NULL                                                     &lt;NA&gt;
+#&gt; GO:0005234 extracellular-glutamate-gated ion channel activity
+#&gt; GO:0044832                                               &lt;NA&gt;
+#&gt; GO:0001819               up-regulation of cytokine production
+#&gt; GO:0044831                                               &lt;NA&gt;
+#&gt; GO:0044833                                               &lt;NA&gt;
 #&gt;                                                  iri is_defining_ontology
 #&gt; GO:0005230 http://purl.obolibrary.org/obo/GO_0005230                 TRUE
 #&gt; GO:0015276 http://purl.obolibrary.org/obo/GO_0015276                 TRUE
 #&gt; GO:0005231 http://purl.obolibrary.org/obo/GO_0005231                 TRUE
-#&gt; GO:0060079 http://purl.obolibrary.org/obo/GO_0060079                 TRUE
 #&gt; GO:0005232 http://purl.obolibrary.org/obo/GO_0005232                 TRUE
 #&gt; NULL             http://www.w3.org/2002/07/owl#Thing                FALSE
 #&gt; GO:0005234 http://purl.obolibrary.org/obo/GO_0005234                 TRUE
 #&gt; GO:0044832 http://purl.obolibrary.org/obo/GO_0044832                 TRUE
 #&gt; GO:0001819 http://purl.obolibrary.org/obo/GO_0001819                 TRUE
-#&gt; GO:0044831 http://purl.obolibrary.org/obo/GO_0044831                 TRUE</div><div class='input'>
+#&gt; GO:0044831 http://purl.obolibrary.org/obo/GO_0044831                 TRUE
+#&gt; GO:0044833 http://purl.obolibrary.org/obo/GO_0044833                 TRUE</div><div class='input'>
 <span class='co'>## (one) term</span>
-(<span class='no'>trm</span> <span class='kw'>&lt;-</span> <span class='no'>gotrms</span><span class='kw'>[[</span><span class='fl'>1</span>]])</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0005230 
+<span class='op'>(</span><span class='va'>trm</span> <span class='op'>&lt;-</span> <span class='va'>gotrms</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0005230 
 #&gt;  Label: extracellular ligand-gated ion channel activity
 #&gt;   Enables the transmembrane transfer of an ion by a channel that opens
 #&gt;   when a specific extracellular ligand has been bound by the channel
-#&gt;   complex or one of its constituent parts.</div><div class='input'><span class='fu'>termPrefix</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='no'>gotrms</span>[<span class='fl'>1</span>:<span class='fl'>3</span>]</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
+#&gt;   complex or one of its constituent parts.</div><div class='input'><span class='fu'>termPrefix</span><span class='op'>(</span><span class='va'>trm</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='va'>gotrms</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
 #&gt;  From the GO ontology
-#&gt; GO:0005230, GO:0015276, GO:0005231 </div><div class='input'><span class='no'>gotrms</span><span class='kw'>[[</span><span class='st'>"GO:0005230"</span>]]</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0005230 
+#&gt; GO:0005230, GO:0015276, GO:0005231 </div><div class='input'><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005230"</span><span class='op'>]</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0005230 
 #&gt;  Label: extracellular ligand-gated ion channel activity
 #&gt;   Enables the transmembrane transfer of an ion by a channel that opens
 #&gt;   when a specific extracellular ligand has been bound by the channel
 #&gt;   complex or one of its constituent parts.</div><div class='input'>
-<span class='fu'>as</span>(<span class='no'>trm</span>, <span class='st'>"data.frame"</span>) <span class='co'>## data,frame with 1 row</span></div><div class='output co'>#&gt;           id                                           label
+<span class='fu'>as</span><span class='op'>(</span><span class='va'>trm</span>, <span class='st'>"data.frame"</span><span class='op'>)</span> <span class='co'>## data,frame with 1 row</span>
+</div><div class='output co'>#&gt;           id                                           label
 #&gt; 1 GO:0005230 extracellular ligand-gated ion channel activity
 #&gt;                                                                                                                                                                        description
 #&gt; 1 Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts.
@@ -352,26 +356,34 @@ The Term class describes an ontology term. A set of terms are
 #&gt;                                         iri is_defining_ontology
 #&gt; 1 http://purl.obolibrary.org/obo/GO_0005230                 TRUE</div><div class='input'>
 <span class='co'>## using an Ontology object</span>
-<span class='no'>go</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='Ontology-class.html'>Ontology</a></span>(<span class='st'>"GO"</span>)
-<span class='fu'>term</span>(<span class='no'>go</span>, <span class='st'>"GO:0032801"</span>)</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0032801 
+<span class='va'>go</span> <span class='op'>&lt;-</span> <span class='fu'><a href='Ontology-class.html'>Ontology</a></span><span class='op'>(</span><span class='st'>"GO"</span><span class='op'>)</span>
+<span class='fu'>term</span><span class='op'>(</span><span class='va'>go</span>, <span class='st'>"GO:0032801"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0032801 
 #&gt;  Label: receptor catabolic process
 #&gt;   The chemical reactions and pathways resulting in the breakdown of a
 #&gt;   receptor molecule, a macromolecule that undergoes combination with a
 #&gt;   hormone, neurotransmitter, drug or intracellular messenger to initiate
 #&gt;   a change in cell function.</div><div class='input'><span class='co'>## using an ontology prefix</span>
-<span class='fu'>term</span>(<span class='st'>"GO"</span>, <span class='st'>"GO:0032801"</span>)</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0032801 
+<span class='fu'>term</span><span class='op'>(</span><span class='st'>"GO"</span>, <span class='st'>"GO:0032801"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A Term from the GO ontology: GO:0032801 
 #&gt;  Label: receptor catabolic process
 #&gt;   The chemical reactions and pathways resulting in the breakdown of a
 #&gt;   receptor molecule, a macromolecule that undergoes combination with a
 #&gt;   hormone, neurotransmitter, drug or intracellular messenger to initiate
 #&gt;   a change in cell function.</div><div class='input'>
-<span class='fu'>isObsolete</span>(<span class='no'>gotrms</span><span class='kw'>[[</span><span class='st'>"GO:0005230"</span>]])</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isObsolete</span>(<span class='no'>gotrms</span><span class='kw'>[[</span><span class='st'>"GO:0005232"</span>]])</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='fu'>isRoot</span>(<span class='no'>gotrms</span><span class='kw'>[[</span><span class='st'>"GO:0005230"</span>]])</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isRoot</span>(<span class='no'>gotrms</span><span class='kw'>[[</span><span class='st'>"GO:0005232"</span>]])</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
-<span class='no'>i</span> <span class='kw'>&lt;-</span> <span class='fu'>isRoot</span>(<span class='no'>gotrms</span>) <span class='kw'>&amp;</span> !<span class='fu'>isObsolete</span>(<span class='no'>gotrms</span>)
-<span class='no'>gotrms</span>[<span class='no'>i</span>]</div><div class='output co'>#&gt; Object of class 'Terms' with 4 entries
+<span class='fu'>isObsolete</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005230"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isObsolete</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005232"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='fu'>isRoot</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005230"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isRoot</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005232"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
+<span class='va'>i</span> <span class='op'>&lt;-</span> <span class='fu'>isRoot</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>)</span> <span class='op'>&amp;</span> <span class='op'>!</span><span class='fu'>isObsolete</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>)</span>
+<span class='va'>gotrms</span><span class='op'>[</span><span class='va'>i</span><span class='op'>]</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 4 entries
 #&gt;  From the GO ontology
-#&gt; NULL, GO:0008150, GO:0003674, GO:0005575 </div><div class='input'><span class='kw'>for</span> (<span class='no'>ii</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span>(<span class='no'>i</span>))
-    <span class='fu'>show</span>(<span class='no'>gotrms</span><span class='kw'>[[</span><span class='no'>ii</span>]])</div><div class='output co'>#&gt; A Term from the GO ontology: 
+#&gt; NULL, GO:0008150, GO:0003674, GO:0005575 </div><div class='input'><span class='kw'>for</span> <span class='op'>(</span><span class='va'>ii</span> <span class='kw'>in</span> <span class='fu'><a href='https://rdrr.io/r/base/which.html'>which</a></span><span class='op'>(</span><span class='va'>i</span><span class='op'>)</span><span class='op'>)</span>
+    <span class='fu'>show</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='va'>ii</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; A Term from the GO ontology: 
 #&gt;  Label: Thing
 #&gt;   No description
 #&gt; A Term from the GO ontology: GO:0008150 
@@ -403,24 +415,33 @@ The Term class describes an ontology term. A set of terms are
 #&gt;   the stable macromolecular complexes of which they are parts (e.g., the
 #&gt;   ribosome).</div><div class='input'>
 <span class='co'>## or, directly querying the ontology</span>
-<span class='fu'><a href='Ontology-class.html'>olsRoot</a></span>(<span class='no'>go</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
+<span class='fu'><a href='Ontology-class.html'>olsRoot</a></span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
 #&gt;  From the GO ontology
 #&gt; GO:0003674, GO:0008150, GO:0005575 </div><div class='input'>
-<span class='fu'>parents</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
+<span class='fu'>parents</span><span class='op'>(</span><span class='va'>trm</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
 #&gt;  From the GO ontology
-#&gt; GO:0015276 </div><div class='input'><span class='fu'>ancestors</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 12 entries
+#&gt; GO:0015276 </div><div class='input'><span class='fu'>ancestors</span><span class='op'>(</span><span class='va'>trm</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 12 entries
 #&gt;  From the GO ontology
-#&gt;   GO:0015276, GO:0022834 ... GO:0015318, GO:0015075 </div><div class='input'><span class='fu'>children</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 5 entries
+#&gt;   GO:0015276, GO:0022834 ... GO:0015318, GO:0015075 </div><div class='input'><span class='fu'>children</span><span class='op'>(</span><span class='va'>trm</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 5 entries
 #&gt;  From the GO ontology
-#&gt;   GO:0036081, GO:0036082 ... GO:0005237, GO:0005231 </div><div class='input'><span class='fu'>descendants</span>(<span class='no'>trm</span>)</div><div class='output co'>#&gt; Object of class 'Terms' with 20 entries
+#&gt;   GO:0036081, GO:0036082 ... GO:0005237, GO:0005231 </div><div class='input'><span class='fu'>descendants</span><span class='op'>(</span><span class='va'>trm</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 20 entries
 #&gt;  From the GO ontology
 #&gt;   GO:0005231, GO:0005234 ... GO:0036082, GO:0036081 </div><div class='input'>
-<span class='fu'>partOf</span>(<span class='no'>gotrms</span><span class='kw'>[[</span><span class='st'>"GO:0044429"</span>]])</div><div class='output co'>#&gt; <span class='message'>No 'part of' terms.</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>partOf</span>(<span class='fu'>term</span>(<span class='st'>"BTO"</span>, <span class='st'>"BTO:0000142"</span>))</div><div class='output co'>#&gt; Object of class 'Terms' with 2 entries
+<span class='fu'>partOf</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0044429"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>No 'part of' terms.</span></div><div class='output co'>#&gt; NULL</div><div class='input'><span class='fu'>partOf</span><span class='op'>(</span><span class='fu'>term</span><span class='op'>(</span><span class='st'>"BTO"</span>, <span class='st'>"BTO:0000142"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 2 entries
 #&gt;  From the BTO ontology
 #&gt; BTO:0000227, BTO:0000282 </div><div class='input'>
-<span class='fu'>derivesFrom</span>(<span class='fu'>term</span>(<span class='st'>"BTO"</span>, <span class='st'>"BTO:0002600"</span>))</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
+<span class='fu'>derivesFrom</span><span class='op'>(</span><span class='fu'>term</span><span class='op'>(</span><span class='st'>"BTO"</span>, <span class='st'>"BTO:0002600"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
 #&gt;  From the BTO ontology
-#&gt; BTO:0000099 </div><div class='input'><span class='fu'>derivesFrom</span>(<span class='fu'>term</span>(<span class='st'>"BTO"</span>, <span class='st'>"BTO:0001023"</span>))</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
+#&gt; BTO:0000099 </div><div class='input'><span class='fu'>derivesFrom</span><span class='op'>(</span><span class='fu'>term</span><span class='op'>(</span><span class='st'>"BTO"</span>, <span class='st'>"BTO:0001023"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; Object of class 'Terms' with 1 entries
 #&gt;  From the BTO ontology
 #&gt; BTO:0000975 </div><div class='input'>
 </div></pre>
@@ -439,7 +460,7 @@ The Term class describes an ontology term. A set of terms are
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
