@@ -48,6 +48,8 @@ The Term class describes an ontology term. A set of terms are
 
 
 
+
+
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -94,7 +96,7 @@ The Term class describes an ontology term. A set of terms are
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/lgatto/rols/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -254,7 +256,7 @@ The Term class describes an ontology term. A set of terms are
     <pre class="examples"><div class='input'>
 <span class='co'>## (all) terms</span>
 <span class='op'>(</span><span class='va'>gotrms</span> <span class='op'>&lt;-</span> <span class='fu'>terms</span><span class='op'>(</span><span class='st'>"go"</span>, pagesize <span class='op'>=</span> <span class='fl'>10000</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; Object of class 'Terms' with 50423 entries
+</div><div class='output co'>#&gt; Object of class 'Terms' with 50492 entries
 #&gt;  From the GO ontology
 #&gt;   GO:0005230, GO:0015276 ... GO:0032942, GO:0032947 </div><div class='input'>
 <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
@@ -272,9 +274,9 @@ The Term class describes an ontology term. A set of terms are
 #&gt; NULL             &lt;NA&gt;
 #&gt; GO:0005234 GO:0005234
 #&gt; GO:0044832 GO:0044832
-#&gt; GO:0001819 GO:0001819
-#&gt; GO:0044831 GO:0044831
-#&gt; GO:0044833 GO:0044833
+#&gt; GO:0050776 GO:0050776
+#&gt; GO:0050794 GO:0050794
+#&gt; GO:0075528 GO:0075528
 #&gt;                                                                 label
 #&gt; GO:0005230            extracellular ligand-gated ion channel activity
 #&gt; GO:0015276                          ligand-gated ion channel activity
@@ -282,21 +284,21 @@ The Term class describes an ontology term. A set of terms are
 #&gt; GO:0005232                                                 GO_0005232
 #&gt; NULL                                                            Thing
 #&gt; GO:0005234       extracellularly glutamate-gated ion channel activity
-#&gt; GO:0044832   positive regulation by virus of host cytokine production
-#&gt; GO:0001819                 positive regulation of cytokine production
-#&gt; GO:0044831            modulation by virus of host cytokine production
-#&gt; GO:0044833              modulation by virus of host protein transport
-#&gt;                                                                                                                                                                                                                                                         description
-#&gt; GO:0005230                                                                         Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts.
-#&gt; GO:0015276                                                                                       Enables the transmembrane transfer of an ion by a channel that opens when a specific ligand has been bound by the channel complex or one of its constituent parts.
-#&gt; GO:0005231 Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts, where channel opening contributes to an increase in membrane potential.
-#&gt; GO:0005232                                                                                                                                                                                                                                                     &lt;NA&gt;
-#&gt; NULL                                                                                                                                                                                                                                                           &lt;NA&gt;
-#&gt; GO:0005234                                                   Enables the transmembrane transfer of an ion by a channel that opens when glutamate is  bound by the channel complex or one of its constituent parts on the extracellular side of the plasma membrane.
-#&gt; GO:0044832                                                                                                                                        The process in which a virus increases the frequency, rate or extent of cytokine production in its host organism.
-#&gt; GO:0001819                                                                                                                                                       Any process that activates or increases the frequency, rate or extent of production of a cytokine.
-#&gt; GO:0044831                                                                                                                                        Any process in which a virus modulates the frequency, rate or extent of cytokine production in its host organism.
-#&gt; GO:0044833                                                                                                                                                Any viral process that modulates the frequency, rate or extent of protein transport in its host organism.
+#&gt; GO:0044832             induction by virus of host cytokine production
+#&gt; GO:0050776                              regulation of immune response
+#&gt; GO:0050794                             regulation of cellular process
+#&gt; GO:0075528                modulation by virus of host immune response
+#&gt;                                                                                                                                                                                                                                                                                                 description
+#&gt; GO:0005230                                                                                                                 Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts.
+#&gt; GO:0015276                                                                                                                               Enables the transmembrane transfer of an ion by a channel that opens when a specific ligand has been bound by the channel complex or one of its constituent parts.
+#&gt; GO:0005231                                         Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts, where channel opening contributes to an increase in membrane potential.
+#&gt; GO:0005232                                                                                                                                                                                                                                                                                             &lt;NA&gt;
+#&gt; NULL                                                                                                                                                                                                                                                                                                   &lt;NA&gt;
+#&gt; GO:0005234                                                                                           Enables the transmembrane transfer of an ion by a channel that opens when glutamate is  bound by the channel complex or one of its constituent parts on the extracellular side of the plasma membrane.
+#&gt; GO:0044832                                                                                                                                                                                The process in which a virus increases the frequency, rate or extent of cytokine production in its host organism.
+#&gt; GO:0050776                                                                                                                                           Any process that modulates the frequency, rate or extent of the immune response, the immunological reaction of an organism to an immunogenic stimulus.
+#&gt; GO:0050794 Any process that modulates the frequency, rate or extent of a cellular process, any of those that are carried out at the cellular level, but are not necessarily restricted to a single cell. For example, cell communication occurs among more than one cell, but occurs at the cellular level.
+#&gt; GO:0075528                                                                                                                                                                                                                       The process in which a virus effects a change in the host immune response.
 #&gt;            ontology is_obsolete has_children is_root
 #&gt; GO:0005230       go       FALSE         TRUE   FALSE
 #&gt; GO:0015276       go       FALSE         TRUE   FALSE
@@ -305,20 +307,20 @@ The Term class describes an ontology term. A set of terms are
 #&gt; NULL             go       FALSE        FALSE    TRUE
 #&gt; GO:0005234       go       FALSE         TRUE   FALSE
 #&gt; GO:0044832       go       FALSE        FALSE   FALSE
-#&gt; GO:0001819       go       FALSE         TRUE   FALSE
-#&gt; GO:0044831       go       FALSE         TRUE   FALSE
-#&gt; GO:0044833       go       FALSE        FALSE   FALSE
-#&gt;                                                 first_synonym
-#&gt; GO:0005230                                               &lt;NA&gt;
-#&gt; GO:0015276                                               &lt;NA&gt;
-#&gt; GO:0005231                                               &lt;NA&gt;
-#&gt; GO:0005232                                               &lt;NA&gt;
-#&gt; NULL                                                     &lt;NA&gt;
-#&gt; GO:0005234 extracellular-glutamate-gated ion channel activity
-#&gt; GO:0044832                                               &lt;NA&gt;
-#&gt; GO:0001819               up-regulation of cytokine production
-#&gt; GO:0044831                                               &lt;NA&gt;
-#&gt; GO:0044833                                               &lt;NA&gt;
+#&gt; GO:0050776       go       FALSE         TRUE   FALSE
+#&gt; GO:0050794       go       FALSE         TRUE   FALSE
+#&gt; GO:0075528       go       FALSE         TRUE   FALSE
+#&gt;                                                       first_synonym
+#&gt; GO:0005230                                                     &lt;NA&gt;
+#&gt; GO:0015276                                                     &lt;NA&gt;
+#&gt; GO:0005231                                                     &lt;NA&gt;
+#&gt; GO:0005232                                                     &lt;NA&gt;
+#&gt; NULL                                                           &lt;NA&gt;
+#&gt; GO:0005234       extracellular-glutamate-gated ion channel activity
+#&gt; GO:0044832 positive regulation by virus of host cytokine production
+#&gt; GO:0050776                                                     &lt;NA&gt;
+#&gt; GO:0050794             regulation of cellular physiological process
+#&gt; GO:0075528        regulation by virus of host immune system process
 #&gt;                                                  iri is_defining_ontology
 #&gt; GO:0005230 http://purl.obolibrary.org/obo/GO_0005230                 TRUE
 #&gt; GO:0015276 http://purl.obolibrary.org/obo/GO_0015276                 TRUE
@@ -327,9 +329,9 @@ The Term class describes an ontology term. A set of terms are
 #&gt; NULL             http://www.w3.org/2002/07/owl#Thing                FALSE
 #&gt; GO:0005234 http://purl.obolibrary.org/obo/GO_0005234                 TRUE
 #&gt; GO:0044832 http://purl.obolibrary.org/obo/GO_0044832                 TRUE
-#&gt; GO:0001819 http://purl.obolibrary.org/obo/GO_0001819                 TRUE
-#&gt; GO:0044831 http://purl.obolibrary.org/obo/GO_0044831                 TRUE
-#&gt; GO:0044833 http://purl.obolibrary.org/obo/GO_0044833                 TRUE</div><div class='input'>
+#&gt; GO:0050776 http://purl.obolibrary.org/obo/GO_0050776                 TRUE
+#&gt; GO:0050794 http://purl.obolibrary.org/obo/GO_0050794                 TRUE
+#&gt; GO:0075528 http://purl.obolibrary.org/obo/GO_0075528                 TRUE</div><div class='input'>
 <span class='co'>## (one) term</span>
 <span class='op'>(</span><span class='va'>trm</span> <span class='op'>&lt;-</span> <span class='va'>gotrms</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; A Term from the GO ontology: GO:0005230 
