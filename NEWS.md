@@ -1,3 +1,11 @@
+# rols 2.10
+
+## CHANGES IN VERSION 2.19.1
+
+- Fix pagination of ebi.ac.uk results contributed by Andrew Clugston
+  (AndrewC160) - see issue #27.
+- For failing unit test (number of obsolete terms in `test_Terms.R`)
+
 # rols 2.17
 
 ## CHANGES IN VERSION 2.17.4
