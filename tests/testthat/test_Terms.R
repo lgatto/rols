@@ -80,7 +80,7 @@ test_that("accessors", {
     expect_false(isObsolete(trm))
     expect_true(isObsolete(term("GO", "GO:0005563")))
     expect_false(isObsolete(term("GO", "GO:0030533")))
-    k <- 337 ## changed on <2019-08-12 Mon>; <2020-08-26 Wed>
+    k <- 338 ## changed on <2019-08-12 Mon>; <2020-08-26 Wed>; <2021-02-01 Mon>
     expect_equal(sum(isObsolete(trms)), k)
     expect_equal(sum(!isObsolete(trms)), length(trms) - k)
 
