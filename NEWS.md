@@ -1,4 +1,8 @@
-# rols 2.10
+# rols 2.19
+
+## CHANGES IN VERSION 2.19.2
+
+- Fix failing unit test (number of obsolete terms in `test_Terms.R`)
 
 ## CHANGES IN VERSION 2.19.1
 
