@@ -62,9 +62,15 @@ Ontologies are stored as Ontology and Ontologies
 
 
 
+  
+
+  
+
   </head>
 
   <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -78,7 +84,7 @@ Ontologies are stored as Ontology and Ontologies
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.2</span>
       </span>
     </div>
 
@@ -282,24 +288,24 @@ Ontologies are stored as Ontology and Ontologies
     <pre class="examples"><div class='input'><span class='co'>## Get all ontolgies</span>
 <span class='va'>ol</span> <span class='op'>&lt;-</span> <span class='fu'>Ontologies</span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>ol</span>
-</div><div class='output co'>#&gt; Object of class 'Ontologies' with 259 entries
-#&gt;    ENM, EUPATH ... ZFA, ZP </div><div class='input'>
+</div><div class='output co'>#&gt; Object of class 'Ontologies' with 260 entries
+#&gt;    FBbt, FBcv ... MPATH, MPIO </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>as</span><span class='op'>(</span><span class='va'>ol</span>, <span class='st'>"data.frame"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;        Prefix Namespace                                           Title
-#&gt; enm       ENM       enm                            eNanoMapper Ontology
-#&gt; eupath EUPATH    eupath                              VEuPathDB Ontology
-#&gt; fix       FIX       fix         Physico-chemical methods and properties
-#&gt; flopo   FLOPO     flopo                        Flora Phenotype Ontology
-#&gt; fma       FMA       fma Foundational Model of Anatomy Ontology (subset)
-#&gt; fovt     FOVT      fovt            FuTRES Ontology of Vertebrate Traits</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>ol</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 259</div><div class='input'>
+</div><div class='output co'>#&gt;        Prefix Namespace                                          Title
+#&gt; fbbt     FBbt      fbbt              Drosophila Anatomy Ontology (DAO)
+#&gt; fbcv     FBcv      fbcv           FlyBase Controlled Vocabulary (FBcv)
+#&gt; fideo   FIDEO     fideo Food Interactions with Drugs Evidence Ontology
+#&gt; foodon FOODON    foodon                                  Food Ontology
+#&gt; fovt     FOVT      fovt           FuTRES Ontology of Vertebrate Traits
+#&gt; gecko   GECKO     gecko            Genomics Cohorts Knowledge Ontology</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>ol</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 260</div><div class='input'>
 <span class='co'>## Individual ontologies</span>
 <span class='op'>(</span><span class='va'>go</span> <span class='op'>&lt;-</span> <span class='va'>ol</span><span class='op'>[[</span><span class='st'>"go"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> 
 </div><div class='output co'>#&gt; Ontology: Gene Ontology (go)  
 #&gt;   The Gene Ontology (GO) provides a framework and set of concepts for
 #&gt;   describing the functions of gene products from all organisms.
-#&gt;    Loaded: 2021-01-18 Updated: 2021-02-01 Version: 2021-01-01 
-#&gt;    50491 terms  66 properties  0 individuals</div><div class='input'><span class='op'>(</span><span class='va'>efo</span> <span class='op'>&lt;-</span> <span class='va'>ol</span><span class='op'>[[</span><span class='st'>"efo"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
+#&gt;    Loaded: 2021-02-04 Updated: 2021-02-17 Version: 2021-02-01 
+#&gt;    50515 terms  66 properties  0 individuals</div><div class='input'><span class='op'>(</span><span class='va'>efo</span> <span class='op'>&lt;-</span> <span class='va'>ol</span><span class='op'>[[</span><span class='st'>"efo"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
 #&gt;   The Experimental Factor Ontology (EFO) provides a systematic
 #&gt;   description of many experimental variables available in EBI databases,
@@ -308,11 +314,11 @@ Ontologies are stored as Ontology and Ontologies
 #&gt;   chemical compounds. The scope of EFO is to support the annotation,
 #&gt;   analysis and visualization of data handled by many groups at the EBI
 #&gt;   and as the core ontology for OpenTargets.org
-#&gt;    Loaded: 2021-01-19 Updated: 2021-02-01 Version: 3.26.0 
-#&gt;    28270 terms  201 properties  0 individuals</div><div class='input'>
+#&gt;    Loaded: 2021-02-16 Updated: 2021-02-17 Version: 3.27.0 
+#&gt;    28288 terms  210 properties  0 individuals</div><div class='input'>
 <span class='co'>## some basic information</span>
 <span class='fu'>olsVersion</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "2021-01-01"</div><div class='input'><span class='fu'>olsDesc</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "2021-02-01"</div><div class='input'><span class='fu'>olsDesc</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms."</div><div class='input'><span class='fu'>olsTitle</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "Gene Ontology"</div><div class='input'><span class='fu'>olsPrefix</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='fu'>olsNamespace</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
@@ -354,6 +360,8 @@ Ontologies are stored as Ontology and Ontologies
 
   
 
+
+  
 
   </body>
 </html>
