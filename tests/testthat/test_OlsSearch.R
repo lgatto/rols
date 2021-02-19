@@ -84,4 +84,7 @@ test_that("Empty olsSearch query", {
     ## used to fail with error
     out <- olsSearch(qry)
     expect_true(validObject(out))
+    out <- as(out, "data.frame")
+    expect_identical(nrow(out), 0L)
+    expect_identical(ncol(out), 10L)
 })

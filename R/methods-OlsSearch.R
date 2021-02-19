@@ -1,3 +1,13 @@
+emptyQueryDataFrame <-
+    structure(list(id = character(0), iri = character(0),
+                   short_form = character(0), obo_id = character(0),
+                   label = character(0), description = list(),
+                   ontology_name = character(0),
+                   ontology_prefix = character(0), type = character(0),
+                   is_defining_ontology = logical(0)),
+              row.names = integer(0),
+              class = "data.frame")
+
 ##########################################
 ## Constructor
 OlsSearch <- function(q,
@@ -63,7 +73,7 @@ olsSearch <- function(object, all = FALSE) {
     txt <- rawToChar(cx)
     ans <- jsonlite::fromJSON(txt)
     if (!length(ans[['response']][['docs']])) {
-        object@response <- data.frame()
+        object@response <- emptyQueryDataFrame
     } else {
         object@response <- ans[["response"]][["docs"]]
     }
