@@ -1,5 +1,9 @@
 # rols 2.19
 
+## CHANGES IN VERSION 2.19.3
+
+- Fix error for empty query results
+
 ## CHANGES IN VERSION 2.19.2
 
 - Fix failing unit test (number of obsolete terms in `test_Terms.R`)

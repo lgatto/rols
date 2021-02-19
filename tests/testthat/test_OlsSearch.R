@@ -3,7 +3,7 @@ context("OlsSearch")
 test_that("OlsSearch tgn", {
     tgn <- OlsSearch(q = "tgn",ontology = "GO")
     tgn <- olsSearch(tgn)
-    
+
     tgnres <- structure(c("trans-Golgi network",
                           "clathrin coat of trans-Golgi network vesicle",
                           "Golgi to endosome transport",
@@ -24,7 +24,7 @@ test_that("OlsSearch ESI", {
 
     esi1 <- olsSearch(esi1)
     esi2 <- olsSearch(esi2)
-    
+
     expect_identical(esi1@numFound, 1L)
     expect_identical(esi2@numFound, 34L)
     expect_true(termId(as(esi1, "Terms")) %in% termId(as(esi2, "Terms")))
@@ -35,14 +35,14 @@ test_that("OlsSearch tgn 2", {
     tgngo <- OlsSearch("tgn","GO")
     tgngo <- olsSearch(allRows(tgngo))
     expect_equal(tgngo@numFound, 5L)
-    
+
     tgn <- OlsSearch("tgn")
     tgn <- olsSearch(allRows(tgn))
 
     expect_true(all(tgngo@response[, "obo_id"] %in% tgn@response[, "obo_id"]))
 })
 
-test_that("OlsSearch show", 
+test_that("OlsSearch show",
     expect_null(show(OlsSearch(q = "cell", ontology = "GO"))))
 
 test_that("OlsSearch rows", {
@@ -54,14 +54,14 @@ test_that("OlsSearch rows", {
     expect_equal(nrow(olsSearch(res)@response), 32L)
     expect_equal(res@rows, 32L)
     expect_equal(res@rows, olsRows(res))
-    
+
     olsRows(res) <- 108
     expect_equal(olsRows(res), 108L)
     expect_equal(nrow(olsSearch(res)@response), 108L)
-    
+
     res <- allRows(res)
     expect_equal(olsRows(res), res@numFound)
-    expect_equal(nrow(olsSearch(res)@response), res@numFound)   
+    expect_equal(nrow(olsSearch(res)@response), res@numFound)
 })
 
 test_that("OlsSearch coercion", {
@@ -77,4 +77,11 @@ test_that("OlsSearch coercion", {
     expect_identical(nrow(resdf), length(resterms))
     expect_equivalent(termId(resterms), resdf[, "obo_id"])
     expect_equivalent(termLabel(resterms), resdf[, "label"])
+})
+
+test_that("Empty olsSearch query", {
+    qry <- OlsSearch("asdasdasdasd", ontology = "CL")
+    ## used to fail with error
+    out <- olsSearch(qry)
+    expect_true(validObject(out))
 })

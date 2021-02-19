@@ -62,7 +62,11 @@ olsSearch <- function(object, all = FALSE) {
     cx <- content(x, as = "raw")
     txt <- rawToChar(cx)
     ans <- jsonlite::fromJSON(txt)
-    object@response <- ans[["response"]][["docs"]]
+    if (!length(ans[['response']][['docs']])) {
+        object@response <- data.frame()
+    } else {
+        object@response <- ans[["response"]][["docs"]]
+    }
     object
 }
 
@@ -83,7 +87,7 @@ setMethod("show", "OlsSearch",
               cat("  query:", object@q, "\n")
               cat("  requested: ", object@rows, " (out of ",
                   object@numFound, ")\n", sep ="")
-              cat("  response(s):", nrow(object@response), "\n")              
+              cat("  response(s):", nrow(object@response), "\n")
           })
 
 
