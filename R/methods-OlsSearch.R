@@ -131,6 +131,10 @@ allRows <- function(x) {
 setAs(from = "OlsSearch", to = "data.frame",
       function(from) from@response)
 
+as.data.frame.OlsSearch <- function(x) {
+    as(x, "data.frame")
+}
+
 ## Terms constructor
 setAs(from = "OlsSearch", to = "Terms",
       function(from) {

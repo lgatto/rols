@@ -13,6 +13,8 @@ exportClasses(CVParam,
               OlsSearch,
               Property, Properties)
 
+S3method(as.data.frame, OlsSearch)
+
 exportMethods(show,
               "[", "[[", lapply,
               coerce,

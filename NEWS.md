@@ -3,6 +3,7 @@
 ## CHANGES IN VERSION 2.19.3
 
 - Fix error for empty query results
+- New as.data.frame OlsSearch S3 method
 
 ## CHANGES IN VERSION 2.19.2
 
