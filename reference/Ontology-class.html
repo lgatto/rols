@@ -84,7 +84,7 @@ Ontologies are stored as Ontology and Ontologies
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.3</span>
       </span>
     </div>
 
@@ -289,22 +289,22 @@ Ontologies are stored as Ontology and Ontologies
 <span class='va'>ol</span> <span class='op'>&lt;-</span> <span class='fu'>Ontologies</span><span class='op'>(</span><span class='op'>)</span>
 <span class='va'>ol</span>
 </div><div class='output co'>#&gt; Object of class 'Ontologies' with 260 entries
-#&gt;    FBbt, FBcv ... MPATH, MPIO </div><div class='input'>
+#&gt;    CO_327, CO_330 ... XPO, ZECO </div><div class='input'>
 <span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span><span class='op'>(</span><span class='fu'>as</span><span class='op'>(</span><span class='va'>ol</span>, <span class='st'>"data.frame"</span><span class='op'>)</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;        Prefix Namespace                                          Title
-#&gt; fbbt     FBbt      fbbt              Drosophila Anatomy Ontology (DAO)
-#&gt; fbcv     FBcv      fbcv           FlyBase Controlled Vocabulary (FBcv)
-#&gt; fideo   FIDEO     fideo Food Interactions with Drugs Evidence Ontology
-#&gt; foodon FOODON    foodon                                  Food Ontology
-#&gt; fovt     FOVT      fovt           FuTRES Ontology of Vertebrate Traits
-#&gt; gecko   GECKO     gecko            Genomics Cohorts Knowledge Ontology</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>ol</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;        Prefix Namespace                  Title
+#&gt; co_327 CO_327    co_327  Pearl millet ontology
+#&gt; co_330 CO_330    co_330        Potato ontology
+#&gt; co_331 CO_331    co_331  Sweet Potato ontology
+#&gt; co_333 CO_333    co_333 Beet Ontology ontology
+#&gt; co_334 CO_334    co_334       Cassava ontology
+#&gt; co_335 CO_335    co_335   Common Bean ontology</div><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/length.html'>length</a></span><span class='op'>(</span><span class='va'>ol</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] 260</div><div class='input'>
 <span class='co'>## Individual ontologies</span>
 <span class='op'>(</span><span class='va'>go</span> <span class='op'>&lt;-</span> <span class='va'>ol</span><span class='op'>[[</span><span class='st'>"go"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span> 
 </div><div class='output co'>#&gt; Ontology: Gene Ontology (go)  
 #&gt;   The Gene Ontology (GO) provides a framework and set of concepts for
 #&gt;   describing the functions of gene products from all organisms.
-#&gt;    Loaded: 2021-02-04 Updated: 2021-02-17 Version: 2021-02-01 
+#&gt;    Loaded: 2021-02-04 Updated: 2021-02-18 Version: 2021-02-01 
 #&gt;    50515 terms  66 properties  0 individuals</div><div class='input'><span class='op'>(</span><span class='va'>efo</span> <span class='op'>&lt;-</span> <span class='va'>ol</span><span class='op'>[[</span><span class='st'>"efo"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Ontology: Experimental Factor Ontology (efo)  
 #&gt;   The Experimental Factor Ontology (EFO) provides a systematic
@@ -314,7 +314,7 @@ Ontologies are stored as Ontology and Ontologies
 #&gt;   chemical compounds. The scope of EFO is to support the annotation,
 #&gt;   analysis and visualization of data handled by many groups at the EBI
 #&gt;   and as the core ontology for OpenTargets.org
-#&gt;    Loaded: 2021-02-16 Updated: 2021-02-17 Version: 3.27.0 
+#&gt;    Loaded: 2021-02-16 Updated: 2021-02-18 Version: 3.27.0 
 #&gt;    28288 terms  210 properties  0 individuals</div><div class='input'>
 <span class='co'>## some basic information</span>
 <span class='fu'>olsVersion</span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
