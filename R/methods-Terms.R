@@ -130,13 +130,13 @@ descendants <- function(id) {
     cx <- content(x)
     if(cx$page$totalElements > pagesize){
       pagesize <- cx$page$totalElements
-      
+
       #Figure out how many pages the results will divide into.
       url_pages <- c(0:(ceiling(pagesize/1000)-1))
-      
+
       #Make as many URLs as there are pages anticipated.
       url <- paste0(url0, "?page=",url_pages,"&size=", pagesize)
-      
+
       #Loop through queries of each URL.
       cx  <- lapply(url, function(x) {
         a <- GET(x)
@@ -147,13 +147,13 @@ descendants <- function(id) {
       cx  <- list(cx)
     }
     ans   <- lapply(cx, function(x)
-      lapply(x[["_embedded"]][[1]], rols:::makeTerm))
-    
+      lapply(x[["_embedded"]][[1]], makeTerm))
+
     #Concatenate all <cx> results into one list.
     ans   <- do.call(c,ans)
-    
+
     names(ans) <- sapply(ans, termId)
-    rols:::Terms(x = ans)
+    Terms(x = ans)
 }
 
 ##########################################
