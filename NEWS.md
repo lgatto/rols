@@ -1,5 +1,9 @@
 # rols 2.19
 
+## CHANGES IN VERSION 2.19.4
+
+- Replace failing unit tests after GO:0032801 changed.
+
 ## CHANGES IN VERSION 2.19.3
 
 - Fix error for empty query results

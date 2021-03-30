@@ -31,15 +31,21 @@ test_that("constructors", {
 
     expect_identical(termPrefix(trm), "GO")
 
-    expect_identical(termSynonym(trm),
-                     c("receptor breakdown",
-                       "receptor degradation",
-                       "receptor catabolism"))
-
-    expect_identical(termDesc(trm),
-                     "The chemical reactions and pathways resulting in the breakdown of a receptor molecule, a macromolecule that undergoes combination with a hormone, neurotransmitter, drug or intracellular messenger to initiate a change in cell function.")
-
     expect_identical(termLabel(trm), "receptor catabolic process")
+
+    ## removed 2021-03-30 when termSynonym(trm) became NULL
+    ## expect_identical(termSynonym(trm),
+    ##                  c("receptor breakdown",
+    ##                    "receptor degradation",
+    ##                    "receptor catabolism"))
+    expect_identical(termSynonym(trms[[123]]),
+                     "biomaterial region")
+
+    ## removed 2021-03-30 when termSynonym(trm) became NULL
+    ## expect_identical(termDesc(trm),
+    ##                  "The chemical reactions and pathways resulting in the breakdown of a receptor molecule, a macromolecule that undergoes combination with a hormone, neurotransmitter, drug or intracellular messenger to initiate a change in cell function.")
+    expect_identical(termDesc(trms[[123]]),
+                     "A region which is intended for use in an experiment.")
 
     ## The labels have changed on 2018-10-06
     xt <- c('GO:0038018', 'GO:1990172', 'GO:0032802', 'GO:0097019')
