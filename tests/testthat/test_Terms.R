@@ -41,7 +41,7 @@ test_that("constructors", {
     expect_identical(termSynonym(trms[[123]]),
                      "biomaterial region")
 
-    ## removed 2021-03-30 when termSynonym(trm) became NULL
+    ## removed 2021-03-30 when termDesc(trm) became NULL
     ## expect_identical(termDesc(trm),
     ##                  "The chemical reactions and pathways resulting in the breakdown of a receptor molecule, a macromolecule that undergoes combination with a hormone, neurotransmitter, drug or intracellular messenger to initiate a change in cell function.")
     expect_identical(termDesc(trms[[123]]),
