@@ -61,6 +61,9 @@ The Term class describes an ontology term. A set of terms are
 
 
 
+<!-- dependencies from examples -->
+
+
   
 
   
@@ -83,7 +86,7 @@ The Term class describes an ontology term. A set of terms are
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.4</span>
       </span>
     </div>
 
@@ -282,7 +285,7 @@ The Term class describes an ontology term. A set of terms are
 #&gt; GO:0044832 GO:0044832
 #&gt; GO:0050776 GO:0050776
 #&gt; GO:0050794 GO:0050794
-#&gt; GO:0075528 GO:0075528
+#&gt; GO:0001819 GO:0001819
 #&gt;                                                                 label
 #&gt; GO:0005230            extracellular ligand-gated ion channel activity
 #&gt; GO:0015276                          ligand-gated ion channel activity
@@ -293,40 +296,18 @@ The Term class describes an ontology term. A set of terms are
 #&gt; GO:0044832             induction by virus of host cytokine production
 #&gt; GO:0050776                              regulation of immune response
 #&gt; GO:0050794                             regulation of cellular process
-#&gt; GO:0075528                modulation by virus of host immune response
-#&gt;                                                                                                                                                                                                                                                                                                 description
-#&gt; GO:0005230                                                                                                                 Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts.
-#&gt; GO:0015276                                                                                                                               Enables the transmembrane transfer of an ion by a channel that opens when a specific ligand has been bound by the channel complex or one of its constituent parts.
-#&gt; GO:0005231                                         Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts, where channel opening contributes to an increase in membrane potential.
-#&gt; GO:0005232                                                                                                                                                                                                                                                                                             &lt;NA&gt;
-#&gt; NULL                                                                                                                                                                                                                                                                                                   &lt;NA&gt;
-#&gt; GO:0005234                                                                                           Enables the transmembrane transfer of an ion by a channel that opens when glutamate is  bound by the channel complex or one of its constituent parts on the extracellular side of the plasma membrane.
-#&gt; GO:0044832                                                                                                                                                                                The process in which a virus increases the frequency, rate or extent of cytokine production in its host organism.
-#&gt; GO:0050776                                                                                                                                           Any process that modulates the frequency, rate or extent of the immune response, the immunological reaction of an organism to an immunogenic stimulus.
-#&gt; GO:0050794 Any process that modulates the frequency, rate or extent of a cellular process, any of those that are carried out at the cellular level, but are not necessarily restricted to a single cell. For example, cell communication occurs among more than one cell, but occurs at the cellular level.
-#&gt; GO:0075528                                                                                                                                                                                                                       The process in which a virus effects a change in the host immune response.
-#&gt;            ontology is_obsolete has_children is_root
-#&gt; GO:0005230       go       FALSE         TRUE   FALSE
-#&gt; GO:0015276       go       FALSE         TRUE   FALSE
-#&gt; GO:0005231       go       FALSE         TRUE   FALSE
-#&gt; GO:0005232       go        TRUE        FALSE    TRUE
-#&gt; NULL             go       FALSE        FALSE    TRUE
-#&gt; GO:0005234       go       FALSE         TRUE   FALSE
-#&gt; GO:0044832       go       FALSE        FALSE   FALSE
-#&gt; GO:0050776       go       FALSE         TRUE   FALSE
-#&gt; GO:0050794       go       FALSE         TRUE   FALSE
-#&gt; GO:0075528       go       FALSE         TRUE   FALSE
-#&gt;                                                       first_synonym
-#&gt; GO:0005230                                                     &lt;NA&gt;
-#&gt; GO:0015276                                                     &lt;NA&gt;
-#&gt; GO:0005231                                                     &lt;NA&gt;
-#&gt; GO:0005232                                                     &lt;NA&gt;
-#&gt; NULL                                                           &lt;NA&gt;
-#&gt; GO:0005234       extracellular-glutamate-gated ion channel activity
-#&gt; GO:0044832 positive regulation by virus of host cytokine production
-#&gt; GO:0050776                                                     &lt;NA&gt;
-#&gt; GO:0050794             regulation of cellular physiological process
-#&gt; GO:0075528        regulation by virus of host immune system process
+#&gt; GO:0001819                 positive regulation of cytokine production
+#&gt;            description ontology is_obsolete has_children is_root first_synonym
+#&gt; GO:0005230          NA       go       FALSE         TRUE   FALSE            NA
+#&gt; GO:0015276          NA       go       FALSE         TRUE   FALSE            NA
+#&gt; GO:0005231          NA       go       FALSE         TRUE   FALSE            NA
+#&gt; GO:0005232          NA       go        TRUE        FALSE    TRUE            NA
+#&gt; NULL                NA       go       FALSE        FALSE    TRUE            NA
+#&gt; GO:0005234          NA       go       FALSE         TRUE   FALSE            NA
+#&gt; GO:0044832          NA       go       FALSE        FALSE   FALSE            NA
+#&gt; GO:0050776          NA       go       FALSE         TRUE   FALSE            NA
+#&gt; GO:0050794          NA       go       FALSE         TRUE   FALSE            NA
+#&gt; GO:0001819          NA       go       FALSE         TRUE   FALSE            NA
 #&gt;                                                  iri is_defining_ontology
 #&gt; GO:0005230 http://purl.obolibrary.org/obo/GO_0005230                 TRUE
 #&gt; GO:0015276 http://purl.obolibrary.org/obo/GO_0015276                 TRUE
@@ -337,28 +318,22 @@ The Term class describes an ontology term. A set of terms are
 #&gt; GO:0044832 http://purl.obolibrary.org/obo/GO_0044832                 TRUE
 #&gt; GO:0050776 http://purl.obolibrary.org/obo/GO_0050776                 TRUE
 #&gt; GO:0050794 http://purl.obolibrary.org/obo/GO_0050794                 TRUE
-#&gt; GO:0075528 http://purl.obolibrary.org/obo/GO_0075528                 TRUE</div><div class='input'>
+#&gt; GO:0001819 http://purl.obolibrary.org/obo/GO_0001819                 TRUE</div><div class='input'>
 <span class='co'>## (one) term</span>
 <span class='op'>(</span><span class='va'>trm</span> <span class='op'>&lt;-</span> <span class='va'>gotrms</span><span class='op'>[[</span><span class='fl'>1</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; A Term from the GO ontology: GO:0005230 
 #&gt;  Label: extracellular ligand-gated ion channel activity
-#&gt;   Enables the transmembrane transfer of an ion by a channel that opens
-#&gt;   when a specific extracellular ligand has been bound by the channel
-#&gt;   complex or one of its constituent parts.</div><div class='input'><span class='fu'>termPrefix</span><span class='op'>(</span><span class='va'>trm</span><span class='op'>)</span>
+#&gt;   No description</div><div class='input'><span class='fu'>termPrefix</span><span class='op'>(</span><span class='va'>trm</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] "GO"</div><div class='input'><span class='va'>gotrms</span><span class='op'>[</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>3</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
 #&gt;  From the GO ontology
 #&gt; GO:0005230, GO:0015276, GO:0005231 </div><div class='input'><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005230"</span><span class='op'>]</span><span class='op'>]</span>
 </div><div class='output co'>#&gt; A Term from the GO ontology: GO:0005230 
 #&gt;  Label: extracellular ligand-gated ion channel activity
-#&gt;   Enables the transmembrane transfer of an ion by a channel that opens
-#&gt;   when a specific extracellular ligand has been bound by the channel
-#&gt;   complex or one of its constituent parts.</div><div class='input'>
+#&gt;   No description</div><div class='input'>
 <span class='fu'>as</span><span class='op'>(</span><span class='va'>trm</span>, <span class='st'>"data.frame"</span><span class='op'>)</span> <span class='co'>## data,frame with 1 row</span>
-</div><div class='output co'>#&gt;           id                                           label
-#&gt; 1 GO:0005230 extracellular ligand-gated ion channel activity
-#&gt;                                                                                                                                                                        description
-#&gt; 1 Enables the transmembrane transfer of an ion by a channel that opens when a specific extracellular ligand has been bound by the channel complex or one of its constituent parts.
+</div><div class='output co'>#&gt;           id                                           label description
+#&gt; 1 GO:0005230 extracellular ligand-gated ion channel activity          NA
 #&gt;   ontology is_obsolete has_children is_root first_synonym
 #&gt; 1       go       FALSE         TRUE   FALSE            NA
 #&gt;                                         iri is_defining_ontology
@@ -368,17 +343,11 @@ The Term class describes an ontology term. A set of terms are
 <span class='fu'>term</span><span class='op'>(</span><span class='va'>go</span>, <span class='st'>"GO:0032801"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; A Term from the GO ontology: GO:0032801 
 #&gt;  Label: receptor catabolic process
-#&gt;   The chemical reactions and pathways resulting in the breakdown of a
-#&gt;   receptor molecule, a macromolecule that undergoes combination with a
-#&gt;   hormone, neurotransmitter, drug or intracellular messenger to initiate
-#&gt;   a change in cell function.</div><div class='input'><span class='co'>## using an ontology prefix</span>
+#&gt;   No description</div><div class='input'><span class='co'>## using an ontology prefix</span>
 <span class='fu'>term</span><span class='op'>(</span><span class='st'>"GO"</span>, <span class='st'>"GO:0032801"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; A Term from the GO ontology: GO:0032801 
 #&gt;  Label: receptor catabolic process
-#&gt;   The chemical reactions and pathways resulting in the breakdown of a
-#&gt;   receptor molecule, a macromolecule that undergoes combination with a
-#&gt;   hormone, neurotransmitter, drug or intracellular messenger to initiate
-#&gt;   a change in cell function.</div><div class='input'>
+#&gt;   No description</div><div class='input'>
 <span class='fu'>isObsolete</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005230"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] FALSE</div><div class='input'><span class='fu'>isObsolete</span><span class='op'>(</span><span class='va'>gotrms</span><span class='op'>[[</span><span class='st'>"GO:0005232"</span><span class='op'>]</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; [1] TRUE</div><div class='input'>
@@ -396,32 +365,13 @@ The Term class describes an ontology term. A set of terms are
 #&gt;   No description
 #&gt; A Term from the GO ontology: GO:0008150 
 #&gt;  Label: biological_process
-#&gt;   A biological process represents a specific objective that the organism
-#&gt;   is genetically programmed to achieve. Biological processes are often
-#&gt;   described by their outcome or ending state, e.g., the biological
-#&gt;   process of cell division results in the creation of two daughter cells
-#&gt;   (a divided cell) from a single parent cell. A biological process is
-#&gt;   accomplished by a particular set of molecular functions carried out by
-#&gt;   specific gene products (or macromolecular complexes), often in a highly
-#&gt;   regulated manner and in a particular temporal sequence.
+#&gt;   No description
 #&gt; A Term from the GO ontology: GO:0003674 
 #&gt;  Label: molecular_function
-#&gt;   A molecular process that can be carried out by the action of a single
-#&gt;   macromolecular machine, usually via direct physical interactions with
-#&gt;   other molecular entities. Function in this sense denotes an action, or
-#&gt;   activity, that a gene product (or a complex) performs. These actions
-#&gt;   are described from two distinct but related perspectives: (1)
-#&gt;   biochemical activity, and (2) role as a component in a larger
-#&gt;   system/process.
+#&gt;   No description
 #&gt; A Term from the GO ontology: GO:0005575 
 #&gt;  Label: cellular_component
-#&gt;   A location, relative to cellular compartments and structures, occupied
-#&gt;   by a macromolecular machine when it carries out a molecular function.
-#&gt;   There are two ways in which the gene ontology describes locations of
-#&gt;   gene products: (1) relative to cellular structures (e.g., cytoplasmic
-#&gt;   side of plasma membrane) or compartments (e.g., mitochondrion), and (2)
-#&gt;   the stable macromolecular complexes of which they are parts (e.g., the
-#&gt;   ribosome).</div><div class='input'>
+#&gt;   No description</div><div class='input'>
 <span class='co'>## or, directly querying the ontology</span>
 <span class='fu'><a href='Ontology-class.html'>olsRoot</a></span><span class='op'>(</span><span class='va'>go</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; Object of class 'Terms' with 3 entries
@@ -464,11 +414,11 @@ The Term class describes an ontology term. A set of terms are
 
       <footer>
       <div class="copyright">
-  <p>Developed by Laurent Gatto.</p>
+  <p><p>Developed by Laurent Gatto.</p></p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
 </div>
 
       </footer>
