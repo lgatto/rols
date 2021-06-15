@@ -1,3 +1,9 @@
+# rols 2.21
+
+## CHANGES IN VERSION 2.21.0
+
+- New devel version for Bioc 3.14
+
 # rols 2.19
 
 ## CHANGES IN VERSION 2.19.4
