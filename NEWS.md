@@ -1,5 +1,9 @@
 # rols 2.21
 
+## CHANGES IN VERSION 2.21.1
+
+- Fix failing unit test
+
 ## CHANGES IN VERSION 2.21.0
 
 - New devel version for Bioc 3.14
