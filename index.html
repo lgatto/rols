@@ -35,7 +35,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2.19.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.23.1</span>
       </span>
     </div>
 
@@ -53,7 +53,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/lgatto/rols/">
+  <a href="https://github.com/lgatto/rols/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -72,25 +72,25 @@
   <div class="contents col-md-9">
 
 
-<div id="the-ontology-lookup-service" class="section level3">
-<h3 class="hasAnchor">
-<a href="#the-ontology-lookup-service" class="anchor"></a>The Ontology Lookup Service</h3>
+<div class="section level3">
+<h3 id="the-ontology-lookup-service">The Ontology Lookup Service<a class="anchor" aria-label="anchor" href="#the-ontology-lookup-service"></a>
+</h3>
 <p>The <a href="http://www.ebi.ac.uk/ontology-lookup/" class="external-link">Ontology Lookup Service</a> (OLS), developed at the <a href="http://www.ebi.ac.uk/" class="external-link">European Bioinformatics Institute</a> (EBI), is a unified web interface to query multiple ontologies from a single location. The <a href="http://www.ebi.ac.uk/ols/beta/roadmap.html" class="external-link">new version</a> of the OLS uses a REST API.</p>
 <p>The <code>rols</code> package uses functionality from the <a href="https://cran.r-project.org/web/packages/httr/" class="external-link">httr</a> package to query the OLS directly from R.</p>
 <p>See the <a href="http://lgatto.github.io/rols/index.html" class="external-link">package’s page</a> on GitHub for details, documentation and vignette.</p>
 </div>
-<div id="installation" class="section level3">
-<h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
+<div class="section level3">
+<h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h3>
 <p><code>rols</code> is available from the <a href="http://www.bioconductor.org" class="external-link">Bioconductor</a> repository. The package and its dependencies can be installed</p>
-<pre><code>if (!requireNamespace("BiocManager", quietly=TRUE))
-    install.packages("BiocManager")
-BiocManager::install("rols")</code></pre>
+<pre><code><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
+<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"rols"</span><span class="op">)</span></code></pre>
 <p>See also the <code>rols</code> <a href="http://bioconductor.org/packages/release/bioc/html/rols.html" class="external-link">Bioconductor page</a> for on-line access to the vignette and the reference manual.</p>
 </div>
-<div id="help" class="section level3">
-<h3 class="hasAnchor">
-<a href="#help" class="anchor"></a>Help</h3>
+<div class="section level3">
+<h3 id="help">Help<a class="anchor" aria-label="anchor" href="#help"></a>
+</h3>
 <ul>
 <li><p><code>rols</code> comes with plenty of documentation. Have a start with the vignette <code><a href="articles/rols.html">vignette("rols", package="rols")</a></code>.</p></li>
 <li><p>Please direct your questions to the <a href="https://support.bioconductor.org/" class="external-link">Bioconductor support site</a>.</p></li>
@@ -104,28 +104,32 @@ BiocManager::install("rols")</code></pre>
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from BIOC at <br><a href="https://www.bioconductor.org/packages/rols">https://​www.bioconductor.org/​packages/​rols</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/lgatto/rols/">https://​github.com/​lgatto/​rols/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/lgatto/rols/issues">https://​github.com/​lgatto/​rols/​issues</a>
-</li>
+<li><a href="https://www.bioconductor.org/packages/rols" class="external-link">View on Bioconductor</a></li>
+<li><a href="https://github.com/lgatto/rols/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/lgatto/rols/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
 <div class="license">
 <h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/GPL-2">GPL-2</a></li>
+<li><a href="https://www.r-project.org/Licenses/GPL-2" class="external-link">GPL-2</a></li>
 </ul>
 </div>
 
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing rols</a></li>
+</ul>
+</div>
 
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Laurent Gatto <br><small class="roles"> Author, maintainer </small>  </li>
-<li><a href="authors.html">More on authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -147,7 +151,7 @@ BiocManager::install("rols")</code></pre>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
 </div>
 
       </footer>
