@@ -132,7 +132,6 @@ It is also possible to initialise a single term
 trm <- term(go, "GO:0090575")
 termId(trm)
 termLabel(trm)
-strwrap(termDesc(trm))
 ```
 
 It is then possible to extract the `ancestors`, `descendants`,

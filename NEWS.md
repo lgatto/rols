@@ -1,3 +1,13 @@
+# rols 2.23
+
+## CHANGES IN VERSION 2.23.1
+
+- Don't show empty `termDesc(trm)` in vignette.
+
+## CHANGES IN VERSION 2.23.0
+
+- New devel version
+
 # rols 2.21
 
 ## CHANGES IN VERSION 2.21.1
