@@ -307,8 +307,6 @@ service)
 
 ```{r}
 CVParam(label = "MS", accession = "MS:1000073")
-CVParam(label = "MS", name ="electrospray ionization")
-CVParam(label = "MS", name ="ESI") ## using a synonym
 ```
 
 See `?CVParam` for more details and examples.

@@ -1,5 +1,9 @@
 # rols 2.23
 
+## CHANGES IN VERSION 2.23.2
+
+- Remove failing `CVParams()` examples
+
 ## CHANGES IN VERSION 2.23.1
 
 - Don't show empty `termDesc(trm)` in vignette.
