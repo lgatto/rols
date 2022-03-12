@@ -17,18 +17,18 @@ test_that("OlsSearch tgn", {
 })
 
 
-test_that("OlsSearch ESI", {
+## test_that("OlsSearch ESI", {
 
-    esi2 <- OlsSearch(q = "ESI", ontology = "MS", rows = 28)
-    esi1 <- OlsSearch(q = "ESI", ontology = "MS", exact = TRUE)
+##     esi2 <- OlsSearch(q = "ESI", ontology = "MS", rows = 28)
+##     esi1 <- OlsSearch(q = "ESI", ontology = "MS", exact = TRUE)
 
-    esi1 <- olsSearch(esi1)
-    esi2 <- olsSearch(esi2)
+##     esi1 <- olsSearch(esi1)
+##     esi2 <- olsSearch(esi2)
 
-    expect_identical(esi1@numFound, 1L)
-    expect_identical(esi2@numFound, 34L)
-    expect_true(termId(as(esi1, "Terms")) %in% termId(as(esi2, "Terms")))
-})
+##     expect_identical(esi1@numFound, 1L)
+##     expect_identical(esi2@numFound, 34L)
+##     expect_true(termId(as(esi1, "Terms")) %in% termId(as(esi2, "Terms")))
+## })
 
 
 test_that("OlsSearch tgn 2", {
