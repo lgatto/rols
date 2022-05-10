@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.23.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.1</span>
       </span>
     </div>
 
@@ -70,10 +70,10 @@
     a user-defined parameter is created.</p></dd>
 <dt>name</dt>
 <dd><p>A <code>character</code> with the name of the <code>CVParam</code> to
-    be constructed. This argument can be omitted if <code>accession</code> is 
+    be constructed. This argument can be omitted if <code>accession</code> is
     used and <code>label</code> is not missing.</p></dd>
 <dt>accession</dt>
-<dd><p>A <code>character</code> with the accession of the 
+<dd><p>A <code>character</code> with the accession of the
     <code>CVParam</code> to be constructed. This argument can be omitted if
     <code>name</code> is used. Ignored for user-defined instances.</p></dd>
 <dt>value</dt>
@@ -93,13 +93,13 @@
       list of available ontologies and <code><a href="Ontology-class.html">olsPrefix</a></code> for
       existing labels.</p></dd>
 
-  
+
     <dt><code>accession</code>:</dt>
 <dd><p>Object of class <code>"character"</code> with the
       parameter's valid <code>label</code> ontology accession number. See
       below for validity constrains.</p></dd>
 
-    
+
     <dt><code>name</code>:</dt>
 <dd><p>Object of class <code>"character"</code> with the
       instance's valid name, i.e matching with the
@@ -107,24 +107,24 @@
       <code>term(accession, label) == name</code> for the instance to be
       valid.</p></dd>
 
-    
+
     <dt><code>value</code>:</dt>
 <dd><p>Object of class <code>"character"</code> with the
       <code>CVParams</code> value, if applicable, of empty string ("")
       otherwise.</p></dd>
 
-    
+
     <dt><code>user</code>:</dt>
-<dd><p>Object of class <code>"logical"</code> defining if the 
+<dd><p>Object of class <code>"logical"</code> defining if the
       instance is a user-defined parameter (also called User params).</p></dd>
 
-    
+
     <dt><code>.__classVersion__</code>:</dt>
 <dd><p>Object of class
       <code>"Versions"</code> describing the instance's class
       definition version. For development use.</p></dd>
 
-    
+
   
 </dl></div>
     <div id="extends">
@@ -140,7 +140,7 @@
       (prefi), <code>"ACCESSION"</code> is the term accession number,
       <code>"NAME"</code> is the term's name and <code>"VALUE"</code> is the
       value. Note that only syntax validity is verified, not semantics.
-      See example below.</p>      
+      See example below.</p>
 <p></p></dd>
 
   
@@ -151,7 +151,7 @@
 <dd><p><code>signature(from = "CVParam", to = "character")</code>:
       Coerces <code>CVParam</code> <code>from</code> to a <code>character</code> of the
       following form: <code>[label, accession, name,
-	value]</code>. <code>as.character</code> is also defined.</p></dd>
+        value]</code>. <code>as.character</code> is also defined.</p></dd>
 
 
     <dt>coerce</dt>
@@ -165,7 +165,7 @@
       not match the retrieved name, a warning is thrown.</p>
 <p>This function is vectorised; if the <code>from</code> character is of
       length greater than 1, then a list of <code>CVParam</code> is
-      returned. The queries to the OLS are processed one-by-one, though.</p>	
+      returned. The queries to the OLS are processed one-by-one, though.</p>
 <p></p></dd>
 
 
@@ -203,10 +203,6 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ion spray is not recommended.</span>
 <span class="r-in"><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, accession <span class="op">=</span> <span class="st">"MS:1000073"</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
-<span class="r-in"><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, name <span class="op">=</span><span class="st">"electrospray ionization"</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
-<span class="r-in"><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, name <span class="op">=</span><span class="st">"ESI"</span><span class="op">)</span> <span class="co">## using a synonym</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, ESI, ] </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## From a CVParam object to a character</span></span>
 <span class="r-in"><span class="va">cv</span> <span class="op">&lt;-</span> <span class="fu">as</span><span class="op">(</span><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, accession <span class="op">=</span> <span class="st">"MS:1000073"</span><span class="op">)</span>, <span class="st">"character"</span><span class="op">)</span></span>
@@ -261,7 +257,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
       </footer></div>

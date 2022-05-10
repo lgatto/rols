@@ -21,7 +21,7 @@ Ontologies are stored as Ontology and Ontologies
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.23.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.1</span>
       </span>
     </div>
 
@@ -261,27 +261,34 @@ Ontologies are stored as Ontology and Ontologies
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## Get all ontolgies</span></span>
 <span class="r-in"><span class="va">ol</span> <span class="op">&lt;-</span> <span class="fu">Ontologies</span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">ol</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Ontologies' with 273 entries</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    ORNASEQ, ORTH ... EPSO, ONTOAVIDA </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Ontologies' with 275 entries</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    AEO, AFO ... SHARELOC, CCF </span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">as</span><span class="op">(</span><span class="va">ol</span>, <span class="st">"data.frame"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          Prefix Namespace                                  Title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> ornaseq ORNASEQ   ornaseq  Ontology for RNA sequencing (ORNASEQ)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> orth       ORTH      orth                     Orthology Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> pdro       PDRO      pdro     The Prescription of Drugs Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> peco       PECO      peco Plant Experimental Conditions Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> phi         PHI       phi                      PHI-base Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> planp     PLANP     planp   Planarian Phenotype Ontology (PLANP)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>       Prefix Namespace</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aeo      AEO       aeo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> afo      AFO       afo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> agro    AGRO      agro</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aism    AISM      aism</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> amphx  AMPHX     amphx</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> apo      APO       apo</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               Title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aeo                                      Anatomical Entity Ontology</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> afo                                 Allotrope Merged Ontology Suite</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> agro                                              Agronomy Ontology</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aism  Ontology for the Anatomy of the Insect SkeletoMuscular system</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> amphx            Amphioxus Development and Anatomy Ontology (AMPHX)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> apo                             Ascomycete Phenotype Ontology (APO)</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ol</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 273</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 275</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## Individual ontologies</span></span>
 <span class="r-in"><span class="op">(</span><span class="va">go</span> <span class="op">&lt;-</span> <span class="va">ol</span><span class="op">[[</span><span class="st">"go"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ontology: Gene Ontology (go)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   The Gene Ontology (GO) provides a framework and set of concepts for</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   describing the functions of gene products from all organisms.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-01-19 Updated: 2022-01-21 Version: 2022-01-13 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    50766 terms  67 properties  0 individuals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-03-21 Updated: 2022-05-05 Version: 2022-03-10 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    50800 terms  67 properties  0 individuals</span>
 <span class="r-in"><span class="op">(</span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="va">ol</span><span class="op">[[</span><span class="st">"efo"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ontology: Experimental Factor Ontology (efo)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   The Experimental Factor Ontology (EFO) provides a systematic</span>
@@ -291,12 +298,12 @@ Ontologies are stored as Ontology and Ontologies
 <span class="r-out co"><span class="r-pr">#&gt;</span>   chemical compounds. The scope of EFO is to support the annotation,</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   analysis and visualization of data handled by many groups at the EBI</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   and as the core ontology for OpenTargets.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-01-18 Updated: 2022-01-21 Version: 3.38.0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    29641 terms  219 properties  0 individuals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-05-04 Updated: 2022-05-05 Version: 3.41.0 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    35417 terms  219 properties  0 individuals</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="co">## some basic information</span></span>
 <span class="r-in"><span class="fu">olsVersion</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-01-13"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-03-10"</span>
 <span class="r-in"><span class="fu">olsDesc</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms."</span>
 <span class="r-in"><span class="fu">olsTitle</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span>
@@ -338,7 +345,7 @@ Ontologies are stored as Ontology and Ontologies
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
 </div>
 
       </footer></div>
