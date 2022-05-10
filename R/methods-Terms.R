@@ -312,14 +312,14 @@ fix_null <- function(x) {
 setAs("Term", "data.frame",
       function(from)
           data.frame(
-              id = fix_null(from@obo_id),
-              label = fix_null(from@label),
-              description = fix_null(from@description),
-              ontology = fix_null(from@ontology_name),
-              is_obsolete = fix_null(from@is_obsolete),
+              id = fix_null(termId(from)),
+              label = fix_null(termLabel(from)),
+              description = fix_null(termDesc(from)),
+              ontology = fix_null(termOntology(from)),
+              is_obsolete = fix_null(isObsolete(from)),
               has_children = fix_null(from@has_children),
-              is_root = fix_null(from@is_root),
-              first_synonym = fix_null(from@synonym),
+              is_root = fix_null(isRoot(from)),
+              first_synonym = fix_null(termSynonym(from)),
               iri = fix_null(from@iri),
               is_defining_ontology = fix_null(from@is_defining_ontology),
               stringsAsFactors = FALSE)
