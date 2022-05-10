@@ -284,17 +284,12 @@ jobs:
         if: github.ref == 'refs/heads/master' && env.run_pkgdown == 'true'
         run: R CMD INSTALL .
 
-      - name: Deploy package
-        if: github.ref == 'refs/heads/master' && env.run_pkgdown == 'true'
-        run: |
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"
-          Rscript -e "pkgdown::deploy_to_branch(new_process = FALSE)"
-        shell: bash {0}
-        ## Note that you need to run pkgdown::deploy_to_branch(new_process = FALSE)
-        ## at least one locally before this will work. This creates the gh-pages
-        ## branch (erasing anything you haven't version controlled!) and
-        ## makes the git history recognizable by pkgdown.
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: .        # The folder the action should deploy.
 
       - name: Upload check results
         if: failure()
