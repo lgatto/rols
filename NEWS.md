@@ -1,3 +1,15 @@
+# rols 2.25
+
+## CHANGES IN VERSION 2.25.0
+
+- New devel version (Bioc 3.16)
+
+# rols 2.24
+
+## CHANGES IN VERSION 2.24.0
+
+- New release version (Bioc 3.15)
+
 # rols 2.23
 
 ## CHANGES IN VERSION 2.23.2
