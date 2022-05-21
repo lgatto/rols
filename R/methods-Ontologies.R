@@ -29,7 +29,7 @@ setMethod("show", "Ontology",
               cat("   Loaded:", olsLoaded(object),
                   "Updated:", olsUpdated(object),
                   "Version:", olsVersion(object), "\n")
-              cat("  ", object@numberOfTerms, "terms ", 
+              cat("  ", object@numberOfTerms, "terms ",
                   object@numberOfProperties, "properties ",
                   object@numberOfIndividuals, "individuals\n")
           })
@@ -142,10 +142,19 @@ setMethod("length", "Ontologies", function(x) length(x@x))
 setAs("Ontologies", "data.frame",
       function(from) as.data.frame.Ontologies(from))
 
-as.data.frame.Ontologies <- function(x)
-    data.frame(Prefix = olsPrefix(x),
-               Namespace = olsNamespace(x),
-               Title = olsTitle(x))
+as.data.frame.Ontologies <- function(x) {
+    .as_vector <- function(x) {
+        if (is.list(x))
+            x <- sapply(x, paste, collapse = "; ")
+        x
+    }
+    pre <- .as_vector(olsPrefix(x))
+    nms <- .as_vector(olsNamespace(x))
+    ttl <- .as_vector(olsTitle(x))
+    data.frame(Prefix = pre,
+               Namespace = nms,
+               Title = ttl)
+}
 
 setAs("Ontologies", "list",
       function(from) from@x)
@@ -193,5 +202,5 @@ setMethod("all.equal", c("Ontology", "Ontology"),
               c1 <- c1[order(names(c1))]
               c2 <- c2[order(names(c2))]
               msg <- Biobase::validMsg(msg, all.equal(c1, c2))
-              if (is.null(msg)) TRUE else msg              
+              if (is.null(msg)) TRUE else msg
           })
