@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.3</span>
       </span>
     </div>
 
@@ -56,7 +56,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">CVParam</span><span class="op">(</span><span class="va">label</span>, <span class="va">name</span>, <span class="va">accession</span>, <span class="va">value</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">CVParam</span><span class="op">(</span><span class="va">label</span>, <span class="va">name</span>, <span class="va">accession</span>, <span class="va">value</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="objects-from-the-class">
@@ -68,21 +68,31 @@
     <dl><dt>label</dt>
 <dd><p>A <code>character</code> with the ontology label. If missing,
     a user-defined parameter is created.</p></dd>
-<dt>name</dt>
+
+
+  <dt>name</dt>
 <dd><p>A <code>character</code> with the name of the <code>CVParam</code> to
     be constructed. This argument can be omitted if <code>accession</code> is
     used and <code>label</code> is not missing.</p></dd>
-<dt>accession</dt>
+
+
+  <dt>accession</dt>
 <dd><p>A <code>character</code> with the accession of the
     <code>CVParam</code> to be constructed. This argument can be omitted if
     <code>name</code> is used. Ignored for user-defined instances.</p></dd>
-<dt>value</dt>
+
+
+  <dt>value</dt>
 <dd><p>A <code>character</code> with the value of the <code>CVParam</code>
     to be constructed. This argument is optional.</p></dd>
-<dt>exact</dt>
+
+
+  <dt>exact</dt>
 <dd><p>A <code>logical</code> defining whether the query to retrieve
     the <code>accession</code> (when <code>name</code> is used) should be an
     exact match.</p></dd>
+
+
 </dl></div>
     <div id="slots">
     <h2>Slots</h2>
@@ -187,11 +197,11 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co">## a user param</span></span>
-<span class="r-in"><span class="fu">CVParam</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"A user param"</span>, value <span class="op">=</span> <span class="st">"the value"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## a user param</span></span></span>
+<span class="r-in"><span><span class="fu">CVParam</span><span class="op">(</span>name <span class="op">=</span> <span class="st">"A user param"</span>, value <span class="op">=</span> <span class="st">"the value"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [, , A user param, the value] </span>
-<span class="r-in"><span class="co">## a CVParam from PSI's Mass Spectrometry ontology</span></span>
-<span class="r-in"><span class="fu"><a href="Term-class.html">term</a></span><span class="op">(</span><span class="st">"MS"</span>, <span class="st">"MS:1000073"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="co">## a CVParam from PSI's Mass Spectrometry ontology</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="Term-class.html">term</a></span><span class="op">(</span><span class="st">"MS"</span>, <span class="st">"MS:1000073"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A Term from the MS ontology: MS:1000073 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Label: electrospray ionization</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   A process in which ionized species in the gas phase are produced from</span>
@@ -201,43 +211,43 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>   pressurized gas is used to aid in the formation of a stable spray, the</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   term pneumatically assisted electrospray ionization is used. The term</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ion spray is not recommended.</span>
-<span class="r-in"><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, accession <span class="op">=</span> <span class="st">"MS:1000073"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, accession <span class="op">=</span> <span class="st">"MS:1000073"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## From a CVParam object to a character</span></span>
-<span class="r-in"><span class="va">cv</span> <span class="op">&lt;-</span> <span class="fu">as</span><span class="op">(</span><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, accession <span class="op">=</span> <span class="st">"MS:1000073"</span><span class="op">)</span>, <span class="st">"character"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">cv</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## From a CVParam object to a character</span></span></span>
+<span class="r-in"><span><span class="va">cv</span> <span class="op">&lt;-</span> <span class="fu">as</span><span class="op">(</span><span class="fu">CVParam</span><span class="op">(</span>label <span class="op">=</span> <span class="st">"MS"</span>, accession <span class="op">=</span> <span class="st">"MS:1000073"</span><span class="op">)</span>, <span class="st">"character"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">cv</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "[MS, MS:1000073, electrospray ionization, ]"</span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## From a character object to a CVParam</span></span>
-<span class="r-in"><span class="fu">as</span><span class="op">(</span><span class="va">cv</span>, <span class="st">"CVParam"</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## From a character object to a CVParam</span></span></span>
+<span class="r-in"><span><span class="fu">as</span><span class="op">(</span><span class="va">cv</span>, <span class="st">"CVParam"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
-<span class="r-in"><span class="fu">as</span><span class="op">(</span><span class="st">"[MS, MS:1000073, , ]"</span>, <span class="st">"CVParam"</span><span class="op">)</span> <span class="co">## no name</span></span>
+<span class="r-in"><span><span class="fu">as</span><span class="op">(</span><span class="st">"[MS, MS:1000073, , ]"</span>, <span class="st">"CVParam"</span><span class="op">)</span> <span class="co">## no name</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
-<span class="r-in"><span class="fu">as</span><span class="op">(</span><span class="st">"[MS, MS:1000073, ESI, ]"</span>, <span class="st">"CVParam"</span><span class="op">)</span> <span class="co">## name does not match</span></span>
+<span class="r-in"><span><span class="fu">as</span><span class="op">(</span><span class="st">"[MS, MS:1000073, ESI, ]"</span>, <span class="st">"CVParam"</span><span class="op">)</span> <span class="co">## name does not match</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The CV names did not match:</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span>   Yours: 'ESI' - OLS: 'electrospray ionization'.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
-<span class="r-in"><span class="fu">as</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">cv</span>, <span class="va">cv</span><span class="op">)</span>, <span class="st">"CVParam"</span><span class="op">)</span> <span class="co">## more than 1 character</span></span>
+<span class="r-in"><span><span class="fu">as</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="va">cv</span>, <span class="va">cv</span><span class="op">)</span>, <span class="st">"CVParam"</span><span class="op">)</span> <span class="co">## more than 1 character</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[1]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [[2]]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [MS, MS:1000073, electrospray ionization, ] </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"[MS, MS:1000073, , ]"</span>, <span class="co">## valid CV param</span></span>
-<span class="r-in">       <span class="st">"[, , Hello, world]"</span>,   <span class="co">## valid User param</span></span>
-<span class="r-in">       <span class="st">"[this, one is, not, valid]"</span>, <span class="co">## not valid</span></span>
-<span class="r-in">       <span class="st">"[ , , , ]"</span><span class="op">)</span> <span class="co">## not valid</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu">charIsCVParam</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## A list of expected valid and non-valid entries</span></span>
-<span class="r-in"><span class="fu">rols</span><span class="fu">:::</span><span class="va">validCVchars</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"[MS, MS:1000073, , ]"</span>, <span class="co">## valid CV param</span></span></span>
+<span class="r-in"><span>       <span class="st">"[, , Hello, world]"</span>,   <span class="co">## valid User param</span></span></span>
+<span class="r-in"><span>       <span class="st">"[this, one is, not, valid]"</span>, <span class="co">## not valid</span></span></span>
+<span class="r-in"><span>       <span class="st">"[ , , , ]"</span><span class="op">)</span> <span class="co">## not valid</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/stopifnot.html" class="external-link">stopifnot</a></span><span class="op">(</span><span class="fu">charIsCVParam</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="op">==</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## A list of expected valid and non-valid entries</span></span></span>
+<span class="r-in"><span><span class="fu">rols</span><span class="fu">:::</span><span class="va">validCVchars</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "[MS, MS:123 , , ]"      "[, , foo, bar]"         "[MS, MS:123, foo, bar]"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [4] "[MS, MS:123, , foo]"    "[MS, MS:123, foo, ]"   </span>
-<span class="r-in"><span class="fu">rols</span><span class="fu">:::</span><span class="va">notvalidCVchars</span></span>
+<span class="r-in"><span><span class="fu">rols</span><span class="fu">:::</span><span class="va">notvalidCVchars</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "[ , , , ]"         "[, , , ]"          "[ , , ,]"         </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "[,,,]"             "[AB, MS:123 , , ]" "[, MS:123 , , ]"  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "[MS, AB:123, , ]"  "[, , foo, ]"       "[, , , bar]"      </span>
@@ -257,7 +267,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>

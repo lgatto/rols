@@ -23,7 +23,7 @@ Propteries (relationships) between terms can be queries for complete
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.3</span>
       </span>
     </div>
 
@@ -119,22 +119,22 @@ Propteries (relationships) between terms can be queries for complete
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">trm</span> <span class="op">&lt;-</span> <span class="fu"><a href="Term-class.html">term</a></span><span class="op">(</span><span class="st">"uberon"</span>, <span class="st">"UBERON:0002107"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">trm</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">trm</span> <span class="op">&lt;-</span> <span class="fu"><a href="Term-class.html">term</a></span><span class="op">(</span><span class="st">"uberon"</span>, <span class="st">"UBERON:0002107"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">trm</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A Term from the UBERON ontology: UBERON:0002107 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Label: liver</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   No description</span>
-<span class="r-in"><span class="fu">properties</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">properties</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Properties' with 146 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the UBERON ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   digestive system gland, abdomen element ... hepatic immune response, glycogen catabolic process </span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">trm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="Term-class.html">term</a></span><span class="op">(</span><span class="st">"GO"</span>, <span class="st">"GO:0005326"</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">trm2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   digestive system gland, abdomen element ... hepatobiliary system, bile </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="va">trm2</span> <span class="op">&lt;-</span> <span class="fu"><a href="Term-class.html">term</a></span><span class="op">(</span><span class="st">"GO"</span>, <span class="st">"GO:0005326"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">trm2</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> A Term from the GO ontology: GO:0005326 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  Label: neurotransmitter transmembrane transporter activity</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   No description</span>
-<span class="r-in"><span class="fu">properties</span><span class="op">(</span><span class="va">trm2</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">properties</span><span class="op">(</span><span class="va">trm2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Properties' with 18 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the GO ontology</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   transmembrane transporter activity, neurotransmitter transport ... acetylcholine:proton antiporter activity, neurotransmitter:sodium symporter activity </span>
@@ -152,7 +152,7 @@ Propteries (relationships) between terms can be queries for complete
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
 </div>
 
       </footer></div>
