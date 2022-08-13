@@ -1,5 +1,9 @@
 # rols 2.25
 
+## CHANGES IN VERSION 2.25.3
+
+- Fix failing unit test since change in GO.
+
 ## CHANGES IN VERSION 2.25.2
 
 - Fix new error when converting an Ontology to `data.frame`.

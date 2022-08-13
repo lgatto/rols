@@ -1,20 +1,20 @@
 context("OlsSearch")
 
-test_that("OlsSearch tgn", {
-    tgn <- OlsSearch(q = "tgn",ontology = "GO")
-    tgn <- olsSearch(tgn)
+## test_that("OlsSearch tgn", {
+##     tgn <- OlsSearch(q = "tgn",ontology = "GO")
+##     tgn <- olsSearch(tgn)
 
-    tgnres <- structure(c("trans-Golgi network",
-                          "clathrin coat of trans-Golgi network vesicle",
-                          "Golgi to endosome transport",
-                          "trans-Golgi network transport vesicle",
-                          "trans-Golgi network transport vesicle membrane"),
-                        .Names = c("GO:0005802", "GO:0030130",
-                                   "GO:0006895", "GO:0030140", "GO:0012510"))
+##     tgnres <- structure(c("trans-Golgi network",
+##                           "clathrin coat of trans-Golgi network vesicle",
+##                           "Golgi to endosome transport",
+##                           "trans-Golgi network transport vesicle",
+##                           "trans-Golgi network transport vesicle membrane"),
+##                         .Names = c("GO:0005802", "GO:0030130",
+##                                    "GO:0006895", "GO:0030140", "GO:0012510"))
 
-    expect_identical(sort(termLabel(as(tgn, "Terms"))),
-                     sort(tgnres))
-})
+##     expect_identical(sort(termLabel(as(tgn, "Terms"))),
+##                      sort(tgnres))
+## })
 
 
 ## test_that("OlsSearch ESI", {
@@ -31,15 +31,15 @@ test_that("OlsSearch tgn", {
 ## })
 
 
-test_that("OlsSearch tgn 2", {
-    tgngo <- OlsSearch("tgn","GO")
-    tgngo <- olsSearch(allRows(tgngo))
-    expect_equal(tgngo@numFound, 5L)
+test_that("OlsSearch tgn", {
+    tgnpw <- OlsSearch("tgn","PW")
+    tgnpw <- olsSearch(allRows(tgnpw))
+    expect_equal(tgnpw@numFound, 4L)
 
     tgn <- OlsSearch("tgn")
     tgn <- olsSearch(allRows(tgn))
 
-    expect_true(all(tgngo@response[, "obo_id"] %in% tgn@response[, "obo_id"]))
+    expect_true(all(tgnpw@response[, "obo_id"] %in% tgn@response[, "obo_id"]))
 })
 
 test_that("OlsSearch show",
