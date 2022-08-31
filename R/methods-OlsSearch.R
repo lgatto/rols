@@ -146,8 +146,15 @@ setAs(from = "OlsSearch", to = "Terms",
               resp$obo_id[i] <- sub("_", ":", resp$short_form)[i]
           }
           x <- apply(resp, 1,
-                     function(x) term(x[["ontology_prefix"]],
-                                      x[["obo_id"]]))
-          names(x) <- resp[["obo_id"]]
+                     function(x)
+                         tryCatch(term(x[["ontology_prefix"]],
+                                       x[["obo_id"]]),
+                                  error = function(e) NULL))
+          ## Remove any terms that failed above
+          if (any(nullterm <- sapply(x, is.null))) {
+              warning(sum(nullterm), " term failed to be instantiated.")
+              x <- x[!nullterm]
+          }
+          names(x) <- resp[["obo_id"]][!nullterm]
           Terms(x = x)
       })

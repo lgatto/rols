@@ -1,5 +1,9 @@
 # rols 2.25
 
+## CHANGES IN VERSION 2.25.4
+
+- Fix error due to failing term().
+
 ## CHANGES IN VERSION 2.25.3
 
 - Fix failing unit test since change in GO.
