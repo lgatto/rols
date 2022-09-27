@@ -150,6 +150,11 @@ setAs(from = "OlsSearch", to = "Terms",
                          tryCatch(term(x[["ontology_prefix"]],
                                        x[["obo_id"]]),
                                   error = function(e) NULL))
+          if (is.null(x)) {
+              msg <- paste("No result retrieved.",
+                           "This might be due to a temporary network issue.")
+              stop(msg)
+          }
           ## Remove any terms that failed above
           if (any(nullterm <- sapply(x, is.null))) {
               warning(sum(nullterm), " term failed to be instantiated.")
