@@ -1,5 +1,9 @@
 # rols 2.25
 
+## CHANGES IN VERSION 2.25.5
+
+- Fail with useful message when ols query can't be converted to terms.
+
 ## CHANGES IN VERSION 2.25.4
 
 - Fix error due to failing term().
