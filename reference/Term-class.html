@@ -20,7 +20,7 @@ The Term class describes an ontology term. A set of terms are
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.5</span>
       </span>
     </div>
 
@@ -266,9 +266,11 @@ The Term class describes an ontology term. A set of terms are
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## (all) terms</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">gotrms</span> <span class="op">&lt;-</span> <span class="fu">terms</span><span class="op">(</span><span class="st">"go"</span>, pagesize <span class="op">=</span> <span class="fl">10000</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Terms' with 50801 entries</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Internal Server Error (HTTP 500).</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> No encoding supplied: defaulting to UTF-8.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Terms' with 20000 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the GO ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0005230, GO:0015276 ... GO:0032942, GO:0032947 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0005230, GO:0015276 ... GO:0055127, GO:0055124 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
 <span class="r-in"><span>    <span class="co">## or, using on ontology object</span></span></span>
@@ -286,8 +288,8 @@ The Term class describes an ontology term. A set of terms are
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005234 GO:0005234</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044832 GO:0044832</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050776 GO:0050776</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050794 GO:0050794</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0001819 GO:0001819</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044831 GO:0044831</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                                 label</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005230            extracellular ligand-gated ion channel activity</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0015276                          ligand-gated ion channel activity</span>
@@ -297,8 +299,8 @@ The Term class describes an ontology term. A set of terms are
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005234       extracellularly glutamate-gated ion channel activity</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044832             induction by virus of host cytokine production</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050776                              regulation of immune response</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050794                             regulation of cellular process</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0001819                 positive regulation of cytokine production</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044831            modulation by virus of host cytokine production</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>            description ontology is_obsolete has_children is_root first_synonym</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005230          NA       go       FALSE         TRUE   FALSE            NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0015276          NA       go       FALSE         TRUE   FALSE            NA</span>
@@ -308,8 +310,8 @@ The Term class describes an ontology term. A set of terms are
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005234          NA       go       FALSE         TRUE   FALSE            NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044832          NA       go       FALSE        FALSE   FALSE            NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050776          NA       go       FALSE         TRUE   FALSE            NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050794          NA       go       FALSE         TRUE   FALSE            NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0001819          NA       go       FALSE         TRUE   FALSE            NA</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044831          NA       go       FALSE         TRUE   FALSE            NA</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                                  iri is_defining_ontology</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005230 http://purl.obolibrary.org/obo/GO_0005230                 TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0015276 http://purl.obolibrary.org/obo/GO_0015276                 TRUE</span>
@@ -319,8 +321,8 @@ The Term class describes an ontology term. A set of terms are
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005234 http://purl.obolibrary.org/obo/GO_0005234                 TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044832 http://purl.obolibrary.org/obo/GO_0044832                 TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050776 http://purl.obolibrary.org/obo/GO_0050776                 TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0050794 http://purl.obolibrary.org/obo/GO_0050794                 TRUE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> GO:0001819 http://purl.obolibrary.org/obo/GO_0001819                 TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0044831 http://purl.obolibrary.org/obo/GO_0044831                 TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## (one) term</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">trm</span> <span class="op">&lt;-</span> <span class="va">gotrms</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>

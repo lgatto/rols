@@ -21,7 +21,7 @@ Ontologies are stored as Ontology and Ontologies
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.5</span>
       </span>
     </div>
 
@@ -261,33 +261,26 @@ Ontologies are stored as Ontology and Ontologies
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Get all ontolgies</span></span></span>
 <span class="r-in"><span><span class="va">ol</span> <span class="op">&lt;-</span> <span class="fu">Ontologies</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ol</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Ontologies' with 277 entries</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    AEO, AFO ... SHARELOC, CCF </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Ontologies' with 278 entries</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    RXNO, SBO ... PROCO, VBO </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">as</span><span class="op">(</span><span class="va">ol</span>, <span class="st">"data.frame"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>       Prefix Namespace</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> aeo      AEO       aeo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> afo      AFO       afo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> agro    AGRO      agro</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> aism    AISM      aism</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> amphx  AMPHX     amphx</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> apo      APO       apo</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                                                               Title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> aeo                                      Anatomical Entity Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> afo                                 Allotrope Merged Ontology Suite</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> agro                                              Agronomy Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> aism  Ontology for the Anatomy of the Insect SkeletoMuscular system</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> amphx            Amphioxus Development and Anatomy Ontology (AMPHX)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> apo                             Ascomycete Phenotype Ontology (APO)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      Prefix Namespace                           Title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> rxno   RXNO      rxno                            RXNO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> sbo     SBO       sbo        Systems Biology Ontology</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> scdo   SCDO      scdo    Sickle Cell Disease Ontology</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aeo     AEO       aeo      Anatomical Entity Ontology</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> afo     AFO       afo Allotrope Merged Ontology Suite</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> agro   AGRO      agro               Agronomy Ontology</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ol</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 277</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 278</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Individual ontologies</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">go</span> <span class="op">&lt;-</span> <span class="va">ol</span><span class="op">[[</span><span class="st">"go"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ontology: Gene Ontology (go)  </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   The Gene Ontology (GO) provides a framework and set of concepts for</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   describing the functions of gene products from all organisms.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-07-11 Updated: 2022-08-22 Version: 2022-07-01 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-09-16 Updated: 2022-09-16 Version: 2022-07-01 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    50918 terms  68 properties  0 individuals</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="va">ol</span><span class="op">[[</span><span class="st">"efo"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Ontology: Experimental Factor Ontology (efo)  </span>
