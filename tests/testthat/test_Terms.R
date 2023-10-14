@@ -1,5 +1,3 @@
-context("Term/Terms")
-
 go <- Ontology("GO")
 trm <- term(go, "GO:0032801")
 trms <- terms("SO", pagesize = 1000)

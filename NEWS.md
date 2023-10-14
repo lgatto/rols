@@ -1,5 +1,9 @@
 # rols 2.29
 
+## CHANGES IN VERSION 2.29.1
+
+- Fix unit tests.
+
 ## CHANGES IN VERSION 2.29.0
 
 - New devel version (Bioc 3.18)

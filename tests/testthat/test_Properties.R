@@ -1,5 +1,3 @@
-context("Property/ies")
-
 test_that("Property constructors", {
     soprops <- properties("so")
     ont <- Ontology("so")
@@ -23,7 +21,7 @@ test_that("Property constructors", {
     trmlst <- c(trm, trm2, trm3)
     names(trmlst) <- sapply(trmlst, termId)
     trms <- rols:::Terms(x = trmlst)
-    
+
     pl <- properties(trms)
     expect_is(pl, "list")
     expect_identical(length(pl), 3L)
@@ -32,7 +30,7 @@ test_that("Property constructors", {
     k <- c("SO:0000579", "SO:0000833", "SO:0000578", "SO:0000011",
            "SO:0000577", "SO:0000628", "SO:0001431", "SO:0000704",
            "SO:0000976", "SO:0000576")
-    
+
     pl <- properties(so[k])
 
     ## expect_message(x <- properties(so[k[1]]), "No properties for term SO:0000579")

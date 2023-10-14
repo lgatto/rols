@@ -1,5 +1,3 @@
-context("OlsSearch")
-
 ## test_that("OlsSearch tgn", {
 ##     tgn <- OlsSearch(q = "tgn",ontology = "GO")
 ##     tgn <- olsSearch(tgn)
