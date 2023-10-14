@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.29.1</span>
       </span>
     </div>
 
@@ -66,10 +66,10 @@
 
       
 
-      </header><script src="rols_files/htmlwidgets-1.5.4/htmlwidgets.js"></script><link href="rols_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
-<script src="rols_files/datatables-binding-0.25/datatables.js"></script><link href="rols_files/dt-core-1.11.3/css/jquery.dataTables.min.css" rel="stylesheet">
-<link href="rols_files/dt-core-1.11.3/css/jquery.dataTables.extra.css" rel="stylesheet">
-<script src="rols_files/dt-core-1.11.3/js/jquery.dataTables.min.js"></script><link href="rols_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
+      </header><script src="rols_files/htmlwidgets-1.6.2/htmlwidgets.js"></script><link href="rols_files/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet">
+<script src="rols_files/datatables-binding-0.30/datatables.js"></script><link href="rols_files/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
+<link href="rols_files/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet">
+<script src="rols_files/dt-core-1.13.4/js/jquery.dataTables.min.js"></script><link href="rols_files/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet">
 <script src="rols_files/crosstalk-1.2.0/js/crosstalk.min.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -97,20 +97,20 @@ Gatto</h4>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
-<p><em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em> is a
+<p><em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em> is a
 Bioconductor package and should hence be installed using the dedicated
 functionality</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">## try http:// if https:// URLs are not supported</span></span>
 <span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
-<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"rols"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://bioconductor.github.io/BiocManager/reference/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"rols"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="getting-help">Getting help<a class="anchor" aria-label="anchor" href="#getting-help"></a>
 </h3>
 <p>To get help, either post your question on the <a href="https://support.bioconductor.org/" class="external-link">Bioconductor support site</a>
-or open an issue on the <em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em> <a href="https://github.com/lgatto/rols/issues" class="external-link">github page</a>.</p>
+or open an issue on the <em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em> <a href="https://github.com/lgatto/rols/issues" class="external-link">github page</a>.</p>
 </div>
 <div class="section level3">
 <h3 id="the-resource">The resource<a class="anchor" aria-label="anchor" href="#the-resource"></a>
@@ -127,19 +127,19 @@ Ontologies</a> team at EMBL-EBI.</p>
 <h3 id="the-package">The package<a class="anchor" aria-label="anchor" href="#the-package"></a>
 </h3>
 <p>The OLS provides a REST interface to hundreds of ontologies from a
-single location with a unified output format. The <em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em> package
+single location with a unified output format. The <em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em> package
 make this possible from within R. Do do so, it relies on the <em><a href="https://CRAN.R-project.org/package=httr" class="external-link">httr</a></em> package to
 query the REST interface, and access and retrieve data.</p>
-<p>There are 278 ontologies available in the OLS, listed in the table
+<p>There are 244 ontologies available in the OLS, listed in the table
 below. Their name is to be use to defined which ontology to query.</p>
-<div id="htmlwidget-50a226e4af8265fdae75" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-50a226e4af8265fdae75">{"x":{"filter":"none","vertical":false,"data":[["rxno","sbo","scdo","aeo","afo","agro","aism","amphx","apo","apollo_sv","aro","atol","bao","bcio","bco","bfo","bspo","bto","caro","cco","cdao","cdno","ceph","chebi","cheminf","chiro","chmo","cido","cio","cl","clao","clo","clyh","cmo","cmpo","co_320","co_321","co_321:root","co_322","co_323","co_324","co_325","co_327","co_330","co_331","co_333","co_334","co_335","co_336","co_337","co_338","co_339","co_340","co_341","co_343","co_345","co_346","co_347","co_348","co_350","co_356","co_357","co_358","co_359","co_360","co_365","co_366","cob","covoc","cro","cryoem","cteno","cto","cvdo","ddanat","ddpheno","dicom","dideo","doid","dpo","dron","duo","ecao","eco","ecocore","ecto","edam","efo","ehdaa2","emapa","enm","ensemblglossary","envo","eol","ero","eupath","exo","fao","fbbi","fbbt","fbcv","fbdv","fideo","fix","flopo","fma","fobi","foodon","fovt","fypo","gaz","gecko","genepio","geno","geo","gexo","gno","go","gsso","hancestro","hao","hcao","hom","hp","hpath","hsapdv","hso","htn","iao","iceo","ico","ido","idocovid19","idomal","ino","kisao","labo","lbo","ma","mamo","maxo","mco","mf","mfmo","mfoem","mfomd","mi","miapa","micro","miro","mmo","mmusdv","mod","mondo","mop","mp","mpath","mpio","mro","ms","msio","nbo","ncbitaxon","ncit","ncro","nmrcv","nomen","oae","oarcs","oba","obcs","obi","obib","ogg","ogi","ogms","ogsf","ohd","ohmi","ohpi","olatdv","om","omiabis","omit","omo","omp","omrse","one","ons","ontoneo","oostt","opl","opmi","ordo","ornaseq","orth","ovae","pato","pco","pdro","pdumdv","peco","phi","phipo","plana","planp","po","poro","ppo","pr","pride","probonto","prov","psdo","pso","pw","rbo","reproduceme","reto","rex","rexo","rnao","ro","rs","sdgio","sepio","sibo","sio","snomed","so","spd","srao","stato","swo","symp","tads","taxrank","teddy","tgma","to","trans","tto","txpo","uberon","unimod","uo","upa","upheno","vario","vido","vo","vt","vto","wbbt","wbls","wbphenotype","xao","xco","xl","xlmod","xpo","zeco","zfa","zfs","zp","co_326","disdriv","epso","ontoavida","colao","lepao","epio","pcl","shareloc","ccf","ado","proco","vbo"],["RXNO","SBO","SCDO","AEO","AFO","AGRO","AISM","AMPHX","APO","APOLLO_SV","ARO","ATOL","BAO","BCIO","BCO","BFO","BSPO","BTO","CARO","CCO","CDAO","CDNO","CEPH","CHEBI","CHEMINF","CHIRO","CHMO","CIDO","CIO","CL","CLAO","CLO","CLYH","CMO","CMPO","CO_320","CO_321","CO_321:ROOT","CO_322","CO_323","CO_324","CO_325","CO_327","CO_330","CO_331","CO_333","CO_334","CO_335","CO_336","CO_337","CO_338","CO_339","CO_340","CO_341","CO_343","CO_345","CO_346","CO_347","CO_348","CO_350","CO_356","CO_357","CO_358","CO_359","CO_360","CO_365","CO_366","COB","COVOC","CRO","CRYOEM","CTENO","CTO","CVDO","DDANAT","DDPHENO","DICOM","DIDEO","DOID","FBcv","DRON","DUO","ECAO","ECO","ECOCORE","ECTO","EDAM","EFO","EHDAA2","EMAPA","ENM","ENSGLOSS","ENVO","EOL","ERO","EUPATH","ExO","FAO","FBbi","FBbt","FBcv","FBdv","FIDEO","FIX","FLOPO","FMA","FOBI","FOODON","FOVT","FYPO","GAZ","GECKO","GENEPIO","GENO","GEO","GeXO","GNO","GO","GSSO","HANCESTRO","HAO","HCAO","HOM","HP","MC","HsapDv","HSO","HTN","IAO","ICEO","ICO","IDO","IDO-COVID-19","IDOMAL","INO","KISAO","LABO","LBO","MA","MAMO","MAXO","MCO","MF","MFMO","MFOEM","MFOMD","MI","MIAPA","MICRO","MIRO","MMO","MmusDv","MOD","MONDO","MOP","MP","MPATH","MPIO","MRO","MS","MSIO","NBO","NCBITAXON","NCIT","NCRO","NMR","NOMEN","OAE","OARCS","OBA","OBCS","OBI","OBIB","OGG","OGI","OGMS","OGSF","OHD","OHMI","OHPI","OlatDv","OM","OMIABIS","OMIT","OMO","OMP","OMRSE","ONE","ONS","ONTONEO","OOSTT","OPL","OPMI","ORDO","ORNASEQ","ORTH","OVAE","PATO","PCO","PDRO","PdumDv","PECO","PHI","PHIPO","PLANA","PLANP","PO","PORO","PPO","PR","PRIDE","PROBONTO","PROV","PSDO","PSO","PW","RBO","REPR","ReTO","REX","ReXO","RNAO","RO","RS","SDGIO","SEPIO","SIBO","SIO","SNOMED","SO","SPD","SRAO","STATO","SWO","SYMP","TADS","TAXRANK","TEDDY","TGMA","TO","TRANS","TTO","TXPO","UBERON","UNIMOD","UO","UPA","UPHENO","VariO","VIDO","VO","VT","VTO","WBbt","WBls","WBPhenotype","XAO","XCO","XL","XLMOD","XPO","ZECO","ZFA","ZFS","ZP","CO_326","DISDRIV","EPSO","ONTOAVIDA","COLAO","LEPAO","EPIO","PCL","SHARELOC","CCF","ADO","PROCO","VBO"],["rxno","sbo","scdo","aeo","afo","agro","aism","amphx","apo","apollo_sv","aro","atol","bao","bcio","bco","bfo","bspo","bto","caro","cco","cdao","cdno","ceph","chebi","cheminf","chiro","chmo","cido","cio","cl","clao","clo","clyh","cmo","cmpo","co_320","co_321","co_321:root","co_322","co_323","co_324","co_325","co_327","co_330","co_331","co_333","co_334","co_335","co_336","co_337","co_338","co_339","co_340","co_341","co_343","co_345","co_346","co_347","co_348","co_350","co_356","co_357","co_358","co_359","co_360","co_365","co_366","cob","covoc","cro","cryoem","cteno","cto","cvdo","ddanat","ddpheno","dicom","dideo","doid","dpo","dron","duo","ecao","eco","ecocore","ecto","edam","efo","ehdaa2","emapa","enm","ensemblglossary","envo","eol","ero","eupath","exo","fao","fbbi","fbbt","fbcv","fbdv","fideo","fix","flopo","fma","fobi","foodon","fovt","fypo","gaz","gecko","genepio","geno","geo","gexo","gno","go","gsso","hancestro","hao","hcao","hom","hp","hpath","hsapdv","hso","htn","iao","iceo","ico","ido","idocovid19","idomal","ino","kisao","labo","lbo","ma","mamo","maxo","mco","mf","mfmo","mfoem","mfomd","mi","miapa","micro","miro","mmo","mmusdv","mod","mondo","mop","mp","mpath","mpio","mro","ms","msio","nbo","ncbitaxon","ncit","ncro","nmrcv","nomen","oae","oarcs","oba","obcs","obi","obib","ogg","ogi","ogms","ogsf","ohd","ohmi","ohpi","olatdv","om","omiabis","omit","omo","omp","omrse","one","ons","ontoneo","oostt","opl","opmi","ordo","ornaseq","orth","ovae","pato","pco","pdro","pdumdv","peco","phi","phipo","plana","planp","po","poro","ppo","pr","pride","probonto","prov","psdo","pso","pw","rbo","reproduceme","reto","rex","rexo","rnao","ro","rs","sdgio","sepio","sibo","sio","snomed","so","spd","srao","stato","swo","symp","tads","taxrank","teddy","tgma","to","trans","tto","txpo","uberon","unimod","uo","upa","upheno","vario","vido","vo","vt","vto","wbbt","wbls","wbphenotype","xao","xco","xl","xlmod","xpo","zeco","zfa","zfs","zp","co_326","disdriv","epso","ontoavida","colao","lepao","epio","pcl","shareloc","ccf","ado","proco","vbo"],["RXNO","Systems Biology Ontology","Sickle Cell Disease Ontology","Anatomical Entity Ontology","Allotrope Merged Ontology Suite","Agronomy Ontology","Ontology for the Anatomy of the Insect SkeletoMuscular system","Amphioxus Development and Anatomy Ontology (AMPHX)","Ascomycete Phenotype Ontology (APO)","Apollo Structured Vocabulary (Apollo-SV)","Antibiotic Resistance Ontology","Animal Trait Ontology for Livestock","BioAssay Ontology","The Behaviour Change Intervention Ontology","Biological Collections Ontology","Basic Formal Ontology","Biological Spatial Ontology","The BRENDA Tissue Ontology (BTO)","Common Anatomy Reference Ontology","Cell Cycle Ontology","Comparative Data Analysis Ontology","Compositional Dietary Nutrition Ontology","Cephalopod Ontology","Chemical Entities of Biological Interest","chemical information ontology (cheminf) - information entities about chemical entities","CHEBI Integrated Role Ontology","Chemical Methods Ontology","CIDO: Ontology of Coronavirus Infectious Disease","Confidence Information Ontology","Cell Ontology","Collembola Anatomy Ontology","CLO: Cell Line Ontology","Clytia hemisphaerica Development and Anatomy Ontology (CLYH)","Clinical measurement ontology","Cellular Microscopy Phenotype Ontology","Rice ontology","Wheat ontology","Wheat ontology","Maize ontology","Barley ontology","Sorghum ontology","Banana ontology","Pearl millet ontology","Potato ontology","Sweet Potato ontology","Beet Ontology ontology","Cassava ontology","Common Bean ontology","Soybean ontology","Groundnut ontology","Chickpea ontology","Lentil ontology","Cowpea ontology","Pigeonpea ontology","Yam ontology","Brachiaria ontology","Mungbean ontology","Castor bean ontology","Brassica ontology","Oat ontology","Vitis ontology","Woody Plant Ontology ontology","Cotton ontology","Sunflower ontology","Sugar Kelp trait ontology","Fababean ontology","Bambara groundnut ontology","Core Ontology for Biology and Biomedicine","CoVoc Coronavirus Vocabulary","Contributor Role Ontology","Cryo Electron Microscopy ontology","Ctenophore Ontology","CTO: Core Ontology of Clinical Trials","Cardiovascular Disease Ontology","Dictyostelium discoideum anatomy","Dicty Phenotype Ontology (DDPHENO)","DICOM Controlled Terminology","Drug-drug Interaction and Drug-drug Interaction Evidence Ontology","Human Disease Ontology","Drosophila Phenotype Ontology (DPO)","The Drug Ontology","","Echinoderm Anatomy and Development Ontology","Evidence &amp; Conclusion Ontology (ECO)","An ontology of core ecological entities","Environment Exposure Ontology","Bioinformatics operations, data types, formats, identifiers and topics","Experimental Factor Ontology","Human developmental anatomy, abstract","Mouse Developmental Anatomy Ontology","eNanoMapper Ontology","Ensembl Glossary","The Environment Ontology","Environment Ontology for Livestock","eagle-i resource ontology","VEuPathDB Ontology","Exposure ontology (ExO)","Fungal gross anatomy","Biological Imaging Methods Ontology","Drosophila Anatomy Ontology (DAO)","FlyBase Controlled Vocabulary (FBcv)","FlyBase Developmental Ontology (FBdv)","Food Interactions with Drugs Evidence Ontology","Physico-chemical methods and properties","Flora Phenotype Ontology","Foundational Model of Anatomy Ontology (subset)","Food-Biomarker Ontology","Food Ontology","FuTRES Ontology of Vertebrate Traits","Fission Yeast Phenotype Ontology (FYPO)","","Genomics Cohorts Knowledge Ontology","Genomic Epidemiology Ontology","GENO ontology","Geographical Entity Ontology","Gene Expression Ontology","Glycan Naming Ontology","Gene Ontology","GSSO - the Gender, Sex, and Sexual Orientation ontology","Human Ancestry Ontology","Hymenoptera Anatomy Ontology","Human Cell Atlas Ontology","Homology Ontology","Human Phenotype Ontology","Histopathology Ontology","Human Developmental Stages","Health Surveillance Ontology","Hypertension Ontology For Clinical Data","Information Artifact Ontology (IAO)","ICEO: Ontology of Integrative and Conjugative Elements","Informed Consent Ontology (ICO)","Infectious Disease Ontology","The COVID-19 Infectious Disease Ontology","Malaria Ontology","INO: Interaction Network Ontology","Kinetic Simulation Algorithm Ontology","clinical LABoratory Ontology","Livestock Breed Ontology","Mouse adult gross anatomy","Mathematical Modelling Ontology","Medical Action Ontology","Microbial Conditions Ontology","Mental Functioning Ontology","Mammalian Feeding Muscle Ontology","Emotion Ontology","Mental Disease Ontology","","Minimum Information for A Phylogenetic Analysis (MIAPA) Ontology","Ontology of Prokaryotic Phenotypic and Metabolic Characters","Mosquito insecticide resistance","Measurement method ontology","Mouse Developmental Stages","Protein modification","Mondo Disease Ontology","MOP","The Mammalian Phenotype Ontology","Mouse pathology ontology","Minimum PDDI Information Ontology","MHC Restriction Ontology","Mass spectrometry ontology","Metabolomics Standards Initiative Ontology (MSIO)","Neuro Behavior Ontology","","NCI Thesaurus OBO Edition","Non-Coding RNA Ontology","nuclear magnetic resonance CV","NOMEN - A nomenclatural ontology for biological names","OAE: Ontology of Adverse Events","Ontology of Arthropod Circulatory Systems","Ontology of Biological Attributes (OBA)","Ontology of Biological and Clinical Statistics","Ontology for Biomedical Investigations","Ontology for BIoBanking (OBIB)","OGG: Ontology of Genes and Genomes","Ontology for genetic interval","Ontology for General Medical Science","Ontology of Genetic Susceptibility Factor","Oral Health and Disease Ontology","OHMI: Ontology of Host-Microbiome Interactions","OHPI: Ontology of Host-Pathogen Interactions","Medaka Developmental Stages","Ontology of units of Measure (OM)","Ontologized MIABIS","Ontology for MIRNA Target","OBO Metadata Ontology","Ontology of Microbial Phenotypes","Ontology of Medically Related Social Entities","Ontology for Nutritional Epidemiology","Ontology for Nutritional Studies","Obstetric and Neonatal Ontology","Ontology of Organizational Structures of Trauma centers and Trauma Systems","Ontology for Parasite Lifecycle","OPMI: Ontology of Precision Medicine and Investigation","Orphanet Rare Disease Ontology","Ontology for RNA sequencing (ORNASEQ)","Orthology Ontology","OVAE: Ontology of Vaccine Adverse Events","PATO - the Phenotype And Trait Ontology","Population and Community Ontology","The Prescription of Drugs Ontology","Platynereis Developmental Stages","Plant Experimental Conditions Ontology","PHI-base Ontology","Pathogen Host Interactions Phenotype Ontology","Planarian Anatomy Ontology (PLANA)","Planarian Phenotype Ontology (PLANP)","Plant Ontology","Porifera (sponge) ontology","Plant Phenology Ontology","PRotein Ontology (PRO)","PRIDE Controlled Vocabulary","Probability Distribution Ontology","Provenance Ontology (PROV-O)","Performance Summary Display Ontology","Plant Stress Ontology","Pathway ontology","Radiation Biology Ontology","REPRODUCE-ME Ontology","Regulation of Transcription Ontology","Physico-chemical process","Regulation of Gene Expression Ontology","The RNA Ontology (RNAO): An Ontology for Integrating RNA Sequence and Structure Data","OBO Relations Ontology","Rat Strain Ontology","Sustainable Development Goals Interface Ontology","Scientific Evidence and Provenance Information Ontology","Social Insect Behavior Ontology","Semanticscience Integrated Ontology","SNOMED CT (International Edition)","Sequence types and features ontology","Spider Ontology","FAIRsharing Subject Ontology (SRAO)","STATO: the statistical methods ontology","SWO (The Software Ontology)","Symptom Ontology","Tick Anatomy Ontology","Taxonomic rank vocabulary","Terminology for Description of Dynamics","Mosquito gross anatomy ontology","Plant Trait Ontology","Pathogen Transmission Ontology","Teleost taxonomy ontology","TOXic Process Ontology (TXPO)","Uber-anatomy ontology","Unimod protein modification database for mass spectrometry","Units of measurement ontology","Unipathway","Unified phenotype ontology (uPheno)","Variation Ontology","The Virus Infectious Disease Ontology","Vaccine Ontology","Vertebrate trait ontology","Vertebrate Taxonomy Ontology","C. elegans Gross Anatomy Ontology","C. elegans Development Ontology","C elegans Phenotype Ontology","Xenopus Anatomy Ontology","Experimental condition ontology","Cross-linker reagents ontology","HUPO-PSI cross-linking and derivatization reagents controlled vocabulary","Xenopus Phenotype Ontology","Zebrafish Experimental Conditions Ontology","Zebrafish Anatomy Ontology (ZFA)","Zebrafish developmental stages ontology","Zebrafish Phenotype Ontology (ZP)","Coconut ontology","Disease Drivers","Epilepsy Ontology","OntoAvida: ontology for Avida digital evolution platform.","Coleoptera Anatomy Ontology","Lepidoptera Anatomy Ontology","Epilepsy Ontology (EPIO)","Provisional Cell Ontology","ShareLoc","Common Coordinate Framework (CCF) Ontology","Alzheimer's Disease Ontology (ADO)","PROCO: PROcess Chemistry Ontology","Vertebrate Breed Ontology"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Prefix<\/th>\n      <th>Namespace<\/th>\n      <th>Title<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d0aecf07b003922de81e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-d0aecf07b003922de81e">{"x":{"filter":"none","vertical":false,"data":[["aism","amphx","ado","apo","agro","apollo_sv","aro","bco","bfo","bspo","bto","caro","chebi","cdno","cdao","cheminf","chiro","chmo","cido","cio","cl","clao","cob","clyh","cmo","clo","colao","cvdo","ddanat","cteno","cro","cto","ddpheno","dideo","disdriv","doid","dpo","dron","duo","ecao","eco","ecocore","ecto","emapa","envo","epio","eupath","exo","fbbi","fbdv","fideo","flopo","fobi","fao","fbbt","fbcv","foodon","fovt","genepio","gecko","geno","geo","fypo","gno","go","hancestro","hao","hom","hsapdv","hso","htn","iao","iceo","ico","ido","ino","labo","lepao","mcro","maxo","mfmo","mfoem","mfomd","mf","mi","miapa","mco","mmo","mondo","mop","mod","ma","mpio","mp","mpath","mmusdv","ncbitaxon","ms","nbo","mro","ncit","ncro","ngbo","nomen","oba","oarcs","oae","obcs","obi","obib","ogg","ogms","ogsf","ohd","ohmi","ohpi","omit","one","omp","omrse","omo","ons","ontoavida","ontoneo","oostt","opl","opmi","ornaseq","pco","pato","pcl","ovae","pdro","peco","phipo","plana","planp","po","ppo","psdo","pso","pw","poro","rbo","ro","rs","sepio","rxno","so","proco","stato","symp","swo","t4fs","taxrank","to","pr","trans","tto","spd","txpo","uberon","uo","upheno","vbo","vo","vto","wbphenotype","xao","wbls","xco","xlmod","xpo","vt","zfs","zp","gsso","hp","kisao","zeco","sbo","scdo","mamo","rex","sibo","vario","micro","fix","olatdv","pdumdv","aeo","ceph","ehdaa2","zfa","idomal","fma","gaz","wbbt","miro","rnao","tads","tgma","upa","phi","msio","sdgio","dicom","ensemblglossary","efo","ordo","teddy","edam","cco","reto","enm","atol","eol","lbo","probonto","pride","bao","rexo","cmpo","sio","unimod","gexo","nmrcv","afo","hpath","srao","hcao","idocovid19","vido","bcio","covoc","om","prov","reproduceme","shareloc","orth","snomed","cryoem","cpont","ccf"],["AISM","AMPHX","ADO","APO","AGRO","APOLLO_SV","ARO","BCO","BFO","BSPO","BTO","CARO","CHEBI","CDNO","CDAO","CHEMINF","CHIRO","CHMO","CIDO","CIO","CL","CLAO","COB","CLYH","CMO","CLO","COLAO","CVDO","DDANAT","CTENO","CRO","CTO","DDPHENO","DIDEO","DISDRIV","DOID","FBcv","DRON","DUO","ECAO","ECO","ECOCORE","ECTO","EMAPA","ENVO","EPIO","EUPATH","ExO","FBbi","FBdv","FIDEO","FLOPO","FOBI","FAO","FBbt","FBcv","FOODON","FOVT","GENEPIO","GECKO","GENO","GEO","FYPO","GNO","GO","HANCESTRO","HAO","HOM","HsapDv","HSO","HTN","IAO","ICEO","ICO","IDO","INO","LABO","LEPAO","MCRO","MAXO","MFMO","MFOEM","MFOMD","MF","MI","MIAPA","MCO","MMO","MONDO","MOP","MOD","MA","MPIO","MP","MPATH","MmusDv","NCBITAXON","MS","NBO","MRO","NCIT","NCRO","NGBO","NOMEN","OBA","OARCS","OAE","OBCS","OBI","OBIB","OGG","OGMS","OGSF","OHD","OHMI","OHPI","OMIT","ONE","OMP","OMRSE","OMO","ONS","ONTOAVIDA","ONTONEO","OOSTT","OPL","OPMI","ORNASEQ","PCO","PATO","PCL","OVAE","PDRO","PECO","PHIPO","PLANA","PLANP","PO","PPO","PSDO","PSO","PW","PORO","RBO","RO","RS","SEPIO","RXNO","SO","PROCO","STATO","SYMP","SWO","T4FS","TAXRANK","TO","PR","TRANS","TTO","SPD","TXPO","UBERON","UO","UPHENO","VBO","VO","VTO","WBPhenotype","XAO","WBls","XCO","XLMOD","XPO","VT","ZFS","ZP","GSSO","HP","KISAO","ZECO","SBO","SCDO","MAMO","REX","SIBO","VariO","MICRO","FIX","OlatDv","PdumDv","AEO","CEPH","EHDAA2","ZFA","IDOMAL","FMA","GAZ","WBbt","MIRO","RNAO","TADS","TGMA","UPA","PHI","MSIO","SDGIO","DICOM","ENSGLOSS","EFO","ORDO","TEDDY","EDAM","CCO","ReTO","ENM","ATOL","EOL","LBO","PROBONTO","PRIDE","BAO","ReXO","CMPO","SIO","UNIMOD","GeXO","NMR","AFO","MC","SRAO","HCAO","IDO-COVID-19","VIDO","BCIO","COVOC","OM","PROV","REPR","SHARELOC","ORTH","SNOMED","CRYOEM","CPONT","CCF"],["aism","amphx","ado","apo","agro","apollo_sv","aro","bco","bfo","bspo","bto","caro","chebi","cdno","cdao","cheminf","chiro","chmo","cido","cio","cl","clao","cob","clyh","cmo","clo","colao","cvdo","ddanat","cteno","cro","cto","ddpheno","dideo","disdriv","doid","dpo","dron","duo","ecao","eco","ecocore","ecto","emapa","envo","epio","eupath","exo","fbbi","fbdv","fideo","flopo","fobi","fao","fbbt","fbcv","foodon","fovt","genepio","gecko","geno","geo","fypo","gno","go","hancestro","hao","hom","hsapdv","hso","htn","iao","iceo","ico","ido","ino","labo","lepao","mcro","maxo","mfmo","mfoem","mfomd","mf","mi","miapa","mco","mmo","mondo","mop","mod","ma","mpio","mp","mpath","mmusdv","ncbitaxon","ms","nbo","mro","ncit","ncro","ngbo","nomen","oba","oarcs","oae","obcs","obi","obib","ogg","ogms","ogsf","ohd","ohmi","ohpi","omit","one","omp","omrse","omo","ons","ontoavida","ontoneo","oostt","opl","opmi","ornaseq","pco","pato","pcl","ovae","pdro","peco","phipo","plana","planp","po","ppo","psdo","pso","pw","poro","rbo","ro","rs","sepio","rxno","so","proco","stato","symp","swo","t4fs","taxrank","to","pr","trans","tto","spd","txpo","uberon","uo","upheno","vbo","vo","vto","wbphenotype","xao","wbls","xco","xlmod","xpo","vt","zfs","zp","gsso","hp","kisao","zeco","sbo","scdo","mamo","rex","sibo","vario","micro","fix","olatdv","pdumdv","aeo","ceph","ehdaa2","zfa","idomal","fma","gaz","wbbt","miro","rnao","tads","tgma","upa","phi","msio","sdgio","dicom","ensemblglossary","efo","ordo","teddy","edam","cco","reto","enm","atol","eol","lbo","probonto","pride","bao","rexo","cmpo","sio","unimod","gexo","nmrcv","afo","hpath","srao","hcao","idocovid19","vido","bcio","covoc","om","prov","reproduceme","shareloc","orth","snomed","cryoem","cpont","ccf"],["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Prefix<\/th>\n      <th>Namespace<\/th>\n      <th>Title<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <div class="section level2">
 <h2 id="a-brief-rols-overview">A Brief rols overview<a class="anchor" aria-label="anchor" href="#a-brief-rols-overview"></a>
 </h2>
-<p>The <em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em> package
+<p>The <em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em> package
 is build around a few classes that enable to query the OLS and retrieve,
 store and manipulate data. Each of these classes are described in more
 details in their respective manual pages. We start by loading the
@@ -156,28 +156,26 @@ lists.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ol</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Ontology-class.html">Ontologies</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">ol</span></span></code></pre></div>
-<pre><code><span><span class="co">## Object of class 'Ontologies' with 278 entries</span></span>
-<span><span class="co">##    RXNO, SBO ... PROCO, VBO</span></span></code></pre>
+<pre><code><span><span class="co">## Object of class 'Ontologies' with 244 entries</span></span>
+<span><span class="co">##    AISM, AMPHX ... CPONT, CCF</span></span></code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/Ontology-class.html">olsNamespace</a></span><span class="op">(</span><span class="va">ol</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">##   rxno    sbo   scdo    aeo    afo   agro </span></span>
-<span><span class="co">## "rxno"  "sbo" "scdo"  "aeo"  "afo" "agro"</span></span></code></pre>
+<pre><code><span><span class="co">##        aism       amphx         ado         apo        agro   apollo_sv </span></span>
+<span><span class="co">##      "aism"     "amphx"       "ado"       "apo"      "agro" "apollo_sv"</span></span></code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">ol</span><span class="op">[[</span><span class="st">"go"</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
-<pre><code><span><span class="co">## Ontology: Gene Ontology (go)  </span></span>
-<span><span class="co">##   The Gene Ontology (GO) provides a framework and set of concepts for</span></span>
-<span><span class="co">##   describing the functions of gene products from all organisms.</span></span>
-<span><span class="co">##    Loaded: 2022-09-16 Updated: 2022-09-16 Version: 2022-07-01 </span></span>
-<span><span class="co">##    50918 terms  68 properties  0 individuals</span></span></code></pre>
+<pre><code><span><span class="co">## Ontology:  (go)  </span></span>
+<span><span class="co">##   </span></span>
+<span><span class="co">##    Loaded:  Updated: 2023-10-09 Version: </span></span>
+<span><span class="co">##    0 terms  0 properties  0 individuals</span></span></code></pre>
 <p>It is also possible to initialise a single ontology</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">go</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Ontology-class.html">Ontology</a></span><span class="op">(</span><span class="st">"go"</span><span class="op">)</span></span>
 <span><span class="va">go</span></span></code></pre></div>
-<pre><code><span><span class="co">## Ontology: Gene Ontology (go)  </span></span>
-<span><span class="co">##   The Gene Ontology (GO) provides a framework and set of concepts for</span></span>
-<span><span class="co">##   describing the functions of gene products from all organisms.</span></span>
-<span><span class="co">##    Loaded: 2022-09-16 Updated: 2022-09-16 Version: 2022-07-01 </span></span>
-<span><span class="co">##    50918 terms  68 properties  0 individuals</span></span></code></pre>
+<pre><code><span><span class="co">## Ontology:  (go)  </span></span>
+<span><span class="co">##   </span></span>
+<span><span class="co">##    Loaded:  Updated: 2023-10-09 Version: </span></span>
+<span><span class="co">##    0 terms  0 properties  0 individuals</span></span></code></pre>
 </div>
 <div class="section level3">
 <h3 id="terms">Terms<a class="anchor" aria-label="anchor" href="#terms"></a>
@@ -190,7 +188,7 @@ the resulting <code>Terms</code> object can be subset using
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">gotrms</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/Term-class.html">terms</a></span><span class="op">(</span><span class="va">go</span><span class="op">)</span> <span class="co">## or terms("go")</span></span>
 <span><span class="va">gotrms</span></span></code></pre></div>
-<pre><code><span><span class="co">## Object of class 'Terms' with 50919 entries</span></span>
+<pre><code><span><span class="co">## Object of class 'Terms' with 51053 entries</span></span>
 <span><span class="co">##  From the GO ontology</span></span>
 <span><span class="co">##   GO:0005230, GO:0015276 ... GO:0032942, GO:0032947</span></span></code></pre>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
@@ -247,7 +245,7 @@ briefly illustrated below.</p>
 <span><span class="va">p</span></span></code></pre></div>
 <pre><code><span><span class="co">## Object of class 'Properties' with 147 entries</span></span>
 <span><span class="co">##  From the UBERON ontology</span></span>
-<span><span class="co">##   digestive system gland, abdomen element ... Vertebrata &lt;vertebrates&gt;, bile</span></span></code></pre>
+<span><span class="co">##   digestive system gland, abdomen element ... liver lobule, Vertebrata &lt;vertebrates&gt;</span></span></code></pre>
 <div class="sourceCode" id="cb29"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">p</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span></span></code></pre></div>
 <pre><code><span><span class="co">## A Property from the UBERON ontology: UBERON:0006925 </span></span>
@@ -267,15 +265,15 @@ the search query with <code>OlsSearch</code>, as shown below. This
 creates an search object of class <code>OlsSearch</code> that stores the
 query and its parameters. In records the number of requested results
 (default is 20) and the total number of possible results (there are
-17945 results across all ontologies, in this case). At this stage, the
+17884 results across all ontologies, in this case). At this stage, the
 results have not yet been downloaded, as shown by the 0 responses.</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Object of class 'OlsSearch':</span></span>
 <span><span class="co">##   query: trans-golgi network </span></span>
-<span><span class="co">##   requested: 20 (out of 17945)</span></span>
+<span><span class="co">##   requested: 20 (out of 17884)</span></span>
 <span><span class="co">##   response(s): 0</span></span></code></pre>
-<p>17945 results are probably too many to be relevant. Below we show how
+<p>17884 results are probably too many to be relevant. Below we show how
 to perform an exact search by setting <code>exact = TRUE</code>, and
 limiting the search the the GO ontology by specifying
 <code>ontology = "GO"</code>, or doing both.</p>
@@ -290,7 +288,7 @@ limiting the search the the GO ontology by specifying
 <pre><code><span><span class="co">## Object of class 'OlsSearch':</span></span>
 <span><span class="co">##   ontolgy: GO </span></span>
 <span><span class="co">##   query: trans-golgi network </span></span>
-<span><span class="co">##   requested: 20 (out of 368)</span></span>
+<span><span class="co">##   requested: 20 (out of 353)</span></span>
 <span><span class="co">##   response(s): 0</span></span></code></pre>
 <div class="sourceCode" id="cb39"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/OlsSearch-class.html">OlsSearch</a></span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi network"</span>, ontology <span class="op">=</span> <span class="st">"GO"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
@@ -306,7 +304,7 @@ desired results.</p>
 <pre><code><span><span class="co">## Object of class 'OlsSearch':</span></span>
 <span><span class="co">##   ontolgy: GO </span></span>
 <span><span class="co">##   query: trans-golgi network </span></span>
-<span><span class="co">##   requested: 200 (out of 368)</span></span>
+<span><span class="co">##   requested: 200 (out of 353)</span></span>
 <span><span class="co">##   response(s): 0</span></span></code></pre>
 <p>Alternatively, one can call the <code>allRows</code> function to
 request all results.</p>
@@ -315,14 +313,14 @@ request all results.</p>
 <pre><code><span><span class="co">## Object of class 'OlsSearch':</span></span>
 <span><span class="co">##   ontolgy: GO </span></span>
 <span><span class="co">##   query: trans-golgi network </span></span>
-<span><span class="co">##   requested: 20 (out of 368)</span></span>
+<span><span class="co">##   requested: 20 (out of 353)</span></span>
 <span><span class="co">##   response(s): 0</span></span></code></pre>
 <div class="sourceCode" id="cb45"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">tgnq</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/OlsSearch-class.html">allRows</a></span><span class="op">(</span><span class="va">tgnq</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## Object of class 'OlsSearch':</span></span>
 <span><span class="co">##   ontolgy: GO </span></span>
 <span><span class="co">##   query: trans-golgi network </span></span>
-<span><span class="co">##   requested: 368 (out of 368)</span></span>
+<span><span class="co">##   requested: 353 (out of 353)</span></span>
 <span><span class="co">##   response(s): 0</span></span></code></pre>
 <p>Let’s proceed with the exact search and retrieve the results. Even if
 we request the default 20 results, only the 12 relevant result will be
@@ -388,7 +386,7 @@ to searching the ncit, omit, go ontology</p>
 <span><span class="co">## </span></span>
 <span><span class="co">## $`GO:0005802`</span></span>
 <span><span class="co">## [1] "cellular_component"</span></span></code></pre>
-<p>Below, we execute the same query using the <em><a href="https://bioconductor.org/packages/3.16/GO.db" class="external-link">GO.db</a></em>
+<p>Below, we execute the same query using the <em><a href="https://bioconductor.org/packages/3.18/GO.db" class="external-link">GO.db</a></em>
 package.</p>
 <div class="sourceCode" id="cb58"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"GO.db"</span><span class="op">)</span></span>
@@ -413,18 +411,18 @@ package.</p>
 <div class="section level2">
 <h2 id="on-line-vs--off-line-data">On-line vs. off-line data<a class="anchor" aria-label="anchor" href="#on-line-vs--off-line-data"></a>
 </h2>
-<p>It is possible to observe different results with <em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em> and
-<em><a href="https://bioconductor.org/packages/3.16/GO.db" class="external-link">GO.db</a></em>, as a
-result of the different ways they access the data. <em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em> or
-<em><a href="https://bioconductor.org/packages/3.16/biomaRt" class="external-link">biomaRt</a></em>
-perform direct online queries, while <em><a href="https://bioconductor.org/packages/3.16/GO.db" class="external-link">GO.db</a></em> and
+<p>It is possible to observe different results with <em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em> and
+<em><a href="https://bioconductor.org/packages/3.18/GO.db" class="external-link">GO.db</a></em>, as a
+result of the different ways they access the data. <em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em> or
+<em><a href="https://bioconductor.org/packages/3.18/biomaRt" class="external-link">biomaRt</a></em>
+perform direct online queries, while <em><a href="https://bioconductor.org/packages/3.18/GO.db" class="external-link">GO.db</a></em> and
 other annotation packages use database snapshot that are updated every
 release.</p>
 <p>Both approaches have advantages. While online queries allow to obtain
 the latest up-to-date information, such approaches rely on network
 availability and quality. If reproducibility is a major issue, the
 version of the database to be queried can easily be controlled with
-off-line approaches. In the case of <em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em>,
+off-line approaches. In the case of <em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em>,
 although the load date of a specific ontology can be queried with
 <code>olsVersion</code>, it is not possible to query a specific version
 of an ontology.</p>
@@ -432,7 +430,7 @@ of an ontology.</p>
 <div class="section level2">
 <h2 id="changes-in-version-2-0">Changes in version 2.0<a class="anchor" aria-label="anchor" href="#changes-in-version-2-0"></a>
 </h2>
-<p><em><a href="https://bioconductor.org/packages/3.16/rols" class="external-link">rols</a></em> 2.0 has
+<p><em><a href="https://bioconductor.org/packages/3.18/rols" class="external-link">rols</a></em> 2.0 has
 substantially changed. While the table below shows some correspondence
 between the old and new interface, this is not always the case. The new
 interface relies on the <code>Ontology</code>/<code>Ontologies</code>,
@@ -502,44 +500,44 @@ service)</p>
 <div class="section level2">
 <h2 id="session-information">Session information<a class="anchor" aria-label="anchor" href="#session-information"></a>
 </h2>
-<pre><code><span><span class="co">## R version 4.2.1 (2022-06-23)</span></span>
+<pre><code><span><span class="co">## R version 4.3.1 (2023-06-16)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
-<span><span class="co">## Running under: Ubuntu 20.04.5 LTS</span></span>
+<span><span class="co">## Running under: Ubuntu 22.04.3 LTS</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## Matrix products: default</span></span>
-<span><span class="co">## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span></span>
-<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3</span></span>
+<span><span class="co">## BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
+<span><span class="co">## LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## attached base packages:</span></span>
 <span><span class="co">## [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span></span>
 <span><span class="co">## [8] base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] DT_0.25              rols_2.25.5          GO.db_3.15.0        </span></span>
-<span><span class="co">## [4] AnnotationDbi_1.59.1 IRanges_2.31.2       S4Vectors_0.35.4    </span></span>
-<span><span class="co">## [7] Biobase_2.57.1       BiocGenerics_0.43.4  BiocStyle_2.25.0    </span></span>
+<span><span class="co">## [1] DT_0.30              rols_2.29.1          GO.db_3.18.0        </span></span>
+<span><span class="co">## [4] AnnotationDbi_1.63.2 IRanges_2.35.3       S4Vectors_0.39.3    </span></span>
+<span><span class="co">## [7] Biobase_2.61.0       BiocGenerics_0.47.0  BiocStyle_2.29.2    </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] KEGGREST_1.37.3        progress_1.2.2         xfun_0.33             </span></span>
-<span><span class="co">##  [4] bslib_0.4.0            purrr_0.3.4            vctrs_0.4.1           </span></span>
-<span><span class="co">##  [7] htmltools_0.5.3        yaml_2.3.5             blob_1.2.3            </span></span>
-<span><span class="co">## [10] rlang_1.0.6            pkgdown_2.0.6.9000     jquerylib_0.1.4       </span></span>
-<span><span class="co">## [13] DBI_1.1.3              bit64_4.0.5            lifecycle_1.0.2       </span></span>
-<span><span class="co">## [16] GenomeInfoDbData_1.2.8 stringr_1.4.1          zlibbioc_1.43.0       </span></span>
-<span><span class="co">## [19] Biostrings_2.65.6      ragg_1.2.2             htmlwidgets_1.5.4     </span></span>
-<span><span class="co">## [22] memoise_2.0.1          evaluate_0.16          knitr_1.40            </span></span>
-<span><span class="co">## [25] fastmap_1.1.0          crosstalk_1.2.0        GenomeInfoDb_1.33.7   </span></span>
-<span><span class="co">## [28] curl_4.3.2             Rcpp_1.0.9             BiocManager_1.30.18   </span></span>
-<span><span class="co">## [31] cachem_1.0.6           desc_1.4.2             jsonlite_1.8.0        </span></span>
-<span><span class="co">## [34] XVector_0.37.1         systemfonts_1.0.4      fs_1.5.2              </span></span>
-<span><span class="co">## [37] bit_4.0.4              textshaping_0.3.6      hms_1.1.2             </span></span>
-<span><span class="co">## [40] png_0.1-7              digest_0.6.29          stringi_1.7.8         </span></span>
-<span><span class="co">## [43] bookdown_0.29          rprojroot_2.0.3        cli_3.4.1             </span></span>
-<span><span class="co">## [46] tools_4.2.1            bitops_1.0-7           magrittr_2.0.3        </span></span>
-<span><span class="co">## [49] sass_0.4.2             RCurl_1.98-1.8         RSQLite_2.2.17        </span></span>
-<span><span class="co">## [52] crayon_1.5.1           pkgconfig_2.0.3        ellipsis_0.3.2        </span></span>
-<span><span class="co">## [55] prettyunits_1.1.1      rmarkdown_2.16         httr_1.4.4            </span></span>
-<span><span class="co">## [58] R6_2.5.1               compiler_4.2.1</span></span></code></pre>
+<span><span class="co">##  [1] KEGGREST_1.41.4         xfun_0.40               bslib_0.5.1            </span></span>
+<span><span class="co">##  [4] htmlwidgets_1.6.2       vctrs_0.6.4             tools_4.3.1            </span></span>
+<span><span class="co">##  [7] crosstalk_1.2.0         bitops_1.0-7            curl_5.1.0             </span></span>
+<span><span class="co">## [10] RSQLite_2.3.1           blob_1.2.4              pkgconfig_2.0.3        </span></span>
+<span><span class="co">## [13] desc_1.4.2              lifecycle_1.0.3         GenomeInfoDbData_1.2.10</span></span>
+<span><span class="co">## [16] compiler_4.3.1          stringr_1.5.0           textshaping_0.3.7      </span></span>
+<span><span class="co">## [19] Biostrings_2.69.2       progress_1.2.2          GenomeInfoDb_1.37.6    </span></span>
+<span><span class="co">## [22] htmltools_0.5.6.1       sass_0.4.7              RCurl_1.98-1.12        </span></span>
+<span><span class="co">## [25] yaml_2.3.7              pkgdown_2.0.7.9000      crayon_1.5.2           </span></span>
+<span><span class="co">## [28] jquerylib_0.1.4         ellipsis_0.3.2          cachem_1.0.8           </span></span>
+<span><span class="co">## [31] digest_0.6.33           stringi_1.7.12          purrr_1.0.2            </span></span>
+<span><span class="co">## [34] bookdown_0.35           rprojroot_2.0.3         fastmap_1.1.1          </span></span>
+<span><span class="co">## [37] cli_3.6.1               magrittr_2.0.3          prettyunits_1.2.0      </span></span>
+<span><span class="co">## [40] bit64_4.0.5             rmarkdown_2.25          XVector_0.41.1         </span></span>
+<span><span class="co">## [43] httr_1.4.7              bit_4.0.5               ragg_1.2.6             </span></span>
+<span><span class="co">## [46] png_0.1-8               hms_1.1.3               memoise_2.0.1          </span></span>
+<span><span class="co">## [49] evaluate_0.22           knitr_1.44              rlang_1.1.1            </span></span>
+<span><span class="co">## [52] glue_1.6.2              DBI_1.1.3               BiocManager_1.30.22    </span></span>
+<span><span class="co">## [55] jsonlite_1.8.7          R6_2.5.1                systemfonts_1.0.5      </span></span>
+<span><span class="co">## [58] fs_1.6.3                zlibbioc_1.47.0</span></span></code></pre>
 </div>
   </div>
 
@@ -560,7 +558,7 @@ service)</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
 </div>
 
       </footer>

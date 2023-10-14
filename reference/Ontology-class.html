@@ -21,7 +21,7 @@ Ontologies are stored as Ontology and Ontologies
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.25.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.29.1</span>
       </span>
     </div>
 
@@ -261,46 +261,39 @@ Ontologies are stored as Ontology and Ontologies
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co">## Get all ontolgies</span></span></span>
 <span class="r-in"><span><span class="va">ol</span> <span class="op">&lt;-</span> <span class="fu">Ontologies</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">ol</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Ontologies' with 278 entries</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    RXNO, SBO ... PROCO, VBO </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Ontologies' with 244 entries</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    AISM, AMPHX ... CPONT, CCF </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">as</span><span class="op">(</span><span class="va">ol</span>, <span class="st">"data.frame"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      Prefix Namespace                           Title</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> rxno   RXNO      rxno                            RXNO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> sbo     SBO       sbo        Systems Biology Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> scdo   SCDO      scdo    Sickle Cell Disease Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> aeo     AEO       aeo      Anatomical Entity Ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> afo     AFO       afo Allotrope Merged Ontology Suite</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> agro   AGRO      agro               Agronomy Ontology</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>              Prefix Namespace Title</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> aism           AISM      aism      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> amphx         AMPHX     amphx      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ado             ADO       ado      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> apo             APO       apo      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> agro           AGRO      agro      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> apollo_sv APOLLO_SV apollo_sv      </span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">ol</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 278</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 244</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Individual ontologies</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">go</span> <span class="op">&lt;-</span> <span class="va">ol</span><span class="op">[[</span><span class="st">"go"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span> </span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ontology: Gene Ontology (go)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   The Gene Ontology (GO) provides a framework and set of concepts for</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   describing the functions of gene products from all organisms.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-09-16 Updated: 2022-09-16 Version: 2022-07-01 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    50918 terms  68 properties  0 individuals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ontology:  (go)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded:  Updated: 2023-10-09 Version: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0 terms  0 properties  0 individuals</span>
 <span class="r-in"><span><span class="op">(</span><span class="va">efo</span> <span class="op">&lt;-</span> <span class="va">ol</span><span class="op">[[</span><span class="st">"efo"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Ontology: Experimental Factor Ontology (efo)  </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   The Experimental Factor Ontology (EFO) provides a systematic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   description of many experimental variables available in EBI databases,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   and for external projects such as the NHGRI GWAS catalogue. It combines</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   parts of several biological ontologies, such as anatomy, disease and</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   chemical compounds. The scope of EFO is to support the annotation,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   analysis and visualization of data handled by many groups at the EBI</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   and as the core ontology for OpenTargets.org</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded: 2022-08-26 Updated: 2022-08-26 Version: 3.45.0 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    36350 terms  221 properties  0 individuals</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> Ontology:  (efo)  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    Loaded:  Updated: 2023-10-09 Version: </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    0 terms  0 properties  0 individuals</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## some basic information</span></span></span>
 <span class="r-in"><span><span class="fu">olsVersion</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span><span class="fu">olsDesc</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms."</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span><span class="fu">olsTitle</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Gene Ontology"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
 <span class="r-in"><span><span class="fu">olsPrefix</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "GO"</span>
 <span class="r-in"><span><span class="fu">olsNamespace</span><span class="op">(</span><span class="va">go</span><span class="op">)</span></span></span>
@@ -338,7 +331,7 @@ Ontologies are stored as Ontology and Ontologies
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.9000.</p>
 </div>
 
       </footer></div>
