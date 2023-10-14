@@ -42,7 +42,7 @@ test_that("Ontology accessors", {
     expect_false(any(is.na(updated)))
     expect_identical(n, length(loaded))
     expect_identical(n, length(updated))
-    ## i <- which(names(status) == "go")
+    i <- which(names(status) == "go")
     ## expect_identical(ymd(olsLoaded(go)), loaded[i])
     expect_identical(olsLoaded(go), olsLoaded("GO"))
     expect_identical(olsLoaded(go), olsLoaded("go"))
