@@ -1,13 +1,3 @@
-setMethod("ontologyUrl", "character",
-          function(object)
-              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", object, "/"))
-
-setMethod("ontologyUrl", "Ontology",
-          function(object) {
-              nsp <- olsNamespace(object)
-              paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies/", nsp, "/")
-          })
-
 ## This will not always be the correct URI (see for example
 ## Orphaned/ORBO and https://github.com/EBISPOT/OLS/issues/35)
 setMethod("ontologyUri", "missing",
@@ -37,45 +27,10 @@ setMethod("ontologyUri", "Ontology",
               uri
           })
 
+
+
 .termId <- function(x) x@obo_id
 
-##' @title Makes an Ontology instance based on the response from
-##'     /api/ontologies/{ontology_id}
-##' @param x A valid onology prefix
-##' @return An object of class Ontology
-makeOntology <- function(x)
-    .Ontology(loaded = x$loaded,
-              updated = x$updated,
-              status = x$status,
-              message = x$message,
-              version = x$version,
-              numberOfTerms = x$numberOfTerms,
-              numberOfProperties = x$numberOfProperties,
-              numberOfIndividuals = x$numberOfIndividuals,
-              config = x$config)
-
-
-##' @title Makes an Ontologies instance based on the response from
-##'     api/ontologies @return
-##' @return An object of class Ontologies
-##' @param pagesize A numeric indicating the number of elements per
-##'     page (default in method is 150).
-makeOntologies <- function(pagesize = 150) {
-    x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=",
-                    pagesize))
-    warn_for_status(x)
-    cx <- content(x)
-    if (cx$page$totalElements > pagesize) {
-        pagesize <- cx$page$totalElements
-        x <- GET(paste0("http://www.ebi.ac.uk/ols/beta/api/ontologies?page=0&size=",
-                        pagesize))
-        warn_for_status(x)
-        cx <- content(x)
-    }
-    ans <- lapply(cx[["_embedded"]][[1]], makeOntology)
-    names(ans) <- sapply(ans, olsNamespace)
-    .Ontologies(x = ans)
-}
 
 ##' @title Makes a Term instance based on the response from
 ##'     /api/ontologies/{ontology}/terms/{iri}

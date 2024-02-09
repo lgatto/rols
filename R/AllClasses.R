@@ -1,7 +1,8 @@
 setClassUnion("NullOrChar", c("NULL", "character"))
 setClassUnion("NullOrList", c("NULL", "list"))
 
-## a param is [CV label, accession, name|synonym, value]
+############################################################
+## A param is [CV label, accession, name|synonym, value]
 .CVParam <- setClass("CVParam",
                      representation = representation(
                          label = "character",
@@ -12,7 +13,7 @@ setClassUnion("NullOrList", c("NULL", "list"))
                      contains = "Versioned",
                      prototype = prototype(
                          user = FALSE,
-                         new("Versioned", versions=c(CVParam="0.2.0"))),
+                         new("Versioned", versions = c(CVParam="0.2.0"))),
                      validity = function(object) {
                          msg <- validMsg(NULL, NULL)
                          if (object@user) {
@@ -34,19 +35,27 @@ setClassUnion("NullOrList", c("NULL", "list"))
                          if (is.null(msg)) TRUE else msg
                      })
 
-
+############################################################
+## A single ontology
 .Ontology <- setClass("Ontology",
-                      slots = c(loaded = "NullOrChar",
-                                updated = "NullOrChar",
-                                status = "NullOrChar",
-                                message = "NullOrChar",
-                                version = "NullOrChar",
-                                numberOfTerms = "integer",
-                                numberOfProperties = "integer",
-                                numberOfIndividuals = "integer",
-                                config = "list"
-                                ))
+                      slots = c(
+                          languages = "list",
+                          lang = "character",
+                          ontologyId = "character",
+                          loaded = "NullOrChar",
+                          updated = "NullOrChar",
+                          status = "NullOrChar",
+                          message = "NullOrChar",
+                          version = "NullOrChar",
+                          numberOfTerms = "integer",
+                          numberOfProperties = "integer",
+                          numberOfIndividuals = "integer",
+                          config = "list",
+                          links = "list"
+                      ))
 
+############################################################
+## A list of Ontology instances
 .Ontologies <- setClass("Ontologies", slots = c(x = "list"))
 
 .Term <- setClass("Term",

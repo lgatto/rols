@@ -3,24 +3,17 @@
 setMethod("Ontologies", "missing",
           function() makeOntologies())
 
-setMethod("Ontologies", "numeric",
-          function(object) makeOntologies(object))
-
 setMethod("Ontology", "character",
           function(object) {
+              ## make urls from ontologyId
               url <- ontologyUrl(object)
-              x <- GET(url)
-              stop_for_status(x)
-              cx <- content(x)
-              makeOntology(cx)
+              httr2:::check_request(request(url))
+              makeOntology(url)
           })
 
-setMethod("Ontology", "Ontology",
-          function(object) object)
 
 ##########################################
 ## show methods
-
 setMethod("show", "Ontology",
           function(object) {
               cat("Ontology: ", olsTitle(object),
@@ -70,21 +63,21 @@ setMethod("olsUpdated", "Ontology",
 setMethod("olsUpdated", "Ontologies",
           function(object) sapply(object@x, olsUpdated))
 
-setMethod("olsRoot", "character",
-          function(object) {
-              url <- ontologyUrl(object)
-              url <- paste0(url, "/terms/roots")
-              x <- GET(url)
-              stop_for_status(x)
-              cx <- content(x)
-              ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
-              names(ans) <- sapply(ans, termId)
-              Terms(x = ans)
-          })
-setMethod("olsRoot", "Ontology",
-          function(object) olsRoot(olsPrefix(object)))
-setMethod("olsRoot", "Ontologies",
-          function(object) lapply(object@x, olsRoot))
+## setMethod("olsRoot", "character",
+##           function(object) {
+##               url <- ontologyUrl(object)
+##               url <- paste0(url, "/terms/roots")
+##               x <- GET(url)
+##               stop_for_status(x)
+##               cx <- content(x)
+##               ans <- lapply(cx[["_embedded"]][[1]], makeTerm)
+##               names(ans) <- sapply(ans, termId)
+##               Terms(x = ans)
+##           })
+## setMethod("olsRoot", "Ontology",
+##           function(object) olsRoot(olsPrefix(object)))
+## setMethod("olsRoot", "Ontologies",
+##           function(object) lapply(object@x, olsRoot))
 
 setMethod("olsPrefix", "character",
           function(object) olsPrefix(Ontology(object)))
@@ -159,33 +152,34 @@ as.data.frame.Ontologies <- function(x) {
 setAs("Ontologies", "list",
       function(from) from@x)
 
-setMethod("all.equal", c("Ontologies", "Ontologies"),
-          function(target, current) {
-              msg <- Biobase::validMsg(NULL, NULL)
-              if (length(target) != length(current)) {
-                  msg <- Biobase::validMsg(msg, "The 2 Ontologies are of different lengths")
-              } else {
-                  tg <- target@x
-                  ct <- current@x
-                  if (any(sort(names(tg)) != sort(names(ct)))) {
-                      msg <- validMsg(msg, "Ontology names don't match")
-                  } else {
-                      ## reorder before comparing Ontolgy objects one
-                      ## by one
-                      tg <- tg[order(names(tg))]
-                      ct <- ct[order(names(ct))]
-                      for (i in seq_along(tg)) {
-                          eq <- all.equal(tg[[i]], ct[[i]])
-                          if (is.character(eq)) {
-                              eq <- paste0("Ontology '", names(tg)[i], "': ", eq)
-                              msg <- validMsg(msg, eq)
-                          }
-                      }
-                  }
-              }
-              if (is.null(msg)) return(TRUE)
-              else msg
-          })
+## ## Ontologies aren't names anymore (for now)
+## setMethod("all.equal", c("Ontologies", "Ontologies"),
+##           function(target, current) {
+##               msg <- Biobase::validMsg(NULL, NULL)
+##               if (length(target) != length(current)) {
+##                   msg <- Biobase::validMsg(msg, "The 2 Ontologies are of different lengths")
+##               } else {
+##                   tg <- target@x
+##                   ct <- current@x
+##                   if (any(sort(names(tg)) != sort(names(ct)))) {
+##                       msg <- validMsg(msg, "Ontology names don't match")
+##                   } else {
+##                       ## reorder before comparing Ontolgy objects one
+##                       ## by one
+##                       tg <- tg[order(names(tg))]
+##                       ct <- ct[order(names(ct))]
+##                       for (i in seq_along(tg)) {
+##                           eq <- all.equal(tg[[i]], ct[[i]])
+##                           if (is.character(eq)) {
+##                               eq <- paste0("Ontology '", names(tg)[i], "': ", eq)
+##                               msg <- validMsg(msg, eq)
+##                           }
+##                       }
+##                   }
+##               }
+##               if (is.null(msg)) return(TRUE)
+##               else msg
+##           })
 
 setMethod("all.equal", c("Ontology", "Ontology"),
           function(target, current) {
@@ -204,3 +198,65 @@ setMethod("all.equal", c("Ontology", "Ontology"),
               msg <- Biobase::validMsg(msg, all.equal(c1, c2))
               if (is.null(msg)) TRUE else msg
           })
+
+
+ontologyFromJson <- function(x) {
+    .Ontology(languages = x[["languages"]],
+              lang = x[["lang"]],
+              ontologyId = x[["ontologyId"]],
+              loaded = x[["loaded"]],
+              updated = x[["updated"]],
+              status = x[["status"]],
+              message = x[["message"]],
+              version = x[["version"]],
+              numberOfTerms = x[["numberOfTerms"]],
+              numberOfProperties = x[["numberOfProperties"]],
+              numberOfIndividuals = x[["numberOfIndividuals"]],
+              config = x[["config"]],
+              links = x[["_links"]])
+}
+
+##########################################
+## Helper functions
+
+##' @title Makes an Ontologies instance with all ontologies
+##'
+##' @return An object of class Ontologies, i.e. a list on Ontology
+##'     instances.
+##'
+##' @noRd
+makeOntologies <- function() {
+    url <- "https://www.ebi.ac.uk/ols4/api/ontologies/"
+    next_req <- function(resp, req) {
+        .next <- resp_body_json(resp)[["_links"]][["next"]]$href
+        if (is.null(.next))
+            return(NULL)
+        request(.next)
+    }
+    x <- lapply(
+        req_perform_iterative(
+            request(url),
+            next_req,
+            progress = TRUE),
+        function(resp) {
+            body <- resp_body_json(resp)
+            body[["_embedded"]][["ontologies"]]
+        }) |> unlist(recursive = FALSE)
+    .Ontologies(x = lapply(x, ontologyFromJson))
+}
+
+makeOntology <- function(url) {
+    request(url) |>
+        req_perform() |>
+        resp_body_json() |>
+        ontologyFromJson()
+}
+
+setMethod("ontologyUrl", "character",
+          function(object)
+              paste0("https://www.ebi.ac.uk/ols4/api/ontologies/",
+                     object, "/"))
+
+setMethod("ontologyUrl", "Ontology",
+          function(object)
+              ontologyUrl(olsNamespace(object)))
