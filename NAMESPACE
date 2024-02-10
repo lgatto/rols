@@ -1,7 +1,6 @@
 import(methods)
 import(utils)
 import(httr2)
-import(jsonlite)
 importFrom(Biobase, validMsg)
 importFrom(BiocGenerics, Ontology)
 importClassesFrom(Biobase, Versioned)

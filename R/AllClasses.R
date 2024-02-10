@@ -1,10 +1,11 @@
 setClassUnion("NullOrChar", c("NULL", "character"))
 setClassUnion("NullOrList", c("NULL", "list"))
+setClassUnion("NullOrLogical", c("NULL", "logical"))
 
 ############################################################
 ## A param is [CV label, accession, name|synonym, value]
 .CVParam <- setClass("CVParam",
-                     representation = representation(
+                     slots = c(
                          label = "character",
                          accession = "character",
                          name = "character",
@@ -60,22 +61,29 @@ setClassUnion("NullOrList", c("NULL", "list"))
 
 .Term <- setClass("Term",
                   slots = c(iri = "character",
-                            label = "character",
+                            lang = "character",
                             description = "NullOrList",
-                            annotation = "list",
-                            synonym = "NullOrList",
+                            synonyms = "NullOrList",
+                            annotation = "NullOrList",
+                            label = "character",
                             ontology_name = "character",
                             ontology_prefix = "character",
                             ontology_iri = "character",
                             is_obsolete = "logical",
+                            term_replaced_by = "NullOrChar",
                             is_defining_ontology = "logical",
                             has_children = "logical",
                             is_root = "logical",
-                            short_form = "character",
+                            short_form = "NullOrChar",
                             obo_id = "NullOrChar",
+                            in_subset = "NullOrList",
+                            obo_definition_citation = "NullOrList",
+                            obo_xref  = "NullOrList",
+                            obo_synonym = "NullOrChar",
+                            is_preferred_root = "logical",
                             links = "list"))
 
-Terms <- setClass("Terms", slots = c(x = "list"))
+.Terms <- setClass("Terms", slots = c(x = "list"))
 
 .OlsSearch <- setClass("OlsSearch",
                        slots = c(q = "character",

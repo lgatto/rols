@@ -1,7 +1,7 @@
 ##########################################
 ## Constructors
 setMethod("Ontologies", "missing",
-          function() makeOntologies())
+          function(object) makeOntologies())
 
 setMethod("Ontology", "character",
           function(object) {
@@ -227,21 +227,14 @@ ontologyFromJson <- function(x) {
 ##' @noRd
 makeOntologies <- function() {
     url <- "https://www.ebi.ac.uk/ols4/api/ontologies/"
-    next_req <- function(resp, req) {
-        .next <- resp_body_json(resp)[["_links"]][["next"]]$href
-        if (is.null(.next))
-            return(NULL)
-        request(.next)
-    }
     x <- lapply(
         req_perform_iterative(
             request(url),
             next_req,
             progress = TRUE),
-        function(resp) {
-            body <- resp_body_json(resp)
-            body[["_embedded"]][["ontologies"]]
-        }) |> unlist(recursive = FALSE)
+        resp_embedded,
+        what = "ontologies") |>
+        unlist(recursive = FALSE)
     .Ontologies(x = lapply(x, ontologyFromJson))
 }
 
@@ -255,8 +248,7 @@ makeOntology <- function(url) {
 setMethod("ontologyUrl", "character",
           function(object)
               paste0("https://www.ebi.ac.uk/ols4/api/ontologies/",
-                     object, "/"))
+                     object))
 
 setMethod("ontologyUrl", "Ontology",
-          function(object)
-              ontologyUrl(olsNamespace(object)))
+          function(object) object@links$self$href)

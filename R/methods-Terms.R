@@ -1,17 +1,54 @@
 ##########################################
 ## Constructors
 
+## Using the ontologyId
+setMethod("Terms", "character",
+          function(x, pagesize = 1000)
+              makeTerms(x, pagesize))
+
+## Using an Ontology instance
+setMethod("Terms", "Ontology",
+          function(x, pagesize = 1000)
+              makeTerms(x, pagesize))
+
+
+##' @title Constructs the query for all term from a given ontology
+##'
+##' @param oid `character(1)` with an ontologyIf or an `Ontology`
+##'     instance.
+##'
+##' @param pagesize `numerci(1)` indicating the number of results per
+##'     page to return. Default is `1000`.
+##'
+##' @return An object of class Terms
+##'
+makeTerms <- function(oid, pagesize) {
+    ont <- Ontology(oid)
+    url <- paste0(ont@links$terms$href)
+    ## url <- paste(ontologyUrl(ont), "terms", sep = "/")
+    url <- paste0(url, "?&size=", as.integer(pagesize))
+    x <- lapply(
+        req_perform_iterative(
+            request(url),
+            next_req,
+            progress = TRUE),
+        resp_embedded,
+        what = "terms") |>
+        unlist(recursive = FALSE)
+    ans <- lapply(x, termFromJson)
+    names(ans) <- sapply(ans, termId)
+    .Terms(x = ans)
+}
+
 ## These methods query an Ontology (or its prefix) for all or one term
-setMethod("terms", "character",
-          function(x, ...) .terms(x, ...))
-setMethod("terms", "Ontology",
-          function(x, ...) .terms(olsNamespace(x), ...))
-
-setMethod("term", c("character", "character"),
-          function(object, id, ...) .term(object, id, ...))
-setMethod("term", c("Ontology", "character"),
-          function(object, id,...) .term(object, id, ...))
-
+## setMethod("terms", "character",
+##           function(x, ...) .terms(x, ...))
+## setMethod("terms", "Ontology",
+##           function(x, ...) .terms(olsNamespace(x), ...))
+## setMethod("term", c("character", "character"),
+##           function(object, id, ...) .term(object, id, ...))
+## setMethod("term", c("Ontology", "character"),
+##           function(object, id,...) .term(object, id, ...))
 
 
 partOf <- function(id) {
@@ -193,10 +230,9 @@ setMethod("show", "Terms",
 ## Accessors
 
 setMethod("termSynonym", "Term",
-          function(object) unlist(object@synonym))
+          function(object) unlist(object@synonyms))
 setMethod("termSynonym", "Terms",
-          function(object) sapply(object@x, termSynonym))
-
+          function(object) lapply(object@x, termSynonym))
 
 setMethod("isObsolete", "Term",
           function(object) object@is_obsolete)
@@ -243,7 +279,7 @@ setMethod("termNamespace", "Terms",
 
 setMethod("length", "Terms", function(x) length(x@x))
 
-setMethod("unique", "Terms", function(x) x[!duplicated(names(x@x))])
+## setMethod("unique", "Terms", function(x) x[!duplicated(names(x@x))])
 
 setMethod("[", "Terms",
           function(x, i, j="missing", drop="missing") Terms(x = x@x[i]))
@@ -333,3 +369,30 @@ setAs("Terms", "data.frame",
 
 as.Terms.data.frame <- function(x)
     as(x, "data.frame")
+
+#############################################
+## utils
+termFromJson <- function(x) {
+    .Term(iri = x[["iri"]],
+          lang = x[["lang"]],
+          description = x[["description"]],
+          synonyms = x[["synonyms"]],
+          annotation = x[["annotation"]],
+          label = x[["label"]],
+          ontology_name = x[["ontology_name"]],
+          ontology_prefix = x[["ontology_prefix"]],
+          ontology_iri = x[["ontology_iri"]],
+          is_obsolete = x[["is_obsolete"]],
+          term_replaced_by = x[["term_replaced_by"]],
+          is_defining_ontology = x[["is_defining_ontology"]],
+          has_children = x[["has_children"]],
+          is_root = x[["is_root"]],
+          short_form = x[["short_form"]],
+          obo_id = x[["obo_id"]],
+          in_subset = x[["in_subset"]],
+          obo_definition_citation = x[["obo_definition_citation"]],
+          obo_xref = x[["obo_xref"]],
+          obo_synonym = x[["obo_synonym"]],
+          is_preferred_root = x[["is_preferred_root"]],
+          links = x[["_links"]])
+}

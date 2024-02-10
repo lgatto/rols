@@ -13,7 +13,7 @@ Description: The rols package is an interface to the Ontology Lookup
              Service (OLS) to access and query hundred of ontolgies
              directly from R.
 Depends: methods
-Imports: httr2, jsonlite, utils, Biobase,
+Imports: httr2, utils, Biobase,
          BiocGenerics (>= 0.23.1)
 Suggests: GO.db, knitr (>= 1.1.0), BiocStyle (>= 2.5.19),
           testthat, lubridate, DT, rmarkdown,
@@ -21,7 +21,7 @@ biocViews: ImmunoOncology, Software, Annotation, MassSpectrometry, GO
 VignetteBuilder: knitr
 License: GPL-2
 Encoding: UTF-8
-URL: http://lgatto.github.com/rols/
+URL: http://lgatto.github.io/rols/
 BugReports: https://github.com/lgatto/rols/issues
 Collate: AllClasses.R AllGenerics.R utils.R cvparam.R
          methods-OlsSearch.R methods-Ontologies.R methods-Terms.R
