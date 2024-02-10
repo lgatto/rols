@@ -23,7 +23,8 @@ License: GPL-2
 Encoding: UTF-8
 URL: http://lgatto.github.io/rols/
 BugReports: https://github.com/lgatto/rols/issues
-Collate: AllClasses.R AllGenerics.R utils.R cvparam.R
-         methods-OlsSearch.R methods-Ontologies.R methods-Terms.R
-         methods-Properties.R zzz.R
+Collate: AllClasses.R AllGenerics.R utils.R
+         Ontologies.R Terms.R
+         cvparam.R OlsSearch.R
+         Properties.R zzz.R
 RoxygenNote: 6.1.0

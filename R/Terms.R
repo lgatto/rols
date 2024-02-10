@@ -178,37 +178,19 @@ children <- function(object) {
     if (!object@has_children)
         return(NULL)
     url <- termLinks(object)[["children"]]
-    x <- lapply(
-        req_perform_iterative(
-            request(url),
-            next_req,
-            max_reqs = Inf,
-            progress = TRUE),
-        resp_embedded,
-        what = "terms") |>
-        unlist(recursive = FALSE)
-    ans <- lapply(x, termFromJson)
+    ans <- lapply(ols_requests(url, "terms"),
+                  termFromJson)
     names(ans) <- sapply(ans, termId)
     .Terms(x = ans)
 }
-
-
 
 parents <- function(object) {
     stopifnot(inherits(object, "Term"))
     if (object@is_root)
         return(NULL)
     url <- termLinks(object)[["parents"]]
-    x <- lapply(
-        req_perform_iterative(
-            request(url),
-            next_req,
-            max_reqs = Inf,
-            progress = TRUE),
-        resp_embedded,
-        what = "terms") |>
-        unlist(recursive = FALSE)
-    ans <- lapply(x, termFromJson)
+    ans <- lapply(ols_requests(url, "terms"),
+                  termFromJson)
     names(ans) <- sapply(ans, termId)
     .Terms(x = ans)
 }
@@ -218,16 +200,8 @@ ancestors <- function(object) {
     if (object@is_root)
         return(NULL)
     url <- termLinks(object)[["ancestors"]]
-    x <- lapply(
-        req_perform_iterative(
-            request(url),
-            next_req,
-            max_reqs = Inf,
-            progress = TRUE),
-        resp_embedded,
-        what = "terms") |>
-        unlist(recursive = FALSE)
-    ans <- lapply(x, termFromJson)
+    ans <- lapply(ols_requests(url, "terms"),
+                  termFromJson)
     names(ans) <- sapply(ans, termId)
     .Terms(x = ans)
 }
@@ -237,16 +211,8 @@ descendants <- function(object) {
     if (!object@has_children)
         return(NULL)
     url <- termLinks(object)[["descendants"]]
-    x <- lapply(
-        req_perform_iterative(
-            request(url),
-            next_req,
-            max_reqs = Inf,
-            progress = TRUE),
-        resp_embedded,
-        what = "terms") |>
-        unlist(recursive = FALSE)
-    ans <- lapply(x, termFromJson)
+    ans <- lapply(ols_requests(url, "terms"),
+                  termFromJson)
     names(ans) <- sapply(ans, termId)
     .Terms(x = ans)
 }
@@ -452,17 +418,8 @@ makeTerms <- function(oid, pagesize, obsolete) {
         url <- paste0(url, "obsoletes=",
                       ifelse(obsolete, "true", "false"))
     url <- paste0(url, "&size=", as.integer(pagesize))
-
-    x <- lapply(
-        req_perform_iterative(
-            request(url),
-            next_req,
-            max_reqs = Inf,
-            progress = TRUE),
-        resp_embedded,
-        what = "terms") |>
-        unlist(recursive = FALSE)
-    ans <- lapply(x, termFromJson)
+    ans <- lapply(ols_requests(url, "terms"),
+                  termFromJson)
     names(ans) <- sapply(ans, termId)
     .Terms(x = ans)
 }

@@ -447,16 +447,8 @@ setMethod("all.equal", c("Ontology", "Ontology"),
 ## Helper functions
 makeOntologies <- function() {
     url <- "https://www.ebi.ac.uk/ols4/api/ontologies/"
-    x <- lapply(
-        req_perform_iterative(
-            request(url),
-            next_req,
-            max_reqs = Inf,
-            progress = TRUE),
-        resp_embedded,
-        what = "ontologies") |>
-        unlist(recursive = FALSE)
-    .Ontologies(x = lapply(x, ontologyFromJson))
+    .Ontologies(x = lapply(ols_requests(url, "ontologies"),
+                           ontologyFromJson))
 }
 
 makeOntology <- function(url) {
