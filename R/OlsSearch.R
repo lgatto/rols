@@ -1,3 +1,22 @@
+.OlsSearch <- setClass("OlsSearch",
+                       slots = c(q = "character",
+                                 ontology = "character",
+                                 type = "character",
+                                 slim = "character",
+                                 fieldList = "character",
+                                 queryFields = "character",
+                                 exact = "logical",
+                                 groupField = "logical",
+                                 obsoletes = "logical",
+                                 local = "character",
+                                 childrenOf = "character",
+                                 rows = "integer",
+                                 start = "integer",
+                                 url = "character",
+                                 numFound = "integer",
+                                 response = "data.frame"))
+
+
 emptyQueryDataFrame <-
     structure(list(id = character(0), iri = character(0),
                    short_form = character(0), obo_id = character(0),
@@ -47,9 +66,9 @@ OlsSearch <- function(q,
     ## Make actual query, with rows = 1 to get the total number of
     ## results found
     url0 <- sub("rows=[0-9]+", "rows=1", url)
-    x <- GET(url)
-    stop_for_status(x)
-    cx <- content(x, as = "raw")
+    x <- httr::GET(url)
+    httr::stop_for_status(x)
+    cx <- httr::content(x, as = "raw")
     txt <- rawToChar(cx)
     ans <- jsonlite::fromJSON(txt)
     numFound <- ans[["response"]][["numFound"]]
@@ -67,9 +86,9 @@ OlsSearch <- function(q,
 olsSearch <- function(object, all = FALSE) {
     if (all)
         x <- allRows(x)
-    x <- GET(object@url)
-    stop_for_status(x)
-    cx <- content(x, as = "raw")
+    x <- httr::GET(object@url)
+    httr::stop_for_status(x)
+    cx <- httr::content(x, as = "raw")
     txt <- rawToChar(cx)
     ans <- jsonlite::fromJSON(txt)
     if (!length(ans[['response']][['docs']])) {

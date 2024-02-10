@@ -8,6 +8,8 @@
 \alias{Terms}
 \alias{class:Terms}
 \alias{Terms-class}
+\alias{Terms,Ontology-method}
+\alias{Terms,character-method}
 
 \alias{termLabel}
 \alias{termLabel,Term-method}
@@ -32,6 +34,8 @@
 \alias{termPrefix}
 \alias{termPrefix,Term-method}
 \alias{termPrefix,Terms-method}
+
+\alias{olsLinks,Term-method}
 
 \alias{show,Term-method}
 \alias{show,Terms-method}
@@ -82,13 +86,13 @@
 
   The \code{Term} class describes an ontology term. A set of terms are
   instantiated as a \code{Terms} class.
-  
+
 }
 
 \section{Objects from the Class}{
-  
-  Objects can be created using the \code{term} and \code{terms}
-  functions. The latter is used with an object of class
+
+  Objects can be created using the \code{Term} and \code{Terms}
+  constructers. The latter is used with an object of class
   \code{\linkS4class{Ontology}} or a \code{character} describing a valid
   ontology prefix to download and instantiate all terms of an ontology
   of interest. The former takes an \code{Ontology} object (or an
@@ -102,7 +106,7 @@
 
   \code{Terms} instances can be subset with \code{[} and \code{[[} and
   iterated over with \code{lapply}.
-  
+
 }
 
 \section{Slots}{
@@ -130,13 +134,13 @@
 
     \item{term}{\code{signature(object = "Ontology", id = "character")}:
       ... }
-    
+
     \item{terms}{\code{signature(x = "Ontology", pagesize = "numeric")}: ... }
-    
+
     \item{termDesc}{\code{signature(object = "Term")}: ... }
-    
+
     \item{termLabel}{\code{signature(object = "Term")}: ... }
-    
+
     \item{termPrefix}{\code{signature(object = "Term")}: ... }
 
     \item{termSynonym}{\code{signature(object = "Term")}: ... }
@@ -148,7 +152,7 @@
     \item{isRoot}{\code{signature(object = "Term")}: ... }
 
     \item{isObsolete}{\code{signature(object = "Term")}: ... }
-    
+
     \item{termId}{\code{signature(object = "Term")}: ... }
 
     \item{children}{\code{signature(object = "Term")}: Returns a new
@@ -158,11 +162,11 @@
     \item{parents}{\code{signature(object = "Term")}: Returns a new
       \code{Terms} instance with the \code{object}'s
       parents. \code{NULL} if there are not parents.}
-    
+
     \item{ancestors}{\code{signature(object = "Term")}: Returns a new
       \code{Terms} instance with the \code{object}'s
       ancestors. \code{NULL} if there are not ancestors. }
-    
+
     \item{descendants}{\code{signature(object = "Term")}: Returns a new
       \code{Terms} instance with the \code{object}'s
       descendants. \code{NULL} if there are not descendants. }
@@ -174,17 +178,17 @@
     \item{derivesFrom}{\code{signature(object = "Term")}: Returns a new
       \code{Terms} instance with terms the \code{object}'s is derived
       from. \code{NULL} if none. }
-    
+
     \item{show}{\code{signature(object = "Term")}: ... }
 
     \item{show}{\code{signature(object = "Terms")}: ... }
 
     \item{all.equal}{\code{signature(target = "Term", current =
-	"Term")}: ... }
-    
+        "Term")}: ... }
+
     \item{all.equal}{\code{signature(target = "Terms", current =
-	"Terms")}: ... }
-    
+        "Terms")}: ... }
+
     \item{length}{\code{signature(object = "Terms")}: returns the number
       of ontolgies described by the \code{Terms} object. }
 
@@ -202,9 +206,9 @@
       root node, the first synonym only, their iri and whether they are
       defining the ontology. Any missing value will be reported as
       \code{NA}. }
-    
+
   }
-  
+
 }
 
 \author{

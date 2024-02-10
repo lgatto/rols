@@ -1,6 +1,8 @@
 import(methods)
 import(utils)
 import(httr2)
+import(httr)
+import(jsonlite)
 importFrom(Biobase, validMsg)
 importFrom(BiocGenerics, Ontology)
 importClassesFrom(Biobase, Versioned)
@@ -8,8 +10,8 @@ importClassesFrom(Biobase, Versioned)
 exportClasses(CVParam,
               Term, Terms,
               Ontology, Ontologies,
-              OlsSearch,
-              Property, Properties)
+              OlsSearch)
+              ## Property, Properties)
 
 S3method(as.data.frame, OlsSearch)
 
@@ -20,12 +22,15 @@ exportMethods(show,
               unique,
               ## Ontology/ies
               Ontology, Ontologies,
+              Terms,
+              ## Term,
               olsRoot,
               olsPrefix,
               olsDesc,
               olsTitle,
               olsStatus,
               olsNamespace,
+              olsLinks,
               ## Term/s
               all.equal,
               termLabel,
@@ -34,9 +39,9 @@ exportMethods(show,
               termOntology,
               termDesc,
               term, terms,
-              termId,
+              termId)
               ## Property/ies
-              properties)
+              ## properties)
 
 
 export(charIsCVParam, CVParam,
@@ -50,7 +55,7 @@ export(charIsCVParam, CVParam,
        termSynonym,
        children, parents,
        ancestors, descendants,
-       derivesFrom, partOf,
+       ## derivesFrom, partOf,
        as.Term.data.frame,
        as.Terms.data.frame,
        ## Search/select

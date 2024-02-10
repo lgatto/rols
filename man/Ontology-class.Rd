@@ -59,6 +59,9 @@
 \alias{olsUpdated,character-method}
 \alias{olsUpdated,Ontologies-method}
 
+\alias{olsLinks}
+\alias{olsLinks,Ontology-method}
+
 \alias{show,Ontology-method}
 \alias{show,Ontologies-method}
 
@@ -77,31 +80,32 @@
 
 \description{
 
-  Ontologies are stored as \code{Ontology} and \code{Ontologies}
-  instances, and contain various information as provided by the Ontology
-  Lookup Service. 
+  The rols package provides an interface to PRIDE's Ontology Lookup
+  Servive (OLS) and can be used to query one or multiple ontologies,
+  stored as \code{Ontology} and \code{Ontologies} instances, and
+  containing various information as provided by OLS.
 }
 
 \details{
-  
+
   Ontologies are referred to by their namespace, which is lower case:
   the Gene Onology is "go", the Mass spectrometry ontology is "ms",
   etc. The ontologies also have prefixes, which are upper case: the Gene
-  Onology prefix "GO", the Mass spectrometry ontology prefix "MS". The
-  only exception to this rule is the Drosophila Phenotype Ontology,
-  whose namespace and prefix are "dpo" and "FBcv" respectively. This is
-  particularly confusing as the FlyBase Controlled Vocabulary has "fbcv"
-  and "FBcv" as namespace and prefix respectively.
+  Onology prefix "GO", the Mass spectrometry ontology prefix "MS". One
+  exception to this rule is the Drosophila Phenotype Ontology, whose
+  namespace and prefix are "dpo" and "FBcv" respectively (there might be
+  more). This is particularly confusing as the FlyBase Controlled
+  Vocabulary has "fbcv" and "FBcv" as namespace and prefix respectively.
 
   When using a character to initialise an ontology or query a term,
-  "fbcv" (this is case insensitive) will refer to the the FlyBase Controlled
-  Vocabulary. The the Drosophila Phenotype Ontology will have to be
-  referred as "dpo" (also case insensitive).
+  "fbcv" (this is case insensitive) will refer to the the FlyBase
+  Controlled Vocabulary. The the Drosophila Phenotype Ontology will have
+  to be referred as "dpo" (also case insensitive).
 
 }
 
 \section{Objects from the Class}{
-  
+
   Objects can be created in multiple ways. The \code{Ontologies}
   function will initialise all available ontolgies as an
   \code{Ontologies} object, while a call to \code{Ontology} with an
@@ -122,34 +126,34 @@
 \section{Slots}{
 
   \describe{
-    
+
     \item{\code{loaded}:}{Object of class \code{NULL} or
       \code{character} containing the date the ontology was loaded on
       the backend side. Accessed with the \code{olsLoaded} method.}
-    
+
     \item{\code{updated}:}{Object of class \code{NULL} or
       \code{character} containing the date the ontology was last updated
       on the backend side. Accessed with the \code{olsUpdated}
       method.}
-   
+
     \item{\code{status}:}{Object of class \code{NULL} or
       \code{character} documenting the status of the ontology on the
       backend side. For example \code{"LOADED"}, \code{"FAILED"} or
       \code{"NOTLOADED"}. Accessed with the \code{olsStatus} method.}
-    
+
     \item{\code{message}:}{Object of class \code{NULL} or
       \code{character} documentating the status of the ontology on the
       backend side.  }
-    
+
     \item{\code{version}:}{Object of class \code{NULL} or
       \code{character} documenting the version of the ontology.  Note
       that there is also a \code{version} field in the \code{config}
       slot below. Use \code{olsVersion} to access the appropriate
       date. }
-    
+
     \item{\code{numberOfTerms}:}{Object of class \code{"integer"}
       documenting the number of terms available in the ontology. }
-    
+
     \item{\code{numberOfProperties}:}{Object of class \code{"integer"}
       documenting the number of properties available in the ontology. }
 
@@ -158,7 +162,7 @@
 
     \item{\code{config}:}{Object of class \code{"list"} containing
       further ontology configuration and metadata. }
-    
+
   }
 }
 
@@ -169,23 +173,23 @@
 
     \item{Ontology}{\code{signature(object = "character")}:  }
 
-    
+
     \item{olsDesc}{\code{signature(object = "Ontology")}: returns the
       description of an ontology. Also works for \code{Ontologies}
       objects and \code{character} describing an ontology namespace or
       prefix (see Details). }
-    
+
     \item{olsPrefix}{\code{signature(object = "Ontology")}: retruns the
       prefix of an ontology. Also works for \code{Ontologies} objects
       describing an ontology namespace or prefix (see Details). }
-    
+
     \item{olsRoot}{\code{signature(object = "Ontology")}: returns the
       root of the ontology as a \code{\linkS4class{Terms}}
       instance. \code{object} could also be a \code{character} with an
       ontology namespace or prefix (see Details). If \code{object} is of
       class \code{Ontologies}, it returns a \code{list} of
       \code{\linkS4class{Terms}}. }
-    
+
     \item{olsVersion}{\code{signature(object = "Ontology")}: returns the
       version of the ontology. Also works with an ontology namespace or
       prefix (see Details) as a \code{character} or an object of class
@@ -206,16 +210,11 @@
       containing the ontology namespace or prefix (see Details) or an
       object of class \code{Ontologies}.}
 
-    \item{olsStatus}{\code{signature(object = "Ontology")}: returns the
-      namespace of the ontology. Also works with a \code{character}
-      containing the ontology namespace or prefix (see Details) or an
-      object of class \code{Ontologies}.}
-
     \item{olsTitle}{\code{signature(object = "Ontology")}: returns the
       title of an ontology. Also works with a \code{character}
       containing the ontology namespace or prefix (see Details) or an
       object of class \code{Ontologies}.}
-    
+
     \item{show}{\code{signature(object = "Ontology")}: prints a short
       summary of \code{Ontology} and \code{Ontologies} objects. }
 
@@ -223,13 +222,13 @@
       number of ontolgies described by the \code{Ontologies} object. }
 
     \item{all.equal}{\code{signature(target = "Ontologies", current =
-	"Ontologies")}: ... }    
-    
+        "Ontologies")}: ... }
+
   }
 }
 
 \author{
-  Laurent Gatto <lg390@cam.ac.uk>
+  Laurent Gatto <laurent.gatto@uclouvain.be>
 }
 
 \examples{
@@ -241,8 +240,10 @@ head(as(ol, "data.frame"))
 length(ol)
 
 ## Individual ontologies
-(go <- ol[["go"]]) 
 (efo <- ol[["efo"]])
+(go <- ol[["go"]])
+(go2 <- Ontology("go"))
+identical(go, go2)
 
 ## some basic information
 olsVersion(go)
@@ -251,10 +252,7 @@ olsTitle(go)
 olsPrefix(go)
 olsNamespace(go)
 
-olsRoot(go)
-
-## works with Ontology objects or their namespace
-identical(olsRoot("go"), olsRoot(go))
+## with Ontology objects or their namespace
 identical(olsVersion("go"), olsVersion(go))
 
 ## Directly initialise a single ontology

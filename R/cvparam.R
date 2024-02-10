@@ -1,3 +1,38 @@
+############################################################
+## A param is [CV label, accession, name|synonym, value]
+.CVParam <- setClass("CVParam",
+                     slots = c(
+                         label = "character",
+                         accession = "character",
+                         name = "character",
+                         value = "character",
+                         user = "logical"),
+                     contains = "Versioned",
+                     prototype = prototype(
+                         user = FALSE,
+                         new("Versioned", versions = c(CVParam="0.2.0"))),
+                     validity = function(object) {
+                         msg <- validMsg(NULL, NULL)
+                         if (object@user) {
+                             if (!all(c(object@label, object@accession) == ""))
+                                 msg <- "Label and accession must be empty in UserParams."
+                         } else {
+                             x <- c(object@label, object@accession,
+                                    object@name, object@value) == ""
+                             if (!all(x)) {
+                                 ._term <- term(object@label, object@accession)
+                                 ._label <- termLabel(._term)
+                                 ._synonyms <- termSynonym(._term)
+                                 if (!(object@name %in% c(._label, ._synonyms)))
+                                     msg <- paste0("CVParam accession and name/synomyms do not match. Got [",
+                                                   paste(c(._label, ._synonyms), collapse = ", "),
+                                                   "], expected '", object@name, "'.")
+                             }
+                         }
+                         if (is.null(msg)) TRUE else msg
+                     })
+
+
 ## trim leading and trailing whitespace
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 
@@ -9,7 +44,7 @@ CVParam <- function(label,
     if (missing(label)) {
         ## a User param
         ans <- new("CVParam", name = name, user = TRUE)
-    } else {    
+    } else {
         ## a CV param
         if (missing(name) & missing(accession)) {
             stop("You need to provide at least one of 'name' or 'accession'")
@@ -24,15 +59,15 @@ CVParam <- function(label,
             resp <- olsSearch(resp)
             accession <- resp@response$obo_id
         }
-    
+
         ans <- new("CVParam", label = label, name = name, accession = accession)
     }
     if (!missing(value))
         ans@value <- value
-  
+
     if (validObject(ans))
         return(ans)
-} 
+}
 
 setAs("CVParam", "character",
       function(from, to = "character") {
@@ -113,7 +148,7 @@ as.character.CVParam <- function(x, ...) as(x, "character")
         if (x[2] == "" | !grepl("[A-Za-z]", x[1])) return(FALSE)
         acc <- strsplit(x[2], ":")[[1]]
         if (length(acc) != 2) return(FALSE)
-        if (acc[1] != x[1]) return(FALSE)        
+        if (acc[1] != x[1]) return(FALSE)
     } else {
         if (x[2] != "") return(FALSE)
         ## User param: 3 and 4 are present
@@ -134,7 +169,7 @@ notvalidCVchars<- c("[ , , , ]", "[, , , ]",
                     "[MS, AB:123, , ]",
                     "[, , foo, ]", "[, , , bar]",
                     "[foo, , , ]", "[, bar, , ]",
-                    "[, foo, bar, ]",                          
+                    "[, foo, bar, ]",
                     "[MS, , , bar]", "[MS, , foo, ]")
 
 

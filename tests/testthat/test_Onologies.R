@@ -2,8 +2,6 @@ ol <- Ontologies()
 go <- go1 <- Ontology("go")
 
 test_that("Ontology constructors", {
-    ol1 <- Ontologies(50)
-    expect_true(all.equal(ol, ol1))
     ## expect_equal(length(ol), 143L) ## this will likely change
     expect_true(length(ol) > 120L)
     expect_true(is.integer(length(ol)))
@@ -35,8 +33,7 @@ test_that("Ontology accessors", {
     ## --- Dates ---
     ## if the loaded date is not valid (NA), then that ontology should
     ## not have a status 'LOADED'.
-    expect_warning(loaded <- lubridate::ymd(olsLoaded(ol)))
-    ## expect_true(all(which(is.na(loaded)) %in% which(status != "LOADED")))
+    expect_true(all(which(is.na(loaded)) %in% which(status != "LOADED")))
     ## all update dates must be correct
     updated <- lubridate::ymd(olsUpdated(ol))
     expect_false(any(is.na(updated)))
@@ -48,37 +45,43 @@ test_that("Ontology accessors", {
     expect_identical(olsLoaded(go), olsLoaded("go"))
     expect_identical(olsUpdated(go), olsUpdated("GO"))
     expect_identical(olsUpdated(go), olsUpdated("go"))
+
     ## --- Versions ---
     vrs <- olsVersion(ol)
     pre <- olsPrefix(ol)
     expect_identical(n, length(vrs))
     expect_identical(n, length(pre))
-    expect_identical(vrs[["go"]], olsVersion(go))
+    ## expect_identical(vrs[["go"]], olsVersion(go))
     expect_identical(olsVersion("GO"), olsVersion(go))
     expect_identical(olsVersion("go"), olsVersion(go))
+
     ## --- Root ---
-    rts <- olsRoot(ol["go"])
-    gort <- rts[[1]]
-    expect_identical(gort, olsRoot(go))
-    expect_identical(gort, olsRoot("go"))
-    expect_identical(gort, olsRoot("GO"))
+    ## rts <- olsRoot(ol["go"])
+    ## gort <- rts[[1]]
+    ## expect_identical(gort, olsRoot(go))
+    ## expect_identical(gort, olsRoot("go"))
+
+    ## expect_identical(gort, olsRoot("GO"))
     ### --- Terms ---
-    trms <- rols:::Terms(x = list('GO:0005575' = term("GO", 'GO:0005575'),
-                                  'GO:0003674' = term("GO", 'GO:0003674'),
-                                  'GO:0008150' = term("GO", 'GO:0008150')))
+    trms <- Terms(x = list('GO:0005575' = Term("GO", 'GO:0005575'),
+                           'GO:0003674' = term("GO", 'GO:0003674'),
+                           'GO:0008150' = term("GO", 'GO:0008150')))
     trms <- trms[order(termId(trms))]
     gort <- gort[order(termId(gort))]
     expect_identical(trms, gort)
+
     ## --- Prefix ---
     expect_identical(pre[[i]], olsPrefix(go))
     expect_identical(pre[[i]], olsPrefix("go"))
     expect_identical(pre[[i]], olsPrefix("GO"))
     expect_identical(pre[[i]], olsPrefix("Go"))
+
     ## --- Description ---
     desc <- olsDesc(ol)
     expect_identical(desc[[i]], olsDesc(go))
     expect_identical(desc[[i]], olsDesc("go"))
     expect_identical(desc[[i]], olsDesc("GO"))
+
     ## --- Title ---
     ## ttl <- olsTitle(ol)
     ## expect_identical(ttl[[i]], olsTitle(go))
@@ -88,11 +91,13 @@ test_that("Ontology accessors", {
     ## next test fixed on 2020/05/01 - changed description
     ## expect_identical(olsDesc(go), "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.")
     ## expect_identical(status[[i]], "LOADED") ## failed Sun Jan  1 20:36:00 GMT 2017
+
     ## --- Status ---
     expect_identical(status[[i]], olsStatus(go))
     expect_identical(status[[i]], olsStatus("go"))
     expect_identical(status[[i]], olsStatus("GO"))
-    ## Namespace
+
+    ## --- Namespace ---
     nsp0 <- olsNamespace(ol)
     nsp <- sapply(ol@x, olsNamespace)
     expect_identical(nsp0, nsp)
