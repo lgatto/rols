@@ -1,5 +1,11 @@
 ##' @title Term Properties
 ##'
+##' @aliases Property
+##' @aliases Properties Properties,character Properties,Ontology
+##' @aliases Properties,Term Properties,Terms
+##' @aliases Properties,length
+##'
+##'
 ##' @name Properties
 ##'
 ##' @description
@@ -30,13 +36,17 @@ NULL
 ##########################################
 ## Constructors
 ##' @export
+##' @rdname Properties
+##'
+##' @param object First input object.
 setMethod("Properties", "Ontology",
-          function(object, ...)
+          function(object)
               Properties(olsNamespace(object)))
 
 ##' @export
+##' @rdname Properties
 setMethod("Properties", "character",
-          function(object, ...) {
+          function(object) {
               url <-
                   paste0("http://www.ebi.ac.uk/ols4/api/ontologies/",
                          object, "/properties")
@@ -46,8 +56,9 @@ setMethod("Properties", "character",
           })
 
 ##' @export
+##' @rdname Properties
 setMethod("Properties", "Term",
-          function(object, ...) {
+          function(object) {
               urls <- getPropertyLinks(object)
               if (length(urls) == 0) {
                   message("No properties for term ", termId(object))
@@ -60,9 +71,10 @@ setMethod("Properties", "Term",
               .Properties(x = ans)
           })
 ##' @export
+##' @rdname Properties
 setMethod("Properties", "Terms",
-          function(object, ...) {
-              ans <- lapply(object@x, Properties, ...)
+          function(object) {
+              ans <- lapply(object@x, Properties)
               ans <- unlist(lapply(ans, "slot", "x"),
                             use.names = FALSE)
               .Properties(x = ans)
@@ -71,6 +83,7 @@ setMethod("Properties", "Terms",
 ##########################################
 ## show methods
 ##' @export
+##' @rdname Properties
 setMethod("show", "Property",
           function(object) {
               ids <- termId(object)
@@ -80,6 +93,7 @@ setMethod("show", "Property",
           })
 
 ##' @export
+##' @rdname Properties
 setMethod("show", "Properties",
           function(object) {
               cat("Object of class 'Properties' with", length(object),
@@ -104,6 +118,9 @@ setMethod("show", "Properties",
 ##########################################
 ## Data manipulation
 ##' @export
+##' @rdname Properties
+##'
+##' @param x A `Properties` object.
 setMethod("length", "Properties", function(x) length(x@x))
 
 #########################################
@@ -143,3 +160,6 @@ getPropertyLinks <- function(trm) {
     p <- !nms %in% c(termlinks, graphlinks)
     termLinks(trm)[p]
 }
+
+## Try also from URL
+## curl 'http://www.ebi.ac.uk/ols/beta/api/ontologies/go/properties/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252FBFO_0000051' -i -H 'Accept: application/json'

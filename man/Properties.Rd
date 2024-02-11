@@ -2,7 +2,40 @@
 % Please edit documentation in R/Properties.R
 \name{Properties}
 \alias{Properties}
+\alias{Property}
+\alias{Properties,character}
+\alias{Properties,Ontology}
+\alias{Properties,Term}
+\alias{Properties,Terms}
+\alias{Properties,length}
+\alias{Properties,Ontology-method}
+\alias{Properties,character-method}
+\alias{Properties,Term-method}
+\alias{Properties,Terms-method}
+\alias{show,Property-method}
+\alias{show,Properties-method}
+\alias{length,Properties-method}
 \title{Term Properties}
+\usage{
+\S4method{Properties}{Ontology}(object)
+
+\S4method{Properties}{character}(object)
+
+\S4method{Properties}{Term}(object)
+
+\S4method{Properties}{Terms}(object)
+
+\S4method{show}{Property}(object)
+
+\S4method{show}{Properties}(object)
+
+\S4method{length}{Properties}(x)
+}
+\arguments{
+\item{object}{First input object.}
+
+\item{x}{A `Properties` object.}
+}
 \description{
 Properties (relationships) between terms can be queries for
 complete [Ontology()] objects and [Term()]/[Terms()] instances,
