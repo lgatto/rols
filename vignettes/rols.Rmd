@@ -291,6 +291,7 @@ development site.
 - REST queries now use [httr2](https://httr2.r-lib.org/) instead of
   superseded `httr`.
 - The term(s) constructors are capitalised as `Term()` and `Terms()`.
+- The properties constructor is capitalised as `Properties()`.
 - Some class definitions have been updated to accomodate changes in
   the data received by OLS. Some function have been dropped.
 

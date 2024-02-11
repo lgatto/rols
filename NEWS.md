@@ -3,6 +3,9 @@
 ## CHANGES IN VERSION 2.99.0
 
 - Refactoring to use REST API for OLS4.
+- REST queries now use httr2 instead of superseded `httr`.
+- The term(s) and property constructors are capitalised as `Term()`,
+  `Terms()` and `Properties()`.
 
 # rols 2.29
 
