@@ -1,3 +1,9 @@
+# rols 2.99
+
+## CHANGES IN VERSION 2.99.0
+
+- Refactoring to use REST API for OLS4.
+
 # rols 2.29
 
 ## CHANGES IN VERSION 2.29.1

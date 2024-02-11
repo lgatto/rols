@@ -1,6 +1,129 @@
+##' @title Controlled Vocabulary
+##'
+##' @name CVParam
+##'
+##' @aliases CVParam
+##' @aliases charIsCVParam cvCharToCVPar as.character.CVParam
+##'
+##' @description
+##'
+##' `CVParam` objects instantiate controlled vocabulary entries.
+##'
+##' @section Methods:
+##'
+##' - `charIsCVParam(x)` checks if `x`, a character of the form
+##'   `"[ONTO, ACCESSION, NAME, VALUE]"`, is a valid (possibly
+##'   user-defined) `CVParam`. `"ONTO"` is the ontology label
+##'   (prefix), `"ACCESSION"` is the term accession number, `"NAME"`
+##'   is the term's name and `"VALUE"` is the value. Note that only
+##'   the syntax validity is verified, not the semantics. See example
+##'   below.
+##'
+##' - `coerce(from = "CVParam", to = "character")` coerces `CVParam`
+##'   `from` to a `character` of the following form: `[label,
+##'   accession, name, value]`. `as.character` is also defined.
+##'
+##' - `coerce(from = "character", to = "CVParam")` coerces `character`
+##'   `from` to a `CVParam`. `as.CVParam` is also defined. If a
+##'   `label` is absent, the `character` is converted to a User param,
+##'   else, the `label` and `accession` are used to query the Ontology
+##'   Lookup Service (see [OlsSearch()]). If a `name` is provided and
+##'   does not match the retrieved name, a warning is thrown.
+##'
+##'   This function is vectorised; if the `from` character is of
+##'   length greater than 1, then a list of `CVParam` is returned. The
+##'   queries to the OLS are processed one-by-one, though.
+##'
+##' @author Laurent Gatto
+##'
+##' @examples
+##'
+##' ## User param
+##' CVParam(name = "A user param", value = "the value")
+##' ## CVParam ESI from PSI's Mass Spectrometry ontology
+##' Term("MS", "MS:1000073")
+##' (esi <- CVParam(label = "MS", accession = "MS:1000073"))
+##' class(esi)
+##'
+##' ## From a CVParam object to a character
+##' cv <- as(esi, "character")
+##' cv ## note the quotes
+##'
+##' ## From a character object to a CVParam
+##' as(cv, "CVParam")
+##' as("[MS, MS:1000073, , ]", "CVParam") ## no name
+##' as("[MS, MS:1000073, ESI, ]", "CVParam") ## name does not match
+##' as(c(cv, cv), "CVParam") ## more than 1 character
+##'
+##' x <- c("[MS, MS:1000073, , ]", ## valid CV param
+##'        "[, , Hello, world]",   ## valid User param
+##'        "[this, one is, not, valid]", ## not valid
+##'        "[ , , , ]") ## not valid
+##'
+##' stopifnot(charIsCVParam(x) == c(TRUE, TRUE, FALSE, FALSE))
+##'
+##' ## A list of expected valid and non-valid entries
+##' rols:::validCVchars
+##' rols:::notvalidCVchars
+NULL
+
+############################################################
+## A param is [CV label, accession, name|synonym, value]
+.CVParam <- setClass("CVParam",
+                     slots = c(
+                         label = "character",
+                         accession = "character",
+                         name = "character",
+                         value = "character",
+                         user = "logical"),
+                     prototype = prototype(user = FALSE))
+
+## When fixed, set automatic validity back
+validCVParam <- function(object) {
+    msg <- validMsg(NULL, NULL)
+    if (object@user) {
+        if (!all(c(object@label, object@accession) == ""))
+            msg <- "Label and accession must be empty in UserParams."
+    } else {
+        x <- c(object@label, object@accession,
+               object@name, object@value) == ""
+        if (!all(x)) {
+            ## FIXME - why call Term here? Is this needed?
+            ._term <- Term(object@label, object@accession)
+            ._label <- termLabel(._term)
+            ._synonyms <- termSynonym(._term)
+            if (!(object@name %in% c(._label, ._synonyms)))
+                msg <- paste0("CVParam accession and name/synomyms do not match. Got [",
+                              paste(c(._label, ._synonyms), collapse = ", "),
+                              "], expected '", object@name, "'.")
+        }
+    }
+    if (is.null(msg)) TRUE else msg
+}
+
 ## trim leading and trailing whitespace
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 
+##' @param label `character(1)` with the ontology label. If missing, a
+##'     user-defined parameter is created.
+##'
+##' @param name `character(1)` with the name of the `CVParam` to be
+##'     constructed. This argument can be omitted if `accession` is
+##'     used and `label` is not missing.
+##'
+##' @param accession `character(1)` with the accession of the
+##'     `CVParam` to be constructed. This argument can be omitted if
+##'     `name` is used. Ignored for user-defined instances.
+##'
+##' @param value `character(1)` with the value of the `CVParam` o be
+##'     constructed. This argument is optional.
+##'
+##' @param exact `logical(1)` defining whether the query to retrieve
+##'     the `accession` (when `name` is used) should be an exact
+##'     match.
+##'
+##' @export
+##' @rdname CVParam
 CVParam <- function(label,
                     name,
                     accession,
@@ -9,12 +132,12 @@ CVParam <- function(label,
     if (missing(label)) {
         ## a User param
         ans <- new("CVParam", name = name, user = TRUE)
-    } else {    
+    } else {
         ## a CV param
         if (missing(name) & missing(accession)) {
             stop("You need to provide at least one of 'name' or 'accession'")
         } else if (missing(name)) {
-            name <- termLabel(term(label, accession))
+            name <- termLabel(Term(label, accession))
         } else { ## missing(accession)
             resp <- OlsSearch(q = name, ontology = label, exact = exact)
             if (resp@numFound != 1)
@@ -24,15 +147,15 @@ CVParam <- function(label,
             resp <- olsSearch(resp)
             accession <- resp@response$obo_id
         }
-    
-        ans <- new("CVParam", label = label, name = name, accession = accession)
+
+        ans <- new("CVParam", label = label, name = name,
+                   accession = accession)
     }
     if (!missing(value))
         ans@value <- value
-  
     if (validObject(ans))
         return(ans)
-} 
+}
 
 setAs("CVParam", "character",
       function(from, to = "character") {
@@ -43,14 +166,26 @@ setAs("CVParam", "character",
                       from@value, "]")
         ans
       })
+
+##' @export
 as.character.CVParam <- function(x, ...) as(x, "character")
 
+##' @export
+##'
+##' @param object `CVParam` object.
+##' @rdname CVParam
 setMethod("show","CVParam",
           function(object) {
             cat(as(object, "character"), "\n")
             invisible(NULL)
           })
 
+##' @export
+##' @rdname CVParam
+##'
+##' @param x `CVParam` to be repeated.
+##'
+##' @param times `numeric(1)` defining the number of repetitions.
 setMethod("rep", "CVParam",
           function(x, times) {
             l <- vector("list", length = times)
@@ -59,6 +194,7 @@ setMethod("rep", "CVParam",
             return(l)
           })
 
+##' @export
 cvCharToCVPar <- function(from) {
     stopifnot(length(from) == 1)
     if (!charIsCVParam(from))
@@ -90,8 +226,6 @@ setAs("character", "CVParam",
           ans
       })
 
-as.character.CVParam <- function(x, ...) as(x, "character")
-
 .charIsCVParam <- function(x) {
     ## NO SEMANTICS IS CHECKED
     x <- x[1]
@@ -113,7 +247,7 @@ as.character.CVParam <- function(x, ...) as(x, "character")
         if (x[2] == "" | !grepl("[A-Za-z]", x[1])) return(FALSE)
         acc <- strsplit(x[2], ":")[[1]]
         if (length(acc) != 2) return(FALSE)
-        if (acc[1] != x[1]) return(FALSE)        
+        if (acc[1] != x[1]) return(FALSE)
     } else {
         if (x[2] != "") return(FALSE)
         ## User param: 3 and 4 are present
@@ -123,19 +257,20 @@ as.character.CVParam <- function(x, ...) as(x, "character")
     return(TRUE)
 }
 
-charIsCVParam <- function(x)
-    sapply(x, .charIsCVParam)
+##' @export
+charIsCVParam <- function(object)
+    sapply(object, .charIsCVParam)
 
 
 ## TESTING
-notvalidCVchars<- c("[ , , , ]", "[, , , ]",
-                    "[ , , ,]", "[,,,]",
-                    "[AB, MS:123 , , ]", "[, MS:123 , , ]",
-                    "[MS, AB:123, , ]",
-                    "[, , foo, ]", "[, , , bar]",
-                    "[foo, , , ]", "[, bar, , ]",
-                    "[, foo, bar, ]",                          
-                    "[MS, , , bar]", "[MS, , foo, ]")
+notvalidCVchars <- c("[ , , , ]", "[, , , ]",
+                     "[ , , ,]", "[,,,]",
+                     "[AB, MS:123 , , ]", "[, MS:123 , , ]",
+                     "[MS, AB:123, , ]",
+                     "[, , foo, ]", "[, , , bar]",
+                     "[foo, , , ]", "[, bar, , ]",
+                     "[, foo, bar, ]",
+                     "[MS, , , bar]", "[MS, , foo, ]")
 
 
 validCVchars <- c("[MS, MS:123 , , ]", "[, , foo, bar]",
