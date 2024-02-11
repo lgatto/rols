@@ -27,4 +27,4 @@ Collate: AllClasses.R AllGenerics.R utils.R
          Ontologies.R Terms.R
          cvparam.R OlsSearch.R
          Properties.R zzz.R
-RoxygenNote: 6.1.0
+RoxygenNote: 7.3.0

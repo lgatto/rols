@@ -150,6 +150,7 @@ allRows <- function(x) {
 setAs(from = "OlsSearch", to = "data.frame",
       function(from) from@response)
 
+##' @export
 as.data.frame.OlsSearch <-
     function(x, row.names = NULL, optional = FALSE, ...) {
         as(x, "data.frame")

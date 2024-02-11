@@ -92,7 +92,7 @@
 ##'   synonym only, their iri and whether they are defining the
 ##'   ontology. Any missing value will be reported as `NA`.
 ##'
-##' @rdname terms
+##' @name Terms
 ##'
 ##' @author Laurent Gatto
 ##'
@@ -153,12 +153,15 @@ NULL
 
 ##########################################
 ## Constructors
-##' exportMethod
+
+##' @export
+##' @rdname Terms
 setMethod("Terms", "character", ## ontologyId
           function(x, pagesize = 1000, obsolete = NULL)
               makeTerms(x, pagesize, obsolete))
 
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("Terms", "Ontology",
           function(x, pagesize = 1000, obsolete = NULL)
               makeTerms(x, pagesize, obsolete))
@@ -220,7 +223,8 @@ descendants <- function(object) {
 ##########################################
 ## show methods
 
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("show", "Term",
           function(object) {
               ids <- .termId(object)
@@ -232,7 +236,8 @@ setMethod("show", "Term",
                   cat(strwrap(desc[[i]]), sep = "\n  ")
           })
 
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("show", "Terms",
           function(object) {
               cat("Object of class 'Terms' with", length(object), "entries\n")
@@ -253,103 +258,128 @@ setMethod("show", "Terms",
 
 ##########################################
 ## Accessors
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termSynonym", "Term",
           function(object) unlist(object@synonyms))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termSynonym", "Terms",
           function(object) lapply(object@x, termSynonym))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("isObsolete", "Term",
           function(object) object@is_obsolete)
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("isObsolete", "Terms",
           function(object) sapply(object@x, isObsolete))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("isRoot", "Term",
           function(object) object@is_root)
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("isRoot", "Terms",
           function(object) sapply(object@x, isRoot))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termLabel", "Term",
           function(object) object@label)
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termLabel", "Terms",
           function(object) sapply(object@x, termLabel))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termId", "Term",
           function(object) .termId(object))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termId", "Terms",
           function(object) sapply(object@x, .termId))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termLinks", "Term",
           function(object) {
               links <- unlist(object@links)
               names(links) <- sub("\\.href", "", names(links))
               links
           })
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termPrefix", "Term",
           function(object) object@ontology_prefix)
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termPrefix", "Terms",
           function(object) sapply(object@x, termPrefix))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termDesc", "Term",
           function(object) unlist(object@description))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termDesc", "Terms",
           function(object) sapply(object@x, termDesc))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termOntology", "Term",
           function(object) unlist(object@ontology_name))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termOntology", "Terms",
           function(object) sapply(object@x, termOntology))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termNamespace", "Term",
           function(object) unlist(object@annotation$has_obo_namespace))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("termNamespace", "Terms",
           function(object) sapply(object@x, termNamespace))
 
 ##########################################
 ## Data manipulation
-##' exportMethod
+
+##' @export
+##' @rdname Terms
 setMethod("length", "Terms", function(x) length(x@x))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("unique", "Terms", function(x) x[!duplicated(names(x@x))])
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("[", "Terms",
           function(x, i, j="missing", drop="missing") Terms(x = x@x[i]))
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("[[", "Terms",
           function(x, i, j="missing", drop="missing") x@x[[i]])
-##' exportMethod
+##' @export
+##' @rdname Terms
 setMethod("lapply", "Terms",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
-##' exportMethod
-setMethod("all.equal", c("Term", "Term"),
-          function(target, current) {
-              msg <- Biobase::validMsg(NULL, NULL)
-              snms <- slotNames("Term")
-              for (i in snms[-grep("links", snms)]) {
-                  eq <- all.equal(slot(target, i), slot(current, i))
-                  if (is.character(eq)) {
-                      eq <- paste0("Slot '", i, "': ", eq)
-                      msg <- Biobase:::validMsg(msg, eq)
-                  }
-              }
-              lt <- slot(target, "links")
-              lc <- slot(current, "links")
-              ot <- order(names(lt))
-              oc <- order(names(lc))
-              msg <- Biobase:::validMsg(msg, all.equal(lt[ot], lc[oc]))
-              if (is.null(msg)) return(TRUE)
-              else msg
-          })
+## ##' @export
+## setMethod("all.equal", c("Term", "Term"),
+##           function(target, current) {
+##               msg <- Biobase::validMsg(NULL, NULL)
+##               snms <- slotNames("Term")
+##               for (i in snms[-grep("links", snms)]) {
+##                   eq <- all.equal(slot(target, i), slot(current, i))
+##                   if (is.character(eq)) {
+##                       eq <- paste0("Slot '", i, "': ", eq)
+##                       msg <- Biobase:::validMsg(msg, eq)
+##                   }
+##               }
+##               lt <- slot(target, "links")
+##               lc <- slot(current, "links")
+##               ot <- order(names(lt))
+##               oc <- order(names(lc))
+##               msg <- Biobase:::validMsg(msg, all.equal(lt[ot], lc[oc]))
+##               if (is.null(msg)) return(TRUE)
+##               else msg
+##           })
 
 
 ## setMethod("all.equal", c("Terms", "Terms"),
@@ -380,7 +410,7 @@ setMethod("all.equal", c("Term", "Term"),
 ##               else msg
 ##           })
 
-##' exportMethod
+##' @export
 setAs("Term", "data.frame",
       function(from)
           data.frame(
@@ -397,15 +427,17 @@ setAs("Term", "data.frame",
               stringsAsFactors = FALSE)
           )
 
-##' exportS3Method
+##' @export
+##' @rdname Terms
 as.Term.data.frame <- function(x)
     as(x, "data.frame")
 
-##' exportMethod
+##' @export
 setAs("Terms", "data.frame",
       function(from) do.call(rbind, lapply(from, as, "data.frame")))
 
-##' exportS3Method
+##' @export
+##' @rdname Terms
 as.Terms.data.frame <- function(x)
     as(x, "data.frame")
 

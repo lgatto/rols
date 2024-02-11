@@ -1,5 +1,6 @@
 ############################################################
 ## A param is [CV label, accession, name|synonym, value]
+
 .CVParam <- setClass("CVParam",
                      slots = c(
                          label = "character",
@@ -7,10 +8,9 @@
                          name = "character",
                          value = "character",
                          user = "logical"),
-                     contains = "Versioned",
                      prototype = prototype(
-                         user = FALSE,
-                         new("Versioned", versions = c(CVParam="0.2.0"))),
+                         user = FALSE
+                         ),
                      validity = function(object) {
                          msg <- validMsg(NULL, NULL)
                          if (object@user) {
@@ -36,6 +36,7 @@
 ## trim leading and trailing whitespace
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 
+##' @export
 CVParam <- function(label,
                     name,
                     accession,
@@ -78,6 +79,8 @@ setAs("CVParam", "character",
                       from@value, "]")
         ans
       })
+
+##' @export
 as.character.CVParam <- function(x, ...) as(x, "character")
 
 setMethod("show","CVParam",
@@ -86,6 +89,7 @@ setMethod("show","CVParam",
             invisible(NULL)
           })
 
+##' @export
 setMethod("rep", "CVParam",
           function(x, times) {
             l <- vector("list", length = times)
@@ -125,8 +129,6 @@ setAs("character", "CVParam",
           ans
       })
 
-as.character.CVParam <- function(x, ...) as(x, "character")
-
 .charIsCVParam <- function(x) {
     ## NO SEMANTICS IS CHECKED
     x <- x[1]
@@ -163,14 +165,14 @@ charIsCVParam <- function(x)
 
 
 ## TESTING
-notvalidCVchars<- c("[ , , , ]", "[, , , ]",
-                    "[ , , ,]", "[,,,]",
-                    "[AB, MS:123 , , ]", "[, MS:123 , , ]",
-                    "[MS, AB:123, , ]",
-                    "[, , foo, ]", "[, , , bar]",
-                    "[foo, , , ]", "[, bar, , ]",
-                    "[, foo, bar, ]",
-                    "[MS, , , bar]", "[MS, , foo, ]")
+notvalidCVchars <- c("[ , , , ]", "[, , , ]",
+                     "[ , , ,]", "[,,,]",
+                     "[AB, MS:123 , , ]", "[, MS:123 , , ]",
+                     "[MS, AB:123, , ]",
+                     "[, , foo, ]", "[, , , bar]",
+                     "[foo, , , ]", "[, bar, , ]",
+                     "[, foo, bar, ]",
+                     "[MS, , , bar]", "[MS, , foo, ]")
 
 
 validCVchars <- c("[MS, MS:123 , , ]", "[, , foo, bar]",

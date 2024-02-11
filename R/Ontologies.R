@@ -112,7 +112,7 @@
 ##'
 ##' @author Laurent Gatto
 ##'
-##' @rdname ontologies
+##' @name Ontologies
 ##'
 ##' @examples
 ##'
@@ -164,11 +164,16 @@ NULL
 ##########################################
 ## Constructors
 
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("Ontologies", "missing",
           function(object) makeOntologies())
 
-##' @exportMethod
+setGeneric("Ontology", function(object) standardGeneric("Ontology"))
+
+##' @importMethodsFrom BiocGenerics Ontology
+##' @export
+##' @rdname Ontologies
 setMethod("Ontology", "character",
           function(object) {
               ## make urls from ontologyId
@@ -176,13 +181,15 @@ setMethod("Ontology", "character",
               makeOntology(url)
           })
 
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("Ontology", "Ontology",
           function(object) object)
 
 ##########################################
 ## show methods
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("show", "Ontology",
           function(object) {
               cat("Ontology: ", olsTitle(object),
@@ -196,7 +203,8 @@ setMethod("show", "Ontology",
                   object@numberOfIndividuals, "individuals\n")
           })
 
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("show", "Ontologies",
           function(object) {
               cat("Object of class 'Ontologies' with",
@@ -215,109 +223,140 @@ setMethod("show", "Ontologies",
 ##########################################
 ## Accessors
 
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsVersion", "character",
           function(object) olsVersion(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsVersion", "Ontology",
           function(object) object@config$version)
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsVersion", "Ontologies",
           function(object) sapply(object@x, olsVersion))
 
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsLoaded", "character",
           function(object) olsLoaded(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsLoaded", "Ontology",
           function(object) substr(object@loaded, 1, 10))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsLoaded", "Ontologies",
           function(object) sapply(object@x, olsLoaded))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsLinks", "Ontology",
           function(object) {
               links <- unlist(object@links)
               names(links) <- sub("\\.href", "", names(links))
               links
           })
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsConfig", "Ontology",
           function(object) object@config)
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsUpdated", "character",
           function(object) olsUpdated(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsUpdated", "Ontology",
           function(object) substr(object@updated, 1, 10))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsUpdated", "Ontologies",
           function(object) sapply(object@x, olsUpdated))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsPrefix", "character",
           function(object) olsPrefix(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsPrefix", "Ontology",
           function(object) object@config$preferredPrefix)
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsPrefix", "Ontologies",
           function(object) sapply(object@x, olsPrefix))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsDesc", "character",
           function(object) olsDesc(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsDesc", "Ontology",
           function(object) object@config$description)
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsDesc", "Ontologies",
           function(object) sapply(object@x, olsDesc))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsTitle", "character",
           function(object) olsTitle(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsTitle", "Ontology",
           function(object) object@config$title)
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsTitle", "Ontologies",
           function(object) sapply(object@x, olsTitle))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsStatus", "character",
           function(object) olsStatus(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsStatus", "Ontology",
           function(object) object@status)
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsStatus", "Ontologies",
           function(object) sapply(object@x, olsStatus))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsNamespace", "character",
           function(object) olsNamespace(Ontology(object)))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsNamespace", "Ontology",
           function(object) object@config$namespace)
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("olsNamespace", "Ontologies",
           function(object) sapply(object@x, olsNamespace))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("ontologyUrl", "character",
           function(object)
               paste0("https://www.ebi.ac.uk/ols4/api/ontologies/",
                      object))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("ontologyUrl", "Ontology",
           function(object) olsLinks(object)[["self"]])
 
 
 ##########################################
 ## Data manipulation
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("lapply", "Ontologies",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("[", "Ontologies",
           function(x, i, j="missing", drop="missing")
               new("Ontologies", x = x@x[i]))
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("[[", "Ontologies",
           function(x, i, j="missing", drop="missing") {
               if (is.numeric(i)) {
@@ -335,7 +374,8 @@ setMethod("[[", "Ontologies",
               }
               stop("'i' must be a character or a numeric.")
           })
-##' @exportMethod
+##' @export
+##' @rdname Ontologies
 setMethod("length", "Ontologies", function(x) length(x@x))
 
 ## This will not always be the correct URI (see for example
@@ -371,11 +411,12 @@ setMethod("length", "Ontologies", function(x) length(x@x))
 ## Coercion
 
 ##' @import methods
-##' @exportMethod
+##' @export
 setAs("Ontologies", "data.frame",
       function(from) as.data.frame.Ontologies(from))
 
 ##' @exportS3Method
+##' @rdname Ontologies
 as.data.frame.Ontologies <- function(x) {
     .as_vector <- function(x) {
         if (is.list(x))
@@ -390,9 +431,8 @@ as.data.frame.Ontologies <- function(x) {
                Title = ttl)
 }
 
-##' @exportMethod
-setAs("Ontologies", "list",
-      function(from) from@x)
+##' @export
+setAs("Ontologies", "list", function(from) from@x)
 
 ## ## Ontologies aren't names anymore (for now)
 ## setMethod("all.equal", c("Ontologies", "Ontologies"),
@@ -423,24 +463,25 @@ setAs("Ontologies", "list",
 ##               else msg
 ##           })
 
-##' @exportMethod
-setMethod("all.equal", c("Ontology", "Ontology"),
-          function(target, current) {
-              msg <- Biobase::validMsg(NULL, NULL)
-              sn <- slotNames("Ontology")
-              sn0 <- sn[sn != "config"]
-              for (i in sn0) {
-                  eq <- all.equal(slot(current, i), slot(target, i))
-                  if (is.character(eq))
-                  msg <- validMsg(msg, paste0(i, ": ", eq))
-              }
-              c1 <- slot(current, "config")
-              c2 <- slot(target, "config")
-              c1 <- c1[order(names(c1))]
-              c2 <- c2[order(names(c2))]
-              msg <- Biobase::validMsg(msg, all.equal(c1, c2))
-              if (is.null(msg)) TRUE else msg
-          })
+##' @importFrom Biobase validMsg
+## ##' @export
+## setMethod("all.equal", c("Ontology", "Ontology"),
+##           function(target, current) {
+##               msg <- Biobase::validMsg(NULL, NULL)
+##               sn <- slotNames("Ontology")
+##               sn0 <- sn[sn != "config"]
+##               for (i in sn0) {
+##                   eq <- all.equal(slot(current, i), slot(target, i))
+##                   if (is.character(eq))
+##                   msg <- validMsg(msg, paste0(i, ": ", eq))
+##               }
+##               c1 <- slot(current, "config")
+##               c2 <- slot(target, "config")
+##               c1 <- c1[order(names(c1))]
+##               c2 <- c2[order(names(c2))]
+##               msg <- Biobase::validMsg(msg, all.equal(c1, c2))
+##               if (is.null(msg)) TRUE else msg
+##           })
 
 
 ##########################################
