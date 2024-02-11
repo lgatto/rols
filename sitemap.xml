@@ -19,42 +19,21 @@
     <loc>/news/index.html</loc>
   </url>
   <url>
-    <loc>/reference/CVParam-class.html</loc>
+    <loc>/reference/CVParam.html</loc>
   </url>
   <url>
-    <loc>/reference/OlsSearch-class.html</loc>
+    <loc>/reference/OlsSearch.html</loc>
   </url>
   <url>
-    <loc>/reference/Ontology-class.html</loc>
+    <loc>/reference/Ontologies.html</loc>
   </url>
   <url>
-    <loc>/reference/Properties-class.html</loc>
+    <loc>/reference/Properties.html</loc>
   </url>
   <url>
-    <loc>/reference/Term-class.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-properties.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-term.html</loc>
-  </url>
-  <url>
-    <loc>/reference/dot-terms.html</loc>
+    <loc>/reference/Terms.html</loc>
   </url>
   <url>
     <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/makeOntologies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/makeOntology.html</loc>
-  </url>
-  <url>
-    <loc>/reference/makeProperty.html</loc>
-  </url>
-  <url>
-    <loc>/reference/makeTerm.html</loc>
   </url>
 </urlset>
