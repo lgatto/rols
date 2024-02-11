@@ -176,6 +176,8 @@ setMethod("Terms", "Ontology",
 ##           function(object, id,...) .term(object, id, ...))
 
 
+##' @export
+##' @rdname Terms
 children <- function(object) {
     stopifnot(inherits(object, "Term"))
     if (!object@has_children)
@@ -187,6 +189,8 @@ children <- function(object) {
     .Terms(x = ans)
 }
 
+##' @export
+##' @rdname Terms
 parents <- function(object) {
     stopifnot(inherits(object, "Term"))
     if (object@is_root)
@@ -198,6 +202,8 @@ parents <- function(object) {
     .Terms(x = ans)
 }
 
+##' @export
+##' @rdname Terms
 ancestors <- function(object) {
     stopifnot(inherits(object, "Term"))
     if (object@is_root)
@@ -209,6 +215,8 @@ ancestors <- function(object) {
     .Terms(x = ans)
 }
 
+##' @export
+##' @rdname Terms
 descendants <- function(object) {
     stopifnot(inherits(object, "Term"))
     if (!object@has_children)

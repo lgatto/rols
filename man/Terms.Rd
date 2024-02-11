@@ -74,6 +74,14 @@
 
 \S4method{Terms}{Ontology}(x, pagesize = 1000, obsolete = NULL)
 
+children(object)
+
+parents(object)
+
+ancestors(object)
+
+descendants(object)
+
 \S4method{show}{Term}(object)
 
 \S4method{show}{Terms}(object)
