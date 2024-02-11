@@ -1,3 +1,68 @@
+##' @title Controlled Vocabulary
+##'
+##' @name CVParam
+##'
+##' @description
+##'
+##' `CVParam` objects instantiate controlled vocabulary entries.
+##'
+##' @section Methods:
+##'
+##' - `charIsCVParam(x)` checks if `x`, a character of the form
+##'   `"[ONTO, ACCESSION, NAME, VALUE]"`, is a valid (possibly
+##'   user-defined) `CVParam`. `"ONTO"` is the ontology label
+##'   (prefix), `"ACCESSION"` is the term accession number, `"NAME"`
+##'   is the term's name and `"VALUE"` is the value. Note that only
+##'   the syntax validity is verified, not the semantics. See example
+##'   below.
+##'
+##' - `coerce(from = "CVParam", to = "character")` coerces `CVParam`
+##'   `from` to a `character` of the following form: `[label,
+##'   accession, name, value]`. `as.character` is also defined.
+##'
+##' - `coerce(from = "character", to = "CVParam")` coerces `character`
+##'   `from` to a `CVParam`. `as.CVParam` is also defined. If a
+##'   `label` is absent, the `character` is converted to a User param,
+##'   else, the `label` and `accession` are used to query the Ontology
+##'   Lookup Service (see [OlsSearch()]). If a `name` is provided and
+##'   does not match the retrieved name, a warning is thrown.
+##'
+##'   This function is vectorised; if the `from` character is of
+##'   length greater than 1, then a list of `CVParam` is returned. The
+##'   queries to the OLS are processed one-by-one, though.
+##'
+##' @author Laurent Gatto
+##'
+##' @examples
+##'
+##' ## a user param
+##' CVParam(name = "A user param", value = "the value")
+##' ## a CVParam from PSI's Mass Spectrometry ontology
+##' term("MS", "MS:1000073")
+##' CVParam(label = "MS", accession = "MS:1000073")
+##'
+##' ## From a CVParam object to a character
+##' cv <- as(CVParam(label = "MS", accession = "MS:1000073"), "character")
+##' cv
+##'
+##' ## From a character object to a CVParam
+##' as(cv, "CVParam")
+##' as("[MS, MS:1000073, , ]", "CVParam") ## no name
+##' as("[MS, MS:1000073, ESI, ]", "CVParam") ## name does not match
+##' as(c(cv, cv), "CVParam") ## more than 1 character
+##'
+##' x <- c("[MS, MS:1000073, , ]", ## valid CV param
+##'        "[, , Hello, world]",   ## valid User param
+##'        "[this, one is, not, valid]", ## not valid
+##'        "[ , , , ]") ## not valid
+##'
+##' stopifnot(charIsCVParam(x) == c(TRUE, TRUE, FALSE, FALSE))
+##'
+##' ## A list of expected valid and non-valid entries
+##' rols:::validCVchars
+##' rols:::notvalidCVchars
+NULL
+
 ############################################################
 ## A param is [CV label, accession, name|synonym, value]
 
@@ -36,7 +101,26 @@
 ## trim leading and trailing whitespace
 trim <- function (x) gsub("^\\s+|\\s+$", "", x)
 
+##' @param label `character(1)` with the ontology label. If missing, a
+##'     user-defined parameter is created.
+##'
+##' @param name `character(1)` with the name of the `CVParam` to be
+##'     constructed. This argument can be omitted if `accession` is
+##'     used and `label` is not missing.
+##'
+##' @param accession `character(1)` with the accession of the
+##'     `CVParam` to be constructed. This argument can be omitted if
+##'     `name` is used. Ignored for user-defined instances.
+##'
+##' @param value `character(1)` with the value of the `CVParam` o be
+##'     constructed. This argument is optional.
+##'
+##' @param exact `logical(1)` defining whether the query to retrieve
+##'     the `accession` (when `name` is used) should be an exact
+##'     match.
+##'
 ##' @export
+##' @rdname CVParam
 CVParam <- function(label,
                     name,
                     accession,
@@ -83,6 +167,7 @@ setAs("CVParam", "character",
 ##' @export
 as.character.CVParam <- function(x, ...) as(x, "character")
 
+##' @export
 setMethod("show","CVParam",
           function(object) {
             cat(as(object, "character"), "\n")
@@ -98,6 +183,7 @@ setMethod("rep", "CVParam",
             return(l)
           })
 
+##' @export
 cvCharToCVPar <- function(from) {
     stopifnot(length(from) == 1)
     if (!charIsCVParam(from))
@@ -160,6 +246,7 @@ setAs("character", "CVParam",
     return(TRUE)
 }
 
+##' @export
 charIsCVParam <- function(x)
     sapply(x, .charIsCVParam)
 
