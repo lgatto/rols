@@ -2,9 +2,18 @@
 % Please edit documentation in R/cvparam.R
 \name{CVParam}
 \alias{CVParam}
+\alias{charIsCVParam}
+\alias{cvCharToCVPar}
+\alias{as.character.CVParam}
+\alias{show,CVParam-method}
+\alias{rep,CVParam-method}
 \title{Controlled Vocabulary}
 \usage{
 CVParam(label, name, accession, value, exact = TRUE)
+
+\S4method{show}{CVParam}(object)
+
+\S4method{rep}{CVParam}(x, times)
 }
 \arguments{
 \item{label}{`character(1)` with the ontology label. If missing, a
@@ -24,6 +33,12 @@ constructed. This argument is optional.}
 \item{exact}{`logical(1)` defining whether the query to retrieve
 the `accession` (when `name` is used) should be an exact
 match.}
+
+\item{object}{`CVParam` object.}
+
+\item{x}{`CVParam` to be repeated.}
+
+\item{times}{`numeric(1)` defining the number of repetitions.}
 }
 \description{
 `CVParam` objects instantiate controlled vocabulary entries.
@@ -57,15 +72,16 @@ match.}
 
 \examples{
 
-## a user param
+## User param
 CVParam(name = "A user param", value = "the value")
-## a CVParam from PSI's Mass Spectrometry ontology
-term("MS", "MS:1000073")
-CVParam(label = "MS", accession = "MS:1000073")
+## CVParam ESI from PSI's Mass Spectrometry ontology
+Term("MS", "MS:1000073")
+(esi <- CVParam(label = "MS", accession = "MS:1000073"))
+class(esi)
 
 ## From a CVParam object to a character
-cv <- as(CVParam(label = "MS", accession = "MS:1000073"), "character")
-cv
+cv <- as(esi, "character")
+cv ## note the quotes
 
 ## From a character object to a CVParam
 as(cv, "CVParam")

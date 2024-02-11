@@ -30,6 +30,7 @@ test_that("Ontology accessors", {
     library("lubridate")
     n <- length(ol)
     status <- olsStatus(ol)
+    loaded <- olsLoaded(ol)
     ## --- Dates ---
     ## if the loaded date is not valid (NA), then that ontology should
     ## not have a status 'LOADED'.
@@ -39,13 +40,10 @@ test_that("Ontology accessors", {
     expect_false(any(is.na(updated)))
     expect_identical(n, length(loaded))
     expect_identical(n, length(updated))
-    i <- which(names(status) == "go")
-    ## expect_identical(ymd(olsLoaded(go)), loaded[i])
     expect_identical(olsLoaded(go), olsLoaded("GO"))
     expect_identical(olsLoaded(go), olsLoaded("go"))
     expect_identical(olsUpdated(go), olsUpdated("GO"))
     expect_identical(olsUpdated(go), olsUpdated("go"))
-
     ## --- Versions ---
     vrs <- olsVersion(ol)
     pre <- olsPrefix(ol)
@@ -54,60 +52,32 @@ test_that("Ontology accessors", {
     ## expect_identical(vrs[["go"]], olsVersion(go))
     expect_identical(olsVersion("GO"), olsVersion(go))
     expect_identical(olsVersion("go"), olsVersion(go))
-
-    ## --- Root ---
-    ## rts <- olsRoot(ol["go"])
-    ## gort <- rts[[1]]
-    ## expect_identical(gort, olsRoot(go))
-    ## expect_identical(gort, olsRoot("go"))
-
-    ## expect_identical(gort, olsRoot("GO"))
-    ### --- Terms ---
-    trms <- Terms(x = list('GO:0005575' = Term("GO", 'GO:0005575'),
-                           'GO:0003674' = term("GO", 'GO:0003674'),
-                           'GO:0008150' = term("GO", 'GO:0008150')))
-    trms <- trms[order(termId(trms))]
-    gort <- gort[order(termId(gort))]
-    expect_identical(trms, gort)
-
     ## --- Prefix ---
+    i <- which(olsPrefix(ol) == "GO")
     expect_identical(pre[[i]], olsPrefix(go))
     expect_identical(pre[[i]], olsPrefix("go"))
     expect_identical(pre[[i]], olsPrefix("GO"))
     expect_identical(pre[[i]], olsPrefix("Go"))
-
     ## --- Description ---
-    desc <- olsDesc(ol)
-    expect_identical(desc[[i]], olsDesc(go))
-    expect_identical(desc[[i]], olsDesc("go"))
-    expect_identical(desc[[i]], olsDesc("GO"))
-
-    ## --- Title ---
-    ## ttl <- olsTitle(ol)
-    ## expect_identical(ttl[[i]], olsTitle(go))
-    ## expect_identical(ttl[[i]], olsTitle("go"))
-    ## expect_identical(ttl[[i]], olsTitle("GO"))
-    ## expect_identical(olsTitle(go), "Gene Ontology")
-    ## next test fixed on 2020/05/01 - changed description
-    ## expect_identical(olsDesc(go), "The Gene Ontology (GO) provides a framework and set of concepts for describing the functions of gene products from all organisms.")
-    ## expect_identical(status[[i]], "LOADED") ## failed Sun Jan  1 20:36:00 GMT 2017
-
+    desc <- olsDesc(ol[[i]])
+    expect_identical(desc, olsDesc(go))
+    expect_identical(desc, olsDesc("go"))
+    expect_identical(desc, olsDesc("GO"))
     ## --- Status ---
     expect_identical(status[[i]], olsStatus(go))
     expect_identical(status[[i]], olsStatus("go"))
     expect_identical(status[[i]], olsStatus("GO"))
-
     ## --- Namespace ---
     nsp0 <- olsNamespace(ol)
     nsp <- sapply(ol@x, olsNamespace)
     expect_identical(nsp0, nsp)
-    expect_identical(nsp[["go"]], olsNamespace("GO"))
-    expect_identical(nsp[["go"]], olsNamespace("go"))
-    expect_identical(nsp[["go"]], olsNamespace(go))
+    expect_identical(nsp[[i]], olsNamespace("GO"))
+    expect_identical(nsp[[i]], olsNamespace("go"))
+    expect_identical(nsp[[i]], olsNamespace(go))
 })
 
 test_that("apply over Ontologies", {
-    expect_identical(unlist(lapply(ol, olsPrefix)),
+    expect_identical(lapply(ol, olsPrefix),
                      olsPrefix(ol))
 })
 
@@ -117,20 +87,4 @@ test_that("coercion", {
     expect_equal(names(odf), c("Prefix", "Namespace", "Title"))
     olst <- as(ol, "list")
     expect_identical(olst, ol@x)
-})
-
-test_that("all.equal ontolgies", {
-    ol0 <- ol <- Ontologies()
-    expect_identical(length(ol), length(ol[-1]) + 1L)
-    expect_identical(all.equal(ol, ol[-1]),
-                     "The 2 Ontologies are of different lengths")
-    names(ol@x)[1] <- "foo"
-    expect_identical(length(ol), length(ol0))
-    expect_identical(all.equal(ol, ol0),
-                     "Ontology names don't match")
-    expect_identical(names(ol@x)[-1], names(ol0@x)[-1])
-    ol <- ol0
-    ol@x[[1]]@loaded <- "123"
-    nm <- olsNamespace(ol[[1]])
-    expect_equivalent(ol, ol0)
 })

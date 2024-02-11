@@ -1,42 +1,9 @@
-## test_that("OlsSearch tgn", {
-##     tgn <- OlsSearch(q = "tgn",ontology = "GO")
-##     tgn <- olsSearch(tgn)
-
-##     tgnres <- structure(c("trans-Golgi network",
-##                           "clathrin coat of trans-Golgi network vesicle",
-##                           "Golgi to endosome transport",
-##                           "trans-Golgi network transport vesicle",
-##                           "trans-Golgi network transport vesicle membrane"),
-##                         .Names = c("GO:0005802", "GO:0030130",
-##                                    "GO:0006895", "GO:0030140", "GO:0012510"))
-
-##     expect_identical(sort(termLabel(as(tgn, "Terms"))),
-##                      sort(tgnres))
-## })
-
-
-## test_that("OlsSearch ESI", {
-
-##     esi2 <- OlsSearch(q = "ESI", ontology = "MS", rows = 28)
-##     esi1 <- OlsSearch(q = "ESI", ontology = "MS", exact = TRUE)
-
-##     esi1 <- olsSearch(esi1)
-##     esi2 <- olsSearch(esi2)
-
-##     expect_identical(esi1@numFound, 1L)
-##     expect_identical(esi2@numFound, 34L)
-##     expect_true(termId(as(esi1, "Terms")) %in% termId(as(esi2, "Terms")))
-## })
-
-
 test_that("OlsSearch tgn", {
     tgnpw <- OlsSearch("tgn","PW")
     tgnpw <- olsSearch(allRows(tgnpw))
     expect_equal(tgnpw@numFound, 4L)
-
     tgn <- OlsSearch("tgn")
     tgn <- olsSearch(allRows(tgn))
-
     expect_true(all(tgnpw@response[, "obo_id"] %in% tgn@response[, "obo_id"]))
 })
 
@@ -59,7 +26,9 @@ test_that("OlsSearch rows", {
 
     res <- allRows(res)
     expect_equal(olsRows(res), res@numFound)
-    expect_equal(nrow(olsSearch(res)@response), res@numFound)
+
+    res <- olsSearch(res) ## max is 1000
+    expect_equal(nrow(res@response), 1000)
 })
 
 test_that("OlsSearch coercion", {

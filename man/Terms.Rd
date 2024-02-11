@@ -40,6 +40,8 @@
 \alias{termNamespace,Terms}
 \alias{Terms,character-method}
 \alias{Terms,Ontology-method}
+\alias{Term,character-method}
+\alias{Term,Ontology-method}
 \alias{show,Term-method}
 \alias{show,Terms-method}
 \alias{termSynonym,Term-method}
@@ -70,9 +72,13 @@
 \alias{as.Terms.data.frame}
 \title{Ontology Terms}
 \usage{
-\S4method{Terms}{character}(x, pagesize = 1000, obsolete = NULL)
+\S4method{Terms}{character}(object, pagesize = 1000, obsolete = NULL)
 
-\S4method{Terms}{Ontology}(x, pagesize = 1000, obsolete = NULL)
+\S4method{Terms}{Ontology}(object, pagesize = 1000, obsolete = NULL)
+
+\S4method{Term}{character}(object, id)
+
+\S4method{Term}{Ontology}(object, id)
 
 children(object)
 
@@ -137,6 +143,34 @@ descendants(object)
 as.Term.data.frame(x)
 
 as.Terms.data.frame(x)
+}
+\arguments{
+\item{object}{generally an instance of class `Terms` or `Term`. In
+some cases, an ontology identifier is applicable.}
+
+\item{pagesize}{`numeric(1)`, converted to an integer, defining
+the response page size. Default is 1000.}
+
+\item{obsolete}{`NULL` or `logical(1)` defining whether obsolete
+terms (`TRUE`), current terms (`FALSE`) or all (`NULL`,
+default) should be returned.}
+
+\item{id}{`character(1)` with the term's identifier.}
+
+\item{x}{a `Terms` object.}
+
+\item{i}{index of elecements to subset.}
+
+\item{j}{ignored.}
+
+\item{drop}{ignored.}
+
+\item{X}{`Terms` object.}
+
+\item{FUN}{a `function` to be applied to each `Term` element of
+`X`.}
+
+\item{...}{additional arguments passed to `FUN`.}
 }
 \description{
 The `Term` class describes an ontology term. A set of terms are
@@ -247,6 +281,9 @@ descendants(trm) ## includes child
 
 parents(trm)
 ancestors(trm) ## includes parent
+
+## A single term from an ontology
+Term("ado", "ADO:0000090")
 }
 \author{
 Laurent Gatto

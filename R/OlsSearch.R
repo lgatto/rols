@@ -1,3 +1,80 @@
+##' @title Querying OLS
+##'
+##' @aliases OlsSearch olsSearch
+##' @aliases olsRows 'olsRows<-' allRows as.data.frame.OlsSearch
+##'
+##' @description
+##'
+##' Searching the Ontology Lookup Service is done first by creating an
+##' object `OlsSearch` using the `OlsSearch()` constructor. Query
+##' responses are then retrieved with the `olsSearch()` function.
+##'
+##' @author Laurent Gatto
+##'
+##' @name OlsSearch
+##'
+##' @examples
+##'
+##' ## Many results across all ontologies
+##' OlsSearch(q = "trans-golgi")
+##'
+##' ## Exact matches
+##' OlsSearch(q = "trans-golgi", exact = TRUE)
+##'
+##' ## Exact match in the gene ontology (go or GO) only
+##' OlsSearch(q = "trans-golgi", exact = TRUE, ontology = "go")
+##' OlsSearch(q = "trans-golgi", exact = TRUE, ontology = "GO")
+##'
+##' ## Exact match in the GO and Uberon
+##' OlsSearch(q = "trans-golgi", exact = TRUE,
+##'           ontology = c("GO", "Uberon"))
+##'
+##' ## Testing different ESI queries
+##' OlsSearch(q = "electrospray", ontology = "MS")
+##' OlsSearch(q = "ionization", ontology = "MS")
+##' OlsSearch(q = "electrospray ionization", ontology = "MS")
+##' OlsSearch(q = "electrospray ionization", ontology = "MS", exact=TRUE)
+##'
+##' ## Request 5 results instead of 20 (default)
+##' OlsSearch(q = "plasma,membrane", ontology = "go", rows = 5)
+##' ## Same as above
+##' OlsSearch(q = "plasma membrane", ontology = "go", rows = 5)
+##'
+##' ## or, once the object was created
+##' (res <- OlsSearch(q = "plasma,membrane", ontology = "go"))
+##' olsRows(res) <- 5
+##' res
+##'
+##' ## all results
+##' res <- allRows(res)
+##' res
+##'
+##' res <- OlsSearch(q = "trans-golgi", ontology = "go", rows = 5)
+##' res
+##' res <- olsSearch(res)
+##' res
+##' as(res, "data.frame")
+##' trms <- as(res, "Terms")
+##' trms
+##' termPrefix(trms)
+##' termId(trms)
+##'
+##' ## Setting rows and start parameters
+##' tg1 <- OlsSearch(q = "trans-golgi", rows = 5, start = 0) |>
+##'                  olsSearch() |>
+##'                  as("data.frame")
+##' tg2 <- OlsSearch(q = "trans-golgi", rows = 5, start = 5) |>
+##'                  olsSearch() |>
+##'                  as("data.frame")
+##' tg3 <- OlsSearch(q = "trans-golgi", rows = 10, start = 0) |>
+##'                  olsSearch() |>
+##'                  as("data.frame")
+##'
+##' ## The two consecutive small results are identical
+##' ## to the larger on.
+##' identical(rbind(tg1, tg2), tg3)
+############################################
+## OlsSearch class
 .OlsSearch <- setClass("OlsSearch",
                        slots = c(q = "character",
                                  ontology = "character",
@@ -8,7 +85,7 @@
                                  exact = "logical",
                                  groupField = "logical",
                                  obsoletes = "logical",
-                                 local = "character",
+                                 local = "logical",
                                  childrenOf = "character",
                                  rows = "integer",
                                  start = "integer",
@@ -16,19 +93,63 @@
                                  numFound = "integer",
                                  response = "data.frame"))
 
-
-emptyQueryDataFrame <-
-    structure(list(id = character(0), iri = character(0),
-                   short_form = character(0), obo_id = character(0),
-                   label = character(0), description = list(),
-                   ontology_name = character(0),
-                   ontology_prefix = character(0), type = character(0),
-                   is_defining_ontology = logical(0)),
-              row.names = integer(0),
-              class = "data.frame")
-
 ##########################################
 ## Constructor
+
+##' @export
+##'
+##' @rdname OlsSearch
+##'
+##' @param q `characher(1)` containing the search query.
+##'
+##' @param ontology `character()` defining the ontology to be
+##'     queried. Default is the empty character, to search all
+##'     ontologies.
+##'
+##' @param type `character()` restricting the search to an entity
+##'     type, one of `"class"`, `"property"`, `"individual"` or
+##'     `"ontology"`.
+##'
+##' @param slim `character()` restricts the search to an particular
+##'     set of slims by name.
+##'
+##' @param fieldList `character()` specifcies the fields to return.
+##'     The defaults are iri, label, short_form, obo_id,
+##'     ontology_name, ontology_prefix, description and type. Default
+##'     is `""` for all fields.
+##'
+##' @param queryFields `character()` specifcies the fields to query,
+##'     the defaults are label, synonym, description, short_form,
+##'     obo_id, annotations, logical_description, iri. Default is `""`
+##'     for all fields.
+##'
+##' @param exact `logical(1)` defining if exact matches should be
+##'     returned. Default is `FALSE`.
+##'
+##' @param groupField `logical(1)`, set to `TRUE`rue to group results
+##'     by unique id (IRI).
+##'
+##' @param obsoletes `logical(1)` defining whether obsolete terms
+##'     should be queried. Default is `FALSE`.
+##'
+##' @param local `character(1)`, default is `FALSE`. Set to `TRUE` to
+##'     only return terms that are in a defining ontology e.g. only
+##'     return matches to gene ontology terms in the gene ontology,
+##'     and exclude ontologies where those terms are also referenced
+##'
+##' @param childrenOf `character()` to restrict a search to children
+##'     of a given term. Supply a list of IRI for the terms that you
+##'     want to search under.
+##'
+##' @param rows `integer(1)` defining the number of query
+##'     returns. Default is 20L. Maximum number of values returned by
+##'     the server is 1000. To retrieve the next results, set `start`
+##'     1000. See examle below.
+##'
+##' @param start `integer(1)` defining the results page.
+##'     number. Default is 0L.
+##'
+##' @importFrom utils URLencode
 OlsSearch <- function(q,
                       ontology = "",
                       type = "",
@@ -38,15 +159,19 @@ OlsSearch <- function(q,
                       exact = FALSE,
                       groupField = FALSE,
                       obsoletes = FALSE,
-                      local = "",
+                      local = TRUE,
                       childrenOf = "",
-                      rows,
+                      rows = 20L,
                       start = 0L) {
     if (missing(q))
         stop("You must supply a query.")
+    if (rows > 1000) {
+        warning("Setting row to max value 1000.")
+        rows <- 1000
+    }
     .args <- as.list(match.call())[-1]
     if (missing(rows))
-        .args[["rows"]] <- rows <- 20L
+        .args[["rows"]] <- rows
     ## Create search URL and instantiate OlsSearch object
     params <- c()
     for (i in seq_along(.args)) {
@@ -61,17 +186,14 @@ OlsSearch <- function(q,
             arg <- paste(arg, collapse = ",")
         params <- append(params, paste(nm, arg, sep = "="))
     }
-    url <- paste0("http://www.ebi.ac.uk/ols/beta/api/search?",
+    ## searchUrl <- "http://www.ebi.ac.uk/ols/beta/api/search?"
+    searchUrl <- "http://www.ebi.ac.uk/ols4/api/search?"
+    url <- paste0(searchUrl,
                   paste(params, collapse = "&"))
-    ## Make actual query, with rows = 1 to get the total number of
-    ## results found
-    url0 <- sub("rows=[0-9]+", "rows=1", url)
-    x <- httr::GET(url)
-    httr::stop_for_status(x)
-    cx <- httr::content(x, as = "raw")
-    txt <- rawToChar(cx)
-    ans <- jsonlite::fromJSON(txt)
-    numFound <- ans[["response"]][["numFound"]]
+    x <- request(url) |>
+        req_perform() |>
+        resp_body_json()
+    numFound <- x[["response"]][["numFound"]]
     response <- data.frame()
     .OlsSearch(q = q, ontology = ontology, slim = slim,
                fieldList = fieldList, queryFields = queryFields,
@@ -83,14 +205,24 @@ OlsSearch <- function(q,
                response = response)
 }
 
+##' @export
+##'
+##' @importFrom jsonlite fromJSON
+##'
+##' @rdname OlsSearch
+##'
+##' @param object `OlsSeach` result object.
+##'
+##' @param all `logical(1)` Should all rows be retrieved. Default is
+##'     `FALSE`. Can also be set in the queary object directly with
+##'     `allRows()`.
 olsSearch <- function(object, all = FALSE) {
     if (all)
-        x <- allRows(x)
-    x <- httr::GET(object@url)
-    httr::stop_for_status(x)
-    cx <- httr::content(x, as = "raw")
-    txt <- rawToChar(cx)
-    ans <- jsonlite::fromJSON(txt)
+        object <- allRows(object)
+    ans <- request(object@url) |>
+        req_perform() |>
+        resp_body_string() |>
+        jsonlite::fromJSON()
     if (!length(ans[['response']][['docs']])) {
         object@response <- emptyQueryDataFrame
     } else {
@@ -102,7 +234,8 @@ olsSearch <- function(object, all = FALSE) {
 
 ##########################################
 ## show method
-
+##' @export
+##' @rdname OlsSearch
 setMethod("show", "OlsSearch",
           function(object) {
               cat("Object of class 'OlsSearch':\n")
@@ -123,24 +256,39 @@ setMethod("show", "OlsSearch",
 ##########################################
 ## Accessors and setter
 
-olsRows <- function(x) {
-    stopifnot(inherits(x, "OlsSearch"))
-    x@rows
+##' @export
+##'
+##' @rdname OlsSearch
+olsRows <- function(object) {
+    stopifnot(inherits(object, "OlsSearch"))
+    object@rows
 }
 
-"olsRows<-" <- function(x, value) {
-    stopifnot(inherits(x, "OlsSearch"))
+##' @export
+##'
+##' @param value replacement value
+##'
+##' @rdname OlsSearch
+"olsRows<-" <- function(object, value) {
+    stopifnot(inherits(object, "OlsSearch"))
     stopifnot(is.numeric(value))
-    x@url <- sub("rows=[0-9]+", paste0("rows=", as.integer(value)), x@url)
-    x@rows <- as.integer(value)
-    x
+    object@url <- sub("rows=[0-9]+",
+                      paste0("rows=", as.integer(value)),
+                      object@url)
+    object@rows <- as.integer(value)
+    object
 }
 
-allRows <- function(x) {
-    stopifnot(inherits(x, "OlsSearch"))
-    x@rows <- x@numFound
-    x@url <- sub("rows=[0-9]+", paste0("rows=", x@numFound), x@url)
-    x
+##' @export
+##'
+##' @rdname OlsSearch
+allRows <- function(object) {
+    stopifnot(inherits(object, "OlsSearch"))
+    object@rows <- object@numFound
+    object@url <- sub("rows=[0-9]+",
+                      paste0("rows=", object@numFound),
+                      object@url)
+    object
 }
 
 
@@ -156,7 +304,8 @@ as.data.frame.OlsSearch <-
         as(x, "data.frame")
     }
 
-## Terms constructor
+
+##' @export
 setAs(from = "OlsSearch", to = "Terms",
       function(from) {
           resp <- from@response
@@ -167,7 +316,7 @@ setAs(from = "OlsSearch", to = "Terms",
           }
           x <- apply(resp, 1,
                      function(x)
-                         tryCatch(term(x[["ontology_prefix"]],
+                         tryCatch(Term(x[["ontology_prefix"]],
                                        x[["obo_id"]]),
                                   error = function(e) NULL))
           if (is.null(x)) {
@@ -181,5 +330,19 @@ setAs(from = "OlsSearch", to = "Terms",
               x <- x[!nullterm]
           }
           names(x) <- resp[["obo_id"]][!nullterm]
-          Terms(x = x)
+          .Terms(x = x)
       })
+
+
+#########################################
+## helper functions
+
+emptyQueryDataFrame <-
+    structure(list(id = character(0), iri = character(0),
+                   short_form = character(0), obo_id = character(0),
+                   label = character(0), description = list(),
+                   ontology_name = character(0),
+                   ontology_prefix = character(0), type = character(0),
+                   is_defining_ontology = logical(0)),
+              row.names = integer(0),
+              class = "data.frame")

@@ -2,6 +2,9 @@
 ##'
 ##' @name CVParam
 ##'
+##' @aliases CVParam
+##' @aliases charIsCVParam cvCharToCVPar as.character.CVParam
+##'
 ##' @description
 ##'
 ##' `CVParam` objects instantiate controlled vocabulary entries.
@@ -39,20 +42,18 @@
 ##' CVParam(name = "A user param", value = "the value")
 ##' ## CVParam ESI from PSI's Mass Spectrometry ontology
 ##' Term("MS", "MS:1000073")
-##' esi <- CVParam(label = "MS", accession = "MS:1000073")
+##' (esi <- CVParam(label = "MS", accession = "MS:1000073"))
 ##' class(esi)
 ##'
 ##' ## From a CVParam object to a character
 ##' cv <- as(esi, "character")
 ##' cv ## note the quotes
 ##'
-##' \dontrun{
 ##' ## From a character object to a CVParam
 ##' as(cv, "CVParam")
 ##' as("[MS, MS:1000073, , ]", "CVParam") ## no name
 ##' as("[MS, MS:1000073, ESI, ]", "CVParam") ## name does not match
 ##' as(c(cv, cv), "CVParam") ## more than 1 character
-##' }
 ##'
 ##' x <- c("[MS, MS:1000073, , ]", ## valid CV param
 ##'        "[, , Hello, world]",   ## valid User param
@@ -170,6 +171,9 @@ setAs("CVParam", "character",
 as.character.CVParam <- function(x, ...) as(x, "character")
 
 ##' @export
+##'
+##' @param object `CVParam` object.
+##' @rdname CVParam
 setMethod("show","CVParam",
           function(object) {
             cat(as(object, "character"), "\n")
@@ -177,6 +181,11 @@ setMethod("show","CVParam",
           })
 
 ##' @export
+##' @rdname CVParam
+##'
+##' @param x `CVParam` to be repeated.
+##'
+##' @param times `numeric(1)` defining the number of repetitions.
 setMethod("rep", "CVParam",
           function(x, times) {
             l <- vector("list", length = times)
@@ -249,8 +258,8 @@ setAs("character", "CVParam",
 }
 
 ##' @export
-charIsCVParam <- function(x)
-    sapply(x, .charIsCVParam)
+charIsCVParam <- function(object)
+    sapply(object, .charIsCVParam)
 
 
 ## TESTING

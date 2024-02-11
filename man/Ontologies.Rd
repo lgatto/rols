@@ -7,33 +7,42 @@
 \alias{olsLinks,Ontology}
 \alias{olsConfig}
 \alias{olsConfig,Ontology}
+\alias{olsVersion}
 \alias{olsVersion,character}
 \alias{olsVersion,Ontology}
 \alias{olsVersion,Ontologies}
+\alias{olsLoaded}
 \alias{olsLoaded,character}
 \alias{olsLoaded,Ontology}
 \alias{olsLoaded,Ontologies}
+\alias{olsUpdated}
 \alias{olsUpdated,character}
 \alias{olsUpdated,Ontology}
 \alias{olsUpdated,Ontologies}
-\alias{olsPrefix,character}
-\alias{olsPrefix,Ontology}
-\alias{olsPrefix,Ontologies}
-\alias{olsDesc,character}
-\alias{olsDesc,Ontology}
-\alias{olsDesc,Ontologies}
-\alias{olsTitle,character}
-\alias{olsTitle,Ontology}
-\alias{olsTitle,Ontologies}
+\alias{olsStatus}
 \alias{olsStatus,character}
 \alias{olsStatus,Ontology}
 \alias{olsStatus,Ontologies}
+\alias{olsPrefix}
+\alias{olsPrefix,character}
+\alias{olsPrefix,Ontology}
+\alias{olsPrefix,Ontologies}
+\alias{olsDesc}
+\alias{olsDesc,character}
+\alias{olsDesc,Ontology}
+\alias{olsDesc,Ontologies}
+\alias{olsTitle}
+\alias{olsTitle,character}
+\alias{olsTitle,Ontology}
+\alias{olsTitle,Ontologies}
+\alias{olsNamespace}
 \alias{olsNamespace,character}
 \alias{olsNamespace,Ontology}
 \alias{olsNamespace,Ontologies}
 \alias{ontologyUrl}
 \alias{ontologyUrl,character}
 \alias{ontologyUrl,Ontology}
+\alias{as.data.frame.Ontologies}
 \alias{Ontologies,missing-method}
 \alias{Ontology,character-method}
 \alias{Ontology,Ontology-method}
@@ -71,7 +80,6 @@
 \alias{[,Ontologies-method}
 \alias{[[,Ontologies-method}
 \alias{length,Ontologies-method}
-\alias{as.data.frame.Ontologies}
 \title{Ontologies}
 \usage{
 \S4method{Ontologies}{missing}(object)
@@ -147,8 +155,25 @@
 \S4method{[[}{Ontologies}(x, i, j = "missing", drop = "missing")
 
 \S4method{length}{Ontologies}(x)
+}
+\arguments{
+\item{object}{an instance of class `Ontologies` or `Ontology`. For
+some functions, a ontology identifier is applicable.}
 
-\method{as.data.frame}{Ontologies}(x)
+\item{X}{`Ontologies` object.}
+
+\item{FUN}{a `function` to be applied to each `Ontology` element
+of `X`.}
+
+\item{...}{additional arguments passed to `FUN`.}
+
+\item{x}{an `Ontologies` object.}
+
+\item{i}{index of elecements to subset.}
+
+\item{j}{ignored.}
+
+\item{drop}{ignored.}
 }
 \description{
 The rols package provides an interface to PRIDE's Ontology Lookup

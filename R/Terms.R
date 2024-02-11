@@ -159,6 +159,16 @@ NULL
 
 ##' @export
 ##' @rdname Terms
+##'
+##' @param object generally an instance of class `Terms` or `Term`. In
+##'     some cases, an ontology identifier is applicable.
+##'
+##' @param pagesize `numeric(1)`, converted to an integer, defining
+##'     the response page size. Default is 1000.
+##'
+##' @param obsolete `NULL` or `logical(1)` defining whether obsolete
+##'     terms (`TRUE`), current terms (`FALSE`) or all (`NULL`,
+##'     default) should be returned.
 setMethod("Terms", "character", ## ontologyId
           function(object, pagesize = 1000, obsolete = NULL)
               makeTerms(object, pagesize, obsolete))
@@ -171,28 +181,27 @@ setMethod("Terms", "Ontology",
 
 ##' @export
 ##' @rdname Terms
+##'
+##' @param id `character(1)` with the term's identifier.
 setMethod("Term", "character",
-          function(object, id) Term(Ontology(object), id))
+          function(object, id) {
+              ## See https://github.com/EBISPOT/ols4/issues/621
+              url <- paste0(
+                  "https://www.ebi.ac.uk/ols4/api/ontologies/",
+                  object,
+                  "/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F")
+              url <- paste0(url, sub(":", "_", id))
+              request(url) |>
+                  req_perform() |>
+                  resp_body_json() |>
+                  termFromJson()
+          })
 
 ##' @export
 ##' @rdname Terms
 setMethod("Term", "Ontology",
-          function(object, id) {
-              ## Unfortunately, direct REST queries for a specific
-              ## term aren't working (see
-              ## https://github.com/EBISPOT/ols4/issues/621). For now,
-              ## as a very ugly workaround, I'm requesting all terms
-              ## to get a single one :-(
-              trms <- Terms(object)
-              i <- which(termId(trms) == id, useNames = FALSE)
-              if (length(i) == 0) {
-                  warning("Id ", id, " not found. Returning empty Term.")
-                  return(.Term())
-              } else if (length(i) > 1) {
-                  stop(id, " is not unique. Please open an issue.")
-              }
-              trms[[i]]
-          })
+          function(object, id)
+              Term(olsNamespace(object), id))
 
 ##' @export
 ##' @rdname Terms
@@ -258,7 +267,7 @@ setMethod("show", "Term",
               cat(" Label: ", termLabel(object),"\n  ", sep = "")
               desc <- termDesc(object)
               if (is.null(desc)) cat("No description\n")
-              else for (i in 1:seq_along(desc))
+              else for (i in seq_along(desc))
                   cat(strwrap(desc[[i]]), sep = "\n  ")
           })
 
@@ -376,13 +385,30 @@ setMethod("length", "Terms", function(x) length(x@x))
 setMethod("unique", "Terms", function(x) x[!duplicated(names(x@x))])
 ##' @export
 ##' @rdname Terms
+##'
+##' @param x a `Terms` object.
+##'
+##' @param i index of elecements to subset.
+##'
+##' @param j ignored.
+##'
+##' @param drop ignored.
 setMethod("[", "Terms",
-          function(x, i, j="missing", drop="missing") Terms(x = x@x[i]))
+          function(x, i, j="missing", drop="missing")
+              .Terms(x = x@x[i]))
 ##' @export
 ##' @rdname Terms
 setMethod("[[", "Terms",
           function(x, i, j="missing", drop="missing") x@x[[i]])
 ##' @export
+##'
+##' @param X `Terms` object.
+##'
+##' @param FUN a `function` to be applied to each `Term` element of
+##'     `X`.
+##'
+##' @param ... additional arguments passed to `FUN`.
+##'
 ##' @rdname Terms
 setMethod("lapply", "Terms",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
@@ -514,14 +540,3 @@ fix_null <- function(x) {
 }
 
 .termId <- function(x) x@obo_id
-
-.term <- function(oid, termid) {
-    ont <- Ontology(oid)
-    url <- olsLinks(ont)[["terms"]]
-    uri <- URLencode(ontologyUri(ont), TRUE)
-    url <- paste0(url, uri, sub(":", "_", termid))
-    x <- GET(url)
-    stop_for_status(x)
-    cx <- content(x)
-    makeTerm(cx)
-}

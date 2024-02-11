@@ -13,7 +13,7 @@ Description: The rols package is an interface to the Ontology Lookup
              Service (OLS) to access and query hundred of ontolgies
              directly from R.
 Depends: methods
-Imports: httr2, httr, jsonlite,
+Imports: httr2, jsonlite,
          utils, Biobase, BiocGenerics (>= 0.23.1)
 Suggests: GO.db, knitr (>= 1.1.0), BiocStyle (>= 2.5.19),
           testthat, lubridate, DT, rmarkdown,

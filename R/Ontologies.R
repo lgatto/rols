@@ -3,15 +3,16 @@
 ##' @aliases Ontologies Ontology
 ##' @aliases olsLinks olsLinks,Ontology
 ##' @aliases olsConfig olsConfig,Ontology
-##' @aliases olsVersion,character olsVersion,Ontology olsVersion,Ontologies
-##' @aliases olsLoaded,character olsLoaded,Ontology olsLoaded,Ontologies
-##' @aliases olsUpdated,character olsUpdated,Ontology olsUpdated,Ontologies
-##' @aliases olsPrefix,character olsPrefix,Ontology olsPrefix,Ontologies
-##' @aliases olsDesc,character olsDesc,Ontology olsDesc,Ontologies
-##' @aliases olsTitle,character olsTitle,Ontology olsTitle,Ontologies
-##' @aliases olsStatus,character olsStatus,Ontology olsStatus,Ontologies
-##' @aliases olsNamespace,character olsNamespace,Ontology olsNamespace,Ontologies
+##' @aliases olsVersion olsVersion,character olsVersion,Ontology olsVersion,Ontologies
+##' @aliases olsLoaded olsLoaded,character olsLoaded,Ontology olsLoaded,Ontologies
+##' @aliases olsUpdated olsUpdated,character olsUpdated,Ontology olsUpdated,Ontologies
+##' @aliases olsStatus olsStatus,character olsStatus,Ontology olsStatus,Ontologies
+##' @aliases olsPrefix olsPrefix,character olsPrefix,Ontology olsPrefix,Ontologies
+##' @aliases olsDesc olsDesc,character olsDesc,Ontology olsDesc,Ontologies
+##' @aliases olsTitle olsTitle,character olsTitle,Ontology olsTitle,Ontologies
+##' @aliases olsNamespace olsNamespace,character olsNamespace,Ontology olsNamespace,Ontologies
 ##' @aliases ontologyUrl ontologyUrl,character ontologyUrl,Ontology
+##' @aliases as.data.frame.Ontologies
 ##'
 ##' @description
 ##'
@@ -165,6 +166,10 @@ NULL
 ## Constructors
 
 ##' @export
+##'
+##' @param object an instance of class `Ontologies` or `Ontology`. For
+##'     some functions, a ontology identifier is applicable.
+##'
 ##' @rdname Ontologies
 setMethod("Ontologies", "missing",
           function(object) makeOntologies())
@@ -204,6 +209,7 @@ setMethod("show", "Ontology",
           })
 
 ##' @export
+##' @importFrom utils head tail
 ##' @rdname Ontologies
 setMethod("show", "Ontologies",
           function(object) {
@@ -347,10 +353,27 @@ setMethod("ontologyUrl", "Ontology",
 ##########################################
 ## Data manipulation
 ##' @export
+##'
+##' @param X `Ontologies` object.
+##'
+##' @param FUN a `function` to be applied to each `Ontology` element
+##'     of `X`.
+##'
+##' @param ... additional arguments passed to `FUN`.
+##'
 ##' @rdname Ontologies
 setMethod("lapply", "Ontologies",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
 ##' @export
+##'
+##' @param x an `Ontologies` object.
+##'
+##' @param i index of elecements to subset.
+##'
+##' @param j ignored.
+##'
+##' @param drop ignored.
+##'
 ##' @rdname Ontologies
 setMethod("[", "Ontologies",
           function(x, i, j="missing", drop="missing")
@@ -415,9 +438,9 @@ setMethod("length", "Ontologies", function(x) length(x@x))
 setAs("Ontologies", "data.frame",
       function(from) as.data.frame.Ontologies(from))
 
-##' @exportS3Method
-##' @rdname Ontologies
-as.data.frame.Ontologies <- function(x) {
+##' @export
+as.data.frame.Ontologies <- function(x, row.names = NULL,
+                                     optional = FALSE, ...) {
     .as_vector <- function(x) {
         if (is.list(x))
             x <- sapply(x, paste, collapse = "; ")
