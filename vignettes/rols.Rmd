@@ -17,12 +17,12 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r env, echo=FALSE}
+```{r env, echo=FALSE, message=FALSE}
 suppressPackageStartupMessages(library("GO.db"))
 suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("rols"))
 suppressPackageStartupMessages(library("DT"))
-nonto <- length(ol <- Ontologies())
+suppressMessages(nonto <- length(ol <- Ontologies()))
 ```
 
 # Introduction
