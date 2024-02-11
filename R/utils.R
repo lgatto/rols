@@ -13,6 +13,18 @@ resp_embedded <- function(resp, what) {
     body[["_embedded"]][[what]]
 }
 
+##' @param url `character(1)` with the request URL.
+##'
+##' @param what `character(1)` defining the embedded slot name,
+##'     typically `"ontologies"` for `Ontologies()` or `"terms"` for
+##'     `Terms()`. Passed to `resp_embedded()`.
+##'
+##' @return A `list()` responsons in json format that can be converted
+##'     into ontology or term objects with the `ontologyFromJson()`
+##'     and `termFromJson()` functions.  See `makeOntologies()` and
+##'     `makeTerms()`, `parents()`, ... for examples.
+##'
+##' @noRd
 ols_requests <- function(url, what)
     lapply(
         req_perform_iterative(

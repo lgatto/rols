@@ -119,6 +119,9 @@
 ##'
 ##' parents(trm)
 ##' ancestors(trm) ## includes parent
+##'
+##' ## A single term from an ontology
+##' Term("ado", "ADO:0000090")
 NULL
 
 ############################################################
@@ -157,24 +160,39 @@ NULL
 ##' @export
 ##' @rdname Terms
 setMethod("Terms", "character", ## ontologyId
-          function(x, pagesize = 1000, obsolete = NULL)
-              makeTerms(x, pagesize, obsolete))
+          function(object, pagesize = 1000, obsolete = NULL)
+              makeTerms(object, pagesize, obsolete))
 
 ##' @export
 ##' @rdname Terms
 setMethod("Terms", "Ontology",
-          function(x, pagesize = 1000, obsolete = NULL)
-              makeTerms(x, pagesize, obsolete))
+          function(object, pagesize = 1000, obsolete = NULL)
+              makeTerms(object, pagesize, obsolete))
 
+##' @export
+##' @rdname Terms
+setMethod("Term", "character",
+          function(object, id) Term(Ontology(object), id))
 
-## These methods query an Ontology (or its prefix) for all or one term
-## setMethod("terms", "character",
-##           function(x, ...) .terms(x, ...))
-## setMethod("term", c("character", "character"),
-##           function(object, id, ...) .term(object, id, ...))
-## setMethod("term", c("Ontology", "character"),
-##           function(object, id,...) .term(object, id, ...))
-
+##' @export
+##' @rdname Terms
+setMethod("Term", "Ontology",
+          function(object, id) {
+              ## Unfortunately, direct REST queries for a specific
+              ## term aren't working (see
+              ## https://github.com/EBISPOT/ols4/issues/621). For now,
+              ## as a very ugly workaround, I'm requesting all terms
+              ## to get a single one :-(
+              trms <- Terms(object)
+              i <- which(termId(trms) == id, useNames = FALSE)
+              if (length(i) == 0) {
+                  warning("Id ", id, " not found. Returning empty Term.")
+                  return(.Term())
+              } else if (length(i) > 1) {
+                  stop(id, " is not unique. Please open an issue.")
+              }
+              trms[[i]]
+          })
 
 ##' @export
 ##' @rdname Terms
