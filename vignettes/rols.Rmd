@@ -155,10 +155,10 @@ illustrated below.
 ```{r propex}
 trm <- Term("uberon", "UBERON:0002107")
 trm
-## p <- properties(trm)
-## p
-## p[[1]]
-## termLabel(p[[1]])
+p <- Properties(trm)
+p
+p[[1]]
+termLabel(p[[1]])
 ```
 
 # Use case

@@ -25,7 +25,7 @@ setGeneric("termDesc", function(object, ...) standardGeneric("termDesc"))
 setGeneric("termNamespace", function(object, ...) standardGeneric("termNamespace"))
 setGeneric("termOntology", function(object, ...) standardGeneric("termOntology"))
 
-## setGeneric("properties", function(object, ...) standardGeneric("properties"))
+setGeneric("Properties", function(object, ...) standardGeneric("Properties"))
 
 ## private
 setGeneric("ontologyUrl", function(object, ...) standardGeneric("ontologyUrl"))

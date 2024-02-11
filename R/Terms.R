@@ -147,7 +147,7 @@ NULL
                             obo_definition_citation = "NullOrList",
                             obo_xref  = "NullOrList",
                             obo_synonym = "NullOrList",
-                            is_preferred_root = "logical",
+                            is_preferred_root = "NullOrLogical",
                             links = "list"))
 
 ############################################################
