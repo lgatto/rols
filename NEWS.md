@@ -1,5 +1,9 @@
 # rols 2.99
 
+## CHANGES IN VERSION 2.99.1
+
+- Fix logical syntax in url.
+
 ## CHANGES IN VERSION 2.99.0
 
 - Refactoring to use REST API for OLS4.
