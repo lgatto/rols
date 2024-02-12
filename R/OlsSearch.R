@@ -178,6 +178,8 @@ OlsSearch <- function(q,
         nm <- names(.args)[i]
         arg <- .args[[i]]
         arg <- eval(arg, parent.frame())
+        if (is.logical(arg))
+            arg <- ifelse(arg, "true", "false")
         if (is.character(arg))
             arg <- URLencode(arg)
         if (nm == "ontology")
@@ -190,6 +192,7 @@ OlsSearch <- function(q,
     searchUrl <- "http://www.ebi.ac.uk/ols4/api/search?"
     url <- paste0(searchUrl,
                   paste(params, collapse = "&"))
+    message(url)
     x <- request(url) |>
         req_perform() |>
         resp_body_json()
