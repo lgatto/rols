@@ -19,7 +19,7 @@ responses are then retrieved with the `olsSearch()` function."><!-- mathjax --><
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.2</span>
       </span>
     </div>
 
@@ -189,15 +189,13 @@ number. Default is 0L.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Many results across all ontologies</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: trans-golgi </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 13181)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 13173)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Exact matches</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;exact=true&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: trans-golgi </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 258)</span>
@@ -205,14 +203,12 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Exact match in the gene ontology (go or GO) only</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span>, ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;ontology=go&amp;exact=true&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: go </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: trans-golgi </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 35)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span>, ontology <span class="op">=</span> <span class="st">"GO"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;ontology=go&amp;exact=true&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: GO </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: trans-golgi </span>
@@ -222,7 +218,6 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span><span class="co">## Exact match in the GO and Uberon</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span>,</span></span>
 <span class="r-in"><span>          ontology <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"GO"</span>, <span class="st">"Uberon"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;ontology=go,uberon&amp;exact=true&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgies: GO, Uberon </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: trans-golgi </span>
@@ -231,28 +226,24 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Testing different ESI queries</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"electrospray"</span>, ontology <span class="op">=</span> <span class="st">"MS"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=electrospray&amp;ontology=ms&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: MS </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: electrospray </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 9)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"ionization"</span>, ontology <span class="op">=</span> <span class="st">"MS"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=ionization&amp;ontology=ms&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: MS </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: ionization </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 62)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"electrospray ionization"</span>, ontology <span class="op">=</span> <span class="st">"MS"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=electrospray%20ionization&amp;ontology=ms&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: MS </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: electrospray ionization </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 66)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"electrospray ionization"</span>, ontology <span class="op">=</span> <span class="st">"MS"</span>, exact<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=electrospray%20ionization&amp;ontology=ms&amp;exact=true&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: MS </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: electrospray ionization </span>
@@ -261,7 +252,6 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Request 5 results instead of 20 (default)</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"plasma,membrane"</span>, ontology <span class="op">=</span> <span class="st">"go"</span>, rows <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=plasma,membrane&amp;ontology=go&amp;rows=5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: go </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: plasma,membrane </span>
@@ -269,7 +259,6 @@ number. Default is 0L.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span><span class="co">## Same as above</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"plasma membrane"</span>, ontology <span class="op">=</span> <span class="st">"go"</span>, rows <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=plasma%20membrane&amp;ontology=go&amp;rows=5</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: go </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: plasma membrane </span>
@@ -278,7 +267,6 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## or, once the object was created</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"plasma,membrane"</span>, ontology <span class="op">=</span> <span class="st">"go"</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=plasma,membrane&amp;ontology=go&amp;rows=20</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: go </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: plasma,membrane </span>
@@ -302,7 +290,6 @@ number. Default is 0L.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">res</span> <span class="op">&lt;-</span> <span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, ontology <span class="op">=</span> <span class="st">"go"</span>, rows <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;ontology=go&amp;rows=5</span>
 <span class="r-in"><span><span class="va">res</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ontolgy: go </span>
@@ -318,17 +305,17 @@ number. Default is 0L.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 5 </span>
 <span class="r-in"><span><span class="fu">as</span><span class="op">(</span><span class="va">res</span>, <span class="st">"data.frame"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                         iri ontology_name ontology_prefix</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://purl.obolibrary.org/obo/GO_0000138            go              GO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 http://purl.obolibrary.org/obo/GO_0005802            go              GO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 http://purl.obolibrary.org/obo/GO_1990676            go              GO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 http://purl.obolibrary.org/obo/GO_0032588            go              GO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 http://purl.obolibrary.org/obo/GO_0030140            go              GO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   short_form  description                                 label     obo_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 GO_0000138 The Golg....                  Golgi trans cisterna GO:0000138</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 GO_0005802 The netw....                   trans-Golgi network GO:0005802</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 GO_1990676 The lipi....         Golgi trans cisterna membrane GO:1990676</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4 GO_0032588 The lipi....          trans-Golgi network membrane GO:0032588</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5 GO_0030140 A vesicl.... trans-Golgi network transport vesicle GO:0030140</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://purl.obolibrary.org/obo/GO_0005802            go              GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 http://purl.obolibrary.org/obo/GO_0000138            go              GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 http://purl.obolibrary.org/obo/GO_0032588            go              GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 http://purl.obolibrary.org/obo/GO_1990676            go              GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 http://purl.obolibrary.org/obo/GO_0098629            go              GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   short_form  description                                     label     obo_id</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 GO_0005802 The netw....                       trans-Golgi network GO:0005802</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 GO_0000138 The Golg....                      Golgi trans cisterna GO:0000138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3 GO_0032588 The lipi....              trans-Golgi network membrane GO:0032588</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4 GO_1990676 The lipi....             Golgi trans cisterna membrane GO:1990676</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5 GO_0098629 A proces.... trans-Golgi network membrane organization GO:0098629</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    type</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 class</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 class</span>
@@ -339,27 +326,24 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span><span class="va">trms</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Terms' with 5 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the GO ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0000138, GO:0005802 ... GO:0032588, GO:0030140 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0005802, GO:0000138 ... GO:1990676, GO:0098629 </span>
 <span class="r-in"><span><span class="fu"><a href="Terms.html">termPrefix</a></span><span class="op">(</span><span class="va">trms</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0000138 GO:0005802 GO:1990676 GO:0032588 GO:0030140 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005802 GO:0000138 GO:0032588 GO:1990676 GO:0098629 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "GO"       "GO"       "GO"       "GO"       "GO" </span>
 <span class="r-in"><span><span class="fu"><a href="Terms.html">termId</a></span><span class="op">(</span><span class="va">trms</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0000138   GO:0005802   GO:1990676   GO:0032588   GO:0030140 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "GO:0000138" "GO:0005802" "GO:1990676" "GO:0032588" "GO:0030140" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0005802   GO:0000138   GO:0032588   GO:1990676   GO:0098629 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "GO:0005802" "GO:0000138" "GO:0032588" "GO:1990676" "GO:0098629" </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Setting rows and start parameters</span></span></span>
 <span class="r-in"><span><span class="va">tg1</span> <span class="op">&lt;-</span> <span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, rows <span class="op">=</span> <span class="fl">5</span>, start <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                 <span class="fu">olsSearch</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                 <span class="fu">as</span><span class="op">(</span><span class="st">"data.frame"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;rows=5&amp;start=0</span>
 <span class="r-in"><span><span class="va">tg2</span> <span class="op">&lt;-</span> <span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, rows <span class="op">=</span> <span class="fl">5</span>, start <span class="op">=</span> <span class="fl">5</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                 <span class="fu">olsSearch</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                 <span class="fu">as</span><span class="op">(</span><span class="st">"data.frame"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;rows=5&amp;start=5</span>
 <span class="r-in"><span><span class="va">tg3</span> <span class="op">&lt;-</span> <span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, rows <span class="op">=</span> <span class="fl">10</span>, start <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                 <span class="fu">olsSearch</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>                 <span class="fu">as</span><span class="op">(</span><span class="st">"data.frame"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> http://www.ebi.ac.uk/ols4/api/search?q=trans-golgi&amp;rows=10&amp;start=0</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## The two consecutive small results are identical</span></span></span>
 <span class="r-in"><span><span class="co">## to the larger on.</span></span></span>
