@@ -35,6 +35,13 @@ test_that("constructors", {
                      descendants(trm)@x[nms])
 })
 
+test_that("constructors different URIs (issue 42)", {
+    ## See https://github.com/lgatto/rols/issues/42
+    expect_is(Term("ado", "ADO:0000090"), "Term")
+    expect_is(Term("efo", "EFO:0001200"), "Term")
+    expect_is(Term("go", "GO:0005802"), "Term")
+})
+
 test_that("show methods", {
     expect_null(show(trms))
     ## expect_null(show(trms[1]))

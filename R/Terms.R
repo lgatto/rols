@@ -184,24 +184,33 @@ setMethod("Terms", "Ontology",
 ##'
 ##' @param id `character(1)` with the term's identifier.
 setMethod("Term", "character",
+          function(object, id) Term(Ontology(object), id))
+
+##' @export
+##' @rdname Terms
+setMethod("Term", "Ontology",
           function(object, id) {
               ## See https://github.com/EBISPOT/ols4/issues/621
               url <- paste0(
                   "https://www.ebi.ac.uk/ols4/api/ontologies/",
-                  object,
-                  "/terms/http%253A%252F%252Fpurl.obolibrary.org%252Fobo%252F")
-              url <- paste0(url, sub(":", "_", id))
+                  olsNamespace(object),
+                  "/terms/")
+              loc <- object@config$fileLocation
+              if (grepl("ebi.ac.uk", loc)) {
+                  uri <- sub("/[a-zA-z]+\\.owl$", "", loc)
+              }
+              else if (grepl("purl.obolibrary.org", loc)) {
+                  uri <- "http://purl.obolibrary.org/obo"
+              } else stop("Unknown fileLocation")
+              uri <- paste0(uri, "/", sub(":", "_", id))
+              uri <- gsub("%", "%25", URLencode(uri, TRUE))
+              url <- paste0(url, uri)
               request(url) |>
                   req_perform() |>
                   resp_body_json() |>
                   termFromJson()
           })
 
-##' @export
-##' @rdname Terms
-setMethod("Term", "Ontology",
-          function(object, id)
-              Term(olsNamespace(object), id))
 
 ##' @export
 ##' @rdname Terms
