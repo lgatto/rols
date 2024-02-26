@@ -19,7 +19,7 @@ responses are then retrieved with the `olsSearch()` function."><!-- mathjax --><
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.3</span>
       </span>
     </div>
 
@@ -191,14 +191,14 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: trans-golgi </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 13173)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 13289)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Exact matches</span></span></span>
 <span class="r-in"><span><span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, exact <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'OlsSearch':</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   query: trans-golgi </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 258)</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   requested: 20 (out of 259)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 0 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Exact match in the gene ontology (go or GO) only</span></span></span>
@@ -305,14 +305,14 @@ number. Default is 0L.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   response(s): 5 </span>
 <span class="r-in"><span><span class="fu">as</span><span class="op">(</span><span class="va">res</span>, <span class="st">"data.frame"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                         iri ontology_name ontology_prefix</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://purl.obolibrary.org/obo/GO_0005802            go              GO</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 http://purl.obolibrary.org/obo/GO_0000138            go              GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 http://purl.obolibrary.org/obo/GO_0000138            go              GO</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 http://purl.obolibrary.org/obo/GO_0005802            go              GO</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 http://purl.obolibrary.org/obo/GO_0032588            go              GO</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 http://purl.obolibrary.org/obo/GO_1990676            go              GO</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 http://purl.obolibrary.org/obo/GO_0098629            go              GO</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   short_form  description                                     label     obo_id</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1 GO_0005802 The netw....                       trans-Golgi network GO:0005802</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 GO_0000138 The Golg....                      Golgi trans cisterna GO:0000138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1 GO_0000138 The Golg....                      Golgi trans cisterna GO:0000138</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2 GO_0005802 The netw....                       trans-Golgi network GO:0005802</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3 GO_0032588 The lipi....              trans-Golgi network membrane GO:0032588</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4 GO_1990676 The lipi....             Golgi trans cisterna membrane GO:1990676</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 GO_0098629 A proces.... trans-Golgi network membrane organization GO:0098629</span>
@@ -326,13 +326,13 @@ number. Default is 0L.</p></dd>
 <span class="r-in"><span><span class="va">trms</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Terms' with 5 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the GO ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0005802, GO:0000138 ... GO:1990676, GO:0098629 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0000138, GO:0005802 ... GO:1990676, GO:0098629 </span>
 <span class="r-in"><span><span class="fu"><a href="Terms.html">termPrefix</a></span><span class="op">(</span><span class="va">trms</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0005802 GO:0000138 GO:0032588 GO:1990676 GO:0098629 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> GO:0000138 GO:0005802 GO:0032588 GO:1990676 GO:0098629 </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>       "GO"       "GO"       "GO"       "GO"       "GO" </span>
 <span class="r-in"><span><span class="fu"><a href="Terms.html">termId</a></span><span class="op">(</span><span class="va">trms</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0005802   GO:0000138   GO:0032588   GO:1990676   GO:0098629 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> "GO:0005802" "GO:0000138" "GO:0032588" "GO:1990676" "GO:0098629" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   GO:0000138   GO:0005802   GO:0032588   GO:1990676   GO:0098629 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "GO:0000138" "GO:0005802" "GO:0032588" "GO:1990676" "GO:0098629" </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Setting rows and start parameters</span></span></span>
 <span class="r-in"><span><span class="va">tg1</span> <span class="op">&lt;-</span> <span class="fu">OlsSearch</span><span class="op">(</span>q <span class="op">=</span> <span class="st">"trans-golgi"</span>, rows <span class="op">=</span> <span class="fl">5</span>, start <span class="op">=</span> <span class="fl">0</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
