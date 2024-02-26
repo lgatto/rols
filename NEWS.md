@@ -1,5 +1,9 @@
 # rols 2.99
 
+## CHANGES IN VERSION 2.99.3
+
+- Add orcid.
+
 ## CHANGES IN VERSION 2.99.2
 
 - Fix different URI locations (see #42)
