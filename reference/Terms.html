@@ -18,7 +18,7 @@ instantiated as a `Terms` class."><!-- mathjax --><script src="https://cdnjs.clo
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.4</span>
       </span>
     </div>
 
@@ -285,6 +285,12 @@ iterated over with `lapply`.</p>
   synonym only, their iri and whether they are defining the
   ontology. Any missing value will be reported as `NA`.</p>
     </div>
+    <div id="references">
+    <h2>References</h2>
+    <p>- OLS3 API (the OLS4 API should function identically to the OLS3):
+  &lt;http://www.ebi.ac.uk/ols4/ols3help&gt;</p>
+<p>- REST API for OLS: &lt;https://www.ebi.ac.uk/ols4/swagger-ui/index.html&gt;</p>
+    </div>
     <div id="author">
     <h2>Author</h2>
     <p>Laurent Gatto</p>
@@ -295,11 +301,11 @@ iterated over with `lapply`.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Alzheimer's Disease Ontology (ADO)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">adoterms</span> <span class="op">&lt;-</span> <span class="fu">Terms</span><span class="op">(</span><span class="st">'ado'</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Iterating 1 done (0.28/s) | 3.5s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Iterating 2 done (0.25/s) | 7.9s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Iterating 1 done (0.23/s) | 4.4s</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Iterating 2 done (0.26/s) | 7.7s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'Terms' with 1963 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the ADO ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   UBERON:0003027, UBERON:0003103 ... UBERON:0002728, UBERON:0002751 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ADO:0000001, ADO:0000010 ... performing_physical:activity, non-pharmacotherapy:procedure </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Focus on squamous epithelium</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">trm</span> <span class="op">&lt;-</span> <span class="va">adoterms</span><span class="op">[[</span><span class="st">"UBERON:0006914"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
@@ -312,12 +318,18 @@ iterated over with `lapply`.</p>
 <span class="r-in"><span><span class="fu">termLabel</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "squamous epithelium"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">termLabel</span><span class="op">(</span><span class="va">adoterms</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   UBERON:0003027                   UBERON:0003103 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               "cingulate cortex"                 "compound organ" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   UBERON:0003528                   UBERON:0003876 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>              "brain gray matter"              "hippocampal field" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                   UBERON:0003909                   UBERON:0003947 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>                       "sinusoid" "brain ventricle/choroid plexus" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000001 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      "cognitive symptom" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000010 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   "TM_BIN_VariantisGeneticRiskFactorFor" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000011 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             "TM_BIN_isSignAndSymptomFor" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000012 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  "TM_BIN_isTreatmentFor" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000024 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             "early sign" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000025 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Early-stage Alzheimer's Disease (mild)" </span>
 <span class="r-in"><span><span class="fu">termId</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "UBERON:0006914"</span>
 <span class="r-in"><span><span class="fu">termDesc</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span></span>
