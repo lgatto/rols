@@ -92,6 +92,13 @@
 ##'   synonym only, their iri and whether they are defining the
 ##'   ontology. Any missing value will be reported as `NA`.
 ##'
+##' @references
+##'
+##' - OLS3 API (the OLS4 API should function identically to the OLS3):
+##'   <http://www.ebi.ac.uk/ols4/ols3help>
+##'
+##' - REST API for OLS: <https://www.ebi.ac.uk/ols4/swagger-ui/index.html>
+##'
 ##' @name Terms
 ##'
 ##' @author Laurent Gatto

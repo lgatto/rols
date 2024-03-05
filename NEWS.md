@@ -1,5 +1,9 @@
 # rols 2.99
 
+## CHANGES IN VERSION 2.99.4
+
+- Typo and references in manual pages.
+
 ## CHANGES IN VERSION 2.99.3
 
 - Add orcid.

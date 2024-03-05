@@ -9,6 +9,14 @@
 ##' object `OlsSearch` using the `OlsSearch()` constructor. Query
 ##' responses are then retrieved with the `olsSearch()` function.
 ##'
+##' @references
+##'
+##' - OLS3 API (the OLS4 API should function identically to the OLS3):
+##'   <http://www.ebi.ac.uk/ols4/ols3help>
+##'
+##' - REST API for OLS: <https://www.ebi.ac.uk/ols4/swagger-ui/index.html>
+##'
+##'
 ##' @author Laurent Gatto
 ##'
 ##' @name OlsSearch
@@ -126,8 +134,8 @@
 ##' @param exact `logical(1)` defining if exact matches should be
 ##'     returned. Default is `FALSE`.
 ##'
-##' @param groupField `logical(1)`, set to `TRUE`rue to group results
-##'     by unique id (IRI).
+##' @param groupField `logical(1)`, set to `TRUE` to group results by
+##'     unique id (IRI).
 ##'
 ##' @param obsoletes `logical(1)` defining whether obsolete terms
 ##'     should be queried. Default is `FALSE`.
@@ -135,7 +143,7 @@
 ##' @param local `character(1)`, default is `FALSE`. Set to `TRUE` to
 ##'     only return terms that are in a defining ontology e.g. only
 ##'     return matches to gene ontology terms in the gene ontology,
-##'     and exclude ontologies where those terms are also referenced
+##'     and exclude ontologies where those terms are also referenced.
 ##'
 ##' @param childrenOf `character()` to restrict a search to children
 ##'     of a given term. Supply a list of IRI for the terms that you

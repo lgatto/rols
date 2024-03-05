@@ -66,8 +66,8 @@ for all fields.}
 \item{exact}{`logical(1)` defining if exact matches should be
 returned. Default is `FALSE`.}
 
-\item{groupField}{`logical(1)`, set to `TRUE`rue to group results
-by unique id (IRI).}
+\item{groupField}{`logical(1)`, set to `TRUE` to group results by
+unique id (IRI).}
 
 \item{obsoletes}{`logical(1)` defining whether obsolete terms
 should be queried. Default is `FALSE`.}
@@ -75,7 +75,7 @@ should be queried. Default is `FALSE`.}
 \item{local}{`character(1)`, default is `FALSE`. Set to `TRUE` to
 only return terms that are in a defining ontology e.g. only
 return matches to gene ontology terms in the gene ontology,
-and exclude ontologies where those terms are also referenced}
+and exclude ontologies where those terms are also referenced.}
 
 \item{childrenOf}{`character()` to restrict a search to children
 of a given term. Supply a list of IRI for the terms that you
@@ -162,6 +162,12 @@ tg3 <- OlsSearch(q = "trans-golgi", rows = 10, start = 0) |>
 ## The two consecutive small results are identical
 ## to the larger on.
 identical(rbind(tg1, tg2), tg3)
+}
+\references{
+- OLS3 API (the OLS4 API should function identically to the OLS3):
+  <http://www.ebi.ac.uk/ols4/ols3help>
+
+- REST API for OLS: <https://www.ebi.ac.uk/ols4/swagger-ui/index.html>
 }
 \author{
 Laurent Gatto

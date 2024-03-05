@@ -299,6 +299,12 @@ olsDesc(ado1)
 olsLinks(ado1)
 str(olsConfig(ado1))
 }
+\references{
+- OLS3 API (the OLS4 API should function identically to the OLS3):
+  <http://www.ebi.ac.uk/ols4/ols3help>
+
+- REST API for OLS: <https://www.ebi.ac.uk/ols4/swagger-ui/index.html>
+}
 \author{
 Laurent Gatto
 }

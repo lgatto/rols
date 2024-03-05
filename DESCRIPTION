@@ -1,7 +1,7 @@
 Package: rols
 Type: Package
 Title: An R interface to the Ontology Lookup Service
-Version: 2.99.3
+Version: 2.99.4
 Authors@R: c(person(given = "Laurent", family = "Gatto",
                     email = "laurent.gatto@uclouvain.be",
                     comment = c(ORCID = "0000-0002-1520-2268"),
@@ -28,4 +28,4 @@ Collate: AllClasses.R AllGenerics.R utils.R
          Ontologies.R Terms.R
          cvparam.R OlsSearch.R
          Properties.R zzz.R
-RoxygenNote: 7.3.0
+RoxygenNote: 7.3.1
