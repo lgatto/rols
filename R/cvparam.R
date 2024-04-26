@@ -41,7 +41,7 @@
 ##' ## User param
 ##' CVParam(name = "A user param", value = "the value")
 ##' ## CVParam ESI from PSI's Mass Spectrometry ontology
-##' Term("MS", "MS:1000073")
+##' olsTerm("MS", "MS:1000073")
 ##' (esi <- CVParam(label = "MS", accession = "MS:1000073"))
 ##' class(esi)
 ##'
@@ -89,7 +89,7 @@ validCVParam <- function(object) {
                object@name, object@value) == ""
         if (!all(x)) {
             ## FIXME - why call Term here? Is this needed?
-            ._term <- Term(object@label, object@accession)
+            ._term <- olsTerm(object@label, object@accession)
             ._label <- termLabel(._term)
             ._synonyms <- termSynonym(._term)
             if (!(object@name %in% c(._label, ._synonyms)))
@@ -137,7 +137,7 @@ CVParam <- function(label,
         if (missing(name) & missing(accession)) {
             stop("You need to provide at least one of 'name' or 'accession'")
         } else if (missing(name)) {
-            name <- termLabel(Term(label, accession))
+            name <- termLabel(olsTerm(label, accession))
         } else { ## missing(accession)
             resp <- OlsSearch(q = name, ontology = label, exact = exact)
             if (resp@numFound != 1)

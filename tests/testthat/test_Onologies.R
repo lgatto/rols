@@ -1,5 +1,5 @@
-ol <- Ontologies()
-go <- go1 <- Ontology("go")
+ol <- olsOntologies()
+go <- go1 <- olsOntology("go")
 
 test_that("Ontology constructors", {
     ## expect_equal(length(ol), 143L) ## this will likely change
@@ -7,9 +7,9 @@ test_that("Ontology constructors", {
     expect_true(is.integer(length(ol)))
     expect_equal(length(ol[1:10]), 10L)
     ## Construction
-    go1 <- Ontology("go")
-    go2 <- Ontology("GO")
-    go3 <- Ontology("Go")
+    go1 <- olsOntology("go")
+    go2 <- olsOntology("GO")
+    go3 <- olsOntology("Go")
     expect_true(all.equal(go1, go))
     expect_true(all.equal(go1, go2))
     expect_true(all.equal(go1, go3))

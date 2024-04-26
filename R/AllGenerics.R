@@ -1,6 +1,8 @@
-setGeneric("Ontologies", function(object) standardGeneric("Ontologies"))
-setGeneric("Terms", function(object, ...) standardGeneric("Terms"))
-setGeneric("Term", function(object, ...) standardGeneric("Term"))
+setGeneric("olsOntology", function(object) standardGeneric("olsOntology"))
+setGeneric("olsOntologies", function(object) standardGeneric("olsOntologies"))
+
+setGeneric("olsTerms", function(object, ...) standardGeneric("olsTerms"))
+setGeneric("olsTerm", function(object, ...) standardGeneric("olsTerm"))
 
 setGeneric("olsPrefix", function(object, ...) standardGeneric("olsPrefix"))
 setGeneric("olsDesc", function(object, ...) standardGeneric("olsDesc"))
@@ -25,7 +27,7 @@ setGeneric("termDesc", function(object, ...) standardGeneric("termDesc"))
 setGeneric("termNamespace", function(object, ...) standardGeneric("termNamespace"))
 setGeneric("termOntology", function(object, ...) standardGeneric("termOntology"))
 
-setGeneric("Properties", function(object, ...) standardGeneric("Properties"))
+setGeneric("olsProperties", function(object, ...) standardGeneric("olsProperties"))
 
 ## private
 setGeneric("ontologyUrl", function(object, ...) standardGeneric("ontologyUrl"))

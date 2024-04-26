@@ -1,5 +1,11 @@
 # rols 2.99
 
+## CHANGES IN VERSION 2.99.5
+
+- rename `Ontology` and `Ontologies` to `olsOntology` and
+  `olsOntologies` methods/classes to avoid clashed with the
+  `AnnotationDbi::Ontology` generic.
+
 ## CHANGES IN VERSION 2.99.4
 
 - Typo and references in manual pages.

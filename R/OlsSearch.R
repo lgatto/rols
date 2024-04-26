@@ -316,7 +316,7 @@ as.data.frame.OlsSearch <-
 
 
 ##' @export
-setAs(from = "OlsSearch", to = "Terms",
+setAs(from = "OlsSearch", to = "olsTerms",
       function(from) {
           resp <- from@response
           ## see issue #24
@@ -326,8 +326,8 @@ setAs(from = "OlsSearch", to = "Terms",
           }
           x <- apply(resp, 1,
                      function(x)
-                         tryCatch(Term(x[["ontology_prefix"]],
-                                       x[["obo_id"]]),
+                         tryCatch(olsTerm(x[["ontology_prefix"]],
+                                          x[["obo_id"]]),
                                   error = function(e) NULL))
           if (is.null(x)) {
               msg <- paste("No result retrieved.",
@@ -340,7 +340,7 @@ setAs(from = "OlsSearch", to = "Terms",
               x <- x[!nullterm]
           }
           names(x) <- resp[["obo_id"]][!nullterm]
-          .Terms(x = x)
+          .olsTerms(x = x)
       })
 
 

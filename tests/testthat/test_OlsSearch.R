@@ -38,8 +38,8 @@ test_that("OlsSearch coercion", {
     resdf <- as(res, "data.frame")
     expect_true(class(resdf) == "data.frame")
 
-    resterms <- as(res, "Terms")
-    expect_true(class(resterms) == "Terms")
+    resterms <- as(res, "olsTerms")
+    expect_is(resterms, "olsTerms")
 
     expect_identical(nrow(resdf), length(resterms))
     expect_equivalent(termId(resterms), resdf[, "obo_id"])

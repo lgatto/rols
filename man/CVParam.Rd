@@ -75,7 +75,7 @@ match.}
 ## User param
 CVParam(name = "A user param", value = "the value")
 ## CVParam ESI from PSI's Mass Spectrometry ontology
-Term("MS", "MS:1000073")
+olsTerm("MS", "MS:1000073")
 (esi <- CVParam(label = "MS", accession = "MS:1000073"))
 class(esi)
 

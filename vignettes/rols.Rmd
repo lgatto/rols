@@ -22,7 +22,7 @@ suppressPackageStartupMessages(library("GO.db"))
 suppressPackageStartupMessages(library("BiocStyle"))
 suppressPackageStartupMessages(library("rols"))
 suppressPackageStartupMessages(library("DT"))
-suppressMessages(nonto <- length(ol <- Ontologies()))
+suppressMessages(nonto <- length(ol <- olsOntologies()))
 ```
 
 # Introduction
@@ -41,10 +41,9 @@ BiocManager::install("rols")
 
 ## Getting help
 
-To get help, either post your question on the
-[Bioconductor support site](https://support.bioconductor.org/) or open
-an issue on the `r Biocpkg("rols")`
-[github page](https://github.com/lgatto/rols/issues).
+To get help, either post your question on the [Bioconductor support
+site](https://support.bioconductor.org/) or open an issue on the `r
+Biocpkg("rols")` [github page](https://github.com/lgatto/rols/issues).
 
 ## The resource
 
@@ -52,21 +51,19 @@ The [Ontology Lookup Service](http://www.ebi.ac.uk/ontology-lookup/)
 (OLS)
 [[1](http://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-7-97),
 [2](http://nar.oxfordjournals.org/content/36/suppl_2/W372)] is
-originally spin-off of the
-[PRoteomics IDEntifications](http://www.ebi.ac.uk/pride/archive/)
-database (PRIDE) service, located at the EBI, and is now developed and
-maintained by the
-[Samples, Phenotypes and Ontologies](http://www.ebi.ac.uk/about/spot-team)
-team at EMBL-EBI.
+originally spin-off of the [PRoteomics
+IDEntifications](http://www.ebi.ac.uk/pride/archive/) database (PRIDE)
+service, located at the EBI, and is now developed and maintained by
+the [Samples, Phenotypes and
+Ontologies](http://www.ebi.ac.uk/about/spot-team) team at EMBL-EBI.
 
 ## The package
 
 The OLS provides a REST interface to hundreds of ontologies from a
 single location with a unified output format. The `r Biocpkg("rols")`
 package make this possible from within R. Do do so, it relies on the
-`r CRANpkg("httr")` package to query the REST interface, and access
+`r CRANpkg("httr2")` package to query the REST interface, and access
 and retrieve data.
-
 
 There are `r nonto` ontologies available in the OLS, listed in the
 table below. Their name is to be use to defined which ontology to
@@ -80,9 +77,9 @@ DT::datatable(as(ol, "data.frame"))
 # A Brief rols overview
 
 The `r Biocpkg('rols')` package is build around a few classes that
-enable to query the OLS and retrieve, store and manipulate data. Each of
-these classes are described in more details in their respective manual
-pages. We start by loading the package.
+enable to query the OLS and retrieve, store and manipulate data. Each
+of these classes are described in more details in their respective
+manual pages. We start by loading the package.
 
 ```{r}
 library("rols")
@@ -95,7 +92,7 @@ single of multiple ontologies. The latter can be easily subset using
 `[` and `[[`, as one would for lists.
 
 ```{r ol}
-ol <- Ontologies()
+ol <- olsOntologies()
 ol
 ```
 
@@ -107,20 +104,20 @@ ol[["bspo"]]
 It is also possible to initialise a single ontology
 
 ```{r}
-bspo <- Ontology("bspo")
+bspo <- olsOntology("bspo")
 bspo
 ```
 
 ## Terms
 
-Single ontology terms are stored in `Term` objects. When more terms
-need to be manipulated, they are stored as `Terms` objects. It is easy
+Single ontology terms are stored in `olsTerm` objects. When more terms
+need to be manipulated, they are stored as `olsTerms` objects. It is easy
 to obtain all terms of an ontology of interest, and the resulting
-`Terms` object can be subset using `[` and `[[`, as one would for
+`olsTerms` object can be subset using `[` and `[[`, as one would for
 lists.
 
 ```{r}
-bspotrms <- Terms(bspo) ## or Terms("bspo")
+bspotrms <- olsTerms(bspo) ## or olsTerms("bspo")
 bspotrms
 bspotrms[1:10]
 bspotrms[["BSPO:0000092"]]
@@ -129,14 +126,14 @@ bspotrms[["BSPO:0000092"]]
 It is also possible to initialise a single term
 
 ```{r}
-trm <- Term(bspo, "BSPO:0000092")
+trm <- olsTerm(bspo, "BSPO:0000092")
 termId(trm)
 termLabel(trm)
 ```
 
 It is then possible to extract the `ancestors`, `descendants`,
 `parents` and `children` terms. Each of these functions return a
-`Terms` object
+`olsTerms` object
 
 ```{r}
 parents(trm)
@@ -153,9 +150,9 @@ ontologies can be queries with the `properties` method, as briefly
 illustrated below.
 
 ```{r propex}
-trm <- Term("uberon", "UBERON:0002107")
+trm <- olsTerm("uberon", "UBERON:0002107")
 trm
-p <- Properties(trm)
+p <- olsProperties(trm)
 p
 p[[1]]
 termLabel(p[[1]])
@@ -216,10 +213,10 @@ qry <- OlsSearch(q = "trans-golgi network", exact = TRUE)
 ```
 
 We can now transform this search result object into a fully fledged
-`Terms` object or a `data.frame`.
+`olsTerms` object or a `data.frame`.
 
 ```{r tgnres}
-(qtrms <- as(qry, "Terms"))
+(qtrms <- as(qry, "olsTerms"))
 str(qdrf <- as(qry, "data.frame"))
 ```
 
@@ -265,19 +262,19 @@ is not possible to query a specific version of an ontology.
 `r Biocpkg("rols")` 2.0 has substantially changed. While the table
 below shows some correspondence between the old and new interface,
 this is not always the case. The new interface relies on the
-`Ontology`/`Ontologies`, `Term`/`Terms` and `OlsSearch` classes, that
+`Ontology`/`Ontologies`, `olsTerm`/`olsTerms` and `OlsSearch` classes, that
 need to be instantiated and can then be queried, as described above.
 
 
-| version < 1.99     | version >= 1.99 |
-|--------------------|-----------------|
+| version < 1.99     | version >= 1.99               |
+|--------------------|-------------------------------|
 | `ontologyLoadDate` | `olsLoaded`  and `olsUpdated` |
-| `ontologyNames`    | `Ontologies` |
-| `olsVersion`       | `olsVersion` |
-| `allIds`           | `terms`      |
-| `isIdObsolete`     | `isObsolete` |
-| `rootId`           | `olsRoot`    |
-| `olsQuery`         | `OlsSearch` and `olsSearch` |
+| `ontologyNames`    | `Ontologies`                  |
+| `olsVersion`       | `olsVersion`                  |
+| `allIds`           | `terms`                       |
+| `isIdObsolete`     | `isObsolete`                  |
+| `rootId`           | `olsRoot`                     |
+| `olsQuery`         | `OlsSearch` and `olsSearch`   |
 
 Not all functionality is currently available. If there is anything
 that you need but not available in the new version, please contact the
@@ -290,10 +287,17 @@ development site.
 - `rols` version >= 2.99 has been refactored to use the OLS4 REST API.
 - REST queries now use [httr2](https://httr2.r-lib.org/) instead of
   superseded `httr`.
-- The term(s) constructors are capitalised as `Term()` and `Terms()`.
+- The term(s) constructors are capitalised as `olsTerm()` and
+  `olsTerms()`.
 - The properties constructor is capitalised as `Properties()`.
 - Some class definitions have been updated to accomodate changes in
   the data received by OLS. Some function have been dropped.
+- The `Ontology` and `Ontologies` classes and constructors have been
+  renames `olsOntology` and `olsOntologies` to avoid clashes with
+  `AnnontationDbi::Ontology()`.
+- The `Term` and `Terms` classes and constructors have been renames
+  `olsTerm` and `olsTerms` to avoid clashes with
+  `AnnontationDbi::Term()`.
 
 # CVParams
 

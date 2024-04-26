@@ -1,18 +1,18 @@
 ##' @title Term Properties
 ##'
-##' @aliases Property
-##' @aliases Properties Properties,character Properties,Ontology
-##' @aliases Properties,Term Properties,Terms
-##' @aliases Properties,length
+##' @aliases olsProperty
+##' @aliases olsProperties olsProperties,character olsProperties,olsOntology
+##' @aliases olsProperties,olsTerm olsProperties,olsTerms
+##' @aliases olsProperties,length
 ##'
-##' @name Properties
+##' @name olsProperties
 ##'
 ##' @description
 ##'
 ##' Properties (relationships) between terms can be queries for
-##' complete [Ontology()] objects and [Term()]/[Terms()] instances,
-##' and the results are stored as objects of class `Property` or
-##' `Properties`.
+##' complete [olsOntology()] objects and [olsTerm()]/[olsTerms()]
+##' instances, and the results are stored as objects of class
+##' `olsProperty` or `olsProperties`.
 ##'
 ##' @references
 ##'
@@ -24,48 +24,48 @@
 ##' @examples
 ##'
 ##' ## Term properties
-##' trm <- Term("uberon", "UBERON:0002107")
+##' trm <- olsTerm("uberon", "UBERON:0002107")
 ##' trm
-##' Properties(trm)
+##' olsProperties(trm)
 ##'
 ##' ## Ontology properties
-##' Properties('ado')
+##' olsProperties('ado')
 NULL
 
 ##########################################
 ## Classes
-.Property <- setClass("Property",
-                      contains = "Term")
-.Properties <- setClass("Properties", contains = "Terms")
+.olsProperty <- setClass("olsProperty",
+                      contains = "olsTerm")
+.olsProperties <- setClass("olsProperties", contains = "olsTerms")
 
 
 ##########################################
 ## Constructors
 ##' @export
-##' @rdname Properties
+##' @rdname olsProperties
 ##'
 ##' @param object First input object.
-setMethod("Properties", "Ontology",
+setMethod("olsProperties", "olsOntology",
           function(object)
-              Properties(olsNamespace(object)))
+              olsProperties(olsNamespace(object)))
 
 ##' @export
-##' @rdname Properties
-setMethod("Properties", "character",
+##' @rdname olsProperties
+setMethod("olsProperties", "character",
           function(object) {
               url <-
                   paste0("http://www.ebi.ac.uk/ols4/api/ontologies/",
                          object, "/properties")
               x <- lapply(ols_requests(url, what = "properties"),
                           propertyFromJson)
-              .Properties(x = x)
+              .olsProperties(x = x)
           })
 
 ##' @export
-##' @rdname Properties
-setMethod("Properties", "Term",
+##' @rdname olsProperties
+setMethod("olsProperties", "olsTerm",
           function(object) {
-              urls <- getPropertyLinks(object)
+              urls <- getOlsPropertyLinks(object)
               if (length(urls) == 0) {
                   message("No properties for term ", termId(object))
                   return(NULL)
@@ -74,35 +74,35 @@ setMethod("Properties", "Term",
                   lapply(ols_requests(url, what = "terms"),
                          propertyFromJson)
               ans <- unlist(lapply(urls, .properiesFromJson))
-              .Properties(x = ans)
+              .olsProperties(x = ans)
           })
 ##' @export
-##' @rdname Properties
-setMethod("Properties", "Terms",
+##' @rdname olsProperties
+setMethod("olsProperties", "olsTerms",
           function(object) {
-              ans <- lapply(object@x, Properties)
+              ans <- lapply(object@x, olsProperties)
               ans <- unlist(lapply(ans, "slot", "x"),
                             use.names = FALSE)
-              .Properties(x = ans)
+              .olsProperties(x = ans)
           })
 
 ##########################################
 ## show methods
 ##' @export
-##' @rdname Properties
-setMethod("show", "Property",
+##' @rdname olsProperties
+setMethod("show", "olsProperty",
           function(object) {
               ids <- termId(object)
-              cat("A Property from the", termPrefix(object),
+              cat("A olsProperty from the", termPrefix(object),
                   "ontology:", ids, "\n")
               cat(" Label: ", termLabel(object),"\n", sep = "")
           })
 
 ##' @export
-##' @rdname Properties
-setMethod("show", "Properties",
+##' @rdname olsProperties
+setMethod("show", "olsProperties",
           function(object) {
-              cat("Object of class 'Properties' with", length(object),
+              cat("Object of class 'olsProperties' with", length(object),
                   ifelse(length(object) > 1,
                          "entries\n",
                          "entry\n"))
@@ -124,15 +124,15 @@ setMethod("show", "Properties",
 ##########################################
 ## Data manipulation
 ##' @export
-##' @rdname Properties
+##' @rdname olsProperties
 ##'
-##' @param x A `Properties` object.
-setMethod("length", "Properties", function(x) length(x@x))
+##' @param x A `olsProperties` object.
+setMethod("length", "olsProperties", function(x) length(x@x))
 
 #########################################
 ## Helper functions
 propertyFromJson <- function(x)
-    .Property(iri = x[["iri"]],
+    .olsProperty(iri = x[["iri"]],
               lang = x[["lang"]],
               description = x[["description"]],
               synonyms = x[["synonyms"]],
@@ -157,7 +157,7 @@ propertyFromJson <- function(x)
 
 
 ## see https://github.com/EBISPOT/OLS/issues/36
-getPropertyLinks <- function(trm) {
+getOlsPropertyLinks <- function(trm) {
     termlinks <- c("self", "parents", "ancestors",
                    "children", "descendants",
                    "part_of","derives_from")

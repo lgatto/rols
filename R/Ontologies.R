@@ -1,25 +1,25 @@
-##' @title Ontologies
+##' @title olsOntologies
 ##'
-##' @aliases Ontologies Ontology
-##' @aliases olsLinks olsLinks,Ontology
-##' @aliases olsConfig olsConfig,Ontology
-##' @aliases olsVersion olsVersion,character olsVersion,Ontology olsVersion,Ontologies
-##' @aliases olsLoaded olsLoaded,character olsLoaded,Ontology olsLoaded,Ontologies
-##' @aliases olsUpdated olsUpdated,character olsUpdated,Ontology olsUpdated,Ontologies
-##' @aliases olsStatus olsStatus,character olsStatus,Ontology olsStatus,Ontologies
-##' @aliases olsPrefix olsPrefix,character olsPrefix,Ontology olsPrefix,Ontologies
-##' @aliases olsDesc olsDesc,character olsDesc,Ontology olsDesc,Ontologies
-##' @aliases olsTitle olsTitle,character olsTitle,Ontology olsTitle,Ontologies
-##' @aliases olsNamespace olsNamespace,character olsNamespace,Ontology olsNamespace,Ontologies
-##' @aliases ontologyUrl ontologyUrl,character ontologyUrl,Ontology
-##' @aliases as.data.frame.Ontologies
+##' @aliases olsOntologies olsOntology
+##' @aliases olsLinks olsLinks,olsOntology
+##' @aliases olsConfig olsConfig,olsOntology
+##' @aliases olsVersion olsVersion,character olsVersion,olsOntology olsVersion,olsOntologies
+##' @aliases olsLoaded olsLoaded,character olsLoaded,olsOntology olsLoaded,olsOntologies
+##' @aliases olsUpdated olsUpdated,character olsUpdated,olsOntology olsUpdated,olsOntologies
+##' @aliases olsStatus olsStatus,character olsStatus,olsOntology olsStatus,olsOntologies
+##' @aliases olsPrefix olsPrefix,character olsPrefix,olsOntology olsPrefix,olsOntologies
+##' @aliases olsDesc olsDesc,character olsDesc,olsOntology olsDesc,olsOntologies
+##' @aliases olsTitle olsTitle,character olsTitle,olsOntology olsTitle,olsOntologies
+##' @aliases olsNamespace olsNamespace,character olsNamespace,olsOntology olsNamespace,olsOntologies
+##' @aliases ontologyUrl ontologyUrl,character ontologyUrl,olsOntology
+##' @aliases as.data.frame.olsOntologies
 ##'
 ##' @description
 ##'
 ##' The rols package provides an interface to PRIDE's Ontology Lookup
 ##' Servive (OLS) and can be used to query one or multiple ontologies,
-##' stored as `Ontology` and `Ontologies` instances, and containing
-##' various information as provided by OLS.
+##' stored as `olsOntology` and `olsOntologies` instances, and
+##' containing various information as provided by OLS.
 ##'
 ##' @details
 ##'
@@ -40,74 +40,74 @@
 ##'
 ##' @section Constructors:
 ##'
-##' Objects can be created in multiple ways. The [Ontologies()]
+##' Objects can be created in multiple ways. The [olsOntologies()]
 ##' function will initialise all available ontolgies as an
-##' `Ontologies` object, while a call to [Ontology()] with an ontology
-##' namespace or prefix as argument will initialise the ontology of
-##' interest as an `Ontology` instance.
+##' `olsOntologies` object, while a call to [olsOntology()] with an
+##' ontology namespace or prefix as argument will initialise the
+##' ontology of interest as an `olsOntology` instance.
 ##'
 ##' `Ontolgies` instances can be subset with `[` and `[[` (using their
 ##' namespace, see Details) and iterated over with
 ##' `lapply`. `Ontolgies` can be converted into a simple `data.frame`
 ##' containing the ontology prefixes, namespaces and titles using
-##' `as(., "data.frame")`. `Ontologies` can also be coerced to lists
-##' of `Ontology` ojects with `as(., "list")`.
+##' `as(., "data.frame")`. `olsOntologies` can also be coerced to
+##' lists of `olsOntology` ojects with `as(., "list")`.
 ##'
 ##' @section Accessors:
 ##'
-##' - `olsDesc(object = "Ontology")` returns the description of an
-##'   ontology. Also works for `Ontologies` objects and a `character`
+##' - `olsDesc(object = "olsOntology")` returns the description of an
+##'   ontology. Also works for `olsOntologies` objects and a `character`
 ##'   describing an ontology namespace or prefix (see Details).
 ##'
-##' - `olsPrefix(object = "Ontology")` retruns the prefix of an
-##'   ontology. Also works for `Ontologies` objects and a `character`
+##' - `olsPrefix(object = "olsOntology")` retruns the prefix of an
+##'   ontology. Also works for `olsOntologies` objects and a `character`
 ##'   describing an ontology namespace or prefix (see Details).
 ##'
-##' - `olsVersion(object = "Ontology")` returns the version of the
+##' - `olsVersion(object = "olsOntology")` returns the version of the
 ##'   ontology. Also works with an a `character` defining an ontology
 ##'   namespace or prefix (see Details) or an object of class
-##'   `Ontologies`, in which case it returns a list of versions.
+##'   `olsOntologies`, in which case it returns a list of versions.
 ##'
-##' - `olsLoaded(object = "Ontology")` returns the loading date of the
+##' - `olsLoaded(object = "olsOntology")` returns the loading date of the
 ##'   ontology. Also works with a `character` containing the ontology
 ##'   namespace or prefix (see Details) or an object of class
-##'   `Ontologies`.
+##'   `olsOntologies`.
 ##'
-##' - `olsUpdated(object = "Ontology")` returns the update date of the
+##' - `olsUpdated(object = "olsOntology")` returns the update date of the
 ##'   ontology. Also works with a `character` containing the ontology
 ##'   namespace or prefix (see Details) or an object of class
-##'   `Ontologies`.
+##'   `olsOntologies`.
 ##'
-##' - `olsStatus(object = "Ontology")` returns the status of the
+##' - `olsStatus(object = "olsOntology")` returns the status of the
 ##'    ontology. Also works with a `character` containing the ontology
 ##'    namespace or prefix (see Details) or an object of class
-##'    `Ontologies`.
+##'    `olsOntologies`.
 ##'
-##' - `olsTitle(object = "Ontology")` returns the title of an
+##' - `olsTitle(object = "olsOntology")` returns the title of an
 ##'    ontology. Also works with a `character` containing the ontology
 ##'    namespace or prefix (see Details) or an object of class
-##'    `Ontologies`.
+##'    `olsOntologies`.
 ##'
-##' - `olsNamespace(object = "Ontology")` returns the namespace of an
+##' - `olsNamespace(object = "olsOntology")` returns the namespace of an
 ##'   ontology. Also works with a `character` containing the ontology
 ##'   namespace or prefix (see Details) or an object of class
-##'   `Ontologies`.
+##'   `olsOntologies`.
 ##'
-##' - `olsLinks(object = "Ontology")` returns a named `character` with
+##' - `olsLinks(object = "olsOntology")` returns a named `character` with
 ##'   hyperlink to the ontology itself, and other associated concepts
 ##'   such as its terms.
 ##'
-##' - `olsConfig(object = "Ontology")` returns a list of additional
+##' - `olsConfig(object = "olsOntology")` returns a list of additional
 ##'    unstructured, partly redundant information about the ontology.
 ##'
-##' - `ontologyUrl(object = "Ontology") return the hyperlink to the
+##' - `ontologyUrl(object = "olsOntology") return the hyperlink to the
 ##'   ontology itself. It can also be used with a `character` defining
 ##'   the namespace or prefix of an ontology, in which case it is
 ##'   created from the base OLS API URL.
 ##'
 ##' @section Ontology terms:
 ##'
-##' Once an ontology has been created an an `Ontology` instance, all
+##' Once an ontology has been created an an `olsOntology` instance, all
 ##' its terms can be requested using the `Terms()` constructor. See
 ##' [Terms()] for details.
 ##'
@@ -120,20 +120,20 @@
 ##'
 ##' @author Laurent Gatto
 ##'
-##' @name Ontologies
+##' @name olsOntologies
 ##'
 ##' @examples
 ##'
 ##' #############################
 ##' ## All ontologies
-##' (onts <- Ontologies())
+##' (onts <- olsOntologies())
 ##'
 ##' #############################
 ##' ## Alzheimer's Disease Ontology (ADO)
 ##' ## 1. From the ontologies object
 ##' (ado1 <- onts[['ado']])
 ##' ## 2. Create from its namespace
-##' (ado2 <- Ontology('ado')) ## also works with ADO
+##' (ado2 <- olsOntology('ado')) ## also works with ADO
 ##'
 ##' all.equal(ado1, ado2)
 ##'
@@ -148,63 +148,60 @@ NULL
 
 ############################################################
 ## A single ontology
-.Ontology <- setClass("Ontology",
-                      slots = c(
-                          languages = "list",
-                          lang = "character",
-                          ontologyId = "character",
-                          loaded = "NullOrChar",
-                          updated = "NullOrChar",
-                          status = "NullOrChar",
-                          message = "NullOrChar",
-                          version = "NullOrChar",
-                          numberOfTerms = "integer",
-                          numberOfProperties = "integer",
-                          numberOfIndividuals = "integer",
-                          config = "list",
-                          links = "list"
-                      ))
+.olsOntology <- setClass("olsOntology",
+                         slots = c(
+                             languages = "list",
+                             lang = "character",
+                             ontologyId = "character",
+                             loaded = "NullOrChar",
+                             updated = "NullOrChar",
+                             status = "NullOrChar",
+                             message = "NullOrChar",
+                             version = "NullOrChar",
+                             numberOfTerms = "integer",
+                             numberOfProperties = "integer",
+                             numberOfIndividuals = "integer",
+                             config = "list",
+                             links = "list"
+                         ))
 
 ############################################################
 ## A list of Ontology instances
-.Ontologies <- setClass("Ontologies", slots = c(x = "list"))
+.olsOntologies <- setClass("olsOntologies", slots = c(x = "list"))
 
 ##########################################
 ## Constructors
 
 ##' @export
 ##'
-##' @param object an instance of class `Ontologies` or `Ontology`. For
+##' @param object an instance of class `olsOntologies` or `olsOntology`. For
 ##'     some functions, a ontology identifier is applicable.
 ##'
-##' @rdname Ontologies
-setMethod("Ontologies", "missing",
-          function(object) makeOntologies())
+##' @rdname olsOntologies
+setMethod("olsOntologies", "missing",
+          function(object) makeOlsOntologies())
 
-setGeneric("Ontology", function(object) standardGeneric("Ontology"))
-
-##' @importMethodsFrom BiocGenerics Ontology
 ##' @export
-##' @rdname Ontologies
-setMethod("Ontology", "character",
+##' @rdname olsOntologies
+setMethod("olsOntology", "character",
           function(object) {
               ## make urls from ontologyId
               url <- ontologyUrl(object)
-              makeOntology(url)
+              makeOlsOntology(url)
           })
 
 ##' @export
-##' @rdname Ontologies
-setMethod("Ontology", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsOntology", "olsOntology",
           function(object) object)
 
 ##########################################
 ## show methods
 ##' @export
-##' @rdname Ontologies
-setMethod("show", "Ontology",
+##' @rdname olsOntologies
+setMethod("show", "olsOntology",
           function(object) {
-              cat("Ontology: ", olsTitle(object),
+              cat("olsOntology: ", olsTitle(object),
                   " (", olsNamespace(object) , ")", sep = "")
               cat("  ", strwrap(olsDesc(object)), sep = "\n  ")
               cat("   Loaded:", olsLoaded(object),
@@ -217,10 +214,10 @@ setMethod("show", "Ontology",
 
 ##' @export
 ##' @importFrom utils head tail
-##' @rdname Ontologies
-setMethod("show", "Ontologies",
+##' @rdname olsOntologies
+setMethod("show", "olsOntologies",
           function(object) {
-              cat("Object of class 'Ontologies' with",
+              cat("Object of class 'olsOntologies' with",
                   length(object), "entries\n")
               if (length(object) > 4)
                   cat("  ", paste(head(olsPrefix(object), n=2),
@@ -237,143 +234,142 @@ setMethod("show", "Ontologies",
 ## Accessors
 
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsVersion", "character",
-          function(object) olsVersion(Ontology(object)))
+          function(object) olsVersion(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsVersion", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsVersion", "olsOntology",
           function(object) object@config$version)
 ##' @export
-##' @rdname Ontologies
-setMethod("olsVersion", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsVersion", "olsOntologies",
           function(object) sapply(object@x, olsVersion))
 
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsLoaded", "character",
-          function(object) olsLoaded(Ontology(object)))
+          function(object) olsLoaded(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsLoaded", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsLoaded", "olsOntology",
           function(object) substr(object@loaded, 1, 10))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsLoaded", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsLoaded", "olsOntologies",
           function(object) sapply(object@x, olsLoaded))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsLinks", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsLinks", "olsOntology",
           function(object) {
               links <- unlist(object@links)
               names(links) <- sub("\\.href", "", names(links))
               links
           })
 ##' @export
-##' @rdname Ontologies
-setMethod("olsConfig", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsConfig", "olsOntology",
           function(object) object@config)
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsUpdated", "character",
-          function(object) olsUpdated(Ontology(object)))
+          function(object) olsUpdated(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsUpdated", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsUpdated", "olsOntology",
           function(object) substr(object@updated, 1, 10))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsUpdated", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsUpdated", "olsOntologies",
           function(object) sapply(object@x, olsUpdated))
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsPrefix", "character",
-          function(object) olsPrefix(Ontology(object)))
+          function(object) olsPrefix(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsPrefix", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsPrefix", "olsOntology",
           function(object) object@config$preferredPrefix)
 ##' @export
-##' @rdname Ontologies
-setMethod("olsPrefix", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsPrefix", "olsOntologies",
           function(object) sapply(object@x, olsPrefix))
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsDesc", "character",
-          function(object) olsDesc(Ontology(object)))
+          function(object) olsDesc(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsDesc", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsDesc", "olsOntology",
           function(object) object@config$description)
 ##' @export
-##' @rdname Ontologies
-setMethod("olsDesc", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsDesc", "olsOntologies",
           function(object) sapply(object@x, olsDesc))
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsTitle", "character",
-          function(object) olsTitle(Ontology(object)))
+          function(object) olsTitle(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsTitle", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsTitle", "olsOntology",
           function(object) object@config$title)
 ##' @export
-##' @rdname Ontologies
-setMethod("olsTitle", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsTitle", "olsOntologies",
           function(object) sapply(object@x, olsTitle))
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsStatus", "character",
-          function(object) olsStatus(Ontology(object)))
+          function(object) olsStatus(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsStatus", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsStatus", "olsOntology",
           function(object) object@status)
 ##' @export
-##' @rdname Ontologies
-setMethod("olsStatus", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsStatus", "olsOntologies",
           function(object) sapply(object@x, olsStatus))
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("olsNamespace", "character",
-          function(object) olsNamespace(Ontology(object)))
+          function(object) olsNamespace(olsOntology(object)))
 ##' @export
-##' @rdname Ontologies
-setMethod("olsNamespace", "Ontology",
+##' @rdname olsOntologies
+setMethod("olsNamespace", "olsOntology",
           function(object) object@config$namespace)
 ##' @export
-##' @rdname Ontologies
-setMethod("olsNamespace", "Ontologies",
+##' @rdname olsOntologies
+setMethod("olsNamespace", "olsOntologies",
           function(object) sapply(object@x, olsNamespace))
 ##' @export
-##' @rdname Ontologies
+##' @rdname olsOntologies
 setMethod("ontologyUrl", "character",
           function(object)
               paste0("https://www.ebi.ac.uk/ols4/api/ontologies/",
                      object))
 ##' @export
-##' @rdname Ontologies
-setMethod("ontologyUrl", "Ontology",
+##' @rdname olsOntologies
+setMethod("ontologyUrl", "olsOntology",
           function(object) olsLinks(object)[["self"]])
-
 
 ##########################################
 ## Data manipulation
 ##' @export
 ##'
-##' @param X `Ontologies` object.
+##' @param X `olsOntologies` object.
 ##'
-##' @param FUN a `function` to be applied to each `Ontology` element
+##' @param FUN a `function` to be applied to each `olsOntology` element
 ##'     of `X`.
 ##'
 ##' @param ... additional arguments passed to `FUN`.
 ##'
-##' @rdname Ontologies
-setMethod("lapply", "Ontologies",
+##' @rdname olsOntologies
+setMethod("lapply", "olsOntologies",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
 ##' @export
 ##'
-##' @param x an `Ontologies` object.
+##' @param x an `olsOntologies` object.
 ##'
 ##' @param i index of elecements to subset.
 ##'
@@ -381,13 +377,13 @@ setMethod("lapply", "Ontologies",
 ##'
 ##' @param drop ignored.
 ##'
-##' @rdname Ontologies
-setMethod("[", "Ontologies",
+##' @rdname olsOntologies
+setMethod("[", "olsOntologies",
           function(x, i, j="missing", drop="missing")
-              new("Ontologies", x = x@x[i]))
+              new("olsOntologies", x = x@x[i]))
 ##' @export
-##' @rdname Ontologies
-setMethod("[[", "Ontologies",
+##' @rdname olsOntologies
+setMethod("[[", "olsOntologies",
           function(x, i, j="missing", drop="missing") {
               if (is.numeric(i)) {
                   i <- as.integer(i)
@@ -405,8 +401,8 @@ setMethod("[[", "Ontologies",
               stop("'i' must be a character or a numeric.")
           })
 ##' @export
-##' @rdname Ontologies
-setMethod("length", "Ontologies", function(x) length(x@x))
+##' @rdname olsOntologies
+setMethod("length", "olsOntologies", function(x) length(x@x))
 
 ## This will not always be the correct URI (see for example
 ## Orphaned/ORBO and https://github.com/EBISPOT/OLS/issues/35)
@@ -442,11 +438,11 @@ setMethod("length", "Ontologies", function(x) length(x@x))
 
 ##' @import methods
 ##' @export
-setAs("Ontologies", "data.frame",
-      function(from) as.data.frame.Ontologies(from))
+setAs("olsOntologies", "data.frame",
+      function(from) as.data.frame.olsOntologies(from))
 
 ##' @export
-as.data.frame.Ontologies <- function(x, row.names = NULL,
+as.data.frame.olsOntologies <- function(x, row.names = NULL,
                                      optional = FALSE, ...) {
     .as_vector <- function(x) {
         if (is.list(x))
@@ -462,7 +458,7 @@ as.data.frame.Ontologies <- function(x, row.names = NULL,
 }
 
 ##' @export
-setAs("Ontologies", "list", function(from) from@x)
+setAs("olsOntologies", "list", function(from) from@x)
 
 ## ## Ontologies aren't names anymore (for now)
 ## setMethod("all.equal", c("Ontologies", "Ontologies"),
@@ -516,13 +512,13 @@ setAs("Ontologies", "list", function(from) from@x)
 
 ##########################################
 ## Helper functions
-makeOntologies <- function() {
+makeOlsOntologies <- function() {
     url <- "https://www.ebi.ac.uk/ols4/api/ontologies/"
-    .Ontologies(x = lapply(ols_requests(url, "ontologies"),
-                           ontologyFromJson))
+    .olsOntologies(x = lapply(ols_requests(url, "ontologies"),
+                              ontologyFromJson))
 }
 
-makeOntology <- function(url) {
+makeOlsOntology <- function(url) {
     request(url) |>
         req_perform() |>
         resp_body_json() |>
@@ -530,7 +526,7 @@ makeOntology <- function(url) {
 }
 
 ontologyFromJson <- function(x) {
-    .Ontology(languages = x[["languages"]],
+    .olsOntology(languages = x[["languages"]],
               lang = x[["lang"]],
               ontologyId = x[["ontologyId"]],
               loaded = x[["loaded"]],

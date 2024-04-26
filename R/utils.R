@@ -17,8 +17,8 @@ resp_embedded <- function(resp, what,
 ##' @param url `character(1)` with the request URL.
 ##'
 ##' @param what `character(1)` defining the embedded slot name,
-##'     typically `"ontologies"` for `Ontologies()` or `"terms"` for
-##'     `Terms()`. Passed to `resp_embedded()`.
+##'     typically `"ontologies"` for `olsOntologies()` or `"terms"`
+##'     for `olsTerms()`. Passed to `resp_embedded()`.
 ##'
 ##' @param embedded `character(1)` defining where to find the embedded
 ##'     slot name `what`. Default is `"_embedded"`, which work for

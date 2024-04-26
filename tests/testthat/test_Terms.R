@@ -1,19 +1,13 @@
-go <- Ontology("GO")
-trm <- Term(go, "GO:0032801")
-trms <- Terms("SO", pagesize = 1000)
+go <- olsOntology("GO")
+trm <- olsTerm(go, "GO:0032801")
+trms <- olsTerms("SO", pagesize = 1000)
 
 test_that("constructors", {
-    ## so <- Ontology("SO")
-    ## trms <- Terms("SO")
-    ## trms2 <- Terms(so)
-    ## expect_true(rols:::all.equal(trms, trms2))
-    ## expect_identical(length(trms[1:10]), 10L)
-
-    go <- Ontology("GO")
-    trm <- Term(go, "GO:0032801")
-    trm1 <- Term(go, "GO:0032801")
-    trm2 <- Term("go", "GO:0032801")
-    trm3 <- Term("GO", "GO:0032801")
+    go <- olsOntology("GO")
+    trm <- olsTerm(go, "GO:0032801")
+    trm1 <- olsTerm(go, "GO:0032801")
+    trm2 <- olsTerm("go", "GO:0032801")
+    trm3 <- olsTerm("GO", "GO:0032801")
     expect_identical(trm1, trm2)
     expect_identical(trm1, trm3)
 
@@ -22,7 +16,7 @@ test_that("constructors", {
     expect_identical(termId(trm), "GO:0032801")
 
     trm1 <- trms[["SO:1000005"]]
-    trm2 <- Term("SO", "SO:1000005")
+    trm2 <- olsTerm("SO", "SO:1000005")
     expect_identical(trm1, trm2)
     expect_identical(termPrefix(trm1), "SO")
     expect_true(all(termPrefix(trms) == "SO"))
@@ -37,9 +31,9 @@ test_that("constructors", {
 
 test_that("constructors different URIs (issue 42)", {
     ## See https://github.com/lgatto/rols/issues/42
-    expect_is(Term("ado", "ADO:0000090"), "Term")
-    expect_is(Term("efo", "EFO:0001200"), "Term")
-    expect_is(Term("go", "GO:0005802"), "Term")
+    expect_is(olsTerm("ado", "ADO:0000090"), "olsTerm")
+    expect_is(olsTerm("efo", "EFO:0001200"), "olsTerm")
+    expect_is(olsTerm("go", "GO:0005802"), "olsTerm")
 })
 
 test_that("show methods", {
@@ -55,8 +49,8 @@ test_that("show methods", {
 test_that("accessors", {
     ## expect_identical(length(termSynonym(trms[1:2])), 2L)
     expect_false(isObsolete(trm))
-    expect_true(isObsolete(Term("GO", "GO:0005563")))
-    expect_false(isObsolete(Term("GO", "GO:0030533")))
+    expect_true(isObsolete(olsTerm("GO", "GO:0005563")))
+    expect_false(isObsolete(olsTerm("GO", "GO:0030533")))
 
     expect_true(isRoot(trms[["SO:0000400"]]))
 
@@ -78,20 +72,20 @@ test_that("apply over Terms", {
 
 
 test_that("terms(pagesize)", {
-    trms1 <- Terms("SO", pagesize = 20, obsolete = TRUE)
-    trms2 <- Terms("SO", pagesize = length(trms1), obsolete = TRUE)
-    trms3 <- Terms("SO", pagesize = 1000, obsolete = TRUE) ## > length(trms1)
+    trms1 <- olsTerms("SO", pagesize = 20, obsolete = TRUE)
+    trms2 <- olsTerms("SO", pagesize = length(trms1), obsolete = TRUE)
+    trms3 <- olsTerms("SO", pagesize = 1000, obsolete = TRUE) ## > length(trms1)
     expect_true(all.equal(trms1, trms2))
     expect_true(all.equal(trms1, trms3))
 })
 
 test_that("No links", {
-    trm <- Term("GO", "GO:0030232")
+    trm <- olsTerm("GO", "GO:0030232")
     ## does not have any children
     expect_null(children(trm))
     ## does not have any descendants
     expect_null(descendants(trm))
     ## does have parents and ancestors, though
-    expect_is(parents(trm), "Terms")
-    expect_is(ancestors(trm), "Terms")
+    expect_is(parents(trm), "olsTerms")
+    expect_is(ancestors(trm), "olsTerms")
 })

@@ -1,90 +1,90 @@
 ##' @title Ontology Terms
 ##'
-##' @aliases Term Terms Terms,character Terms,Ontology
-##' @aliases termLinks termLinks,Term
+##' @aliases olsTerm olsTerms olsTerms,character olsTerms,olsOntology
+##' @aliases termLinks termLinks,olsTerm
 ##' @aliases children parents ancestors descendants
-##' @aliases termSynonym termSynonym,Term termSynonym,Terms
-##' @aliases isObsolete isObsolete,Term isObsolete,Terms
-##' @aliases isRoot isRoot,Term isRoot,Terms
-##' @aliases termLabel termLabel,Term termLabel,Terms
-##' @aliases termId termId,Term termId,Terms
-##' @aliases termPrefix termPrefix,Term termPrefix,Terms
-##' @aliases termDesc termDesc,Term termDesc,Terms
-##' @aliases termOntology termOntology,Term termOntology,Terms
-##' @aliases termNamespace termNamespace,Term termNamespace,Terms
+##' @aliases termSynonym termSynonym,olsTerm termSynonym,olsTerms
+##' @aliases isObsolete isObsolete,olsTerm isObsolete,olsTerms
+##' @aliases isRoot isRoot,olsTerm isRoot,olsTerms
+##' @aliases termLabel termLabel,olsTerm termLabel,olsTerms
+##' @aliases termId termId,olsTerm termId,olsTerms
+##' @aliases termPrefix termPrefix,olsTerm termPrefix,olsTerms
+##' @aliases termDesc termDesc,olsTerm termDesc,olsTerms
+##' @aliases termOntology termOntology,olsTerm termOntology,olsTerms
+##' @aliases termNamespace termNamespace,olsTerm termNamespace,olsTerms
 ##'
 ##' @description
 ##'
-##' The `Term` class describes an ontology term. A set of terms are
-##' instantiated as a `Terms` class.
+##' The `olsTerm` class describes an ontology term. A set of terms are
+##' instantiated as a `olsTerms` class.
 ##'
 ##' @section Contructors:
 ##'
-##' Objects can be created using the `Term()` and `Terms()`
+##' Objects can be created using the `olsTerm()` and `olsTerms()`
 ##' constructers. The latter is used with an object of class
-##' `Ontology` or a `character` describing a valid ontology prefix to
-##' download and instantiate all terms of an ontology of interest. The
-##' former takes an `Ontology` object (or an ontology prefix) and
-##' a term identifer to instantiate that specific term.
+##' `olsOntology` or a `character` describing a valid ontology prefix
+##' to download and instantiate all terms of an ontology of
+##' interest. The former takes an `olsOntology` object (or an ontology
+##' prefix) and a term identifer to instantiate that specific term.
 ##'
-##' For any given `Term` object, the `children`, `parents`,
+##' For any given `olsTerm` object, the `children`, `parents`,
 ##' `ancestors` and `descendants` terms can be generated with the
 ##' `children()`, `parents()`, `ancestor()` and `descendants()`
-##' function. `Terms` instances can be subset with `[` and `[[` and
+##' function. `olsTerms` instances can be subset with `[` and `[[` and
 ##' iterated over with `lapply`.
 ##'
 ##' @section Accessors:
 ##'
-##' - `isObsolete(object = "Term")` returns a `TRUE` if the term is
-##'   obsolete, `FALSE` otherwise. Also works on `Terms` instances.
+##' - `isObsolete(object = "olsTerm")` returns a `TRUE` if the term is
+##'   obsolete, `FALSE` otherwise. Also works on `olsTerms` instances.
 ##'
-##' - `isRoot(object = "Term")` returns a `TRUE` if the term is a root
-##'   term, `FALSE` otherwise. Also works on `Terms` instances.
+##' - `isRoot(object = "olsTerm")` returns a `TRUE` if the term is a root
+##'   term, `FALSE` otherwise. Also works on `olsTerms` instances.
 ##'
-##' - `termDesc(object = "Term")` returns a `character` with the
-##'   term's description. Also works on `Terms` instances.
+##' - `termDesc(object = "olsTerm")` returns a `character` with the
+##'   term's description. Also works on `olsTerms` instances.
 ##'
-##' - `termId(object = "Term")` returns a `character` with the term's
-##'   identifier. Also works on `Terms` instances.
+##' - `termId(object = "olsTerm")` returns a `character` with the term's
+##'   identifier. Also works on `olsTerms` instances.
 ##'
-##' - `termLabel(object = "Term")` returns a `character` with the
-##'   term's label. Also works on `Terms` instances.
+##' - `termLabel(object = "olsTerm")` returns a `character` with the
+##'   term's label. Also works on `olsTerms` instances.
 ##'
-##' - `termNamespace(object = "Term")` returns a `character` with the
-##'   term's namespace. Also works on `Terms` instances.
+##' - `termNamespace(object = "olsTerm")` returns a `character` with the
+##'   term's namespace. Also works on `olsTerms` instances.
 ##'
-##' - `termOntology(object = "Term")` returns a `character` with the
+##' - `termOntology(object = "olsTerm")` returns a `character` with the
 ##'   term's ontology (where it was retrieved from). Also works on
-##'   `Terms` instances.
+##'   `olsTerms` instances.
 ##'
-##' - `termPrefix(object = "Term")` returns a `character` with the
+##' - `termPrefix(object = "olsTerm")` returns a `character` with the
 ##'   term's (ontology) prefix (where it was retrieved from). Also
-##'   works on `Terms` instances.
+##'   works on `olsTerms` instances.
 ##'
-##' - `termSynonym(object = "Term")` returns a `character` with the
-##'   term's synpnym(s). Also works on `Terms` instances.
+##' - `termSynonym(object = "olsTerm")` returns a `character` with the
+##'   term's synpnym(s). Also works on `olsTerms` instances.
 ##'
-##' - `termLinks(object = "Term")` returns a named `character` with
+##' - `termLinks(object = "olsTerm")` returns a named `character` with
 ##'   hyperlink to/from the term.
 ##'
 ##' @section Related terms:
 ##'
-##' - `children(object = "Term")` returns a new `Terms` instance with
+##' - `children(object = "olsTerm")` returns a new `olsTerms` instance with
 ##'    the `object`'s children or `NULL` if there are no children.
 ##'
-##' - `parents(object = "Term")` returns a new `Terms` instance with
+##' - `parents(object = "olsTerm")` returns a new `olsTerms` instance with
 ##'   the `object`'s parents or `NULL` if there are no parents.
 ##'
-##' - `ancestors(object = "Term")` returns a new `Terms` instance with
+##' - `ancestors(object = "olsTerm")` returns a new `olsTerms` instance with
 ##'   the `object`'s ancestors or `NULL` if there are no ancestors.
 ##'
-##' - `descendants(object = "Term")` returns a new `Terms` instance
+##' - `descendants(object = "olsTerm")` returns a new `olsTerms` instance
 ##'   with the `object`'s descendants or `NULL` if there are no
 ##'   descendants.
 ##'
 ##' @section Coercion:
 ##'
-##' - `as(x, "data.fram")` coerces a `Term` or `Terms` instance into a
+##' - `as(x, "data.fram")` coerces a `olsTerm` or `olsTerms` instance into a
 ##'   `data.frame` of length 1 (for the former) or length `length(x)`
 ##'   for the latter. The result will contain the following columns:
 ##'   id, label, description of the term(s), their ontology, whether
@@ -99,14 +99,14 @@
 ##'
 ##' - REST API for OLS: <https://www.ebi.ac.uk/ols4/swagger-ui/index.html>
 ##'
-##' @name Terms
+##' @name olsTerms
 ##'
 ##' @author Laurent Gatto
 ##'
 ##' @examples
 ##'
 ##' ## Alzheimer's Disease Ontology (ADO)
-##' (adoterms <- Terms('ado'))
+##' (adoterms <- olsTerms('ado'))
 ##'
 ##' ## Focus on squamous epithelium
 ##' (trm <- adoterms[["UBERON:0006914"]])
@@ -128,12 +128,12 @@
 ##' ancestors(trm) ## includes parent
 ##'
 ##' ## A single term from an ontology
-##' Term("ado", "ADO:0000090")
+##' olsTerm("ado", "ADO:0000090")
 NULL
 
 ############################################################
 ## A single term
-.Term <- setClass("Term",
+.olsTerm <- setClass("olsTerm",
                   slots = c(iri = "character",
                             lang = "character",
                             description = "NullOrList",
@@ -159,15 +159,15 @@ NULL
 
 ############################################################
 ## A list of terms
-.Terms <- setClass("Terms", slots = c(x = "list"))
+.olsTerms <- setClass("olsTerms", slots = c(x = "list"))
 
 ##########################################
 ## Constructors
 
 ##' @export
-##' @rdname Terms
+##' @rdname olsTerms
 ##'
-##' @param object generally an instance of class `Terms` or `Term`. In
+##' @param object generally an instance of class `olsTerms` or `olsTerm`. In
 ##'     some cases, an ontology identifier is applicable.
 ##'
 ##' @param pagesize `numeric(1)`, converted to an integer, defining
@@ -176,26 +176,26 @@ NULL
 ##' @param obsolete `NULL` or `logical(1)` defining whether obsolete
 ##'     terms (`TRUE`), current terms (`FALSE`) or all (`NULL`,
 ##'     default) should be returned.
-setMethod("Terms", "character", ## ontologyId
+setMethod("olsTerms", "character", ## ontologyId
           function(object, pagesize = 1000, obsolete = NULL)
-              makeTerms(object, pagesize, obsolete))
+              makeOlsTerms(object, pagesize, obsolete))
 
 ##' @export
-##' @rdname Terms
-setMethod("Terms", "Ontology",
+##' @rdname olsTerms
+setMethod("olsTerms", "olsOntology",
           function(object, pagesize = 1000, obsolete = NULL)
-              makeTerms(object, pagesize, obsolete))
+              makeOlsTerms(object, pagesize, obsolete))
 
 ##' @export
-##' @rdname Terms
+##' @rdname olsTerms
 ##'
 ##' @param id `character(1)` with the term's identifier.
-setMethod("Term", "character",
-          function(object, id) Term(Ontology(object), id))
+setMethod("olsTerm", "character",
+          function(object, id) olsTerm(olsOntology(object), id))
 
 ##' @export
-##' @rdname Terms
-setMethod("Term", "Ontology",
+##' @rdname olsTerms
+setMethod("olsTerm", "olsOntology",
           function(object, id) {
               ## See https://github.com/EBISPOT/ols4/issues/621
               url <- paste0(
@@ -220,66 +220,66 @@ setMethod("Term", "Ontology",
 
 
 ##' @export
-##' @rdname Terms
+##' @rdname olsTerms
 children <- function(object) {
-    stopifnot(inherits(object, "Term"))
+    stopifnot(inherits(object, "olsTerm"))
     if (!object@has_children)
         return(NULL)
     url <- termLinks(object)[["children"]]
     ans <- lapply(ols_requests(url, "terms"),
                   termFromJson)
     names(ans) <- sapply(ans, termId)
-    .Terms(x = ans)
+    .olsTerms(x = ans)
 }
 
 ##' @export
-##' @rdname Terms
+##' @rdname olsTerms
 parents <- function(object) {
-    stopifnot(inherits(object, "Term"))
+    stopifnot(inherits(object, "olsTerm"))
     if (object@is_root)
         return(NULL)
     url <- termLinks(object)[["parents"]]
     ans <- lapply(ols_requests(url, "terms"),
                   termFromJson)
     names(ans) <- sapply(ans, termId)
-    .Terms(x = ans)
+    .olsTerms(x = ans)
 }
 
 ##' @export
-##' @rdname Terms
+##' @rdname olsTerms
 ancestors <- function(object) {
-    stopifnot(inherits(object, "Term"))
+    stopifnot(inherits(object, "olsTerm"))
     if (object@is_root)
         return(NULL)
     url <- termLinks(object)[["ancestors"]]
     ans <- lapply(ols_requests(url, "terms"),
                   termFromJson)
     names(ans) <- sapply(ans, termId)
-    .Terms(x = ans)
+    .olsTerms(x = ans)
 }
 
 ##' @export
-##' @rdname Terms
+##' @rdname olsTerms
 descendants <- function(object) {
-    stopifnot(inherits(object, "Term"))
+    stopifnot(inherits(object, "olsTerm"))
     if (!object@has_children)
         return(NULL)
     url <- termLinks(object)[["descendants"]]
     ans <- lapply(ols_requests(url, "terms"),
                   termFromJson)
     names(ans) <- sapply(ans, termId)
-    .Terms(x = ans)
+    .olsTerms(x = ans)
 }
 
 ##########################################
 ## show methods
 
 ##' @export
-##' @rdname Terms
-setMethod("show", "Term",
+##' @rdname olsTerms
+setMethod("show", "olsTerm",
           function(object) {
               ids <- .termId(object)
-              cat("A Term from the", termPrefix(object), "ontology:", ids, "\n")
+              cat("A olsTerm from the", termPrefix(object), "ontology:", ids, "\n")
               cat(" Label: ", termLabel(object),"\n  ", sep = "")
               desc <- termDesc(object)
               if (is.null(desc)) cat("No description\n")
@@ -288,10 +288,10 @@ setMethod("show", "Term",
           })
 
 ##' @export
-##' @rdname Terms
-setMethod("show", "Terms",
+##' @rdname olsTerms
+setMethod("show", "olsTerms",
           function(object) {
-              cat("Object of class 'Terms' with", length(object), "entries\n")
+              cat("Object of class 'olsTerms' with", length(object), "entries\n")
               onts <- unique(termPrefix(object))
               if (length(onts) == 1)
                   cat(" From the", onts, "ontology\n")
@@ -310,129 +310,129 @@ setMethod("show", "Terms",
 ##########################################
 ## Accessors
 ##' @export
-##' @rdname Terms
-setMethod("termSynonym", "Term",
+##' @rdname olsTerms
+setMethod("termSynonym", "olsTerm",
           function(object) unlist(object@synonyms))
 ##' @export
-##' @rdname Terms
-setMethod("termSynonym", "Terms",
+##' @rdname olsTerms
+setMethod("termSynonym", "olsTerms",
           function(object) lapply(object@x, termSynonym))
 ##' @export
-##' @rdname Terms
-setMethod("isObsolete", "Term",
+##' @rdname olsTerms
+setMethod("isObsolete", "olsTerm",
           function(object) object@is_obsolete)
 ##' @export
-##' @rdname Terms
-setMethod("isObsolete", "Terms",
+##' @rdname olsTerms
+setMethod("isObsolete", "olsTerms",
           function(object) sapply(object@x, isObsolete))
 ##' @export
-##' @rdname Terms
-setMethod("isRoot", "Term",
+##' @rdname olsTerms
+setMethod("isRoot", "olsTerm",
           function(object) object@is_root)
 ##' @export
-##' @rdname Terms
-setMethod("isRoot", "Terms",
+##' @rdname olsTerms
+setMethod("isRoot", "olsTerms",
           function(object) sapply(object@x, isRoot))
 ##' @export
-##' @rdname Terms
-setMethod("termLabel", "Term",
+##' @rdname olsTerms
+setMethod("termLabel", "olsTerm",
           function(object) object@label)
 ##' @export
-##' @rdname Terms
-setMethod("termLabel", "Terms",
+##' @rdname olsTerms
+setMethod("termLabel", "olsTerms",
           function(object) sapply(object@x, termLabel))
 ##' @export
-##' @rdname Terms
-setMethod("termId", "Term",
+##' @rdname olsTerms
+setMethod("termId", "olsTerm",
           function(object) .termId(object))
 ##' @export
-##' @rdname Terms
-setMethod("termId", "Terms",
+##' @rdname olsTerms
+setMethod("termId", "olsTerms",
           function(object) sapply(object@x, .termId))
 ##' @export
-##' @rdname Terms
-setMethod("termLinks", "Term",
+##' @rdname olsTerms
+setMethod("termLinks", "olsTerm",
           function(object) {
               links <- unlist(object@links)
               names(links) <- sub("\\.href", "", names(links))
               links
           })
 ##' @export
-##' @rdname Terms
-setMethod("termPrefix", "Term",
+##' @rdname olsTerms
+setMethod("termPrefix", "olsTerm",
           function(object) object@ontology_prefix)
 ##' @export
-##' @rdname Terms
-setMethod("termPrefix", "Terms",
+##' @rdname olsTerms
+setMethod("termPrefix", "olsTerms",
           function(object) sapply(object@x, termPrefix))
 ##' @export
-##' @rdname Terms
-setMethod("termDesc", "Term",
+##' @rdname olsTerms
+setMethod("termDesc", "olsTerm",
           function(object) unlist(object@description))
 ##' @export
-##' @rdname Terms
-setMethod("termDesc", "Terms",
+##' @rdname olsTerms
+setMethod("termDesc", "olsTerms",
           function(object) sapply(object@x, termDesc))
 ##' @export
-##' @rdname Terms
-setMethod("termOntology", "Term",
+##' @rdname olsTerms
+setMethod("termOntology", "olsTerm",
           function(object) unlist(object@ontology_name))
 ##' @export
-##' @rdname Terms
-setMethod("termOntology", "Terms",
+##' @rdname olsTerms
+setMethod("termOntology", "olsTerms",
           function(object) sapply(object@x, termOntology))
 ##' @export
-##' @rdname Terms
-setMethod("termNamespace", "Term",
+##' @rdname olsTerms
+setMethod("termNamespace", "olsTerm",
           function(object) unlist(object@annotation$has_obo_namespace))
 ##' @export
-##' @rdname Terms
-setMethod("termNamespace", "Terms",
+##' @rdname olsTerms
+setMethod("termNamespace", "olsTerms",
           function(object) sapply(object@x, termNamespace))
 
 ##########################################
 ## Data manipulation
 
 ##' @export
-##' @rdname Terms
-setMethod("length", "Terms", function(x) length(x@x))
+##' @rdname olsTerms
+setMethod("length", "olsTerms", function(x) length(x@x))
 ##' @export
-##' @rdname Terms
-setMethod("unique", "Terms", function(x) x[!duplicated(names(x@x))])
+##' @rdname olsTerms
+setMethod("unique", "olsTerms", function(x) x[!duplicated(names(x@x))])
 ##' @export
-##' @rdname Terms
+##' @rdname olsTerms
 ##'
-##' @param x a `Terms` object.
+##' @param x a `olsTerms` object.
 ##'
 ##' @param i index of elecements to subset.
 ##'
 ##' @param j ignored.
 ##'
 ##' @param drop ignored.
-setMethod("[", "Terms",
+setMethod("[", "olsTerms",
           function(x, i, j="missing", drop="missing")
-              .Terms(x = x@x[i]))
+              .olsTerms(x = x@x[i]))
 ##' @export
-##' @rdname Terms
-setMethod("[[", "Terms",
+##' @rdname olsTerms
+setMethod("[[", "olsTerms",
           function(x, i, j="missing", drop="missing") x@x[[i]])
 ##' @export
 ##'
-##' @param X `Terms` object.
+##' @param X `olsTerms` object.
 ##'
-##' @param FUN a `function` to be applied to each `Term` element of
+##' @param FUN a `function` to be applied to each `olsTerm` element of
 ##'     `X`.
 ##'
 ##' @param ... additional arguments passed to `FUN`.
 ##'
-##' @rdname Terms
-setMethod("lapply", "Terms",
+##' @rdname olsTerms
+setMethod("lapply", "olsTerms",
           function(X, FUN, ...) lapply(X@x, FUN, ...))
 ## ##' @export
-## setMethod("all.equal", c("Term", "Term"),
+## setMethod("all.equal", c("olsTerm", "olsTerm"),
 ##           function(target, current) {
 ##               msg <- Biobase::validMsg(NULL, NULL)
-##               snms <- slotNames("Term")
+##               snms <- slotNames("olsTerm")
 ##               for (i in snms[-grep("links", snms)]) {
 ##                   eq <- all.equal(slot(target, i), slot(current, i))
 ##                   if (is.character(eq)) {
@@ -450,16 +450,16 @@ setMethod("lapply", "Terms",
 ##           })
 
 
-## setMethod("all.equal", c("Terms", "Terms"),
+## setMethod("all.equal", c("olsTerms", "olsTerms"),
 ##           function(target, current) {
 ##               msg <- Biobase::validMsg(NULL, NULL)
 ##               if (length(target) != length(current)) {
-##                   msg <- Biobase::validMsg(msg, "2 Terms are of different lengths")
+##                   msg <- Biobase::validMsg(msg, "2 olsTerms are of different lengths")
 ##               } else {
 ##                   tg <- target@x
 ##                   ct <- current@x
 ##                   if (any(sort(names(tg)) != sort(names(ct)))) {
-##                       msg <- Biobase::validMsg(msg, "Term ids don't match")
+##                       msg <- Biobase::validMsg(msg, "olsTerm ids don't match")
 ##                   } else {
 ##                       ot <- order(names(tg))
 ##                       oc <- order(names(ct))
@@ -468,7 +468,7 @@ setMethod("lapply", "Terms",
 ##                       for (i in seq_along(tg)) {
 ##                           eq <- all.equal(tg[[i]], ct[[i]])
 ##                           if (is.character(eq)) {
-##                               eq <- paste0("Term id '", names(tg)[i], "': ", eq)
+##                               eq <- paste0("olsTerm id '", names(tg)[i], "': ", eq)
 ##                               msg <- Biobase:::validMsg(msg, eq)
 ##                           }
 ##                       }
@@ -479,7 +479,7 @@ setMethod("lapply", "Terms",
 ##           })
 
 ##' @export
-setAs("Term", "data.frame",
+setAs("olsTerm", "data.frame",
       function(from)
           data.frame(
               id = fix_null(termId(from)),
@@ -496,23 +496,23 @@ setAs("Term", "data.frame",
           )
 
 ##' @export
-##' @rdname Terms
-as.Term.data.frame <- function(x)
+##' @rdname olsTerms
+as.olsTerm.data.frame <- function(x)
     as(x, "data.frame")
 
 ##' @export
-setAs("Terms", "data.frame",
+setAs("olsTerms", "data.frame",
       function(from) do.call(rbind, lapply(from, as, "data.frame")))
 
 ##' @export
-##' @rdname Terms
-as.Terms.data.frame <- function(x)
+##' @rdname olsTerms
+as.olsTerms.data.frame <- function(x)
     as(x, "data.frame")
 
 #############################################
 ## helper functions
-makeTerms <- function(oid, pagesize, obsolete) {
-    ont <- Ontology(oid)
+makeOlsTerms <- function(oid, pagesize, obsolete) {
+    ont <- olsOntology(oid)
     url <- paste0(olsLinks(ont)[["terms"]], "?")
     if (!is.null(obsolete))
         url <- paste0(url, "obsoletes=",
@@ -521,11 +521,11 @@ makeTerms <- function(oid, pagesize, obsolete) {
     ans <- lapply(ols_requests(url, "terms"),
                   termFromJson)
     names(ans) <- sapply(ans, termId)
-    .Terms(x = ans)
+    .olsTerms(x = ans)
 }
 
 termFromJson <- function(x) {
-    .Term(iri = x[["iri"]],
+    .olsTerm(iri = x[["iri"]],
           lang = x[["lang"]],
           description = x[["description"]],
           synonyms = x[["synonyms"]],
