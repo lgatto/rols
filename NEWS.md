@@ -4,7 +4,11 @@
 
 - rename `Ontology` and `Ontologies` to `olsOntology` and
   `olsOntologies` methods/classes to avoid clashed with the
-  `AnnotationDbi::Ontology` generic.
+  `AnnotationDbi::Ontology` generic. Same for `[ols]Term` and
+  `[ols]Terms`. Also rename `[ols]Propert[y/ies]` for consistency.
+- MS ontology not available anymore. Use GO term in `CVParam` examples
+  and tests.
+- Fix bug in `[,,,]` constructor, allowing commas in the term name.
 
 ## CHANGES IN VERSION 2.99.4
 
