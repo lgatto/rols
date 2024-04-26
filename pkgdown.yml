@@ -1,7 +1,7 @@
 pandoc: 3.1.1
-pkgdown: 2.0.7.9000
-pkgdown_sha: 3979e7c0afbba4503248dc8a6d04fe0a2e03f26f
+pkgdown: 2.0.9.9000
+pkgdown_sha: 2dc1877830c823bed1aa89546e84fbd95141a818
 articles:
   rols: rols.html
-last_built: 2024-03-05T10:03Z
+last_built: 2024-04-26T13:39Z
 

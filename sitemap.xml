@@ -25,15 +25,15 @@
     <loc>/reference/OlsSearch.html</loc>
   </url>
   <url>
-    <loc>/reference/Ontologies.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Properties.html</loc>
-  </url>
-  <url>
-    <loc>/reference/Terms.html</loc>
-  </url>
-  <url>
     <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/olsOntologies.html</loc>
+  </url>
+  <url>
+    <loc>/reference/olsProperties.html</loc>
+  </url>
+  <url>
+    <loc>/reference/olsTerms.html</loc>
   </url>
 </urlset>
