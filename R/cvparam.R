@@ -41,18 +41,18 @@
 ##' ## User param
 ##' CVParam(name = "A user param", value = "the value")
 ##' ## CVParam ESI from PSI's Mass Spectrometry ontology
-##' olsTerm("MS", "MS:1000073")
-##' (esi <- CVParam(label = "MS", accession = "MS:1000073"))
-##' class(esi)
+##' olsTerm("GO", "GO:0035145")
+##' (eej <- CVParam(label = "GO", accession = "GO:0035145"))
+##' class(eej)
 ##'
 ##' ## From a CVParam object to a character
-##' cv <- as(esi, "character")
+##' cv <- as(eej, "character")
 ##' cv ## note the quotes
 ##'
 ##' ## From a character object to a CVParam
 ##' as(cv, "CVParam")
-##' as("[MS, MS:1000073, , ]", "CVParam") ## no name
-##' as("[MS, MS:1000073, ESI, ]", "CVParam") ## name does not match
+##' as("[GO, GO:0035145, , ]", "CVParam") ## no name
+##' as("[GO, GO:0035145, exon-exon junction complex, ]", "CVParam")
 ##' as(c(cv, cv), "CVParam") ## more than 1 character
 ##'
 ##' x <- c("[MS, MS:1000073, , ]", ## valid CV param
@@ -201,8 +201,9 @@ cvCharToCVPar <- function(from) {
             stop(paste("Your input character should be",
                        "'[MS, MS:1000073, ESI, ]'.",
                        "See ?CVParam for details."))
-    from <- substr(from, 2, nchar(from)-1)
-    from <- trim(strsplit(from, ",")[[1]])
+    ## from <- substr(from, 2, nchar(from)-1)
+    ## from <- trim(strsplit(from, ",")[[1]])
+    from <- .split_cvparam(from)
 
     ## Assuming correct order here!
     ## 1: "label", 2: "accession", 3: "name", 4: "value"
@@ -230,13 +231,7 @@ setAs("character", "CVParam",
     ## NO SEMANTICS IS CHECKED
     x <- x[1]
     stopifnot(is.character(x))
-    x <- strsplit(x, ",")[[1]]
-    ## Order:
-    ## 1. label (ontology)
-    ## 2. accession
-    ## 3. name
-    ## 4. value
-    x <- trim(gsub("\\[|\\]", "", x))
+    x <- .split_cvparam(x)
     if (all(x == "")) return(FALSE)
     if (length(x) != 4) return(FALSE)
     ## CV param: 1 and 2 are present
@@ -256,6 +251,23 @@ setAs("character", "CVParam",
     }
     return(TRUE)
 }
+
+.split_cvparam <- function(x) {
+    x <- strsplit(x, ",")[[1]]
+    ## Order:
+    ## 1. label (ontology)
+    ## 2. accession
+    ## 3. name (can contain commas!)
+    ## 4. value
+    if (length(x) > 4) {
+        x[3] <- paste(x[3:(length(x) - 1)], collapse = ",")
+        x[4] <- x[length(x)]
+        x <- x[1:4]
+    }
+    trim(gsub("\\[|\\]", "", x))
+}
+
+
 
 ##' @export
 charIsCVParam <- function(object)

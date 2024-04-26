@@ -75,18 +75,18 @@ match.}
 ## User param
 CVParam(name = "A user param", value = "the value")
 ## CVParam ESI from PSI's Mass Spectrometry ontology
-olsTerm("MS", "MS:1000073")
-(esi <- CVParam(label = "MS", accession = "MS:1000073"))
-class(esi)
+olsTerm("GO", "GO:0035145")
+(eej <- CVParam(label = "GO", accession = "GO:0035145"))
+class(eej)
 
 ## From a CVParam object to a character
-cv <- as(esi, "character")
+cv <- as(eej, "character")
 cv ## note the quotes
 
 ## From a character object to a CVParam
 as(cv, "CVParam")
-as("[MS, MS:1000073, , ]", "CVParam") ## no name
-as("[MS, MS:1000073, ESI, ]", "CVParam") ## name does not match
+as("[GO, GO:0035145, , ]", "CVParam") ## no name
+as("[GO, GO:0035145, exon-exon junction complex, ]", "CVParam")
 as(c(cv, cv), "CVParam") ## more than 1 character
 
 x <- c("[MS, MS:1000073, , ]", ## valid CV param

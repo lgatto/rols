@@ -312,7 +312,7 @@ or official controlled vocabulary (which triggers a query to the OLS
 service)
 
 ```{r}
-CVParam(label = "MS", accession = "MS:1000073")
+CVParam(label = "GO", accession = "GO:0035145")
 ```
 
 See `?CVParam` for more details and examples.

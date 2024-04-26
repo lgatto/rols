@@ -143,7 +143,7 @@ res
 res <- olsSearch(res)
 res
 as(res, "data.frame")
-trms <- as(res, "Terms")
+trms <- as(res, "olsTerms")
 trms
 termPrefix(trms)
 termId(trms)
