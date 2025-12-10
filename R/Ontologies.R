@@ -513,7 +513,7 @@ setAs("olsOntologies", "list", function(from) from@x)
 ##########################################
 ## Helper functions
 makeOlsOntologies <- function() {
-    url <- "https://www.ebi.ac.uk/ols4/api/ontologies/"
+    url <- "https://www.ebi.ac.uk/ols4/api/ontologies"
     .olsOntologies(x = lapply(ols_requests(url, "ontologies"),
                               ontologyFromJson))
 }
