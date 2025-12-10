@@ -1,3 +1,9 @@
+# rols 3.7
+
+# rols 3.7.1
+
+- Fix bug in `rols::Ontologies()` (see #48)
+
 # rols 2.99
 
 ## CHANGES IN VERSION 2.99.5
