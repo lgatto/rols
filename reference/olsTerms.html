@@ -4,7 +4,7 @@ instantiated as a `olsTerms` class."><!-- mathjax --><script src="https://cdnjs.
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--></head><body data-spy="scroll" data-target="#toc">
-    
+
 
     <div class="container template-reference-topic">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -18,7 +18,7 @@ instantiated as a `olsTerms` class."><!-- mathjax --><script src="https://cdnjs.
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">rols</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">2.99.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">3.7.1</span>
       </span>
     </div>
 
@@ -35,20 +35,20 @@ instantiated as a `olsTerms` class."><!-- mathjax --><script src="https://cdnjs.
       </ul><ul class="nav navbar-nav navbar-right"><li>
   <a href="https://github.com/lgatto/rols/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-      
+
 
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Ontology Terms</h1>
-    <small class="dont-index">Source: <a href="https://github.com/lgatto/rols/blob/HEAD/R/Terms.R" class="external-link"><code>R/Terms.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/lgatto/rols/blob/master/R/Terms.R" class="external-link"><code>R/Terms.R</code></a></small>
     <div class="hidden name"><code>olsTerms.Rd</code></div>
     </div>
 
@@ -58,163 +58,165 @@ instantiated as a `olsTerms` class.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre><code># S4 method for class 'character'
-olsTerms(object, pagesize = 1000, obsolete = NULL)
-
-# S4 method for class 'olsOntology'
-olsTerms(object, pagesize = 1000, obsolete = NULL)
-
-# S4 method for class 'character'
-olsTerm(object, id)
-
-# S4 method for class 'olsOntology'
-olsTerm(object, id)
-
-children(object)
-
-parents(object)
-
-ancestors(object)
-
-descendants(object)
-
-# S4 method for class 'olsTerm'
-show(object)
-
-# S4 method for class 'olsTerms'
-show(object)
-
-# S4 method for class 'olsTerm'
-termSynonym(object)
-
-# S4 method for class 'olsTerms'
-termSynonym(object)
-
-# S4 method for class 'olsTerm'
-isObsolete(object)
-
-# S4 method for class 'olsTerms'
-isObsolete(object)
-
-# S4 method for class 'olsTerm'
-isRoot(object)
-
-# S4 method for class 'olsTerms'
-isRoot(object)
-
-# S4 method for class 'olsTerm'
-termLabel(object)
-
-# S4 method for class 'olsTerms'
-termLabel(object)
-
-# S4 method for class 'olsTerm'
-termId(object)
-
-# S4 method for class 'olsTerms'
-termId(object)
-
-# S4 method for class 'olsTerm'
-termLinks(object)
-
-# S4 method for class 'olsTerm'
-termPrefix(object)
-
-# S4 method for class 'olsTerms'
-termPrefix(object)
-
-# S4 method for class 'olsTerm'
-termDesc(object)
-
-# S4 method for class 'olsTerms'
-termDesc(object)
-
-# S4 method for class 'olsTerm'
-termOntology(object)
-
-# S4 method for class 'olsTerms'
-termOntology(object)
-
-# S4 method for class 'olsTerm'
-termNamespace(object)
-
-# S4 method for class 'olsTerms'
-termNamespace(object)
-
-# S4 method for class 'olsTerms'
-length(x)
-
-# S4 method for class 'olsTerms'
-unique(x)
-
-# S4 method for class 'olsTerms'
-[(x, i, j = "missing", drop = "missing")
-
-# S4 method for class 'olsTerms'
-[[(x, i, j = "missing", drop = "missing")
-
-# S4 method for class 'olsTerms'
-lapply(X, FUN, ...)
-
-as.olsTerm.data.frame(x)
-
-as.olsTerms.data.frame(x)</code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="co"># S4 method for class 'character'</span></span>
+<span><span class="fu">olsTerms</span><span class="op">(</span><span class="va">object</span>, pagesize <span class="op">=</span> <span class="fl">1000</span>, obsolete <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsOntology'</span></span>
+<span><span class="fu">olsTerms</span><span class="op">(</span><span class="va">object</span>, pagesize <span class="op">=</span> <span class="fl">1000</span>, obsolete <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'character'</span></span>
+<span><span class="fu">olsTerm</span><span class="op">(</span><span class="va">object</span>, <span class="va">id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsOntology'</span></span>
+<span><span class="fu">olsTerm</span><span class="op">(</span><span class="va">object</span>, <span class="va">id</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">children</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">parents</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">ancestors</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">descendants</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">show</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">show</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termSynonym</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">termSynonym</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">isObsolete</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">isObsolete</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">isRoot</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">isRoot</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termLabel</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">termLabel</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termId</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">termId</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termLinks</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termPrefix</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">termPrefix</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termDesc</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">termDesc</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termOntology</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">termOntology</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerm'</span></span>
+<span><span class="fu">termNamespace</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu">termNamespace</span><span class="op">(</span><span class="va">object</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="va">x</span><span class="op">[</span><span class="va">i</span>, j <span class="op">=</span> <span class="st">"missing"</span>, drop <span class="op">=</span> <span class="st">"missing"</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="va">x</span><span class="op">[[</span><span class="va">i</span>, j <span class="op">=</span> <span class="st">"missing"</span>, drop <span class="op">=</span> <span class="st">"missing"</span><span class="op">]</span><span class="op">]</span></span>
+<span></span>
+<span><span class="co"># S4 method for class 'olsTerms'</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="va">X</span>, <span class="va">FUN</span>, <span class="va">...</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">as.olsTerm.data.frame</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">as.olsTerms.data.frame</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
-    <dl><dt>object</dt>
+
+
+<dl><dt id="arg-object">object<a class="anchor" aria-label="anchor" href="#arg-object"></a></dt>
 <dd><p>generally an instance of class `olsTerms` or `olsTerm`. In
 some cases, an ontology identifier is applicable.</p></dd>
 
 
-<dt>pagesize</dt>
+<dt id="arg-pagesize">pagesize<a class="anchor" aria-label="anchor" href="#arg-pagesize"></a></dt>
 <dd><p>`numeric(1)`, converted to an integer, defining
 the response page size. Default is 1000.</p></dd>
 
 
-<dt>obsolete</dt>
+<dt id="arg-obsolete">obsolete<a class="anchor" aria-label="anchor" href="#arg-obsolete"></a></dt>
 <dd><p>`NULL` or `logical(1)` defining whether obsolete
 terms (`TRUE`), current terms (`FALSE`) or all (`NULL`,
 default) should be returned.</p></dd>
 
 
-<dt>id</dt>
+<dt id="arg-id">id<a class="anchor" aria-label="anchor" href="#arg-id"></a></dt>
 <dd><p>`character(1)` with the term's identifier.</p></dd>
 
 
-<dt>x</dt>
+<dt id="arg-x">x<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>a `olsTerms` object.</p></dd>
 
 
-<dt>i</dt>
+<dt id="arg-i">i<a class="anchor" aria-label="anchor" href="#arg-i"></a></dt>
 <dd><p>index of elecements to subset.</p></dd>
 
 
-<dt>j</dt>
+<dt id="arg-j">j<a class="anchor" aria-label="anchor" href="#arg-j"></a></dt>
 <dd><p>ignored.</p></dd>
 
 
-<dt>drop</dt>
+<dt id="arg-drop">drop<a class="anchor" aria-label="anchor" href="#arg-drop"></a></dt>
 <dd><p>ignored.</p></dd>
 
 
-<dt>X</dt>
+<dt id="arg-x">X<a class="anchor" aria-label="anchor" href="#arg-x"></a></dt>
 <dd><p>`olsTerms` object.</p></dd>
 
 
-<dt>FUN</dt>
+<dt id="arg-fun">FUN<a class="anchor" aria-label="anchor" href="#arg-fun"></a></dt>
 <dd><p>a `function` to be applied to each `olsTerm` element of
 `X`.</p></dd>
 
 
-<dt>...</dt>
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
 <dd><p>additional arguments passed to `FUN`.</p></dd>
 
 </dl></div>
     <div id="contructors">
     <h2>Contructors</h2>
-    
+
 
 
 <p>Objects can be created using the `olsTerm()` and `olsTerms()`
@@ -231,7 +233,7 @@ iterated over with `lapply`.</p>
     </div>
     <div id="accessors">
     <h2>Accessors</h2>
-    
+
 
 
 <p>- `isObsolete(object = "olsTerm")` returns a `TRUE` if the term is
@@ -259,7 +261,7 @@ iterated over with `lapply`.</p>
     </div>
     <div id="related-terms">
     <h2>Related terms</h2>
-    
+
 
 
 <p>- `children(object = "olsTerm")` returns a new `olsTerms` instance with
@@ -274,7 +276,7 @@ iterated over with `lapply`.</p>
     </div>
     <div id="coercion">
     <h2>Coercion</h2>
-    
+
 
 
 <p>- `as(x, "data.fram")` coerces a `olsTerm` or `olsTerms` instance into a
@@ -301,11 +303,9 @@ iterated over with `lapply`.</p>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Alzheimer's Disease Ontology (ADO)</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">adoterms</span> <span class="op">&lt;-</span> <span class="fu">olsTerms</span><span class="op">(</span><span class="st">'ado'</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠙ Iterating 1 done (0.16/s) | 6.4s</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ⠹ Iterating 2 done (0.21/s) | 9.5s</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'olsTerms' with 1963 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the ADO ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   OGG:3000002185, OGG:3000002222 ... OGG:3000002081, OGG:3000002099 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ADO:0000001, ADO:0000010 ... performing_physical:activity, non-pharmacotherapy:procedure </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Focus on squamous epithelium</span></span></span>
 <span class="r-in"><span><span class="op">(</span><span class="va">trm</span> <span class="op">&lt;-</span> <span class="va">adoterms</span><span class="op">[[</span><span class="st">"UBERON:0006914"</span><span class="op">]</span><span class="op">]</span><span class="op">)</span></span></span>
@@ -318,10 +318,18 @@ iterated over with `lapply`.</p>
 <span class="r-in"><span><span class="fu">termLabel</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "squamous epithelium"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu">termLabel</span><span class="op">(</span><span class="va">adoterms</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OGG:3000002185 OGG:3000002222 OGG:3000002224 OGG:3000002308 OGG:3000002332 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>        "PTK2B"        "FDFT1"         "FDPS"        "FOXO1"         "FMR1" </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OGG:3000002339 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>         "FNTA" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000001 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                      "cognitive symptom" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000010 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   "TM_BIN_VariantisGeneticRiskFactorFor" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000011 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>             "TM_BIN_isSignAndSymptomFor" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000012 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                  "TM_BIN_isTreatmentFor" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000024 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                             "early sign" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                              ADO:0000025 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "Early-stage Alzheimer's Disease (mild)" </span>
 <span class="r-in"><span><span class="fu">termId</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "UBERON:0006914"</span>
 <span class="r-in"><span><span class="fu">termDesc</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span></span></span>
@@ -350,7 +358,7 @@ iterated over with `lapply`.</p>
 <span class="r-in"><span><span class="fu">ancestors</span><span class="op">(</span><span class="va">trm</span><span class="op">)</span> <span class="co">## includes parent</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Object of class 'olsTerms' with 10 entries</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  From the ADO ontology</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   UBERON:0000483, UBERON:0000479 ... BFO:0000001, UBERON:0001062 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   UBERON:0000483, UBERON:0000479 ... BFO:0000002, BFO:0000001 </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## A single term from an ontology</span></span></span>
 <span class="r-in"><span><span class="fu">olsTerm</span><span class="op">(</span><span class="st">"ado"</span>, <span class="st">"ADO:0000090"</span><span class="op">)</span></span></span>
@@ -373,15 +381,15 @@ iterated over with `lapply`.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.9.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.9000.</p>
 </div>
 
       </footer></div>
 
-  
 
 
-  
+
+
 
   </body></html>
 
